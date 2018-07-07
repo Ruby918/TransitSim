@@ -53,7 +53,15 @@ public class MapDataParser {
   }
 
   private void addHubData(String[] data) {
+    ArrayList<Station> stations = new ArrayList<>();
     String[] stationStrings = data[1].split(" \\| ");
+    for (String stationString : stationStrings) {
+      data = stationString.split(" ");
+      int routeId = Integer.parseInt(data[0]);
+      int stationId = Integer.parseInt(data[1]);
+      stations.add(this.routes.get(routeId).getStationByIndex(stationId));
+    }
+    Map.makeAdjacent(stations);
   }
 
   public ArrayList<Route> getRoutes() {
