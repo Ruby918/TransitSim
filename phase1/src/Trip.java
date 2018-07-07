@@ -29,6 +29,7 @@ public class Trip {
     // return the price of this tap
     if (isTapInEventValid(tapInEvent)){
       tapEvents.add(tapInEvent);
+      lastTapAdded = tapInEvent;
       if (tapInEvent.getStation() instanceof BusStation) {
       double maxChargeAmount = MAX_CHARGE - costSoFar;
       double chargeAmount;
@@ -54,6 +55,7 @@ public class Trip {
     // isTapInEventInSameTrip method
     if (isTapOutEventValid(tapOutEvent)){
       tapEvents.add(tapOutEvent);
+      lastTapAdded = tapOutEvent;
       if (tapOutEvent.getStation() instanceof SubwayStation) {
       {
         //int distance = tapOutEvent.getStation().
