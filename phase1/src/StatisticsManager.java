@@ -15,8 +15,14 @@ public class StatisticsManager {
     }
 
     public static ArrayList<TapEvent> dateTap (Date date){
-        //stub
-        return new ArrayList<>();//filler so i don't see red lines
+        ArrayList<TapEvent> dateMatchTapEvents = new ArrayList<>();
+
+        for(int i = 0; i < tapEvents.size(); i++){
+            if(tapEvents.get(i).getDate() == date){
+                dateMatchTapEvents.add(tapEvents.get(i));
+            }
+        }
+        return dateMatchTapEvents;
     }
 
     public static double calculateRevenue(ArrayList<TapEvent> taps){
