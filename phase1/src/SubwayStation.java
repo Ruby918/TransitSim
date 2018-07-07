@@ -8,11 +8,11 @@ public class SubwayStation extends Station {
     super(name, 0, 0.5, route);
   }
 
-  public void getTapInPrice() {
+  public double getTapInPrice() {
     return this.tapInPrice;
   }
 
-  public void getPassThroughPrice() {
+  public double getPassThroughPrice() {
     return this.passThroughPrice;
   }
 }

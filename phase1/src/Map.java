@@ -9,7 +9,7 @@ public class Map {
     this.routes = routes;
   }
 
-  public void makeAdjacent(Station[2] stations) {
+  public void makeAdjacent(Station[] stations) {
     stations[0].addAdjacentStation(stations[1]);
     stations[1].addAdjacentStation(stations[0]);
   }

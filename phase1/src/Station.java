@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 abstract public class Station {
 
-  private double tapInPrice;
-  private double passThroughPrice;
+  protected double tapInPrice;
+  protected double passThroughPrice;
   private String name;
   private Route route;
   private ArrayList<Station> adjacentStations = new ArrayList<>();

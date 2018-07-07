@@ -11,7 +11,7 @@ public class StatisticsManager {
     }
 
     public static void addTapEvent(TapEvent tap){
-        this.tapEvents.add(tap);
+        tapEvents.add(tap);
     }
 
     public static ArrayList<TapEvent> dateTap (Date date){
