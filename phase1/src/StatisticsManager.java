@@ -5,10 +5,16 @@ import java.util.Date;
 public class StatisticsManager {
 
     private static ArrayList<TapEvent> tapEvents = new ArrayList<>();
+    private static ArrayList<Trip> tripEvents = new ArrayList<>();
+
 
     public static ArrayList<TapEvent> getTapEvents() {
         return tapEvents;
     }
+    public static ArrayList<Trip> getTripEvents() {
+        return tripEvents;
+    }
+
 
     public static void addTapEvent(TapEvent tap){
         tapEvents.add(tap);
@@ -26,13 +32,15 @@ public class StatisticsManager {
     }
 
     public static double calculateRevenue(ArrayList<TapEvent> taps){
-        //stub
-        return 1.0;
+        double revenue = 0;
+        for(int i = 0; i < tripEvents.size(); i++){
+            revenue += tripEvents.get(i).getCostSoFar();
+        }
+        return revenue;
     }
 
     public static double calculateProfit(ArrayList<TapEvent> taps, double cost){
-        //stub
-        return 1.0;
+        return cost - calculateRevenue(taps);
     }
 
     public static ArrayList<Station> calculateStationsReached(ArrayList<TapEvent> taps){

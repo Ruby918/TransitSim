@@ -18,9 +18,11 @@ public class Trip {
     this.lastTapAdded = tapInEvent;
   }
 
-  public Date getStartDate() {
-    return this.startEvent.getDate();
-  }
+  public Date getStartDate() { return this.startEvent.getDate();}
+
+  public double getCostSoFar(){ return this.costSoFar;}
+
+  public ArrayList<TapEvent> getTapEvents(){ return this.tapEvents;}
 
   public double registerTapInEvent(TapInEvent tapInEvent) throws TripInvalidTapEventException, UnnaturalTapSequenceException {
     // check if tap event is valid for this trip
