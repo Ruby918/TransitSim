@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Trip {
-  private static final double MAX_CHARGE = 6;
+  protected static final double MAX_CHARGE = 6;
   private double costSoFar;
   private TapInEvent startEvent;
   private TapEvent lastTapAdded;
