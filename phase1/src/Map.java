@@ -9,8 +9,13 @@ public class Map {
     this.routes = routes;
   }
 
-  public void makeAdjacent(Station[] stations) {
-    stations[0].addAdjacentStation(stations[1]);
-    stations[1].addAdjacentStation(stations[0]);
+  public void makeAdjacent(ArrayList<Station> stations) {
+    for (int i=0; i<stations.size(); i++) {
+      for (int j=0; j<stations.size(); j++) {
+        if (!(j == i)) {
+          stations.get(i).addAdjacentStation(stations.get(j));
+        }
+      }
+    }
   }
 }
