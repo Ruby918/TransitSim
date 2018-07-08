@@ -37,10 +37,10 @@ public class Card {
     this.balance += 50;
   }
 
-  public void tapIn(Station station) throws InsufficientFundsException {
+  public void tapIn(Station station) throws InsufficientFundsException, tapDeactivatedCardException {
 
     // check if card is active
-
+    if (!this.isActive) throw new tapDeactivatedCardException();
     if (this.balance <= 0) throw new InsufficientFundsException();
 
     TapInEvent tapInEvent = new TapInEvent(station);
@@ -48,7 +48,14 @@ public class Card {
       this.activeTrip = new Trip(tapInEvent);
     } else {
         try {
-          double price = activeTrip.registerTapInEvent(tapInEvent);
+          double price = 0;
+          try {
+            price = activeTrip.registerTapInEvent(tapInEvent);
+          } catch (UnnaturalTapSequenceException e) {
+            this.balance -= 6;
+            this.isActive = false;
+            e.printStackTrace();
+          }
           this.balance -= price;
         } catch (TripInvalidTapEventException e) {
           this.activeTrip = new Trip(tapInEvent);
