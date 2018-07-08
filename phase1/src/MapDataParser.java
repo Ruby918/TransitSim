@@ -17,9 +17,9 @@ public class MapDataParser {
         String[] data = line.split(", ");
         if (data[0].equals("Route")) {
           addRouteData(data);
-        } else if (data[0] == "Station") {
+        } else if (data[0].equals("Station")) {
           addStationData(data);
-        } else if (data[0] == "Hub") {
+        } else if (data[0].equals("Hub")) {
           addHubData(data);
         }
         line = fileReader.readLine();

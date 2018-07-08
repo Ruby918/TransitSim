@@ -7,7 +7,7 @@ abstract public class Route {
   public static String genericIdentifier = "Route";
   private String name;
 
-  private ArrayList<Station> stations;
+  private ArrayList<Station> stations = new ArrayList<>();
 
   public Route(String name){
     this.name = name;
