@@ -15,6 +15,9 @@ public class StatisticsManager {
         return tripEvents;
     }
 
+    public static void addTripEvent(Trip trip){
+        tripEvents.add(trip);
+    }
 
     public static void addTapEvent(TapEvent tap){
         tapEvents.add(tap);
@@ -48,6 +51,4 @@ public class StatisticsManager {
         return new ArrayList<>(); // filler so i don't see red lines
     }
 
-    //StatisticsManager.getStationsReached(ArrayList<TapEvent> events) { ArrayList<Station> stations; for (TapEvent event : events) { stations.add(event.getStation()) }
-/////note the doc mentioned a particular set of tap events for all so I assumed that this will not always be all tap events, this may be an incorrect assumtion.
 }

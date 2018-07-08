@@ -33,8 +33,19 @@ public class CustomerAccount {
     this.cards.remove(card);
   }
 
-  public void loadMoney(Double money){
-    ///stub
+  public void loadMoney(Double money, Card card){
+    while(money != 0){
+      if (money >= 50){
+          card.addFiftyDollars();
+          money -= 50;
+      } else if(money >= 20){
+          card.addTwentyDollars();
+          money -= 20;
+      } else {
+            card.addTenDollars();
+            money -= 10;
+      }
+    }
   }
 
 
