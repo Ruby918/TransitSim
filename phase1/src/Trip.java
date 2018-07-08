@@ -18,81 +18,99 @@ public class Trip {
     this.lastTapAdded = tapInEvent;
   }
 
-  public Date getStartDate() { return this.startEvent.getDate();}
+  public Date getStartDate() {
+    return this.startEvent.getDate();
+  }
 
-  public double getCostSoFar(){ return this.costSoFar;}
+  public double getCostSoFar() {
+    return this.costSoFar;
+  }
 
-  public ArrayList<TapEvent> getTapEvents(){ return this.tapEvents;}
-
-  public double registerTapInEvent(TapInEvent tapInEvent) throws TripInvalidTapEventException, UnnaturalTapSequenceException {
+  public double registerTapInEvent(TapInEvent tapInEvent)
+      throws TripInvalidTapEventException, UnnaturalTapSequenceException {
     // check if tap event is valid for this trip
     // given the start time and location of the last tap
     // if it isn't, throw error
     // return the price of this tap
-    if (isTapInEventValid(tapInEvent)){
+    if (!isTapInEventLegal(tapInEvent)) {
+      throw new UnnaturalTapSequenceException();
+    }
+    if (!canAddTapInToCurrentTrip(tapInEvent)) {
+      throw new TripInvalidTapEventException();
+    } else {
       tapEvents.add(tapInEvent);
       lastTapAdded = tapInEvent;
       if (tapInEvent.getStation() instanceof BusStation) {
-      double maxChargeAmount = MAX_CHARGE - costSoFar;
-      double chargeAmount;
-      if (maxChargeAmount > tapInEvent.getStation().tapInPrice) {
-        chargeAmount = tapInEvent.getStation().tapInPrice;
-      } else chargeAmount = maxChargeAmount;
-      costSoFar += chargeAmount;
-      return chargeAmount;
+        double maxChargeAmount = MAX_CHARGE - costSoFar;
+        double chargeAmount;
+        if (maxChargeAmount > tapInEvent.getStation().tapInPrice) {
+          chargeAmount = tapInEvent.getStation().tapInPrice;
+        } else chargeAmount = maxChargeAmount;
+        costSoFar += chargeAmount;
+        return chargeAmount;
+      }
+      // tap in was at a subway station
+      return 0;
     }
-    //tap in was at a subway station
-    return 0;
-  }
-  //unreachable statement, since when the outer if is false, it will always throw an exception.
-  return -1000;
   }
 
-  public double registerTapOutEvent(TapOutEvent tapOutEvent) throws UnnaturalTapSequenceException {
+  public double registerTapOutEvent(TapOutEvent tapOutEvent)
+      throws TripInvalidTapEventException, UnnaturalTapSequenceException {
     // check if tap event is valid for this trip
     // given the start time and location of the last tap
     // if it isn't, throw error
     // return the price of this tap
     // if tapOutEvent is past 2hrs. from first tapInEvent 2hrs = 2*60*60*1000 ms.
     // isTapInEventInSameTrip method
-    if (isTapOutEventValid(tapOutEvent)){
+    if (!isTapOutEventLegal(tapOutEvent)) {
+      throw new UnnaturalTapSequenceException();
+    }
+    if (!canAddTapOutToCurrentTrip(tapOutEvent)) {
+      throw new TripInvalidTapEventException();
+    } else {
       tapEvents.add(tapOutEvent);
       lastTapAdded = tapOutEvent;
       if (tapOutEvent.getStation() instanceof SubwayStation) {
-      {
-        //int distance = tapOutEvent.getStation().
-        return 0;
+        {
+          // int distance = tapOutEvent.getStation().
+          return 0;
+        }
       }
+      return 0;
     }
-    return 0;
-  }
-    //unreachable statement, since when the outer if is false, it will always throw an exception.
-  return -1000;
   }
 
-  private boolean isTapInEventValid(TapInEvent tapInEvent) throws TripInvalidTapEventException, UnnaturalTapSequenceException{
+  private boolean canAddTapInToCurrentTrip(TapInEvent tapInEvent) {
     // if tapInEvent is past 2hrs. from first tapInEvent 2hrs = 2*60*60*1000 ms
     if (tapInEvent.getDate().getTime() - startEvent.getDate().getTime() > 7200000) {
-      throw new TripInvalidTapEventException();
+      return false;
     }
     if (!tapInEvent.getStation().isAdjacentToStation(lastTapAdded.getStation())) {
-      throw new TripInvalidTapEventException();
-    }
-    // 2 tapInEvents in a row
-    if (lastTapAdded instanceof TapInEvent) {
-      throw new UnnaturalTapSequenceException();
+      return false;
     }
     return true;
   }
 
-  private boolean isTapOutEventValid(TapOutEvent tapOutEvent) throws UnnaturalTapSequenceException{
+  private boolean canAddTapOutToCurrentTrip(TapOutEvent tapOutEvent) {
+    return true;
+  }
+
+  private boolean isTapInEventLegal(TapInEvent tapInEvent) {
+    // 2 tapInEvents in a row
+    if (lastTapAdded instanceof TapInEvent) {
+      return false;
+    }
+    return true;
+  }
+
+  private boolean isTapOutEventLegal(TapOutEvent tapOutEvent) {
     // 2 tapOutEvents in a row
     if (lastTapAdded instanceof TapOutEvent) {
-      throw new UnnaturalTapSequenceException();
+      return false;
     }
-    //if last tap in wasn't at same route as tap out route
-    if (!(lastTapAdded.getStation().getRoute()==tapOutEvent.getStation().getRoute())){
-      throw new UnnaturalTapSequenceException();
+    // if last tap in wasn't at same route as tap out route
+    if (!(lastTapAdded.getStation().getRoute() == tapOutEvent.getStation().getRoute())) {
+      return false;
     }
     return true;
   }
