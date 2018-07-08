@@ -28,4 +28,10 @@ abstract public class Route {
   public Station getStationByIndex(int index) {
     return this.stations.get(index);
   }
+
+  public int getRouteLength(Station s1, Station s2) {
+    int s1Index = this.stations.indexOf(s1);
+    int s2Index = this.stations.indexOf(s2);
+    return abs(s1Index - s2Index);
+  }
 }
