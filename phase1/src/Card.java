@@ -45,31 +45,39 @@ public class Card {
     TapInEvent tapInEvent = new TapInEvent(station);
     if (this.activeTrip == null) {
       this.activeTrip = new Trip(tapInEvent);
+      StatisticsManager.addTripEvent(this.activeTrip);
     } else {
         try {
           double price = 0;
           try {
             price = activeTrip.registerTapInEvent(tapInEvent);
           } catch (UnnaturalTapSequenceException e) {
+
+            StatisticsManager.incrementUnnaturalTapSequenceInstances();
+            StatisticsManager.addInvalidTapEvent(tapInEvent.getDate());
             this.balance -= 6;
-            this.isActive = false;
+            deactivate();
             e.printStackTrace();
           }
-
-          if (this.balance < price) throw new InsufficientFundsException();
+        if (this.balance >= price) {
           this.balance -= price;
+          } else {
+
+              this.deactivate();
+              throw new InsufficientFundsException();
+            }
 
         } catch (TripInvalidTapEventException e) {
           this.activeTrip = new Trip(tapInEvent);
-          this.trips.add(this.activeTrip);
-        }
+          StatisticsManager.addTripEvent(this.activeTrip);
+          this.trips.add(this.activeTrip); }
     }
   }
 
-  public void tapOut(Station station){
+  public void tapOut(Station station) throws InsufficientFundsException, tapDeactivatedCardException{
     TapOutEvent tapOutEvent = new TapOutEvent(station);
 
-    // check if card is active
+    if (!this.isActive) throw new tapDeactivatedCardException();
     // check if active trip is null
 
     try {

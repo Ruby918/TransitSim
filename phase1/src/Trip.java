@@ -22,6 +22,10 @@ public class Trip {
     return this.startEvent.getDate();
   }
 
+  public ArrayList<TapEvent> gettapEvents() {
+      return this.tapEvents;
+  }
+
   public double getCostSoFar() {
     return this.costSoFar;
   }
