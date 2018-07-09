@@ -4,31 +4,31 @@ import java.util.ArrayList;
 
 abstract public class Station {
 
-  protected double tapInPrice;
-  protected double passThroughPrice;
-  private String name;
-  private Route route;
-  private ArrayList<Station> adjacentStations = new ArrayList<>();
+  protected static final double TAP_IN_PRICE;
+  protected static final double PASS_THROUGH_PRICE;
+  protected static final String NAME;
+  protected static final Route ROUTE;
+  protected static final ArrayList<Station> ADJACENT_STATIONS = new ArrayList<>();
 
-  public static String genericIdentifier;
+  protected static String GENERIC_IDENTIFIER;
 
   public Station(String name, double tapInPrice, double passThroughPrice, Route route){
-    this.tapInPrice = tapInPrice;
-    this.passThroughPrice = passThroughPrice;
-    this.name = name;
-    this.route = route;
+    this.TAP_IN_PRICE = tapInPrice;
+    this.PASS_THROUGH_PRICE = passThroughPrice;
+    this.NAME = name;
+    this.ROUTE = route;
   }
 
   public void addAdjacentStation(Station station) {
-    this.adjacentStations.add(station);
+    this.ADJACENT_STATIONS.add(station);
   }
 
   public boolean isAdjacentToStation(Station station) {
-    return this.adjacentStations.contains(station);
+    return this.ADJACENT_STATIONS.contains(station);
   }
 
   public Route getRoute() {
-    return this.route;
+    return this.ROUTE;
   }
 
 }
