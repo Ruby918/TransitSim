@@ -1,6 +1,6 @@
 /* Brian */
 
-import jdk.nashorn.internal.runtime.arrays.ArrayIndex;
+//import jdk.nashorn.internal.runtime.arrays.ArrayIndex;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -36,6 +36,11 @@ public class Trip {
     // given the start time and location of the last tap
     // if it isn't, throw error
     // return the price of this tap
+    if (startEvent == tapInEvent & tapInEvent.getStation() instanceof BusStation){
+      double chargeAmount = BusStation.TAP_IN_PRICE;
+      costSoFar += chargeAmount;
+      return chargeAmount;
+    }
     if (!isTapInEventLegal(tapInEvent)) {
       throw new UnnaturalTapSequenceException();
     }
