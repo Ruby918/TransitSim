@@ -4,60 +4,50 @@ import java.util.ArrayList;
 
 public class MapDataParser extends DataParser {
 
-  private ArrayList<Route> routes = new ArrayList<>();
+  private Map map;
 
-  public MapDataParser(String filename) {
+  public MapDataParser(String filename, Map map) {
     super(filename);
+    this.map = map;
   }
 
   @Override
   protected void parseLine(String line) {
-    String[] data = line.split(", ");
+    String[] data = line.split(": ");
     if (data[0].equals("Route")) {
-      addRouteData(data);
+      addRouteData(data[1].split(", "));
     } else if (data[0].equals("Station")) {
-      addStationData(data);
+      addStationData(data[1].split(", "));
     } else if (data[0].equals("Hub")) {
-      addHubData(data);
+      addHubData(data[1]);
     }
   }
 
   private void addRouteData(String[] data) {
-    Route newRoute;
-    if (data[1].equals("Subway")) {
-      newRoute = new SubwayRoute(data[3]);
-    }
-    else {
-      newRoute = new BusRoute(data[3]);
-    }
-    this.routes.add(newRoute);
+    String type = data[0];
+    String name = data[1];
+    this.map.addRouteByNameAndType(name, type);
   }
 
   private void addStationData(String[] data) {
-    int routeId = Integer.parseInt(data[1]);
-    Station station;
-    Route route = this.routes.get(routeId);
-    if (route instanceof SubwayRoute) {
-      station = new SubwayStation(data[3], route);
-    } else {
-      station = new BusStation(data[3], route);
-    }
-    route.addStation(station);
+    String routeType = data[0];
+    String routeName = data[1];
+    String stationName = data[2];
+    Route route = map.getRouteByNameAndType(routeName, routeType);
+    route.addStationByName(stationName);
   }
 
-  private void addHubData(String[] data) {
+  private void addHubData(String data) {
     ArrayList<Station> stations = new ArrayList<>();
-    String[] stationStrings = data[1].split(" \\| ");
+    String[] stationStrings = data.split(" \\| ");
     for (String stationString : stationStrings) {
-      data = stationString.split(" ");
-      int routeId = Integer.parseInt(data[0]);
-      int stationId = Integer.parseInt(data[1]);
-      stations.add(this.routes.get(routeId).getStationByIndex(stationId));
+      String[] stationData = stationString.split(", ");
+      String routeType = stationData[0];
+      String routeName = stationData[1];
+      String stationName = stationData[2];
+      Station station = map.getStationByNameAndRoute(stationName, routeName, routeType);
+      stations.add(station);
     }
     Map.makeAdjacent(stations);
-  }
-
-  public ArrayList<Route> getRoutes() {
-    return this.routes;
   }
 }
