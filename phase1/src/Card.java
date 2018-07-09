@@ -53,7 +53,8 @@ public class Card {
     if (this.activeTrip == null) {
       this.activeTrip = new Trip(tapInEvent);
       StatisticsManager.addTripEvent(this.activeTrip);
-    } else try {
+        this.trips.add(this.activeTrip);
+    }try {
         double price = 0;
         try {
             price = activeTrip.registerTapInEvent(tapInEvent);
@@ -72,9 +73,8 @@ public class Card {
         }
 
     } catch (TripInvalidTapEventException e) {
-        this.activeTrip = new Trip(tapInEvent);
-        StatisticsManager.addTripEvent(this.activeTrip);
-        this.trips.add(this.activeTrip);
+        this.activeTrip = null;
+        tapIn(station);
     }
   }
 
