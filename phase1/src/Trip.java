@@ -4,7 +4,7 @@ import jdk.nashorn.internal.runtime.arrays.ArrayIndex;
 
 import java.util.ArrayList;
 import java.util.Date;
-
+import java.lang.Math;
 public class Trip {
   protected static final double MAX_CHARGE = 6;
   private double costSoFar;
@@ -42,10 +42,7 @@ public class Trip {
       lastTapAdded = tapInEvent;
       if (tapInEvent.getStation() instanceof BusStation) {
         double maxChargeAmount = MAX_CHARGE - costSoFar;
-        double chargeAmount;
-        if (maxChargeAmount > tapInEvent.getStation().tapInPrice) {
-          chargeAmount = tapInEvent.getStation().tapInPrice;
-        } else chargeAmount = maxChargeAmount;
+        double chargeAmount = Math.min(tapInEvent.getStation().tapInPrice, maxChargeAmount);
         costSoFar += chargeAmount;
         return chargeAmount;
       }
@@ -72,8 +69,9 @@ public class Trip {
       lastTapAdded = tapOutEvent;
       if (tapOutEvent.getStation() instanceof SubwayStation) {
         {
-          // int distance = tapOutEvent.getStation().
-          return 0;
+            Station outStation = tapOutEvent.getStation();
+          int routeLength = tapOutEvent.getStation().getRoute().getRouteLength(outStation, lastTapAdded.getStation());
+          return routeLength*outStation.passThroughPrice;
         }
       }
       return 0;

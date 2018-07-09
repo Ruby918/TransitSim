@@ -1,5 +1,5 @@
 /* Loic */
-
+import java.lang.Math;
 import java.util.ArrayList;
 
 abstract public class Route {
@@ -32,6 +32,6 @@ abstract public class Route {
   public int getRouteLength(Station s1, Station s2) {
     int s1Index = this.stations.indexOf(s1);
     int s2Index = this.stations.indexOf(s2);
-    return abs(s1Index - s2Index);
+    return Math.abs(s1Index - s2Index);
   }
 }
