@@ -41,7 +41,6 @@ public class Card {
 
     // check if card is active
     if (!this.isActive) throw new tapDeactivatedCardException();
-    if (this.balance <= 0) throw new InsufficientFundsException();
 
     TapInEvent tapInEvent = new TapInEvent(station);
     if (this.activeTrip == null) {
@@ -56,7 +55,10 @@ public class Card {
             this.isActive = false;
             e.printStackTrace();
           }
+
+          if (this.balance < price) throw new InsufficientFundsException();
           this.balance -= price;
+
         } catch (TripInvalidTapEventException e) {
           this.activeTrip = new Trip(tapInEvent);
           this.trips.add(this.activeTrip);
