@@ -12,4 +12,10 @@ public class SubwayRoute extends Route {
   public SubwayRoute(String name, ArrayList<Station> stations) {
     super(name, stations);
   }
+
+
+  @Override
+  public void addStationByName(String name){
+    this.addStation(new SubwayStation(name, this));
+  }
 }

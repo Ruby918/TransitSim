@@ -18,6 +18,8 @@ abstract public class Route {
     this.stations = stations;
   }
 
+  abstract public void addStationByName(String name);
+
   public String getName() {
     return this.name;
   }
