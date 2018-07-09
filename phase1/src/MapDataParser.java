@@ -1,31 +1,24 @@
 /* Danya */
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 
-public class MapDataParser {
+public class MapDataParser extends DataParser {
 
   private ArrayList<Route> routes = new ArrayList<>();
 
-  public MapDataParser(String fileName) {
+  public MapDataParser(String filename) {
+    super(filename);
+  }
 
-    try (BufferedReader fileReader = new BufferedReader(new FileReader(fileName))) {
-      String line = fileReader.readLine();
-      while (line != null) {
-        String[] data = line.split(", ");
-        if (data[0].equals("Route")) {
-          addRouteData(data);
-        } else if (data[0].equals("Station")) {
-          addStationData(data);
-        } else if (data[0].equals("Hub")) {
-          addHubData(data);
-        }
-        line = fileReader.readLine();
-      }
-    } catch (IOException e) {
-      System.out.println("Cannot read map data file.");
+  @Override
+  protected void parseLine(String line) {
+    String[] data = line.split(", ");
+    if (data[0].equals("Route")) {
+      addRouteData(data);
+    } else if (data[0].equals("Station")) {
+      addStationData(data);
+    } else if (data[0].equals("Hub")) {
+      addHubData(data);
     }
   }
 
