@@ -46,7 +46,7 @@ public class Trip {
       lastTapAdded = tapInEvent;
       if (tapInEvent.getStation() instanceof BusStation) {
         double maxChargeAmount = MAX_CHARGE - costSoFar;
-        double chargeAmount = Math.min(tapInEvent.getStation().tapInPrice, maxChargeAmount);
+        double chargeAmount = Math.min(BusStation.TAP_IN_PRICE, maxChargeAmount);
         costSoFar += chargeAmount;
         return chargeAmount;
       }
@@ -75,7 +75,7 @@ public class Trip {
         {
             Station outStation = tapOutEvent.getStation();
           int routeLength = tapOutEvent.getStation().getRoute().getRouteLength(outStation, lastTapAdded.getStation());
-          return routeLength*outStation.passThroughPrice;
+          return routeLength*SubwayStation.PASS_THROUGH_PRICE;
         }
       }
       return 0;
