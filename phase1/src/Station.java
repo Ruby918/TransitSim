@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 abstract public class Station {
 
-  protected final double TAP_IN_PRICE;
-  protected final double PASS_THROUGH_PRICE;
+  protected static double tapInPrice;
+  protected static double passThroughPrice;
   protected String name;
   protected Route route;
   protected ArrayList<Station> adjacentStations = new ArrayList<>();
@@ -13,8 +13,8 @@ abstract public class Station {
   protected static String GENERIC_IDENTIFIER;
 
   public Station(String name, double tapInPrice, double passThroughPrice, Route route){
-    this.TAP_IN_PRICE = tapInPrice;
-    this.PASS_THROUGH_PRICE = passThroughPrice;
+    this.tapInPrice = tapInPrice;
+    this.passThroughPrice = passThroughPrice;
     this.name = name;
     this.route = route;
   }
