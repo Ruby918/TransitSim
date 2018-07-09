@@ -4,7 +4,13 @@ import java.io.IOException;
 
 abstract public class DataParser {
 
+  private String fileName;
+
   public DataParser(String fileName) {
+    this.fileName = fileName;
+  }
+
+  public void parse() {
     try (BufferedReader fileReader = new BufferedReader(new FileReader(fileName))) {
       String line = fileReader.readLine();
       while (line != null) {
@@ -12,7 +18,7 @@ abstract public class DataParser {
         line = fileReader.readLine();
       }
     } catch (IOException e) {
-      System.out.println("Cannot read data file.");
+      System.out.println("Cannot read data file: " + fileName);
     }
   }
 

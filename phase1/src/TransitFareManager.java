@@ -13,11 +13,11 @@ public class TransitFareManager {
   }
 
   public static void main(String[] args) {
-    MapDataParser mapData = new MapDataParser("map.txt");
-    ArrayList<Route> routes = mapData.getRoutes();
 
-    Map map = new Map(routes);
-    TransitFareManager ttc = new TransitFareManager(map);
+    Map thisMap = new Map();
+    TransitFareManager ttc = new TransitFareManager(thisMap);
+    MapDataParser mapData = new MapDataParser("map.txt", thisMap);
+    mapData.parse();
   }
 
   public String getDailyReport(Date date) {
