@@ -18,6 +18,9 @@ abstract public class Route {
     this.stations = stations;
   }
 
+  public String getName() {
+    return this.name;
+  }
   public void addStation(Station station) {
     this.stations.add(station);
   }
@@ -27,6 +30,15 @@ abstract public class Route {
 
   public Station getStationByIndex(int index) {
     return this.stations.get(index);
+  }
+
+  public Station getStationByName(String name) {
+    for (Station station: stations) {
+      if (station.getName().equals(name)) {
+        return station;
+      }
+    }
+    return null;
   }
 
   public int getRouteLength(Station s1, Station s2) {
