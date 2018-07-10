@@ -53,7 +53,16 @@ public class CustomerAccount {
     this.cards.remove(card);
   }
 
-  public void loadMoney(Double money, Card card){
+  private String listCards(){
+      String listCards = "";
+      for (int i = 0; i < this.cards.size(); i++) {
+          listCards += this.cards.get(i).toString() + ",";
+      }
+      return listCards.substring(0, listCards.length()-1);
+  }
+
+  public void loadMoney(Double money, int id){
+    Card card = getCard(id);
     while(money != 0){
       if (money >= 50){
         card.addFiftyDollars();

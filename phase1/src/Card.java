@@ -8,9 +8,19 @@ public class Card {
     private ArrayList<Trip> trips = new ArrayList<>();
     private Trip activeTrip = null;
     private boolean isActive = true;
+    private int cardId;
 
-    public Card() {
+    public Card(int id) {
         this.trips.add(this.activeTrip);
+        this.cardId = id;
+    }
+
+    public int getCardId() {
+        return cardId;
+    }
+
+    public void setCardId(int cardId) {
+        this.cardId = cardId;
     }
 
     public void deactivate() {
@@ -106,6 +116,17 @@ public class Card {
             } else {
                 this.balance -= price;
             }
+        }
+    }
+
+    @Override
+    public String toString() {
+        if (this.isActive){
+            return "Card: " + Integer.toString(this.cardId) + " ($" + Double.toString(this.balance) + ")";
+        }
+        else{
+            return "Card: " + Integer.toString(this.cardId) + " ($" + Double.toString(this.balance) + ", deactivated)";
+
         }
     }
 }
