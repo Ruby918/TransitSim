@@ -76,6 +76,27 @@ public class StatisticsManager {
     return tripsOnDate;
   }
 
+  public static String listTrips() {
+    String ret = "";
+    if (trips.size() == 0) return "No trips.";
+    for (Trip trip : trips) {
+      ret += trip.toString();
+      ret += System.lineSeparator();
+    }
+    return ret.trim();
+  }
+
+  public static String listTripsOnDate(Date date) {
+    String ret = "";
+    ArrayList<Trip> trips = getTripsOnDate(date);
+    if (trips.size() == 0) return "No trips.";
+    for (Trip trip : trips) {
+      ret += trip.toString();
+      ret += System.lineSeparator();
+    }
+    return ret.trim();
+  }
+
   public static double calculateRevenueFromTrips(ArrayList<Trip> trip) {
     double revenue = 0;
     for (int i = 0; i < trip.size(); i++) {

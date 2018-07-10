@@ -47,7 +47,14 @@ public class EventDataParser extends DataParser {
           this.message = "$" + StatisticsManager.calculateRevenueOnDate(date);
         }
         break;
-      case "Trips": parseAdminTripsCommand(data); break;
+      case "Trips":
+        if (parameters.length == 1) {
+          this.message = "Trips: " + System.lineSeparator() + StatisticsManager.listTrips();
+        } else {
+          Date date = DateUtils.getDateFromDateString(parameters[1]);
+          this.message = "Trips: " + System.lineSeparator() + StatisticsManager.listTripsOnDate(date);
+        }
+        break;
       case "Stations": parseAdminStationsCommand(data); break;
       case "Routes":
         this.message = "Routes:" + System.lineSeparator() + ttc.listRoutes();

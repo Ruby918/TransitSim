@@ -1,6 +1,8 @@
 Admin: Revenue
 Admin: Revenue, 10/07/2018
 Admin: Customers
+Admin: Trips
+Admin: Trips, 9/07/2018
 Admin: Customers, Create, Danya Lette, danya.lette@mail.utoronto.ca
 Admin: Customers, Create, Someone New, email@mail.utoronto.ca
 Admin: Customers
