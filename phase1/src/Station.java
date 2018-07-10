@@ -4,19 +4,19 @@ import java.util.ArrayList;
 
 abstract public class Station {
 
-  protected static double tapInPrice;
-  protected static double passThroughPrice;
-  protected String name;
-  protected Route route;
-  protected ArrayList<Station> adjacentStations = new ArrayList<>();
+    protected static double passThroughPrice;
+    protected static double tapInPrice;
+  private final String name;
+  private final Route route;
+  private final ArrayList<Station> adjacentStations = new ArrayList<>();
 
-  protected static String GENERIC_IDENTIFIER;
+  private static String GENERIC_IDENTIFIER;
 
   public Station(String name, double tapInPrice, double passThroughPrice, Route route){
-    this.tapInPrice = tapInPrice;
-    this.passThroughPrice = passThroughPrice;
+      Station.passThroughPrice = passThroughPrice;
     this.name = name;
     this.route = route;
+    Station.tapInPrice = tapInPrice;
   }
 
   public void addAdjacentStation(Station station) {
