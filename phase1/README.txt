@@ -15,17 +15,15 @@ There are three types of commands: Admin, Customer, and Card.
 
 ### Admin commands
 
-- Calculate total revenue: `Admin: Revenue`
+- Calculate total revenue: `Admin: Revenue, Total`
 - Calculate revenue on a specific day: `Admin: Revenue, DD/MM/YYYY`
-- See all trips taken: `Admin: Trips`
+- See all trips taken: `Admin: Trips, Total`
 - See all trips taken on a specific day: `Admin: Trips, DD/MM/YYYY`
 - See all stations reached on a specific day: `Admin: Stations, DD/MM/YYYY`
 - See all routes: `Admin: Routes`
-- See all customers: `Admin: Customers`
+- See all customers: `Admin: Customers, Total`
 - Create customer: `Admin: Customers, Create, <customerName>, <customerEmail>`
 - See all cards: `Admin: Cards`
-- See an overview of all activity: `Admin: Report`
-- See an overview of all activity on a given day: `Admin: Report, DD/MM/YYYY`
 
 ### Customer commands
 

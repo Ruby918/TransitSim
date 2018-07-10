@@ -36,7 +36,6 @@ public class DateUtils {
     return calendar.getTime();
   }
 
-
   public static boolean datesOnSameDay(Date date1, Date date2) {
 
     // Code adapted from https://stackoverflow.com/a/2517824/3200577

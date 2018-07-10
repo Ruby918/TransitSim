@@ -40,19 +40,23 @@ public class EventDataParser extends DataParser {
 
     switch (parameters[0]) {
       case "Revenue":
-        if (parameters.length == 1) {
-          this.message = "$" + StatisticsManager.calculateRevenue();
-        } else {
-          Date date = DateUtils.getDateFromDateString(parameters[1]);
-          this.message = "$" + StatisticsManager.calculateRevenueOnDate(date);
+        switch(parameters[1]) {
+          case "Total":
+            this.message = "$" + StatisticsManager.calculateRevenue();
+            break;
+          default:
+            Date date = DateUtils.getDateFromDateString(parameters[1]);
+            this.message = "$" + StatisticsManager.calculateRevenueOnDate(date);
         }
         break;
       case "Trips":
-        if (parameters.length == 1) {
-          this.message = "Trips: " + System.lineSeparator() + indentString(StatisticsManager.listTrips());
-        } else {
-          Date date = DateUtils.getDateFromDateString(parameters[1]);
-          this.message = "Trips: " + System.lineSeparator() + indentString(StatisticsManager.listTripsOnDate(date));
+        switch(parameters[1]) {
+          case "Total":
+            this.message = "Trips: " + System.lineSeparator() + indentString(StatisticsManager.listTrips());
+            break;
+          default:
+            Date date = DateUtils.getDateFromDateString(parameters[1]);
+            this.message = "Trips: " + System.lineSeparator() + indentString(StatisticsManager.listTripsOnDate(date));
         }
         break;
       case "Stations":
@@ -63,13 +67,16 @@ public class EventDataParser extends DataParser {
         this.message = "Routes:" + System.lineSeparator() + indentString(ttc.listRoutes());
         break;
       case "Customers":
-        if (parameters.length == 1) {
-          this.message = "Customers: " + System.lineSeparator() + indentString(ttc.listCustomers());
-        } else if (parameters[1].equals("Create") && parameters.length == 4) {
-          ttc.createCustomerAccount(parameters[2], parameters[3]);
-          this.message = "Successfully created customer account.";
-        } else {
-          this.message = "That is not a valid admin customer command.";
+        switch(parameters[1]) {
+          case "Total":
+            this.message = "Customers: " + System.lineSeparator() + indentString(ttc.listCustomers());
+            break;
+          case "Create":
+            ttc.createCustomerAccount(parameters[2], parameters[3]);
+            this.message = "Successfully created customer account.";
+            break;
+          default:
+            this.message = "That is not a valid admin customer command.";
         }
         break;
       case "Cards": parseAdminCardsCommand(data); break;
