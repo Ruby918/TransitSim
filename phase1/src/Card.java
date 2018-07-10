@@ -18,14 +18,12 @@ public class Card {
     }
 
     public void reactivate() throws InsufficientFundsException {
-        if(this.balance >= this.debt){
+        if (this.balance >= this.debt) {
             this.debt = 0;
             this.isActive = true;
-        }
-        else{
+        } else {
             throw new InsufficientFundsException();
         }
-
     }
 
     public double getBalance() {
@@ -44,7 +42,9 @@ public class Card {
         this.balance += 50;
     }
 
-    public void tapIn(Station station) throws InsufficientFundsException, tapDeactivatedCardException {
+    public void tapIn(Station station)
+            throws InsufficientFundsException, tapDeactivatedCardException {
+        boolean tripExceptionRaised = false;
 
         // check if card is active
         if (!this.isActive) throw new tapDeactivatedCardException();
@@ -54,31 +54,32 @@ public class Card {
             this.activeTrip = new Trip(tapInEvent);
             StatisticsManager.addTripEvent(this.activeTrip);
             this.trips.add(this.activeTrip);
-        }try {
-            double price = 0;
-            try {
-                price = activeTrip.registerTapInEvent(tapInEvent);
-            } catch (UnnaturalTapSequenceException e) {
+        }
+        double price = 0;
+        try {
+            price = activeTrip.registerTapInEvent(tapInEvent);
+        } catch (UnnaturalTapSequenceException e) {
 
-                StatisticsManager.incrementUnnaturalTapSequenceInstances();
-                StatisticsManager.addInvalidTapEvent(tapInEvent.getDate());
-                this.balance -= 6;
-            }
-            if (this.balance >= price) {
-                this.balance -= price;
-            } else {
-                this.debt += price - this.balance;
-                deactivate();
-                throw new InsufficientFundsException();
-            }
-
-        } catch (TripInvalidTapEventException e) {
+            StatisticsManager.incrementUnnaturalTapSequenceInstances();
+            StatisticsManager.addInvalidTapEvent(tapInEvent.getDate());
+            this.balance -= 6;
+            tripExceptionRaised = true;
+        } catch (TripInvalidTapEventException f) {
             this.activeTrip = null;
             tapIn(station);
+            tripExceptionRaised = true;
+        }
+        if (!tripExceptionRaised & this.balance >= price) {
+            this.balance -= price;
+        } else {
+            this.debt += price - this.balance;
+            deactivate();
+            throw new InsufficientFundsException();
         }
     }
 
-    public void tapOut(Station station) throws InsufficientFundsException, tapDeactivatedCardException{
+    public void tapOut(Station station)
+            throws InsufficientFundsException, tapDeactivatedCardException {
         if (!this.isActive) throw new tapDeactivatedCardException();
 
         TapOutEvent tapOutEvent = new TapOutEvent(station);
@@ -95,15 +96,13 @@ public class Card {
                 this.balance -= 6;
                 this.activeTrip = null;
             }
-            if(price > this.balance){
+            if (price > this.balance) {
                 this.debt += price - this.balance;
                 deactivate();
                 throw new InsufficientFundsException();
-            }
-            else {
+            } else {
                 this.balance -= price;
             }
         }
-
     }
 }
