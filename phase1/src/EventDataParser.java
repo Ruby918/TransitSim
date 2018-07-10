@@ -33,12 +33,24 @@ public class EventDataParser extends DataParser {
   }
 
   private void parseAdminCommand(String[] data) {
-    switch (data[1]) {
+
+    String[] parameters = data[1].split(", ");
+
+    switch (parameters[0]) {
       case "Revenue": parseAdminRevenueCommand(data); break;
       case "Trips": parseAdminTripsCommand(data); break;
       case "Stations": parseAdminStationsCommand(data); break;
       case "Routes": parseAdminRoutesCommand(data); break;
-      case "Customers": parseAdminCustomersCommand(data); break;
+      case "Customers":
+        if (parameters.length == 1) {
+          this.message = "Customers: " + System.lineSeparator() + ttc.listCustomers();
+        } else if (parameters[1].equals("Create") && parameters.length == 4) {
+          ttc.createCustomerAccount(parameters[2], parameters[3]);
+          this.message = "Successfully created customer account.";
+        } else {
+          this.message = "That is not a valid admin customer command.";
+        }
+        break;
       case "Cards": parseAdminCardsCommand(data); break;
       case "Report": parseAdminReportCommand(data); break;
       default:  this.message = "That is not a valid admin command.";

@@ -51,6 +51,15 @@ public class TransitFareManager {
     customer.addCard(card);
   }
 
+  public String listCustomers() {
+    String ret = "";
+    for (CustomerAccount customer : this.customers) {
+      ret += customer.toString();
+      ret += System.lineSeparator();
+    }
+    return ret.trim();
+  }
+
   public Card generateCard(CustomerAccount customer) {
     // Increment card id by one for every new card
     Card card = new Card(this.cards.size());
