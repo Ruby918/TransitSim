@@ -23,7 +23,7 @@ There are three types of commands: Admin, Customer, and Card.
 - See all stations reached on a specific day: `Admin: Stations, DD/MM/YYYY`
 - See all routes: `Admin: Routes`
 - See all customers: `Admin: Customers`
-- Create customer: `Admin: Customers, Create (<customerName>, <customerEmail>)`
+- Create customer: `Admin: Customers, Create, <customerName>, <customerEmail>`
 - See all cards: `Admin: Cards`
 - See an overview of all activity: `Admin: Report`
 - See an overview of all activity on a given day: `Admin: Report, DD/MM/YYYY`
@@ -31,7 +31,7 @@ There are three types of commands: Admin, Customer, and Card.
 ### Customer commands
 
 - See overview of customer account: `Customer: <customerId>: Report`
-- Update customer name: `Customer: <customerId>: Update Name (<newName>)`
+- Update customer name: `Customer: <customerId>: Update Name, <newName>`
 - List cards: `Customer: <customerId>: Cards`
 - Request new card: `Customer: <customerId>: Cards, New`
 - Get average transit cost per month: `Customer: <customerId>: Average Cost`
@@ -40,7 +40,7 @@ There are three types of commands: Admin, Customer, and Card.
 ### Card commands
 
 - See overview of card: `Card: <cardId>: Report`
-- Add money (10, 20, or 50 only) to card: `Card: <cardId>: Add Funds (<moneyAmount:10,20,50>)`
+- Add money (10, 20, or 50 only) to card: `Card: <cardId>: Add Funds, <moneyAmount:10,20,50>`
 - See balance: `Card: <cardId>: Balance`
 - Deactivate: `Card: <cardId>: Deactivate`
 - Tap in at a station: `Card: <cardId>: Tap In, <routeType:Bus,Subway>, <routeName>, <stationName>, DD/MM/YYYY HH:mm:ss`
