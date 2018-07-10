@@ -19,10 +19,6 @@ public class CustomerAccount {
     return id;
   }
 
-  public void setId(int id) {
-    this.id = id;
-  }
-
   public Card getCard(int id) {
 
     for (int i = 0; i < this.cards.size(); i++) {
