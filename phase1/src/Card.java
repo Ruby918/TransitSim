@@ -86,17 +86,20 @@ public class Card {
         // check if active trip is null
         if (this.activeTrip != null) {
             double price = 0;
+            boolean tripExceptionRaised = false;
             try {
                 price = activeTrip.registerTapOutEvent(tapOutEvent);
             } catch (TripInvalidTapEventException e) {
                 deactivate();
+                tripExceptionRaised = true;
             } catch (UnnaturalTapSequenceException e) {
                 StatisticsManager.incrementUnnaturalTapSequenceInstances();
                 StatisticsManager.addInvalidTapEvent(tapOutEvent.getDate());
                 this.balance -= 6;
                 this.activeTrip = null;
+                tripExceptionRaised = true;
             }
-            if (price > this.balance) {
+            if (!tripExceptionRaised & price > this.balance) {
                 this.debt += price - this.balance;
                 deactivate();
                 throw new InsufficientFundsException();
