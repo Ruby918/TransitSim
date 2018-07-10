@@ -169,20 +169,19 @@ public class Trip {
    */
   @Override
   public String toString(){
-      StringBuilder ret = new StringBuilder("Start Date: " + this.getStartDate() +
-              ". End Date: " + this.getEndDate() +
-              "Current Cost of Trip: " + this.getCostSoFar());
-      ret.append("Tap Log: ");
+      StringBuilder ret = new StringBuilder("Trip Start: " + this.getStartDate() +
+              " | End: " + this.getEndDate() +
+              " | Cost: " + this.getCostSoFar());
+      ret.append(" | Tap Log: ");
       for(TapEvent tapEvent: tapEvents){
           if (tapEvent instanceof TapInEvent)
               ret.append("Tap In at ");
           else
               ret.append("Tap Out at ");
-          ret.append(tapEvent.getStation().getName() + ", ");
+          ret.append(tapEvent.getStation().toString() + ", ");
       }
       String rett = ret.toString();
       rett = rett.substring(0,ret.length()-2);
-      rett += ".";
       return rett;
   }
 }

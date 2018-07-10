@@ -52,7 +52,7 @@ public class CustomerAccount {
   private String listCards() {
     String listCards = "";
     for (int i = 0; i < this.cards.size(); i++) {
-      listCards += this.cards.get(i).toString() + ",";
+      listCards += this.cards.get(i).toString() + ", ";
     }
     return listCards.substring(0, listCards.length() - 1);
   }
@@ -77,11 +77,11 @@ public class CustomerAccount {
   public String toString() {
     return "Name: "
         + this.name
-        + " Email: "
+        + " | Email: "
         + this.email
-        + " ID: "
+        + " | ID: "
         + Integer.toString(this.id)
-        + " Cards: "
+        + " | Cards: "
         + this.name
         + listCards();
   }
