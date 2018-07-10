@@ -3,6 +3,10 @@
 import java.util.ArrayList;
 import java.util.Date;
 import java.lang.Math;
+
+/**
+ * A transit journey consisting of bus and subway rides.
+ */
 public class Trip {
   protected static final double MAX_CHARGE = 6;
   private double costSoFar;
@@ -16,22 +20,54 @@ public class Trip {
     this.lastTapAdded = tapInEvent;
   }
 
+  /**
+   * Returns the <code>Date</code> of the first tap in of this <code>Trip</code>.
+   *
+   * @return the starting date of the first tap in
+   */
   public Date getStartDate() {
     return this.startEvent.getDate();
   }
 
+  /**
+   * Returns the <code>Date</code> of the last tap of this <code>Trip</code>.
+   *
+   * @return the date of the last tap
+   */
   public Date getEndDate() {
       return this.lastTapAdded.getDate();
   }
 
+  /**
+   * Returns an <code>ArrayList</code> of <code>TapEvent</code> that this <code>Trip</code> has.
+   *
+   * @return the list of tap events of this <code>Trip</code>
+   */
   public ArrayList<TapEvent> getTapEvents() {
       return this.tapEvents;
   }
 
+  /**
+   * Returns the current cumulative charge for this <code>Trip</code>.
+   *
+   * @return the current cumulative charge for this <code>Trip</code>
+   */
   public double getCostSoFar() {
     return this.costSoFar;
   }
 
+  /**
+   * Checks if the given <code>TapInEvent</code> is legal and if it is the start of a new <code>Trip</code>.
+   * If it is the start of a new <code>Trip</code>,bit will throw a new <code>TripInvalidTapEventException</code>.
+   * If it is not legal, it will throw a new <code>UnnaturalTapSequenceException</code>.
+   * Else, it documents the given <code>TapInEvent</code>, and returns the charge for the tap.
+   *
+   *
+   * @param tapInEvent the tap event to be registered
+   * @return the charge of the tap
+   * @throws TripInvalidTapEventException if the tap is the start of a new trip
+   * @throws UnnaturalTapSequenceException if the tap is illegal
+   */
   public double registerTapInEvent(TapInEvent tapInEvent)
       throws TripInvalidTapEventException, UnnaturalTapSequenceException {
     // check if tap event is valid for this trip
@@ -62,8 +98,17 @@ public class Trip {
     }
   }
 
+  /**
+   * Checks if the given <code>TapOutEvent</code> is legal.
+   * If it is not legal, it will throw a new <code> UnnaturalTapSequenceException</code>.
+   * Else, it documents the given <code>TapInEvent</code>, and returns the charge for the tap.
+   *
+   * @param tapOutEvent the tap event to be registered
+   * @return the charge for the tap
+   * @throws UnnaturalTapSequenceException if the tap is illegal
+   */
   public double registerTapOutEvent(TapOutEvent tapOutEvent)
-      throws TripInvalidTapEventException, UnnaturalTapSequenceException {
+      throws UnnaturalTapSequenceException {
     // check if tap event is valid for this trip
     // given the start time and location of the last tap
     // if it isn't, throw error
@@ -72,9 +117,6 @@ public class Trip {
     // isTapInEventInSameTrip method
     if (!isTapOutEventLegal(tapOutEvent)) {
       throw new UnnaturalTapSequenceException();
-    }
-    if (!canAddTapOutToCurrentTrip(tapOutEvent)) {
-      throw new TripInvalidTapEventException();
     } else {
       tapEvents.add(tapOutEvent);
       lastTapAdded = tapOutEvent;
@@ -100,10 +142,6 @@ public class Trip {
     return true;
   }
 
-  private boolean canAddTapOutToCurrentTrip(TapOutEvent tapOutEvent) {
-    return true;
-  }
-
   private boolean isTapInEventLegal(TapInEvent tapInEvent) {
     // 2 tapInEvents in a row
     if (lastTapAdded instanceof TapInEvent) {
@@ -123,21 +161,28 @@ public class Trip {
     }
     return true;
   }
+
+  /**
+   * Returns a <code>String</code> representation of this <code>Trip</code>.
+   *
+   * @return a <code>String</code> representation of this <code>Trip</code>
+   */
   @Override
   public String toString(){
-      String ret = "Start Date: " + this.getStartDate() +
+      StringBuilder ret = new StringBuilder("Start Date: " + this.getStartDate() +
               ". End Date: " + this.getEndDate() +
-              "Current Cost of Trip: " + this.getCostSoFar();
-      ret += "Tap Log: ";
+              "Current Cost of Trip: " + this.getCostSoFar());
+      ret.append("Tap Log: ");
       for(TapEvent tapEvent: tapEvents){
           if (tapEvent instanceof TapInEvent)
-              ret += "Tap In at ";
+              ret.append("Tap In at ");
           else
-              ret += "Tap Out at ";
-          ret += tapEvent.getStation().getName() + ", ";
+              ret.append("Tap Out at ");
+          ret.append(tapEvent.getStation().getName() + ", ");
       }
-      ret = ret.substring(0,ret.length()-2);
-      ret += ".";
-      return ret;
+      String rett = ret.toString();
+      rett = rett.substring(0,ret.length()-2);
+      rett += ".";
+      return rett;
   }
 }
