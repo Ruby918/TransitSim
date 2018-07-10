@@ -60,9 +60,9 @@ public class StatisticsManager {
     ArrayList<TapEvent> dateMatchTapEvents = new ArrayList<>();
 
     for (int i = 0; i < tripEvents.size(); i++) {
-      for (int x = 0; x < tripEvents.get(i).gettapEvents().size(); x++) {
-        if (tripEvents.get(i).gettapEvents().get(x).getDate().equals(date)) {
-          dateMatchTapEvents.add(tripEvents.get(i).gettapEvents().get(x));
+      for (int x = 0; x < tripEvents.get(i).getTapEvents().size(); x++) {
+        if (tripEvents.get(i).getTapEvents().get(x).getDate().equals(date)) {
+          dateMatchTapEvents.add(tripEvents.get(i).getTapEvents().get(x));
         }
       }
     }
@@ -78,8 +78,8 @@ public class StatisticsManager {
     return revenue;
   }
 
-  public static double calculateProfit(ArrayList<Trip> taps, double cost) {
-    return cost - calculateRevenue(taps);
+  public static double calculateProfit(ArrayList<Trip> trips, double cost) {
+    return cost - calculateRevenue(trips);
   }
 
   public static ArrayList<Station> calculateStationsReached(ArrayList<TapEvent> taps) {
