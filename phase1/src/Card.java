@@ -1,6 +1,7 @@
 /* Dan */
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Card {
     private static final int MAX_CHARGE = 6;
@@ -43,14 +44,14 @@ public class Card {
         this.balance += 50;
     }
 
-    public void tapIn(Station station)
+    public void tapIn(Station station, Date date)
             throws InsufficientFundsException, tapDeactivatedCardException {
         boolean tripExceptionRaised = false;
 
         // check if card is active
         if (!this.isActive) throw new tapDeactivatedCardException();
 
-        TapInEvent tapInEvent = new TapInEvent(station);
+        TapInEvent tapInEvent = new TapInEvent(station, date);
         if (this.activeTrip == null) {
             this.activeTrip = new Trip(tapInEvent);
             StatisticsManager.addTrip(this.activeTrip);
@@ -67,7 +68,7 @@ public class Card {
             tripExceptionRaised = true;
         } catch (TripInvalidTapEventException f) {
             this.activeTrip = null;
-            tapIn(station);
+            tapIn(station, date);
             tripExceptionRaised = true;
         }
         if (!tripExceptionRaised & this.balance >= price) {
@@ -77,11 +78,11 @@ public class Card {
         }
     }
 
-    public void tapOut(Station station)
+    public void tapOut(Station station, Date date)
             throws InsufficientFundsException, tapDeactivatedCardException {
         if (!this.isActive) throw new tapDeactivatedCardException();
 
-        TapOutEvent tapOutEvent = new TapOutEvent(station);
+        TapOutEvent tapOutEvent = new TapOutEvent(station, date);
         // check if active trip is null
         if (this.activeTrip != null) {
             double price = 0;

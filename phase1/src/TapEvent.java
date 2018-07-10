@@ -10,6 +10,11 @@ abstract public class TapEvent {
     private Date date;
     private Station station;
 
+    public TapEvent(Station station, Date date){
+        this.station = station;
+        this.date = date;
+    }
+
     public TapEvent(Station station){
         this.station = station;
         this.date = new Date();
