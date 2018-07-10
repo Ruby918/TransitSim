@@ -75,13 +75,13 @@ public class CustomerAccount {
 
   @Override
   public String toString() {
-    return "name: "
+    return "Name: "
         + this.name
-        + " email: "
+        + " Email: "
         + this.email
-        + " id: "
+        + " ID: "
         + Integer.toString(this.id)
-        + " cards: "
+        + " Cards: "
         + this.name
         + listCards();
   }
