@@ -90,6 +90,10 @@ public class StatisticsManager {
         + countInvalidTapsOnDate(date) * 6;
   }
 
+  public static double calculateRevenue() {
+    return calculateRevenueFromTrips(trips) + invalidTapEventsDates.size() * 6;
+  }
+
   public static double calculateProfit(ArrayList<Trip> trips, double cost) {
     return cost - calculateRevenueFromTrips(trips);
   }

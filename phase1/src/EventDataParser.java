@@ -1,3 +1,5 @@
+import java.util.Date;
+
 public class EventDataParser extends DataParser {
 
   private String message;
@@ -37,7 +39,14 @@ public class EventDataParser extends DataParser {
     String[] parameters = data[1].split(", ");
 
     switch (parameters[0]) {
-      case "Revenue": parseAdminRevenueCommand(data); break;
+      case "Revenue":
+        if (parameters.length == 1) {
+          this.message = "$" + StatisticsManager.calculateRevenue();
+        } else {
+          Date date = DateUtils.getDateFromDateString(parameters[1]);
+          this.message = "$" + StatisticsManager.calculateRevenueOnDate(date);
+        }
+        break;
       case "Trips": parseAdminTripsCommand(data); break;
       case "Stations": parseAdminStationsCommand(data); break;
       case "Routes":
@@ -130,23 +139,11 @@ public class EventDataParser extends DataParser {
     }
   }
 
-  private void parseAdminRevenueCommand(String[] data) {
-
-  }
-
   private void parseAdminTripsCommand(String[] data) {
 
   }
 
   private void parseAdminStationsCommand(String[] data) {
-
-  }
-
-  private void parseAdminRoutesCommand(String[] data) {
-
-  }
-
-  private void parseAdminCustomersCommand(String[] data) {
 
   }
 
