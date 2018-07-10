@@ -35,7 +35,7 @@ abstract public class Station {
   }
 
   public String toString() {
-      return GENERIC_IDENTIFIER;
+      return GENERIC_IDENTIFIER+" "+this.name;
   }
 
 }

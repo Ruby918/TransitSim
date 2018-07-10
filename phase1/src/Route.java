@@ -50,6 +50,6 @@ abstract public class Route {
   }
 
   public String toString() {
-    return genericIdentifier;
+    return genericIdentifier+" "+this.name;
   }
 }
