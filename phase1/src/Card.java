@@ -12,16 +12,11 @@ public class Card {
     private int cardId;
 
     public Card(int id) {
-        this.trips.add(this.activeTrip);
         this.cardId = id;
     }
 
     public int getCardId() {
         return cardId;
-    }
-
-    public void setCardId(int cardId) {
-        this.cardId = cardId;
     }
 
     public void deactivate() {
