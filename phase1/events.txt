@@ -15,3 +15,8 @@ Customer: 0: Cards, New
 Customer: 0: Cards, View
 Customer: 1: Details
 Customer: 0: Details
+Card: 0: Tap In, Subway, University, Queen's Park, 10/07/2018 12:30
+Card: 0: Tap In, Subway, University, Queen's Park, 10/07/2018 12:30
+Card: 0: Tap In, Subway, University, Queen's Park, 10/07/2018 12:30
+Card: 0: Tap Out, Subway, University, Museum, 10/07/2018 13:30
+Card: 0: Details

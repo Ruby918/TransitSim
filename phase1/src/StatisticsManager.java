@@ -6,16 +6,12 @@ public class StatisticsManager {
 
   private static ArrayList<Date> invalidTapEventsDates = new ArrayList<>();
   private static ArrayList<Trip> trips = new ArrayList<>();
-  private static double unnaturalTapSequenceInstances = 0;
 
   public static ArrayList<Date> getInvalidTapEvents() {
     return invalidTapEventsDates;
   }
   public static ArrayList<Trip> getTrips() {
     return trips;
-  }
-  public static double getUnnaturalTapSequenceInstances() {
-    return unnaturalTapSequenceInstances;
   }
 
   public static void addTrip(Trip trip) {
@@ -24,10 +20,6 @@ public class StatisticsManager {
 
   public static void addInvalidTapEvent(Date date) {
     invalidTapEventsDates.add(date);
-  }
-
-  public static void incrementUnnaturalTapSequenceInstances() {
-    unnaturalTapSequenceInstances++;
   }
 
   public static int countInvalidTapsOnDate(Date day) {
@@ -103,7 +95,7 @@ public class StatisticsManager {
   public static double calculateRevenueFromTrips(ArrayList<Trip> trip) {
     double revenue = 0;
     for (int i = 0; i < trip.size(); i++) {
-      revenue += trip.get(i).getCostSoFar();
+      revenue += trip.get(i).getCost();
     }
     return revenue;
   }

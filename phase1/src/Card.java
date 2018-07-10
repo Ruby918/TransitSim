@@ -40,63 +40,72 @@ public class Card {
     }
 
     public void tapIn(Station station, Date date)
-            throws InsufficientFundsException, tapDeactivatedCardException {
-        boolean tripExceptionRaised = false;
+            throws InsufficientFundsException, TapDeactivatedCardException, IllegalTapLocationException {
 
         // check if card is active
-        if (!this.isActive) throw new tapDeactivatedCardException();
+        if (!this.isActive) throw new TapDeactivatedCardException();
+        // check if card has sufficient funds
+        if (this.balance < 0) throw new InsufficientFundsException();
 
+        // create tap in event
         TapInEvent tapInEvent = new TapInEvent(station, date);
+
+        // create new trip, if there isn't a currently active trip
         if (this.activeTrip == null) {
-            this.activeTrip = new Trip(tapInEvent);
+            this.activeTrip = new Trip();
             StatisticsManager.addTrip(this.activeTrip);
             this.trips.add(this.activeTrip);
         }
+
+        // register the tap to the active trip
         double price = 0;
         try {
             price = activeTrip.registerTapInEvent(tapInEvent);
         } catch (UnnaturalTapSequenceException e) {
-
-            StatisticsManager.incrementUnnaturalTapSequenceInstances();
+            // this tap took a place at a nonsensical location
             StatisticsManager.addInvalidTapEvent(tapInEvent.getDate());
             this.balance -= MAX_CHARGE;
-            tripExceptionRaised = true;
+            this.activeTrip = null;
+            throw new IllegalTapLocationException();
         } catch (TripInvalidTapEventException f) {
+            // this tap is not contiguous (in time and space) to the previous tap
+            // so create a new trip
             this.activeTrip = null;
             tapIn(station, date);
-            tripExceptionRaised = true;
         }
-        if (!tripExceptionRaised & this.balance >= price) {
-            this.balance -= price;
-        } else {
-            throw new InsufficientFundsException();
-        }
+
+        // charge the card the price of this tap
+        balance -= price;
     }
 
     public void tapOut(Station station, Date date)
-            throws InsufficientFundsException, tapDeactivatedCardException {
-        if (!this.isActive) throw new tapDeactivatedCardException();
+            throws TapDeactivatedCardException, IllegalTapLocationException {
 
+        // check if card is active
+        if (!this.isActive) throw new TapDeactivatedCardException();
+
+        // create tap out event
         TapOutEvent tapOutEvent = new TapOutEvent(station, date);
-        // check if active trip is null
-        if (this.activeTrip != null) {
-            double price = 0;
-            boolean tripExceptionRaised = false;
-            try {
-                price = activeTrip.registerTapOutEvent(tapOutEvent);
-            } catch (UnnaturalTapSequenceException e) {
-                StatisticsManager.incrementUnnaturalTapSequenceInstances();
-                StatisticsManager.addInvalidTapEvent(tapOutEvent.getDate());
-                this.balance -= MAX_CHARGE;
-                this.activeTrip = null;
-                tripExceptionRaised = true;
-            }
-            if (!tripExceptionRaised & price > this.balance) {
-                throw new InsufficientFundsException();
-            } else {
-                this.balance -= price;
-            }
+
+        // check if there is a currently active trip
+        if (this.activeTrip == null) {
+            // cannot tap out without a currently active trip
+            throw new IllegalTapLocationException();
         }
+
+        // register tap out event with current trip
+        double price = 0;
+        try {
+            price = activeTrip.registerTapOutEvent(tapOutEvent);
+        } catch (UnnaturalTapSequenceException e) {
+            StatisticsManager.addInvalidTapEvent(tapOutEvent.getDate());
+            this.balance -= MAX_CHARGE;
+            this.activeTrip = null;
+            throw new IllegalTapLocationException();
+        }
+
+        // charge the card the price of this tap
+        balance -= price;
     }
 
     @Override

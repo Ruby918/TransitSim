@@ -4,17 +4,17 @@ import java.util.ArrayList;
 
 abstract public class Station {
 
-  protected static double passThroughPrice;
-  protected static double tapInPrice;
+  protected double passThroughPrice;
+  protected double tapInPrice;
   private final String name;
   private final Route route;
   private final ArrayList<Station> adjacentStations = new ArrayList<>();
 
   public Station(String name, double tapInPrice, double passThroughPrice, Route route){
-      Station.passThroughPrice = passThroughPrice;
     this.name = name;
     this.route = route;
-    Station.tapInPrice = tapInPrice;
+    this.tapInPrice = tapInPrice;
+    this.passThroughPrice = passThroughPrice;
   }
 
   abstract public String getGenericIdentifier();

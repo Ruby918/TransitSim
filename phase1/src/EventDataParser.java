@@ -118,7 +118,7 @@ public class EventDataParser extends DataParser {
         break;
       case "Update Name":
         customer.setName(parameters[1]);
-        message = "Successfully updated customer's name to " + parameters[1];
+        message = "Successfully updated customer's name to " + parameters[1] + ".";
         break;
       case "Cards":
         switch (parameters[1]){
@@ -196,11 +196,58 @@ public class EventDataParser extends DataParser {
   }
 
   private void parseCardTapIn(Card card, String[] parameters) {
-
+    Station station = ttc.getMap().getStationByNameAndRoute(parameters[3], parameters[2], parameters[1]);
+    if (station == null) {
+      message = "That is not a valid station.";
+      return;
+    }
+    Date date;
+    try {
+      date = DateUtils.getDateFromDatetimeString(parameters[4]);
+    } catch (ArrayIndexOutOfBoundsException e) {
+      message = "Error: That datetime is incorrectly formatted.";
+      return;
+    }
+    try {
+      card.tapIn(station, date);
+    } catch(TapDeactivatedCardException e) {
+      message = "Error: That card has been deactivated.";
+      return;
+    } catch (InsufficientFundsException e) {
+      message = "Error: That card has insufficient funds.";
+      return;
+    } catch (IllegalTapLocationException e) {
+      message = "Error: The location of this tap event is highly irregular. You have been charged for a $6 trip.";
+      return;
+    }
+    message = "You have successfully tapped in at "
+        + station.toString() + " using " + card.toString() + ".";
   }
 
   private void parseCardTapOut(Card card, String[] parameters) {
-
+    Station station = ttc.getMap().getStationByNameAndRoute(parameters[3], parameters[2], parameters[1]);
+    if (station == null) {
+      message = "That is not a valid station.";
+      return;
+    }
+    Date date;
+    try {
+      date = DateUtils.getDateFromDatetimeString(parameters[4]);
+    } catch (ArrayIndexOutOfBoundsException e) {
+      message = "Error: That datetime is incorrectly formatted.";
+      return;
+    }
+    try {
+      card.tapOut(station, date);
+    } catch(TapDeactivatedCardException e) {
+      message = "Error: That card has been deactivated.";
+      return;
+    } catch (IllegalTapLocationException e) {
+      message = "Error: The location of this tap event is highly irregular. You have been charged for a $6 trip.";
+      return;
+    }
+    message = "You have successfully tapped out at "
+        + station.toString() + " using " + card.toString() + ".";
   }
 
 }

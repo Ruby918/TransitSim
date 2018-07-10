@@ -1,7 +1,6 @@
 /* Danya */
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class TransitFareManager {
 
@@ -25,6 +24,10 @@ public class TransitFareManager {
     // Process events from events.txt
     EventDataParser eventData = new EventDataParser("events.txt", ttc);
     eventData.parse();
+  }
+
+  public Map getMap() {
+    return this.map;
   }
 
   public CustomerAccount createCustomerAccount(String name, String email) {
