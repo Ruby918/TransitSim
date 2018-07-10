@@ -3,6 +3,7 @@
 import java.util.ArrayList;
 
 public class Card {
+    private static final int MAX_CHARGE = 6;
     private double debt = 0;
     private double balance = 0;
     private ArrayList<Trip> trips = new ArrayList<>();
@@ -72,7 +73,7 @@ public class Card {
 
             StatisticsManager.incrementUnnaturalTapSequenceInstances();
             StatisticsManager.addInvalidTapEvent(tapInEvent.getDate());
-            this.balance -= 6;
+            this.balance -= MAX_CHARGE;
             tripExceptionRaised = true;
         } catch (TripInvalidTapEventException f) {
             this.activeTrip = null;
