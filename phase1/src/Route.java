@@ -4,9 +4,7 @@ import java.util.ArrayList;
 
 abstract public class Route {
 
-  public static String genericIdentifier = "Route";
   private String name;
-
   private ArrayList<Station> stations = new ArrayList<>();
 
   public Route(String name){
@@ -19,6 +17,7 @@ abstract public class Route {
   }
 
   abstract public void addStationByName(String name);
+  abstract public String getGenericIdentifier();
 
   public String getName() {
     return this.name;
@@ -51,6 +50,6 @@ abstract public class Route {
 
   @Override
   public String toString() {
-    return genericIdentifier+" "+this.name;
+    return this.name + " " + getGenericIdentifier();
   }
 }

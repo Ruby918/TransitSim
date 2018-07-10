@@ -11,6 +11,10 @@ public class BusRoute extends Route {
     super(name, stations);
   }
 
+  @Override
+  public String getGenericIdentifier() {
+    return "Bus Route";
+  }
 
   @Override
   public void addStationByName(String name){

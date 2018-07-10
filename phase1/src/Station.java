@@ -4,13 +4,11 @@ import java.util.ArrayList;
 
 abstract public class Station {
 
-    protected static double passThroughPrice;
-    protected static double tapInPrice;
+  protected static double passThroughPrice;
+  protected static double tapInPrice;
   private final String name;
   private final Route route;
   private final ArrayList<Station> adjacentStations = new ArrayList<>();
-
-  private static String GENERIC_IDENTIFIER;
 
   public Station(String name, double tapInPrice, double passThroughPrice, Route route){
       Station.passThroughPrice = passThroughPrice;
@@ -18,6 +16,8 @@ abstract public class Station {
     this.route = route;
     Station.tapInPrice = tapInPrice;
   }
+
+  abstract public String getGenericIdentifier();
 
   public void addAdjacentStation(Station station) {
     this.adjacentStations.add(station);
@@ -36,7 +36,7 @@ abstract public class Station {
 
   @Override
   public String toString() {
-      return GENERIC_IDENTIFIER+" "+this.name;
+      return this.name + " " + getGenericIdentifier();
   }
 
 }

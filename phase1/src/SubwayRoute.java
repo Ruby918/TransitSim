@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 public class SubwayRoute extends Route {
 
-  public static String genericIdentifier = "Subway Line";
-
   public SubwayRoute(String name){
     super(name);
   }
@@ -13,6 +11,10 @@ public class SubwayRoute extends Route {
     super(name, stations);
   }
 
+  @Override
+  public String getGenericIdentifier() {
+    return "Subway Line";
+  }
 
   @Override
   public void addStationByName(String name){
