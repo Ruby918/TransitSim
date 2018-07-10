@@ -49,19 +49,22 @@ public class EventDataParser extends DataParser {
         break;
       case "Trips":
         if (parameters.length == 1) {
-          this.message = "Trips: " + System.lineSeparator() + StatisticsManager.listTrips();
+          this.message = "Trips: " + System.lineSeparator() + indentString(StatisticsManager.listTrips());
         } else {
           Date date = DateUtils.getDateFromDateString(parameters[1]);
-          this.message = "Trips: " + System.lineSeparator() + StatisticsManager.listTripsOnDate(date);
+          this.message = "Trips: " + System.lineSeparator() + indentString(StatisticsManager.listTripsOnDate(date));
         }
         break;
-      case "Stations": parseAdminStationsCommand(data); break;
+      case "Stations":
+        Date date = DateUtils.getDateFromDateString(parameters[1]);
+        this.message = "Stations: " + System.lineSeparator() + indentString(StatisticsManager.listStationsReachedOnDate(date));
+        break;
       case "Routes":
-        this.message = "Routes:" + System.lineSeparator() + ttc.listRoutes();
+        this.message = "Routes:" + System.lineSeparator() + indentString(ttc.listRoutes());
         break;
       case "Customers":
         if (parameters.length == 1) {
-          this.message = "Customers: " + System.lineSeparator() + ttc.listCustomers();
+          this.message = "Customers: " + System.lineSeparator() + indentString(ttc.listCustomers());
         } else if (parameters[1].equals("Create") && parameters.length == 4) {
           ttc.createCustomerAccount(parameters[2], parameters[3]);
           this.message = "Successfully created customer account.";
@@ -94,7 +97,7 @@ public class EventDataParser extends DataParser {
       case "Cards": this.message = customer.listCards(); break;
       case "Average Cost": this.message = customer.getAverageMonthlyCost(); break;
       case "Recent Trips":
-        this.message = "Recent Trips:" + System.lineSeparator() + customer.listRecentTrips();
+        this.message = "Recent Trips:" + System.lineSeparator() + indentString(customer.listRecentTrips());
         break;
       default:  this.message = "That is not a valid customer command.";
     }
@@ -144,14 +147,6 @@ public class EventDataParser extends DataParser {
         break;
       default:  this.message = "That is not a valid card command.";
     }
-  }
-
-  private void parseAdminTripsCommand(String[] data) {
-
-  }
-
-  private void parseAdminStationsCommand(String[] data) {
-
   }
 
   private void parseAdminCardsCommand(String[] data) {

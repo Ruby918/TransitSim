@@ -66,7 +66,7 @@ public class TransitFareManager {
     ArrayList<Route> routes = this.map.getRoutes();
     if (routes.size() == 0) return "No Routes.";
     for (Route route : routes) {
-      ret += "- " + route.toStringVerbose();
+      ret += route.toStringVerbose();
       ret += System.lineSeparator();
     }
     return ret.trim();

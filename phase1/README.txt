@@ -19,7 +19,6 @@ There are three types of commands: Admin, Customer, and Card.
 - Calculate revenue on a specific day: `Admin: Revenue, DD/MM/YYYY`
 - See all trips taken: `Admin: Trips`
 - See all trips taken on a specific day: `Admin: Trips, DD/MM/YYYY`
-- See all stations: `Admin: Stations`
 - See all stations reached on a specific day: `Admin: Stations, DD/MM/YYYY`
 - See all routes: `Admin: Routes`
 - See all customers: `Admin: Customers`

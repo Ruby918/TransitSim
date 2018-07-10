@@ -10,6 +10,10 @@ abstract public class DataParser {
     this.fileName = fileName;
   }
 
+  public String indentString(String str) {
+    return "             " + str.replace(System.lineSeparator(), System.lineSeparator() + "             ");
+  }
+
   public void parse() {
     try (BufferedReader fileReader = new BufferedReader(new FileReader(fileName))) {
       String line = fileReader.readLine();
