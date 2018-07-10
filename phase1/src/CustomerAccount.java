@@ -49,7 +49,7 @@ public class CustomerAccount {
     this.cards.remove(card);
   }
 
-  private String listCards() {
+  public String listCards() {
     String listCards = "";
     for (int i = 0; i < this.cards.size(); i++) {
       listCards += this.cards.get(i).toString() + ", ";
@@ -71,6 +71,16 @@ public class CustomerAccount {
         money -= 10;
       }
     }
+  }
+
+  public String listRecentTrips() {
+    // stub
+    return "";
+  }
+
+  public String getAverageMonthlyCost() {
+    // stub
+    return "";
   }
 
   @Override
