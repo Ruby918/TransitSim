@@ -53,6 +53,7 @@ public class TransitFareManager {
 
   public String listCustomers() {
     String ret = "";
+    if (this.customers.size() == 0) return "No Customers.";
     for (CustomerAccount customer : this.customers) {
       ret += customer.toString();
       ret += System.lineSeparator();
