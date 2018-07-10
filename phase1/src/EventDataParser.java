@@ -10,12 +10,14 @@ public class EventDataParser extends DataParser {
     this.ttc = ttc;
   }
 
-  protected void parseLine(String line){
+  protected void parseLine(String line) {
 
     // Ignore empty line
-    if (line.isEmpty()) return;
+    if (line.isEmpty()) {
+      return;
+    }
 
-    // Reset message which will be printed after parsing line
+    // Reset the message which will be printed after parsing this line
     message = "";
 
     // Print input message
@@ -24,10 +26,17 @@ public class EventDataParser extends DataParser {
     // Parse according to command type
     String[] lineData = line.split(": ");
     switch (lineData[0]) {
-      case "Admin": parseAdminCommand(lineData); break;
-      case "Customer": parseCustomerCommand(lineData); break;
-      case "Card": parseCardCommand(lineData); break;
-      default: message = "That is not a valid command type.";
+      case "Admin":
+        parseAdminCommand(lineData);
+        break;
+      case "Customer":
+        parseCustomerCommand(lineData);
+        break;
+      case "Card":
+        parseCardCommand(lineData);
+        break;
+      default:
+        message = "That is not a valid command type.";
     }
 
     // Print output message
@@ -40,36 +49,41 @@ public class EventDataParser extends DataParser {
 
     switch (parameters[0]) {
       case "Revenue":
-        switch(parameters[1]) {
+        message = "$";
+        switch (parameters[1]) {
           case "Total":
-            message = "$" + StatisticsManager.calculateRevenue();
+            message += StatisticsManager.calculateRevenue();
             break;
           default:
             Date date = DateUtils.getDateFromDateString(parameters[1]);
-            message = "$" + StatisticsManager.calculateRevenueOnDate(date);
+            message += StatisticsManager.calculateRevenueOnDate(date);
         }
         break;
       case "Trips":
-        switch(parameters[1]) {
+        message = "Trips: " + System.lineSeparator();
+        switch (parameters[1]) {
           case "Total":
-            message = "Trips: " + System.lineSeparator() + indentString(StatisticsManager.listTrips());
+            message += indentString(StatisticsManager.listTrips());
             break;
           default:
             Date date = DateUtils.getDateFromDateString(parameters[1]);
-            message = "Trips: " + System.lineSeparator() + indentString(StatisticsManager.listTripsOnDate(date));
+            message += indentString(StatisticsManager.listTripsOnDate(date));
         }
         break;
       case "Stations":
         Date date = DateUtils.getDateFromDateString(parameters[1]);
-        message = "Stations: " + System.lineSeparator() + indentString(StatisticsManager.listStationsReachedOnDate(date));
+        message = "Stations: " + System.lineSeparator()
+            + indentString(StatisticsManager.listStationsReachedOnDate(date));
         break;
       case "Routes":
-        message = "Routes:" + System.lineSeparator() + indentString(ttc.listRoutes());
+        message = "Routes:" + System.lineSeparator()
+            + indentString(ttc.listRoutes());
         break;
       case "Customers":
-        switch(parameters[1]) {
+        switch (parameters[1]) {
           case "Total":
-            message = "Customers: " + System.lineSeparator() + indentString(ttc.listCustomers());
+            message = "Customers: " + System.lineSeparator()
+                + indentString(ttc.listCustomers());
             break;
           case "Create":
             ttc.createCustomerAccount(parameters[2], parameters[3]);
@@ -79,9 +93,14 @@ public class EventDataParser extends DataParser {
             message = "That is not a valid admin customer command.";
         }
         break;
-      case "Cards": parseAdminCardsCommand(data); break;
-      case "Report": parseAdminReportCommand(data); break;
-      default:  message = "That is not a valid admin command.";
+      case "Cards":
+        parseAdminCardsCommand(data);
+        break;
+      case "Report":
+        parseAdminReportCommand(data);
+        break;
+      default:
+        message = "That is not a valid admin command.";
     }
   }
 
@@ -96,17 +115,25 @@ public class EventDataParser extends DataParser {
     String[] parameters = data[2].split(", ");
 
     switch (parameters[0]) {
-      case "Report": message = customer.toString(); break;
+      case "Report":
+        message = customer.toString();
+        break;
       case "Update Name":
         customer.setName(parameters[1]);
         message = "Successfully updated customer's name to " + parameters[1];
         break;
-      case "Cards": message = customer.listCards(); break;
-      case "Average Cost": message = customer.getAverageMonthlyCost(); break;
-      case "Recent Trips":
-        message = "Recent Trips:" + System.lineSeparator() + indentString(customer.listRecentTrips());
+      case "Cards":
+        message = customer.listCards();
         break;
-      default:  message = "That is not a valid customer command.";
+      case "Average Cost":
+        message = customer.getAverageMonthlyCost();
+        break;
+      case "Recent Trips":
+        message =
+            "Recent Trips:" + System.lineSeparator() + indentString(customer.listRecentTrips());
+        break;
+      default:
+        message = "That is not a valid customer command.";
     }
   }
 
@@ -121,9 +148,11 @@ public class EventDataParser extends DataParser {
     String[] parameters = data[2].split(", ");
 
     switch (parameters[0]) {
-      case "Report": message = card.toString(); break;
+      case "Report":
+        message = card.toString();
+        break;
       case "Add Funds":
-        switch(parameters[1]) {
+        switch (parameters[1]) {
           case "10":
             card.addTenDollars();
             message = "Successfully added $10 to card.";
@@ -136,7 +165,8 @@ public class EventDataParser extends DataParser {
             card.addFiftyDollars();
             message = "Successfully added $50 to card.";
             break;
-          default: message = "That is not a valid amount.";
+          default:
+            message = "That is not a valid amount.";
         }
         break;
       case "Balance":
@@ -152,7 +182,8 @@ public class EventDataParser extends DataParser {
       case "Tap Out":
         parseCardTapOut(card, parameters);
         break;
-      default:  message = "That is not a valid card command.";
+      default:
+        message = "That is not a valid card command.";
     }
   }
 
