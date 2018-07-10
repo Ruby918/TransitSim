@@ -34,7 +34,7 @@ public class StatisticsManager {
     int counter = 0;
 
     for (int i = 0; i < invalidTapEventsDates.size(); i++) {
-      if (invalidTapEventsDates.get(i).equals(day)) {
+      if (DateUtils.datesOnSameDay(day, invalidTapEventsDates.get(i))) {
         counter++;
       }
     }
@@ -46,7 +46,7 @@ public class StatisticsManager {
 
     for (int i = 0; i < days.size(); i++) {
       for (int x = 0; x < invalidTapEventsDates.size(); x++) {
-        if (days.get(i).equals(invalidTapEventsDates.get(x))) {
+        if (DateUtils.datesOnSameDay(days.get(i), invalidTapEventsDates.get(x))) {
           counter++;
         }
       }
@@ -59,7 +59,7 @@ public class StatisticsManager {
 
     for (int i = 0; i < trips.size(); i++) {
       for (int x = 0; x < trips.get(i).getTapEvents().size(); x++) {
-        if (trips.get(i).getTapEvents().get(x).getDate().equals(date)) {
+        if (DateUtils.datesOnSameDay(trips.get(i).getTapEvents().get(x).getDate(), date)) {
           dateMatchTapEvents.add(trips.get(i).getTapEvents().get(x));
         }
       }
@@ -70,7 +70,10 @@ public class StatisticsManager {
   public static ArrayList<Trip> getTripsOnDate(Date date) {
     ArrayList<Trip> tripsOnDate = new ArrayList<>();
     for (Trip trip : trips) {
-      if (trip.getStartDate().equals(date) || trip.getEndDate().equals(date))
+      if (
+          DateUtils.datesOnSameDay(trip.getStartDate(), date) ||
+              DateUtils.datesOnSameDay(trip.getEndDate(), date)
+          )
         tripsOnDate.add(trip);
     }
     return tripsOnDate;
