@@ -23,10 +23,10 @@ public class CustomerAccount {
     this.id = id;
   }
 
-  public Card getCard(int id){
+  public Card getCard(int id) {
 
-    for(int i = 0; i < this.cards.size(); i++){
-      if (id == this.cards.get(i).getCardId()){
+    for (int i = 0; i < this.cards.size(); i++) {
+      if (id == this.cards.get(i).getCardId()) {
         return this.cards.get(i);
       }
     }
@@ -53,21 +53,21 @@ public class CustomerAccount {
     this.cards.remove(card);
   }
 
-  private String listCards(){
-      String listCards = "";
-      for (int i = 0; i < this.cards.size(); i++) {
-          listCards += this.cards.get(i).toString() + ",";
-      }
-      return listCards.substring(0, listCards.length()-1);
+  private String listCards() {
+    String listCards = "";
+    for (int i = 0; i < this.cards.size(); i++) {
+      listCards += this.cards.get(i).toString() + ",";
+    }
+    return listCards.substring(0, listCards.length() - 1);
   }
 
-  public void loadMoney(Double money, int id){
+  public void loadMoney(Double money, int id) {
     Card card = getCard(id);
-    while(money != 0){
-      if (money >= 50){
+    while (money != 0) {
+      if (money >= 50) {
         card.addFiftyDollars();
         money -= 50;
-      } else if(money >= 20){
+      } else if (money >= 20) {
         card.addTwentyDollars();
         money -= 20;
       } else {
@@ -77,5 +77,16 @@ public class CustomerAccount {
     }
   }
 
-
+  @Override
+  public String toString() {
+    return "name: "
+        + this.name
+        + " email: "
+        + this.email
+        + " id: "
+        + Integer.toString(this.id)
+        + " cards: "
+        + this.name
+        + listCards();
+  }
 }
