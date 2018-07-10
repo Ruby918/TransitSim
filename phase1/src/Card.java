@@ -62,7 +62,7 @@ public class Card {
         TapInEvent tapInEvent = new TapInEvent(station);
         if (this.activeTrip == null) {
             this.activeTrip = new Trip(tapInEvent);
-            StatisticsManager.addTripEvent(this.activeTrip);
+            StatisticsManager.addTrip(this.activeTrip);
             this.trips.add(this.activeTrip);
         }
         double price = 0;
