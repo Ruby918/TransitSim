@@ -52,4 +52,13 @@ abstract public class Route {
   public String toString() {
     return this.name + " " + getGenericIdentifier();
   }
+
+  public String toStringVerbose() {
+    String ret = this.toString() + " (";
+    for (Station station: this.stations) {
+      ret += station.toString() + ", ";
+    }
+    ret = ret.substring(0,ret.length() - 2);
+    return ret + ")";
+  }
 }

@@ -61,6 +61,17 @@ public class TransitFareManager {
     return ret.trim();
   }
 
+  public String listRoutes() {
+    String ret = "";
+    ArrayList<Route> routes = this.map.getRoutes();
+    if (routes.size() == 0) return "No Routes.";
+    for (Route route : routes) {
+      ret += "- " + route.toStringVerbose();
+      ret += System.lineSeparator();
+    }
+    return ret.trim();
+  }
+
   public Card generateCard(CustomerAccount customer) {
     // Increment card id by one for every new card
     Card card = new Card(this.cards.size());

@@ -40,7 +40,9 @@ public class EventDataParser extends DataParser {
       case "Revenue": parseAdminRevenueCommand(data); break;
       case "Trips": parseAdminTripsCommand(data); break;
       case "Stations": parseAdminStationsCommand(data); break;
-      case "Routes": parseAdminRoutesCommand(data); break;
+      case "Routes":
+        this.message = "Routes:" + System.lineSeparator() + ttc.listRoutes();
+        break;
       case "Customers":
         if (parameters.length == 1) {
           this.message = "Customers: " + System.lineSeparator() + ttc.listCustomers();

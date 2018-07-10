@@ -9,6 +9,10 @@ public class Map {
     this.routes.add(route);
   }
 
+  public ArrayList<Route> getRoutes() {
+    return this.routes;
+  }
+
   public boolean routeIsType(Route route, String type) {
     return (((type.equals("Subway")) && route instanceof SubwayRoute) ||
         ((type.equals("Bus")) && route instanceof BusRoute));
