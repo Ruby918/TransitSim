@@ -52,9 +52,9 @@ public class CustomerAccount {
   public String listCards() {
     String listCards = "";
     for (int i = 0; i < this.cards.size(); i++) {
-      listCards += this.cards.get(i).toString() + ", ";
+      listCards += this.cards.get(i).toString() + System.lineSeparator();
     }
-    return listCards.substring(0, listCards.length() - 1);
+    return listCards.trim();
   }
 
   public void loadMoney(Double money, int id) {
