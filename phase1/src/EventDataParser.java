@@ -94,10 +94,8 @@ public class EventDataParser extends DataParser {
         }
         break;
       case "Cards":
-        parseAdminCardsCommand(data);
-        break;
-      case "Report":
-        parseAdminReportCommand(data);
+        message = "Cards: " + System.lineSeparator()
+            + indentString(ttc.listCards());
         break;
       default:
         message = "That is not a valid admin command.";

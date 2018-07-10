@@ -72,6 +72,16 @@ public class TransitFareManager {
     return ret.trim();
   }
 
+  public String listCards() {
+    String ret = "";
+    if (cards.size() == 0) return "No Cards.";
+    for (Card card : cards) {
+      ret += card.toString();
+      ret += System.lineSeparator();
+    }
+    return ret.trim();
+  }
+
   public Card generateCard(CustomerAccount customer) {
     // Increment card id by one for every new card
     Card card = new Card(this.cards.size());
