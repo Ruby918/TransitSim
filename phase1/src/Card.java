@@ -28,15 +28,6 @@ public class Card {
         this.isActive = false;
     }
 
-    public void reactivate() throws InsufficientFundsException {
-        if (this.balance >= this.debt) {
-            this.debt = 0;
-            this.isActive = true;
-        } else {
-            throw new InsufficientFundsException();
-        }
-    }
-
     public double getBalance() {
         return this.balance;
     }
