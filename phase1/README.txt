@@ -11,13 +11,41 @@
 
 The file `events.txt` is comprised of a sequence of commands that can be issued to
 the transit fare manager.
-There are two types of commands: Admin, and Customer.
+There are three types of commands: Admin, Customer, and Card.
 
 ### Admin commands
 
-
+- Calculate total revenue: `Admin: Revenue`
+- Calculate revenue on a specific day: `Admin: Revenue, DD/MM/YYYY`
+- See all trips taken: `Admin: Trips`
+- See all trips taken on a specific day: `Admin: Trips, DD/MM/YYYY`
+- See all stations: `Admin: Stations`
+- See all stations reached on a specific day: `Admin: Stations, DD/MM/YYYY`
+- See all routes: `Admin: Routes`
+- See all customers: `Admin: Customers`
+- Create customer: `Admin: Customers, Create (<customerName>, <customerEmail>)`
+- See all cards: `Admin: Cards`
+- See an overview of all activity: `Admin: Report`
+- See an overview of all activity on a given day: `Admin: Report, DD/MM/YYYY`
 
 ### Customer commands
+
+- See overview of customer account: `Customer: <customerId>: Report`
+- Update customer name: `Customer: <customerId>: Update Name (<newName>)`
+- List cards: `Customer: <customerId>: Cards`
+- Request new card: `Customer: <customerId>: Cards, New`
+- Get average transit cost per month: `Customer: <customerId>: Average Cost`
+- View three most recent trips: `Customer: <customerId>: Recent Trips`
+
+### Card commands
+
+- See overview of card: `Card: <cardId>: Report`
+- Add money (10, 20, or 50 only) to card: `Card: <cardId>: Add Funds (<moneyAmount:10,20,50>)`
+- See balance: `Card: <cardId>: Balance`
+- Deactivate: `Card: <cardId>: Deactivate`
+- Tap in at a station: `Card: <cardId>: Tap In, <routeType:Bus,Subway>, <routeName>, <stationName>, DD/MM/YYYY HH:mm:ss`
+- Tap out at a station: `Card: <cardId>: Tap Out, <routeType:Bus,Subway>, <routeName>, <stationName>, DD/MM/YYYY HH:mm:ss`
+
 
 ## Map configuration file (`map.txt`)
 
