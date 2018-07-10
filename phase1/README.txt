@@ -43,8 +43,8 @@ There are three types of commands: Admin, Customer, and Card.
 - Add money (10, 20, or 50 only) to card: `Card: <cardId>: Add Funds, <moneyAmount:10,20,50>`
 - See balance: `Card: <cardId>: Balance`
 - Deactivate: `Card: <cardId>: Deactivate`
-- Tap in at a station: `Card: <cardId>: Tap In, <routeType:Bus,Subway>, <routeName>, <stationName>, DD/MM/YYYY HH:mm:ss`
-- Tap out at a station: `Card: <cardId>: Tap Out, <routeType:Bus,Subway>, <routeName>, <stationName>, DD/MM/YYYY HH:mm:ss`
+- Tap in at a station: `Card: <cardId>: Tap In, <routeType:Bus,Subway>, <routeName>, <stationName>, DD/MM/YYYY HH:mm`
+- Tap out at a station: `Card: <cardId>: Tap Out, <routeType:Bus,Subway>, <routeName>, <stationName>, DD/MM/YYYY HH:mm`
 
 
 ## Map configuration file (`map.txt`)
