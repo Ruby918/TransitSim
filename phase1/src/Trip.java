@@ -169,8 +169,8 @@ public class Trip {
    */
   @Override
   public String toString(){
-      StringBuilder ret = new StringBuilder("Trip Start: " + this.getStartDate() +
-              " | End: " + this.getEndDate() +
+      StringBuilder ret = new StringBuilder("Trip Start: " + DateUtils.formatDatetime(this.getStartDate()) +
+              " | End: " + DateUtils.formatDatetime(this.getEndDate()) +
               " | Cost: " + this.getCostSoFar());
       ret.append(" | Tap Log: ");
       for(TapEvent tapEvent: tapEvents){
