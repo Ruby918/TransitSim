@@ -48,4 +48,8 @@ abstract public class Route {
     int s2Index = this.stations.indexOf(s2);
     return Math.abs(s1Index - s2Index);
   }
+
+  public String toString() {
+    return genericIdentifier;
+  }
 }
