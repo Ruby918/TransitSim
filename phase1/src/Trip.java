@@ -20,7 +20,11 @@ public class Trip {
     return this.startEvent.getDate();
   }
 
-  public ArrayList<TapEvent> gettapEvents() {
+  public Date getEndDate() {
+      return this.lastTapAdded.getDate();
+  }
+
+  public ArrayList<TapEvent> getTapEvents() {
       return this.tapEvents;
   }
 
@@ -118,5 +122,22 @@ public class Trip {
       return false;
     }
     return true;
+  }
+  @Override
+  public String toString(){
+      String ret = "Start Date: " + this.getStartDate() +
+              ". End Date: " + this.getEndDate() +
+              "Current Cost of Trip: " + this.getCostSoFar();
+      ret += "Tap Log: ";
+      for(TapEvent tapEvent: tapEvents){
+          if (tapEvent instanceof TapInEvent)
+              ret += "Tap In at ";
+          else
+              ret += "Tap Out at ";
+          ret += tapEvent.getStation().getName() + ", ";
+      }
+      ret = ret.substring(0,ret.length()-2);
+      ret += ".";
+      return ret;
   }
 }
