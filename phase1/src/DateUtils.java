@@ -35,4 +35,9 @@ public class DateUtils {
     Calendar calendar = new GregorianCalendar(year, month, day, hour, minute, 0);
     return calendar.getTime();
   }
+
+  public static boolean datesOnSameDay(Date date1, Date date2) {
+    // stub
+    return false;
+  }
 }

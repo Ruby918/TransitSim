@@ -119,8 +119,27 @@ public class StatisticsManager {
     return cost - calculateRevenueFromTrips(trips);
   }
 
-  public static ArrayList<Station> calculateStationsReached(ArrayList<TapEvent> taps) {
-    // stub
-    return new ArrayList<>(); // filler so i don't see red lines
+  public static ArrayList<Station> getStationsReachedOnDate(Date date) {
+    ArrayList<Trip> trips = getTripsOnDate(date);
+    ArrayList<Station> stationsReached = new ArrayList<>();
+    for (Trip trip : trips) {
+      for (TapEvent event : trip.getTapEvents()) {
+        if (DateUtils.datesOnSameDay(date, event.getDate())) {
+          stationsReached.add(event.getStation());
+        }
+      }
+    }
+    return stationsReached;
+  }
+
+  public static String listStationsReachedOnDate(Date date) {
+    ArrayList<Station> stationsReached = getStationsReachedOnDate(date);
+    String ret = "";
+    if (stationsReached.size() == 0) return "No Stations.";
+    for (Station station : stationsReached) {
+      ret += station.toString();
+      ret += System.lineSeparator();
+    }
+    return ret.trim();
   }
 }
