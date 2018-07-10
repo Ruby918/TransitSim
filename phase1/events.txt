@@ -8,5 +8,10 @@ Admin: Customers, Create, Someone New, email@mail.utoronto.ca
 Admin: Customers, Total
 Admin: Routes
 Admin: Cards
-Customer: 0: Report
-Customer: 1: Report
+Customer: 0: Details
+Customer: 0: Cards, View
+Customer: 0: Cards, New
+Customer: 0: Cards, New
+Customer: 0: Cards, View
+Customer: 1: Details
+Customer: 0: Details

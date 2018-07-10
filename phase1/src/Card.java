@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Card {
     private static final int MAX_CHARGE = 6;
-    private double balance = 0;
+    private double balance = 19;
     private ArrayList<Trip> trips = new ArrayList<>();
     private Trip activeTrip = null;
     private boolean isActive = true;
@@ -101,12 +101,13 @@ public class Card {
 
     @Override
     public String toString() {
+        String ret = "Card " + Integer.toString(this.cardId) + " ($" + Double.toString(this.balance);
         if (this.isActive){
-            return "Card: " + Integer.toString(this.cardId) + " ($" + Double.toString(this.balance) + ")";
+            ret += ")";
         }
         else{
-            return "Card: " + Integer.toString(this.cardId) + " ($" + Double.toString(this.balance) + ", deactivated)";
-
+            ret += ", deactivated)";
         }
+        return ret;
     }
 }

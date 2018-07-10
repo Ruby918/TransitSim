@@ -27,11 +27,6 @@ public class TransitFareManager {
     eventData.parse();
   }
 
-  public String getDailyReport(Date date) {
-    // stub
-    return "";
-  }
-
   public CustomerAccount createCustomerAccount(String name, String email) {
     // Increment customer id by one for every new customer
     CustomerAccount customer = new CustomerAccount(name, email, this.customers.size());
@@ -86,6 +81,7 @@ public class TransitFareManager {
     // Increment card id by one for every new card
     Card card = new Card(this.cards.size());
     this.cards.add(card);
+    customer.addCard(card);
     return card;
   }
 

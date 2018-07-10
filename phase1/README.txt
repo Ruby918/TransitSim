@@ -27,16 +27,16 @@ There are three types of commands: Admin, Customer, and Card.
 
 ### Customer commands
 
-- See overview of customer account: `Customer: <customerId>: Report`
+- See overview of customer account: `Customer: <customerId>: Details`
 - Update customer name: `Customer: <customerId>: Update Name, <newName>`
-- List cards: `Customer: <customerId>: Cards`
-- Request new card: `Customer: <customerId>: Cards, New`
+- List this customer's cards: `Customer: <customerId>: Cards, View`
+- Request new card for this customer: `Customer: <customerId>: Cards, New`
 - Get average transit cost per month: `Customer: <customerId>: Average Cost`
 - View three most recent trips: `Customer: <customerId>: Recent Trips`
 
 ### Card commands
 
-- See overview of card: `Card: <cardId>: Report`
+- See overview of card: `Card: <cardId>: Details`
 - Add money (10, 20, or 50 only) to card: `Card: <cardId>: Add Funds, <moneyAmount:10,20,50>`
 - See balance: `Card: <cardId>: Balance`
 - Deactivate: `Card: <cardId>: Deactivate`

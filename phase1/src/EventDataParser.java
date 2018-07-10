@@ -113,7 +113,7 @@ public class EventDataParser extends DataParser {
     String[] parameters = data[2].split(", ");
 
     switch (parameters[0]) {
-      case "Report":
+      case "Details":
         message = customer.toString();
         break;
       case "Update Name":
@@ -121,14 +121,24 @@ public class EventDataParser extends DataParser {
         message = "Successfully updated customer's name to " + parameters[1];
         break;
       case "Cards":
-        message = customer.listCards();
+        switch (parameters[1]){
+          case "New":
+            ttc.generateCard(customer);
+            message = "Successfully added a card to this customer.";
+            break;
+          case "View":
+            message = "Cards: " + System.lineSeparator()
+                + indentString(customer.listCards());
+            break;
+          default: message = "That is not a valid customer card command.";
+        }
         break;
       case "Average Cost":
         message = customer.getAverageMonthlyCost();
         break;
       case "Recent Trips":
-        message =
-            "Recent Trips:" + System.lineSeparator() + indentString(customer.listRecentTrips());
+        message = "Recent Trips:" + System.lineSeparator()
+            + indentString(customer.listRecentTrips());
         break;
       default:
         message = "That is not a valid customer command.";
@@ -146,7 +156,7 @@ public class EventDataParser extends DataParser {
     String[] parameters = data[2].split(", ");
 
     switch (parameters[0]) {
-      case "Report":
+      case "Details":
         message = card.toString();
         break;
       case "Add Funds":
@@ -183,14 +193,6 @@ public class EventDataParser extends DataParser {
       default:
         message = "That is not a valid card command.";
     }
-  }
-
-  private void parseAdminCardsCommand(String[] data) {
-
-  }
-
-  private void parseAdminReportCommand(String[] data) {
-
   }
 
   private void parseCardTapIn(Card card, String[] parameters) {

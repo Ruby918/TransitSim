@@ -51,7 +51,7 @@ public class CustomerAccount {
 
   public String listCards() {
     String listCards = "";
-    if (this.cards.size() == 0) return "No Cards";
+    if (this.cards.size() == 0) return "No Cards.";
     for (int i = 0; i < this.cards.size(); i++) {
       listCards += this.cards.get(i).toString() + ", ";
     }
