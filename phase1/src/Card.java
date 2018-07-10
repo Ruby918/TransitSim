@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Card {
     private static final int MAX_CHARGE = 6;
-    private double debt = 0;
     private double balance = 0;
     private ArrayList<Trip> trips = new ArrayList<>();
     private Trip activeTrip = null;
@@ -74,7 +73,6 @@ public class Card {
         if (!tripExceptionRaised & this.balance >= price) {
             this.balance -= price;
         } else {
-            this.debt += price - this.balance;
             throw new InsufficientFundsException();
         }
     }
@@ -93,12 +91,11 @@ public class Card {
             } catch (UnnaturalTapSequenceException e) {
                 StatisticsManager.incrementUnnaturalTapSequenceInstances();
                 StatisticsManager.addInvalidTapEvent(tapOutEvent.getDate());
-                this.balance -= 6;
+                this.balance -= MAX_CHARGE;
                 this.activeTrip = null;
                 tripExceptionRaised = true;
             }
             if (!tripExceptionRaised & price > this.balance) {
-                this.debt += price - this.balance;
                 throw new InsufficientFundsException();
             } else {
                 this.balance -= price;
