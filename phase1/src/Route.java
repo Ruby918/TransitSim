@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 abstract public class Route {
 
-  private String name;
+  private final String name;
   private ArrayList<Station> stations = new ArrayList<>();
 
   public Route(String name){
@@ -54,11 +54,11 @@ abstract public class Route {
   }
 
   public String toStringVerbose() {
-    String ret = this.toString() + " (";
+    StringBuilder ret = new StringBuilder(this.toString() + " (");
     for (Station station: this.stations) {
-      ret += station.toString() + ", ";
+      ret.append(station.toString()).append(", ");
     }
-    ret = ret.substring(0,ret.length() - 2);
+    ret = new StringBuilder(ret.substring(0, ret.length() - 2));
     return ret + ")";
   }
 }

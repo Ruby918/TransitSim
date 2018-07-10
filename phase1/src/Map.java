@@ -3,7 +3,7 @@
 import java.util.ArrayList;
 
 public class Map {
-  private ArrayList<Route> routes = new ArrayList<>();
+  private final ArrayList<Route> routes = new ArrayList<>();
 
   public void addRoute(Route route) {
     this.routes.add(route);
@@ -13,7 +13,7 @@ public class Map {
     return this.routes;
   }
 
-  public boolean routeIsType(Route route, String type) {
+  private boolean routeIsType(Route route, String type) {
     return (((type.equals("Subway")) && route instanceof SubwayRoute) ||
         ((type.equals("Bus")) && route instanceof BusRoute));
   }
