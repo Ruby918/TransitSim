@@ -265,7 +265,7 @@ public class EventConfigFileParser extends ConfigFileParser {
       message = "Error: That card has insufficient funds.";
       return;
     } catch (IllegalTapLocationException e) {
-      message = "Error: The location of this tap event is highly irregular. You have been charged for a $6 trip.";
+      message = "Error: The location of this tap event is a bit odd. You have been charged for a $6 trip.";
       return;
     }
     message = "You have successfully tapped in at "
@@ -299,7 +299,7 @@ public class EventConfigFileParser extends ConfigFileParser {
       message = "Error: That card has been deactivated.";
       return;
     } catch (IllegalTapLocationException e) {
-      message = "Error: The location of this tap event is highly irregular. You have been charged for a $6 trip.";
+      message = "Error: The location of this tap event is a bit odd. You have been charged for a $6 trip.";
       return;
     }
     message = "You have successfully tapped out at "

@@ -58,12 +58,12 @@ public class Trip implements Comparable<Trip> {
    * @param tapInEvent the tap event to be registered
    * @return the charge of the tap
    * @throws TripInvalidTapEventException if the tap is the start of a new trip
-   * @throws UnnaturalTapSequenceException if the tap is illegal
+   * @throws TripUnnaturalTapSequenceException if the tap is illegal
    */
   public double registerTapInEvent(TapInEvent tapInEvent)
-      throws TripInvalidTapEventException, UnnaturalTapSequenceException {
+      throws TripInvalidTapEventException, TripUnnaturalTapSequenceException {
     if (!isTapInEventLegal(tapInEvent)) {
-      throw new UnnaturalTapSequenceException();
+      throw new TripUnnaturalTapSequenceException();
     }
     if (!canAddTapInToCurrentTrip(tapInEvent)) {
       throw new TripInvalidTapEventException();
@@ -84,12 +84,12 @@ public class Trip implements Comparable<Trip> {
    *
    * @param tapOutEvent the tap event to be registered
    * @return the charge for the tap
-   * @throws UnnaturalTapSequenceException if the tap is illegal
+   * @throws TripUnnaturalTapSequenceException if the tap is illegal
    */
   public double registerTapOutEvent(TapOutEvent tapOutEvent)
-      throws UnnaturalTapSequenceException {
+      throws TripUnnaturalTapSequenceException {
     if (!isTapOutEventLegal(tapOutEvent)) {
-      throw new UnnaturalTapSequenceException();
+      throw new TripUnnaturalTapSequenceException();
     }
 
     Station stationIn = tapEvents.get(tapEvents.size() - 1).getStation();

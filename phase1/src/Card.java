@@ -130,7 +130,7 @@ public class Card {
     double price = 0;
     try {
       price = activeTrip.registerTapInEvent(tapInEvent);
-    } catch (UnnaturalTapSequenceException e) {
+    } catch (TripUnnaturalTapSequenceException e) {
       // this tap took a place at a nonsensical location
       addInvalidTap(tapInEvent);
       throw new IllegalTapLocationException();
@@ -177,7 +177,7 @@ public class Card {
     double price;
     try {
       price = activeTrip.registerTapOutEvent(tapOutEvent);
-    } catch (UnnaturalTapSequenceException e) {
+    } catch (TripUnnaturalTapSequenceException e) {
       addInvalidTap(tapOutEvent);
       throw new IllegalTapLocationException();
     }
