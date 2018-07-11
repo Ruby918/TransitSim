@@ -1,10 +1,16 @@
 /* Dan */
-
+// imports utility libraries needed for program.
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 
+/**
+ * Class that models the functionality of a transit Card.
+ *
+ * @author group 0136
+ */
 public class Card {
+  // Instance variables storing information on the card.
   private static final int MAX_CHARGE = 6;
   private double balance = 19;
   private ArrayList<Trip> trips = new ArrayList<>();
@@ -13,42 +19,75 @@ public class Card {
   private boolean isActive = true;
   private int cardId;
 
+  /** A constructor for the card class that sets the id. */
   public Card(int id) {
     this.cardId = id;
   }
 
+  /**
+   * A getter which returns the id of the card.
+   *
+   * @return - id of the card.
+   */
   public int getCardId() {
     return cardId;
   }
 
+  /**
+   * A getter which returns an array list of trips registered on card.
+   *
+   * @return - Array list of trips registered on card.
+   */
   public ArrayList<Trip> getTrips() {
     return trips;
   }
 
+  /**
+   * Returns an array list of days that an invalid tap occurred.
+   *
+   * @return - array list of days that an invalid tap occurred.
+   */
   public ArrayList<Date> getInvalidTapEventDates() {
     return invalidTapEventDates;
   }
 
+  /** Deactivated card so it cannot be used to Tap. */
   public void deactivate() {
     this.isActive = false;
   }
 
+  /**
+   * A getter which returns the balance of the card.
+   *
+   * @return - balance of the card.
+   */
   public double getBalance() {
     return this.balance;
   }
 
+  /** Increases card balance by 10 dollars. */
   public void addTenDollars() {
     this.balance += 10;
   }
 
+  /** Increases card balance by 20 dollars. */
   public void addTwentyDollars() {
     this.balance += 20;
   }
 
+  /** Increases card balance by 50 dollars. */
   public void addFiftyDollars() {
     this.balance += 50;
   }
 
+  /**
+   * Registers and records an invalid tap.
+   *
+   * <p>In the case of an invalid tap, the information is passed onto StatisticsManager, active trip
+   * is turned null and MAX_Charge is taken off balance.
+   *
+   * @param tapEvent - tap event which was invalid.
+   */
   public void addInvalidTap(TapEvent tapEvent) {
     this.invalidTapEventDates.add(tapEvent.getDate());
     StatisticsManager.addInvalidTapEvent(tapEvent.getDate());
@@ -56,6 +95,20 @@ public class Card {
     this.activeTrip = null;
   }
 
+  /**
+   * Registers a tap in event onto card.
+   *
+   * <p>When registering a tap in event fist balance and card activity are checked. Then if they are
+   * legal a new tapInEvent is created and the tap date and location are stored. If card not yet
+   * part of an active trip then a new trip is created and fare is deducted. If tap is found to be
+   * invalid then it is recorded and tap active trip is set to null and a new tapIn is called.
+   *
+   * @param station - Location of tap
+   * @param date - date of the tap.
+   * @throws InsufficientFundsException - Insufficient funds on card
+   * @throws TapDeactivatedCardException - deactivated tap is tapped
+   * @throws IllegalTapLocationException - tap location of the tap is not legal
+   */
   public void tapIn(Station station, Date date)
       throws InsufficientFundsException, TapDeactivatedCardException, IllegalTapLocationException {
 
@@ -92,6 +145,19 @@ public class Card {
     balance -= price;
   }
 
+  /**
+   * Registers a tap out event onto card.
+   *
+   * <p>When registering a tap out event fist card activity are checked. Then if they are legal a
+   * new tapOutEvent is created and the tap date and location are stored. If card apart of trip
+   * which is concluded then fare is deducted from balance. if no trip is active then an illegal tap
+   * is recoded.
+   *
+   * @param station - Location of tap
+   * @param date - date of the tap.
+   * @throws TapDeactivatedCardException - deactivated tap is tapped
+   * @throws IllegalTapLocationException - tap location of the tap is not legal
+   */
   public void tapOut(Station station, Date date)
       throws TapDeactivatedCardException, IllegalTapLocationException {
 
@@ -121,6 +187,11 @@ public class Card {
     balance -= price;
   }
 
+  /**
+   * Returns an array list of the last 3 trips taken by customer account.
+   *
+   * @return - array list of the last 3 trips taken by customer account.
+   */
   public ArrayList<Trip> getRecentTrips() {
     // The following line of code is from https://stackoverflow.com/a/44525425/3200577
     // (User: Stimpson Cat)
@@ -129,6 +200,11 @@ public class Card {
     else return new ArrayList<>(trips.subList(trips.size() - 3, trips.size()));
   }
 
+  /**
+   * Returns string representation of customerAccountClass.
+   *
+   * @return - string representation of customerAccountClass.
+   */
   @Override
   public String toString() {
     String ret = "Card " + Integer.toString(this.cardId) + " ($" + Double.toString(this.balance);
