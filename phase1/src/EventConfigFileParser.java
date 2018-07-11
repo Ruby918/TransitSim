@@ -258,7 +258,7 @@ public class EventConfigFileParser extends ConfigFileParser {
     }
     try {
       card.tapIn(station, date);
-    } catch (TapDeactivatedCardException e) {
+    } catch (TapDeactivatedCardsException e) {
       message = "Error: That card has been deactivated.";
       return;
     } catch (InsufficientFundsException e) {
@@ -295,7 +295,7 @@ public class EventConfigFileParser extends ConfigFileParser {
     }
     try {
       card.tapOut(station, date);
-    } catch (TapDeactivatedCardException e) {
+    } catch (TapDeactivatedCardsException e) {
       message = "Error: That card has been deactivated.";
       return;
     } catch (IllegalTapLocationException e) {

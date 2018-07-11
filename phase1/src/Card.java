@@ -106,14 +106,14 @@ public class Card {
    * @param station - Location of tap
    * @param date - date of the tap.
    * @throws InsufficientFundsException - Insufficient funds on card
-   * @throws TapDeactivatedCardException - deactivated tap is tapped
+   * @throws TapDeactivatedCardsException - deactivated tap is tapped
    * @throws IllegalTapLocationException - tap location of the tap is not legal
    */
   public void tapIn(Station station, TransitDate date)
-      throws InsufficientFundsException, TapDeactivatedCardException, IllegalTapLocationException {
+      throws InsufficientFundsException, TapDeactivatedCardsException, IllegalTapLocationException {
 
     // check if card is active
-    if (!this.isActive) throw new TapDeactivatedCardException();
+    if (!this.isActive) throw new TapDeactivatedCardsException();
     // check if card has sufficient funds
     if (this.balance < 0) throw new InsufficientFundsException();
 
@@ -155,14 +155,14 @@ public class Card {
    *
    * @param station - Location of tap
    * @param date - date of the tap.
-   * @throws TapDeactivatedCardException - deactivated tap is tapped
+   * @throws TapDeactivatedCardsException - deactivated tap is tapped
    * @throws IllegalTapLocationException - tap location of the tap is not legal
    */
   public void tapOut(Station station, TransitDate date)
-      throws TapDeactivatedCardException, IllegalTapLocationException {
+      throws TapDeactivatedCardsException, IllegalTapLocationException {
 
     // check if card is active
-    if (!this.isActive) throw new TapDeactivatedCardException();
+    if (!this.isActive) throw new TapDeactivatedCardsException();
 
     // create tap out event
     TapOutEvent tapOutEvent = new TapOutEvent(station, date);
