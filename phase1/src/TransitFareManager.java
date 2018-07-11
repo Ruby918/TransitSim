@@ -49,35 +49,16 @@ public class TransitFareManager {
     customer.addCard(card);
   }
 
-  public String listCustomers() {
-    String ret = "";
-    if (this.customers.size() == 0) return "No Customers.";
-    for (CustomerAccount customer : this.customers) {
-      ret += customer.toString();
-      ret += System.lineSeparator();
-    }
-    return ret.trim();
+  public ArrayList<Route> getRoutes() {
+    return map.getRoutes();
   }
 
-  public String listRoutes() {
-    String ret = "";
-    ArrayList<Route> routes = this.map.getRoutes();
-    if (routes.size() == 0) return "No Routes.";
-    for (Route route : routes) {
-      ret += route.toStringVerbose();
-      ret += System.lineSeparator();
-    }
-    return ret.trim();
+  public ArrayList<CustomerAccount> getCustomers() {
+    return customers;
   }
 
-  public String listCards() {
-    String ret = "";
-    if (cards.size() == 0) return "No Cards.";
-    for (Card card : cards) {
-      ret += card.toString();
-      ret += System.lineSeparator();
-    }
-    return ret.trim();
+  public ArrayList<Card> getCards() {
+    return cards;
   }
 
   public Card generateCard(CustomerAccount customer) {

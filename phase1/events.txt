@@ -23,9 +23,9 @@ Card: 0: Tap In, Subway, University, Museum, 10/07/2018 12:30
 Card: 0: Tap Out, Subway, University, Queen's Park, 10/07/2018 12:35
 Card: 0: Tap In, Bus, College, University, 10/07/2018 12:40
 Card: 0: Tap Out, Bus, College, Yonge, 10/07/2018 12:45
-Card: 0: Tap In, Subway, University, Museum, 11/07/2018 12:30
-Card: 0: Tap Out, Subway, University, Queen's Park, 11/07/2018 12:35
-Card: 0: Tap In, Subway, University, Museum, 12/07/2018 12:30
+Card: 0: Tap In, Subway, University, St. Clair, 11/07/2018 12:30
+Card: 0: Tap Out, Subway, University, Dupont, 11/07/2018 12:35
+Card: 0: Tap In, Subway, University, Eglinton, 12/07/2018 12:30
 Card: 0: Tap Out, Subway, University, Queen's Park, 12/07/2018 12:35
 Card: 0: Details
 Admin: Revenue, Total
@@ -47,3 +47,5 @@ Customer: 1: Cards, View
 Card: 0: Recent Trips
 Card: 1: Recent Trips
 Card: 2: Recent Trips
+Admin: Trips, 11/07/2018
+Admin: Stations, 11/07/2018

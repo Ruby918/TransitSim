@@ -50,11 +50,7 @@ abstract public class Route {
 
   @Override
   public String toString() {
-    return this.name + " " + getGenericIdentifier();
-  }
-
-  public String toStringVerbose() {
-    StringBuilder ret = new StringBuilder(this.toString() + " (");
+    StringBuilder ret = new StringBuilder(this.name + " " + getGenericIdentifier() + " (");
     for (Station station: this.stations) {
       ret.append(station.toString()).append(", ");
     }

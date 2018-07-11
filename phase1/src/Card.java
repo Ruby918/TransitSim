@@ -118,17 +118,7 @@ public class Card {
         // (User: Stimpson Cat)
         trips.sort(Comparator.comparing(o -> o.getStartDate()));
         if (trips.size() <= 3) return trips;
-        else return new ArrayList<>(trips.subList(trips.size() - 4, trips.size() - 1));
-    }
-
-    public String listRecentTrips() {
-        String ret = "";
-        ArrayList<Trip> recentTrips = getRecentTrips();
-        if (recentTrips.size() == 0) return "No trips.";
-        for (Trip trip : recentTrips) {
-            ret += trip.toString() + System.lineSeparator();
-        }
-        return ret.trim();
+        else return new ArrayList<>(trips.subList(trips.size() - 3, trips.size()));
     }
 
     @Override

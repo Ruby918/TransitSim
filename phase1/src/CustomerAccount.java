@@ -31,6 +31,10 @@ public class CustomerAccount {
     return null;
   }
 
+  public ArrayList<Card> getCards() {
+    return cards;
+  }
+
   public String getName() {
     return name;
   }
@@ -59,16 +63,6 @@ public class CustomerAccount {
     this.cards.remove(card);
   }
 
-  public String listCards() {
-    String listCards = "";
-    if (this.cards.size() == 0) return "No Cards.";
-    for (int i = 0; i < this.cards.size(); i++) {
-      listCards += this.cards.get(i).toString() + ", ";
-    }
-    listCards = listCards.substring(0, listCards.length() - 2);
-    return listCards.trim();
-  }
-
   public void loadMoney(Double money, int id) {
     Card card = getCard(id);
     while (money != 0) {
@@ -85,15 +79,6 @@ public class CustomerAccount {
     }
   }
 
-  public String listRecentTrips() {
-    String ret = "";
-    ArrayList<Trip> recentTrips = getRecentTrips();
-    if (recentTrips.size() == 0) return "No trips.";
-    for (Trip trip : recentTrips) {
-      ret += trip.toString() + System.lineSeparator();
-    }
-    return ret.trim();
-  }
 
   public ArrayList<Trip> getRecentTrips() {
     ArrayList<Trip> trips = getTrips();
@@ -101,7 +86,7 @@ public class CustomerAccount {
     // (User: Stimpson Cat)
     trips.sort(Comparator.comparing(o -> o.getStartDate()));
     if (trips.size() <= 3) return trips;
-    else return new ArrayList<>(trips.subList(trips.size() - 4, trips.size() - 1));
+    else return new ArrayList<>(trips.subList(trips.size() - 3, trips.size()));
   }
 
   public String getAverageMonthlyCost() {
@@ -118,6 +103,6 @@ public class CustomerAccount {
         + " | ID: "
         + Integer.toString(this.id)
         + " | Cards: "
-        + listCards();
+        + DataParser.getStringFromList(cards, "Cards");
   }
 }

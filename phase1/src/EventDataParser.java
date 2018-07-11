@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Date;
 
 public class EventDataParser extends DataParser {
@@ -63,27 +64,29 @@ public class EventDataParser extends DataParser {
         message = "Trips: " + System.lineSeparator();
         switch (parameters[1]) {
           case "Total":
-            message += indentString(StatisticsManager.listTrips());
+            message += indentString(getStringFromListMultiline(StatisticsManager.getTrips(), "Trips"));
             break;
           default:
             Date date = DateUtils.getDateFromDateString(parameters[1]);
-            message += indentString(StatisticsManager.listTripsOnDate(date));
+            ArrayList<Trip> trips = StatisticsManager.getTripsOnDate(date);
+            message += indentString(getStringFromListMultiline(trips, "Trips"));
         }
         break;
       case "Stations":
         Date date = DateUtils.getDateFromDateString(parameters[1]);
+        ArrayList<Station> stations = StatisticsManager.getStationsReachedOnDate(date);
         message = "Stations: " + System.lineSeparator()
-            + indentString(StatisticsManager.listStationsReachedOnDate(date));
+            + indentString(getStringFromListMultiline(stations, "Stations"));
         break;
       case "Routes":
         message = "Routes:" + System.lineSeparator()
-            + indentString(ttc.listRoutes());
+            + indentString(getStringFromListMultiline(ttc.getRoutes(), "Routes"));
         break;
       case "Customers":
         switch (parameters[1]) {
           case "Total":
             message = "Customers: " + System.lineSeparator()
-                + indentString(ttc.listCustomers());
+                + indentString(getStringFromListMultiline(ttc.getCustomers(), "Customers"));
             break;
           case "Create":
             ttc.createCustomerAccount(parameters[2], parameters[3]);
@@ -95,7 +98,7 @@ public class EventDataParser extends DataParser {
         break;
       case "Cards":
         message = "Cards: " + System.lineSeparator()
-            + indentString(ttc.listCards());
+            + indentString(getStringFromListMultiline(ttc.getCards(), "Cards"));
         break;
       default:
         message = "That is not a valid admin command.";
@@ -128,7 +131,7 @@ public class EventDataParser extends DataParser {
             break;
           case "View":
             message = "Cards: " + System.lineSeparator()
-                + indentString(customer.listCards());
+                + indentString(getStringFromList(customer.getCards(), "Cards"));
             break;
           default: message = "That is not a valid customer card command.";
         }
@@ -138,7 +141,7 @@ public class EventDataParser extends DataParser {
         break;
       case "Recent Trips":
         message = "Recent Trips:" + System.lineSeparator()
-            + indentString(customer.listRecentTrips());
+            + indentString(getStringFromListMultiline(customer.getRecentTrips(), "Trips"));
         break;
       default:
         message = "That is not a valid customer command.";
@@ -161,7 +164,7 @@ public class EventDataParser extends DataParser {
         break;
       case "Recent Trips":
         message = "Recent Trips: " + System.lineSeparator()
-            + indentString(card.listRecentTrips());
+            + indentString(getStringFromListMultiline(card.getRecentTrips(), "Trips"));
         break;
       case "Add Funds":
         switch (parameters[1]) {
