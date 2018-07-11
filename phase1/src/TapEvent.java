@@ -23,7 +23,7 @@ abstract public class TapEvent {
     /**
      * Returns the <code>Date</code> this <code>TapEvent</code> was made.
      *
-     * @returnthe <code>Date</code> this <code>TapEvent</code> was made.
+     * @return the <code>Date</code> this <code>TapEvent</code> was made.
      */
     public TransitDate getTransitDate() {
         return date;
