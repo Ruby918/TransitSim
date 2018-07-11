@@ -106,14 +106,4 @@ public class StatisticsManager {
     return stationsReached;
   }
 
-  public static String listStationsReachedOnDate(Date date) {
-    ArrayList<Station> stationsReached = getStationsReachedOnDate(date);
-    String ret = "";
-    if (stationsReached.size() == 0) return "No Stations.";
-    for (Station station : stationsReached) {
-      ret += station.toString();
-      ret += System.lineSeparator();
-    }
-    return ret.trim();
-  }
 }
