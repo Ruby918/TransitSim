@@ -1,7 +1,5 @@
 /* Brian */
 
-import java.util.Date;
-
 /**
  * A tap out at a <code>BusStation</code> or <code>SubwayStation</code>
  */

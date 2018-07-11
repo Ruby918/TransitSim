@@ -18,7 +18,7 @@ abstract public class ConfigFileParser {
   public ConfigFileParser(String fileName) {
     this.fileName = fileName;
   }
-  
+
   /**
    * Parses a line this object's configuration file.
    *
