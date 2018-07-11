@@ -2,8 +2,11 @@
 
 import java.util.ArrayList;
 
-/** A transit journey consisting of bus and subway rides. */
+/**
+ * A transit journey consisting of bus and subway rides.
+ */
 public class Trip implements Comparable<Trip> {
+
   protected static final double MAX_CHARGE = 6;
   private double cost;
   private ArrayList<TapEvent> tapEvents = new ArrayList<>();
@@ -14,7 +17,9 @@ public class Trip implements Comparable<Trip> {
    * @return the starting date of the first tap in
    */
   public TransitDate getStartDate() {
-    if (tapEvents.size() == 0) return null;
+    if (tapEvents.size() == 0) {
+      return null;
+    }
     return tapEvents.get(0).getTransitDate();
   }
 
@@ -24,7 +29,9 @@ public class Trip implements Comparable<Trip> {
    * @return the date of the last tap
    */
   public TransitDate getEndDate() {
-    if (tapEvents.size() == 0) return null;
+    if (tapEvents.size() == 0) {
+      return null;
+    }
     return tapEvents.get(tapEvents.size() - 1).getTransitDate();
   }
 
@@ -47,7 +54,8 @@ public class Trip implements Comparable<Trip> {
   }
 
   /**
-   * Checks if the given <code>TapInEvent</code> is legal and if it is the start of a new <code>Trip
+   * Checks if the given <code>TapInEvent</code> is legal and if it is the start of a new
+   * <code>Trip
    * </code>. If it is the start of a new <code>Trip</code>,bit will throw a new <code>
    * TripInvalidTapEventException</code>. If it is not legal, it will throw a new <code>
    * UnnaturalTapSequenceException</code>. Else, it documents the given <code>TapInEvent</code>, and
@@ -104,7 +112,9 @@ public class Trip implements Comparable<Trip> {
 
   private boolean canAddTapInToCurrentTrip(TapInEvent tapInEvent) {
     // if this is the first tap in of this trip, return true
-    if (tapEvents.size() == 0) return true;
+    if (tapEvents.size() == 0) {
+      return true;
+    }
     // if tapInEvent is past 2hrs. from first tapInEvent 2hrs = 2*60*60*1000 ms
     if (tapInEvent.getTransitDate().getDate().getTime() - getStartDate().getDate().getTime()
         > 7200000) {
@@ -115,11 +125,13 @@ public class Trip implements Comparable<Trip> {
     if (!tapInEvent.getStation().isAdjacentToStation(previousStation)) {
       return false;
     }
-      return true;
+    return true;
   }
 
   private boolean isTapInEventLegal(TapInEvent tapInEvent) {
-    if (tapEvents.size() == 0) return true;
+    if (tapEvents.size() == 0) {
+      return true;
+    }
     TapEvent previousTap = tapEvents.get(tapEvents.size() - 1);
     // 2 tapInEvents in a row is not legal.
     if (previousTap instanceof TapInEvent) {
@@ -130,7 +142,9 @@ public class Trip implements Comparable<Trip> {
 
   private boolean isTapOutEventLegal(TapOutEvent tapOutEvent) {
     // initializing a trip with a tap out event is not legal
-    if (tapEvents.size() == 0) return false;
+    if (tapEvents.size() == 0) {
+      return false;
+    }
     // 2 tapOutEvents in a row is not legal
     TapEvent previousTap = tapEvents.get(tapEvents.size() - 1);
     if (previousTap instanceof TapOutEvent) {
@@ -160,17 +174,22 @@ public class Trip implements Comparable<Trip> {
                 + this.getCost());
     ret.append(" | Tap Log: ");
     for (TapEvent tapEvent : tapEvents) {
-      if (tapEvent instanceof TapInEvent) ret.append("Tap In at ");
-      else ret.append("Tap Out at ");
+      if (tapEvent instanceof TapInEvent) {
+        ret.append("Tap In at ");
+      } else {
+        ret.append("Tap Out at ");
+      }
       ret.append(tapEvent.getStation().toString() + ", ");
     }
-    String rett = ret.substring(0, ret.length()-2);
+    String rett = ret.substring(0, ret.length() - 2);
     return rett;
   }
 
   @Override
   public int compareTo(Trip td) {
-    if (getStartDate() == null || td.getStartDate() == null) return 0;
+    if (getStartDate() == null || td.getStartDate() == null) {
+      return 0;
+    }
     return getStartDate().compareTo(td.getStartDate());
   }
 }

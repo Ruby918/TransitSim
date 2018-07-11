@@ -8,12 +8,11 @@ import java.util.ArrayList;
  * @author group 0136
  */
 public class Map {
+
   private final ArrayList<Route> routes = new ArrayList<>();
 
   /**
    * Add a route the map.
-   *
-   * @param route
    */
   public void addRoute(Route route) {
     this.routes.add(route);
@@ -31,8 +30,6 @@ public class Map {
   /**
    * Check if a route is a Bus Route or a Subway Route.
    *
-   * @param route
-   * @param type
    * @return - returns True if the Route is either a Bus Route or a Subway Route.
    */
   private boolean routeIsType(Route route, String type) {
@@ -41,44 +38,37 @@ public class Map {
   }
 
   /**
-   * Returns the desired Route from the list of routes on the map. Returns null if such route doesn't exist.
-   * The name of the station, as well as its type needs to be specified.
+   * Returns the desired Route from the list of routes on the map. Returns null if such route
+   * doesn't exist. The name of the station, as well as its type needs to be specified.
    *
-   * @param name
-   * @param type
    * @return - the wanted Route or null if it doesn't exist.
    */
   public Route getRouteByNameAndType(String name, String type) {
-    for (Route route : routes){
-      if (this.routeIsType(route, type) && route.getName().equals(name)) return route;
+    for (Route route : routes) {
+      if (this.routeIsType(route, type) && route.getName().equals(name)) {
+        return route;
+      }
     }
     return null;
   }
 
   /**
    * Add a Route to the list of current Routes on the map.
-   *
-   * @param name
-   * @param type
    */
   public void addRouteByNameAndType(String name, String type) {
     Route newRoute;
     if (type.equals("Subway")) {
       newRoute = new SubwayRoute(name);
-    }
-    else {
+    } else {
       newRoute = new BusRoute(name);
     }
     this.routes.add(newRoute);
   }
 
   /**
-   * Returns the desired station based on the station's name, the route's name, and the route's type. Returns null if it
-   * does not exists.
+   * Returns the desired station based on the station's name, the route's name, and the route's
+   * type. Returns null if it does not exists.
    *
-   * @param stationName
-   * @param routeName
-   * @param routeType
    * @return - The desired station or null if it does not exist.
    */
   public Station getStationByNameAndRoute(String stationName, String routeName, String routeType) {
@@ -91,12 +81,10 @@ public class Map {
 
   /**
    * Bundle stations as adjacent stops.
-   *
-   * @param stations
    */
   public static void makeAdjacent(ArrayList<Station> stations) {
-    for (int i=0; i<stations.size(); i++) {
-      for (int j=0; j<stations.size(); j++) {
+    for (int i = 0; i < stations.size(); i++) {
+      for (int j = 0; j < stations.size(); j++) {
         if (!(j == i)) {
           stations.get(i).addAdjacentStation(stations.get(j));
         }

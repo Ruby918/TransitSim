@@ -113,8 +113,9 @@ public class StatisticsManager {
   public static ArrayList<Trip> getTripsOnDate(TransitDate date) {
     ArrayList<Trip> tripsOnDate = new ArrayList<>();
     for (Trip trip : trips) {
-      if (trip.getStartDate().onSameDay(date) || trip.getEndDate().onSameDay(date))
+      if (trip.getStartDate().onSameDay(date) || trip.getEndDate().onSameDay(date)) {
         tripsOnDate.add(trip);
+      }
     }
     return tripsOnDate;
   }

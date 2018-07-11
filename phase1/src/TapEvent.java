@@ -7,34 +7,34 @@ import java.util.Date;
  */
 abstract public class TapEvent {
 
-    private TransitDate date;
-    private Station station;
+  private TransitDate date;
+  private Station station;
 
-    public TapEvent(Station station, TransitDate date){
-        this.station = station;
-        this.date = date;
-    }
+  public TapEvent(Station station, TransitDate date) {
+    this.station = station;
+    this.date = date;
+  }
 
-    public TapEvent(Station station){
-        this.station = station;
-        this.date = new TransitDate(new Date());
-    }
+  public TapEvent(Station station) {
+    this.station = station;
+    this.date = new TransitDate(new Date());
+  }
 
-    /**
-     * Returns the <code>Date</code> this <code>TapEvent</code> was made.
-     *
-     * @return the <code>Date</code> this <code>TapEvent</code> was made.
-     */
-    public TransitDate getTransitDate() {
-        return date;
-    }
+  /**
+   * Returns the <code>Date</code> this <code>TapEvent</code> was made.
+   *
+   * @return the <code>Date</code> this <code>TapEvent</code> was made.
+   */
+  public TransitDate getTransitDate() {
+    return date;
+  }
 
-    /**
-     * Returns the <code>Station</code> at which this <code>TapEvent</code> was made.
-     *
-     * @return the <code>Station</code> at which this <code>TapEvent</code> was made.
-     */
-    public Station getStation() {
-        return station;
-    }
+  /**
+   * Returns the <code>Station</code> at which this <code>TapEvent</code> was made.
+   *
+   * @return the <code>Station</code> at which this <code>TapEvent</code> was made.
+   */
+  public Station getStation() {
+    return station;
+  }
 }

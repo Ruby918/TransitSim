@@ -5,11 +5,11 @@
  */
 public class TapOutEvent extends TapEvent {
 
-    public TapOutEvent(Station station, TransitDate date) {
-        super(station, date);
-    }
+  public TapOutEvent(Station station, TransitDate date) {
+    super(station, date);
+  }
 
-    public TapOutEvent(Station station) {
-        super(station);
-    }
+  public TapOutEvent(Station station) {
+    super(station);
+  }
 }

@@ -9,6 +9,7 @@ import java.util.Collections;
  * @author group 0136
  */
 public class Card {
+
   // Instance variables storing information on the card.
   private static final int MAX_CHARGE = 6;
   private double balance = 19;
@@ -19,7 +20,9 @@ public class Card {
   private boolean isActive = true;
   private int cardId;
 
-  /** A constructor for the card class that sets the id. */
+  /**
+   * A constructor for the card class that sets the id.
+   */
   public Card(int id) {
     this.cardId = id;
   }
@@ -51,7 +54,9 @@ public class Card {
     return invalidTapEventDates;
   }
 
-  /** Deactivated card so it cannot be used to Tap. */
+  /**
+   * Deactivated card so it cannot be used to Tap.
+   */
   public void deactivate() {
     this.isActive = false;
   }
@@ -65,17 +70,23 @@ public class Card {
     return this.balance;
   }
 
-  /** Increases card balance by 10 dollars. */
+  /**
+   * Increases card balance by 10 dollars.
+   */
   public void addTenDollars() {
     this.balance += 10;
   }
 
-  /** Increases card balance by 20 dollars. */
+  /**
+   * Increases card balance by 20 dollars.
+   */
   public void addTwentyDollars() {
     this.balance += 20;
   }
 
-  /** Increases card balance by 50 dollars. */
+  /**
+   * Increases card balance by 50 dollars.
+   */
   public void addFiftyDollars() {
     this.balance += 50;
   }
@@ -83,8 +94,8 @@ public class Card {
   /**
    * Registers and records an invalid tap.
    *
-   * <p>In the case of an invalid tap, the information is passed onto StatisticsManager, active trip
-   * is turned null and MAX_Charge is taken off balance.
+   * <p>In the case of an invalid tap, the information is passed onto StatisticsManager, active
+   * trip is turned null and MAX_Charge is taken off balance.
    *
    * @param tapEvent - tap event which was invalid.
    */
@@ -98,8 +109,8 @@ public class Card {
   /**
    * Registers a tap in event onto card.
    *
-   * <p>When registering a tap in event fist balance and card activity are checked. Then if they are
-   * legal a new tapInEvent is created and the tap date and location are stored. If card not yet
+   * <p>When registering a tap in event fist balance and card activity are checked. Then if they
+   * are legal a new tapInEvent is created and the tap date and location are stored. If card not yet
    * part of an active trip then a new trip is created and fare is deducted. If tap is found to be
    * invalid then it is recorded and tap active trip is set to null and a new tapIn is called.
    *
@@ -113,9 +124,13 @@ public class Card {
       throws InsufficientFundsException, TapDeactivatedCardsException, IllegalTapLocationException {
 
     // check if card is active
-    if (!this.isActive) throw new TapDeactivatedCardsException();
+    if (!this.isActive) {
+      throw new TapDeactivatedCardsException();
+    }
     // check if card has sufficient funds
-    if (this.balance < 0) throw new InsufficientFundsException();
+    if (this.balance < 0) {
+      throw new InsufficientFundsException();
+    }
 
     // create tap in event
     TapInEvent tapInEvent = new TapInEvent(station, date);
@@ -162,7 +177,9 @@ public class Card {
       throws TapDeactivatedCardsException, IllegalTapLocationException {
 
     // check if card is active
-    if (!this.isActive) throw new TapDeactivatedCardsException();
+    if (!this.isActive) {
+      throw new TapDeactivatedCardsException();
+    }
 
     // create tap out event
     TapOutEvent tapOutEvent = new TapOutEvent(station, date);
@@ -194,8 +211,11 @@ public class Card {
    */
   public ArrayList<Trip> getRecentTrips() {
     Collections.sort(trips);
-    if (trips.size() <= 3) return trips;
-    else return new ArrayList<>(trips.subList(trips.size() - 3, trips.size()));
+    if (trips.size() <= 3) {
+      return trips;
+    } else {
+      return new ArrayList<>(trips.subList(trips.size() - 3, trips.size()));
+    }
   }
 
   /**

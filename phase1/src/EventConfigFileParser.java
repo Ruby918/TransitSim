@@ -101,7 +101,8 @@ public class EventConfigFileParser extends ConfigFileParser {
         break;
       case "Routes":
         message = "Routes:" + System.lineSeparator()
-            + indentString(getStringFromListMultiline(transitSystem.getMap().getRoutes(), "Routes"));
+            + indentString(
+            getStringFromListMultiline(transitSystem.getMap().getRoutes(), "Routes"));
         break;
       case "Customers":
         switch (parameters[1]) {

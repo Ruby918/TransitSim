@@ -5,7 +5,7 @@
  *
  * @author group 0136
  */
-public class BusStation extends Station{
+public class BusStation extends Station {
 
   /**
    * Returns the generic identifier of a Bus Stop.
@@ -19,11 +19,8 @@ public class BusStation extends Station{
 
   /**
    * Constructor of BusStation
-   *
-   * @param name
-   * @param route
    */
   public BusStation(String name, Route route) {
-    super(name,2, 0, route);
+    super(name, 2, 0, route);
   }
 }

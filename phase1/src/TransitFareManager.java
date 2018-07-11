@@ -92,11 +92,10 @@ public class TransitFareManager {
   }
 
   /**
-   * Returns a card based on the card's ID. Because the IDs were generated incrementally, a
-   * card's ID is also the card object's index in the list this.cards.
+   * Returns a card based on the card's ID. Because the IDs were generated incrementally, a card's
+   * ID is also the card object's index in the list this.cards.
    *
    * @param id id of card
-   * @return
    */
   public Card getCardById(int id) {
     return this.cards.get(id);

@@ -16,7 +16,9 @@ public class CustomerAccount {
   private ArrayList<Card> cards = new ArrayList<>();
   private int id;
 
-  /** A constructor for the CustomerAccount class that sets a name, email and id. */
+  /**
+   * A constructor for the CustomerAccount class that sets a name, email and id.
+   */
   public CustomerAccount(String name, String email, int id) {
     this.name = name;
     this.email = email;
@@ -158,8 +160,11 @@ public class CustomerAccount {
   public ArrayList<Trip> getRecentTrips() {
     ArrayList<Trip> trips = getTrips();
     Collections.sort(trips);
-    if (trips.size() <= 3) return trips;
-    else return new ArrayList<>(trips.subList(trips.size() - 3, trips.size()));
+    if (trips.size() <= 3) {
+      return trips;
+    } else {
+      return new ArrayList<>(trips.subList(trips.size() - 3, trips.size()));
+    }
   }
 
   /**
@@ -174,7 +179,9 @@ public class CustomerAccount {
     ArrayList<Trip> trips = getTrips();
     ArrayList<TransitDate> invalidTapDates = getInvalidTapDates();
 
-    if ((trips.size() == 0) && invalidTapDates.size() == 0) return 0;
+    if ((trips.size() == 0) && invalidTapDates.size() == 0) {
+      return 0;
+    }
 
     // account for trip costs
     for (Trip trip : trips) {
@@ -212,7 +219,9 @@ public class CustomerAccount {
     for (double cost : costs) {
       sum += cost;
     }
-    if (sum == 0) return 0;
+    if (sum == 0) {
+      return 0;
+    }
     return sum / costs.size();
   }
 

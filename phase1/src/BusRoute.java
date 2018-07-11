@@ -9,32 +9,35 @@ import java.util.ArrayList;
  */
 public class BusRoute extends Route {
 
-    /** BusRoute constructor that does not require stations on its route. */
-  public BusRoute(String name){
+  /**
+   * BusRoute constructor that does not require stations on its route.
+   */
+  public BusRoute(String name) {
     super(name);
   }
-  /** BusRoute constructor that is initialized with a route of stations. */
+
+  /**
+   * BusRoute constructor that is initialized with a route of stations.
+   */
   public BusRoute(String name, ArrayList<Station> stations) {
     super(name, stations);
   }
 
-    /**
-     * returns the generic identifier of a Bus Route.
-     *
-     * @return - the generic identifier
-     */
+  /**
+   * returns the generic identifier of a Bus Route.
+   *
+   * @return - the generic identifier
+   */
   @Override
   public String getGenericIdentifier() {
     return "Bus Route";
   }
 
-    /**
-     * Add a station to the Bus Route.
-     *
-     * @param name
-     */
+  /**
+   * Add a station to the Bus Route.
+   */
   @Override
-  public void addStationByName(String name){
+  public void addStationByName(String name) {
     this.addStation(new BusStation(name, this));
   }
 }

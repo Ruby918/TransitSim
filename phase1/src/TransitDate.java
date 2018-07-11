@@ -77,8 +77,9 @@ public class TransitDate implements Comparable<TransitDate> {
 
   @Override
   public int compareTo(TransitDate td) {
-    if (getDate() == null || td.getDate() == null)
+    if (getDate() == null || td.getDate() == null) {
       return 0;
+    }
     return getDate().compareTo(td.getDate());
   }
 }
