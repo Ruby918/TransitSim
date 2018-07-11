@@ -6,6 +6,8 @@ Admin: Trips, 9/07/2018
 Admin: Customers, Create, Danya Lette, danya.lette@mail.utoronto.ca
 Admin: Customers, Create, Someone New, email@mail.utoronto.ca
 Admin: Customers, Total
+Customer: 0: Update Name, Danya Canivet Lette
+Admin: Customers, Total
 Admin: Routes
 Admin: Cards
 Customer: 0: Details
@@ -15,6 +17,7 @@ Customer: 0: Cards, New
 Customer: 0: Cards, View
 Customer: 1: Details
 Customer: 0: Details
+Card: 0: Add Funds, 50
 Card: 0: Tap In, Subway, University, Museum, 8/07/2018 10:00
 Card: 0: Tap Out, Subway, University, Queen's Park, 8/07/2018 12:35
 Card: 0: Tap In, Subway, University, Museum, 9/07/2018 10:00
@@ -27,7 +30,17 @@ Card: 0: Tap In, Subway, University, St. Clair, 11/07/2018 12:30
 Card: 0: Tap Out, Subway, University, Dupont, 11/07/2018 12:35
 Card: 0: Tap In, Subway, University, Eglinton, 12/07/2018 12:30
 Card: 0: Tap Out, Subway, University, Queen's Park, 12/07/2018 12:35
+Card: 0: Balance
+Card: 0: Tap Out, Subway, University, Queen's Park, 12/07/2018 12:35
+Card: 0: Balance
+Card: 0: Tap Out, Subway, University, Queen's Park, 12/07/2018 12:35
+Card: 0: Balance
+Card: 0: Tap Out, Subway, University, Queen's Park, 12/07/2018 12:35
+Card: 0: Balance
+Card: 0: Tap Out, Subway, University, Queen's Park, 12/07/2018 12:35
 Card: 0: Details
+Card: 0: Tap In, Subway, University, Museum, 8/06/2018 10:00
+Card: 0: Tap Out, Subway, University, Queen's Park, 8/06/2018 12:35
 Admin: Revenue, Total
 Admin: Revenue, 10/07/2018
 Admin: Revenue, 02/07/2018
@@ -49,3 +62,4 @@ Card: 1: Recent Trips
 Card: 2: Recent Trips
 Admin: Trips, 11/07/2018
 Admin: Stations, 11/07/2018
+Customer: 0: Average Cost

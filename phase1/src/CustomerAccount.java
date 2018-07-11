@@ -1,8 +1,8 @@
 /*  Dan */
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 
 public class CustomerAccount {
 
@@ -55,6 +55,14 @@ public class CustomerAccount {
     return trips;
   }
 
+  public ArrayList<Date> getInvalidTapDates() {
+    ArrayList<Date> invalidTapDates = new ArrayList<>();
+    for (Card card : cards) {
+      invalidTapDates.addAll(card.getInvalidTapEventDates());
+    }
+    return invalidTapDates;
+  }
+
   public void addCard(Card card) {
     this.cards.add(card);
   }
@@ -79,7 +87,6 @@ public class CustomerAccount {
     }
   }
 
-
   public ArrayList<Trip> getRecentTrips() {
     ArrayList<Trip> trips = getTrips();
     // The following line of code is from https://stackoverflow.com/a/44525425/3200577
@@ -89,9 +96,51 @@ public class CustomerAccount {
     else return new ArrayList<>(trips.subList(trips.size() - 3, trips.size()));
   }
 
-  public String getAverageMonthlyCost() {
-    // stub
-    return "";
+  public double getAverageMonthlyCost() {
+    ArrayList<Date> months = new ArrayList<>();
+    ArrayList<Double> costs = new ArrayList<>();
+    ArrayList<Trip> trips = getTrips();
+    ArrayList<Date> invalidTapDates = getInvalidTapDates();
+
+    // account for trip costs
+    for (int i = 0; i < trips.size(); i++) {
+      Trip trip = trips.get(i);
+      boolean tripCostAdded = false;
+      for (int j = 0; j < months.size(); j++) {
+        if (DateUtils.datesInSameMonth(trip.getStartDate(), months.get(j))) {
+          costs.set(j, costs.get(j) + trip.getCost());
+          tripCostAdded = true;
+          break;
+        }
+      }
+      if (!tripCostAdded) {
+        months.add(trip.getStartDate());
+        costs.add(trip.getCost());
+      }
+    }
+    // account for pathological tap costs
+    for (int i = 0; i < invalidTapDates.size(); i++) {
+      Date date = invalidTapDates.get(i);
+      boolean tapCostAdded = false;
+      for (int j = 0; j < months.size(); j++) {
+        if (DateUtils.datesInSameMonth(date, months.get(j))) {
+          costs.set(j, costs.get(j) + 6);
+          tapCostAdded = true;
+          break;
+        }
+      }
+      if (!tapCostAdded) {
+        months.add(date);
+        costs.add(6.0);
+      }
+    }
+
+    // return average
+    double sum = 0;
+    for (double cost : costs) {
+      sum += cost;
+    }
+    return sum/costs.size();
   }
 
   @Override

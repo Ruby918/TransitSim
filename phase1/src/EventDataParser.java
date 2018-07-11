@@ -137,7 +137,7 @@ public class EventDataParser extends DataParser {
         }
         break;
       case "Average Cost":
-        message = customer.getAverageMonthlyCost();
+        message = "$" + customer.getAverageMonthlyCost();
         break;
       case "Recent Trips":
         message = "Recent Trips:" + System.lineSeparator()

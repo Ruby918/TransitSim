@@ -8,6 +8,7 @@ public class Card {
     private static final int MAX_CHARGE = 6;
     private double balance = 19;
     private ArrayList<Trip> trips = new ArrayList<>();
+    private ArrayList<Date> invalidTapEventDates = new ArrayList<>();
     private Trip activeTrip = null;
     private boolean isActive = true;
     private int cardId;
@@ -22,6 +23,10 @@ public class Card {
 
     public ArrayList<Trip> getTrips() {
         return trips;
+    }
+
+    public ArrayList<Date> getInvalidTapEventDates() {
+        return invalidTapEventDates;
     }
 
     public void deactivate() {
@@ -42,6 +47,13 @@ public class Card {
 
     public void addFiftyDollars() {
         this.balance += 50;
+    }
+
+    public void addInvalidTap(TapEvent tapEvent) {
+        this.invalidTapEventDates.add(tapEvent.getDate());
+        StatisticsManager.addInvalidTapEvent(tapEvent.getDate());
+        this.balance -= MAX_CHARGE;
+        this.activeTrip = null;
     }
 
     public void tapIn(Station station, Date date)
@@ -68,13 +80,10 @@ public class Card {
             price = activeTrip.registerTapInEvent(tapInEvent);
         } catch (UnnaturalTapSequenceException e) {
             // this tap took a place at a nonsensical location
-            StatisticsManager.addInvalidTapEvent(tapInEvent.getDate());
-            this.balance -= MAX_CHARGE;
-            this.activeTrip = null;
+            addInvalidTap(tapInEvent);
             throw new IllegalTapLocationException();
         } catch (TripInvalidTapEventException f) {
             // this tap is not contiguous (in time and space) to the previous tap
-            // so create a new trip
             this.activeTrip = null;
             tapIn(station, date);
         }
@@ -95,6 +104,7 @@ public class Card {
         // check if there is a currently active trip
         if (this.activeTrip == null) {
             // cannot tap out without a currently active trip
+            addInvalidTap(tapOutEvent);
             throw new IllegalTapLocationException();
         }
 
@@ -103,9 +113,7 @@ public class Card {
         try {
             price = activeTrip.registerTapOutEvent(tapOutEvent);
         } catch (UnnaturalTapSequenceException e) {
-            StatisticsManager.addInvalidTapEvent(tapOutEvent.getDate());
-            this.balance -= MAX_CHARGE;
-            this.activeTrip = null;
+            addInvalidTap(tapOutEvent);
             throw new IllegalTapLocationException();
         }
 
