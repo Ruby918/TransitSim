@@ -1,8 +1,7 @@
 /*  Dan */
 // imports utility libraries needed for program.
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
+import java.util.Collections;
 
 /**
  * Class that models the functionality of a transit Customer account.
@@ -103,8 +102,8 @@ public class CustomerAccount {
    *
    * @return - array list of days that an invalid tap occurred.
    */
-  public ArrayList<Date> getInvalidTapDates() {
-    ArrayList<Date> invalidTapDates = new ArrayList<>();
+  public ArrayList<TransitDate> getInvalidTapDates() {
+    ArrayList<TransitDate> invalidTapDates = new ArrayList<>();
     for (Card card : cards) {
       invalidTapDates.addAll(card.getInvalidTapEventDates());
     }
@@ -158,9 +157,7 @@ public class CustomerAccount {
    */
   public ArrayList<Trip> getRecentTrips() {
     ArrayList<Trip> trips = getTrips();
-    // The following line of code is from https://stackoverflow.com/a/44525425/3200577
-    // (User: Stimpson Cat)
-    trips.sort(Comparator.comparing(o -> o.getStartDate()));
+    Collections.sort(trips);
     if (trips.size() <= 3) return trips;
     else return new ArrayList<>(trips.subList(trips.size() - 3, trips.size()));
   }
@@ -172,10 +169,10 @@ public class CustomerAccount {
    */
   public double getAverageMonthlyCost() {
     // array lists needed to track customers data.
-    ArrayList<Date> months = new ArrayList<>();
+    ArrayList<TransitDate> months = new ArrayList<>();
     ArrayList<Double> costs = new ArrayList<>();
     ArrayList<Trip> trips = getTrips();
-    ArrayList<Date> invalidTapDates = getInvalidTapDates();
+    ArrayList<TransitDate> invalidTapDates = getInvalidTapDates();
 
     if ((trips.size() == 0) && invalidTapDates.size() == 0) return 0;
 
@@ -183,7 +180,7 @@ public class CustomerAccount {
     for (Trip trip : trips) {
       boolean tripCostAdded = false;
       for (int j = 0; j < months.size(); j++) {
-        if (DateUtils.datesInSameMonth(trip.getStartDate(), months.get(j))) {
+        if (trip.getStartDate().inSameMonth(months.get(j))) {
           costs.set(j, costs.get(j) + trip.getCost());
           tripCostAdded = true;
           break;
@@ -195,10 +192,10 @@ public class CustomerAccount {
       }
     }
     // account for pathological tap costs
-    for (Date date : invalidTapDates) {
+    for (TransitDate date : invalidTapDates) {
       boolean tapCostAdded = false;
       for (int j = 0; j < months.size(); j++) {
-        if (DateUtils.datesInSameMonth(date, months.get(j))) {
+        if (date.inSameMonth(months.get(j))) {
           costs.set(j, costs.get(j) + 6);
           tapCostAdded = true;
           break;

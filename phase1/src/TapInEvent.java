@@ -7,7 +7,7 @@ import java.util.Date;
  */
 public class TapInEvent extends TapEvent {
 
-    public TapInEvent(Station station, Date date) {
+    public TapInEvent(Station station, TransitDate date) {
         super(station, date);
     }
 

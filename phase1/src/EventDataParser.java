@@ -1,7 +1,6 @@
 /* Danya */
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class EventDataParser extends DataParser {
 
@@ -58,7 +57,7 @@ public class EventDataParser extends DataParser {
             message += StatisticsManager.calculateRevenue();
             break;
           default:
-            Date date = DateUtils.getDateFromDateString(parameters[1]);
+            TransitDate date = TransitDate.createFromDateString(parameters[1]);
             message += StatisticsManager.calculateRevenueOnDate(date);
         }
         break;
@@ -70,13 +69,13 @@ public class EventDataParser extends DataParser {
                 getStringFromListMultiline(StatisticsManager.getTrips(), "Trips"));
             break;
           default:
-            Date date = DateUtils.getDateFromDateString(parameters[1]);
+            TransitDate date = TransitDate.createFromDateString(parameters[1]);
             ArrayList<Trip> trips = StatisticsManager.getTripsOnDate(date);
             message += indentString(getStringFromListMultiline(trips, "Trips"));
         }
         break;
       case "Stations":
-        Date date = DateUtils.getDateFromDateString(parameters[1]);
+        TransitDate date = TransitDate.createFromDateString(parameters[1]);
         ArrayList<Station> stations = StatisticsManager.getStationsReachedOnDate(date);
         message = "Stations: " + System.lineSeparator()
             + indentString(getStringFromListMultiline(stations, "Stations"));
@@ -213,9 +212,9 @@ public class EventDataParser extends DataParser {
       message = "That is not a valid station.";
       return;
     }
-    Date date;
+    TransitDate date;
     try {
-      date = DateUtils.getDateFromDatetimeString(parameters[4]);
+      date = TransitDate.createFromDatetimeString(parameters[4]);
     } catch (ArrayIndexOutOfBoundsException e) {
       message = "Error: That datetime is incorrectly formatted.";
       return;
@@ -243,9 +242,9 @@ public class EventDataParser extends DataParser {
       message = "That is not a valid station.";
       return;
     }
-    Date date;
+    TransitDate date;
     try {
-      date = DateUtils.getDateFromDatetimeString(parameters[4]);
+      date = TransitDate.createFromDatetimeString(parameters[4]);
     } catch (ArrayIndexOutOfBoundsException e) {
       message = "Error: That datetime is incorrectly formatted.";
       return;

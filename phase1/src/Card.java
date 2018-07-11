@@ -1,8 +1,7 @@
 /* Dan */
 // imports utility libraries needed for program.
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
+import java.util.Collections;
 
 /**
  * Class that models the functionality of a transit Card.
@@ -14,7 +13,7 @@ public class Card {
   private static final int MAX_CHARGE = 6;
   private double balance = 19;
   private ArrayList<Trip> trips = new ArrayList<>();
-  private ArrayList<Date> invalidTapEventDates = new ArrayList<>();
+  private ArrayList<TransitDate> invalidTapEventDates = new ArrayList<>();
   private Trip activeTrip = null;
   private boolean isActive = true;
   private int cardId;
@@ -47,7 +46,7 @@ public class Card {
    *
    * @return - array list of days that an invalid tap occurred.
    */
-  public ArrayList<Date> getInvalidTapEventDates() {
+  public ArrayList<TransitDate> getInvalidTapEventDates() {
     return invalidTapEventDates;
   }
 
@@ -89,8 +88,8 @@ public class Card {
    * @param tapEvent - tap event which was invalid.
    */
   public void addInvalidTap(TapEvent tapEvent) {
-    this.invalidTapEventDates.add(tapEvent.getDate());
-    StatisticsManager.addInvalidTapEvent(tapEvent.getDate());
+    this.invalidTapEventDates.add(tapEvent.getTransitDate());
+    StatisticsManager.addInvalidTapEvent(tapEvent.getTransitDate());
     this.balance -= MAX_CHARGE;
     this.activeTrip = null;
   }
@@ -109,7 +108,7 @@ public class Card {
    * @throws TapDeactivatedCardException - deactivated tap is tapped
    * @throws IllegalTapLocationException - tap location of the tap is not legal
    */
-  public void tapIn(Station station, Date date)
+  public void tapIn(Station station, TransitDate date)
       throws InsufficientFundsException, TapDeactivatedCardException, IllegalTapLocationException {
 
     // check if card is active
@@ -158,7 +157,7 @@ public class Card {
    * @throws TapDeactivatedCardException - deactivated tap is tapped
    * @throws IllegalTapLocationException - tap location of the tap is not legal
    */
-  public void tapOut(Station station, Date date)
+  public void tapOut(Station station, TransitDate date)
       throws TapDeactivatedCardException, IllegalTapLocationException {
 
     // check if card is active
@@ -193,9 +192,7 @@ public class Card {
    * @return - array list of the last 3 trips taken by customer account.
    */
   public ArrayList<Trip> getRecentTrips() {
-    // The following line of code is from https://stackoverflow.com/a/44525425/3200577
-    // (User: Stimpson Cat)
-    trips.sort(Comparator.comparing(o -> o.getStartDate()));
+    Collections.sort(trips);
     if (trips.size() <= 3) return trips;
     else return new ArrayList<>(trips.subList(trips.size() - 3, trips.size()));
   }

@@ -1,12 +1,11 @@
 /* Brian */
 
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * A transit journey consisting of bus and subway rides.
  */
-public class Trip {
+public class Trip implements Comparable<Trip> {
   protected static final double MAX_CHARGE = 6;
   private double cost;
   private ArrayList<TapEvent> tapEvents = new ArrayList<>();
@@ -16,9 +15,9 @@ public class Trip {
    *
    * @return the starting date of the first tap in
    */
-  public Date getStartDate() {
+  public TransitDate getStartDate() {
     if (tapEvents.size() == 0) return null;
-    return tapEvents.get(0).getDate();
+    return tapEvents.get(0).getTransitDate();
   }
 
   /**
@@ -26,9 +25,9 @@ public class Trip {
    *
    * @return the date of the last tap
    */
-  public Date getEndDate() {
+  public TransitDate getEndDate() {
       if (tapEvents.size() == 0) return null;
-      return tapEvents.get(tapEvents.size() - 1).getDate();
+      return tapEvents.get(tapEvents.size() - 1).getTransitDate();
   }
 
   /**
@@ -109,7 +108,7 @@ public class Trip {
     // if this is the first tap in of this trip, return true
     if (tapEvents.size() == 0) return true;
     // if tapInEvent is past 2hrs. from first tapInEvent 2hrs = 2*60*60*1000 ms
-    if (tapInEvent.getDate().getTime() - getStartDate().getTime() > 7200000) {
+    if (tapInEvent.getTransitDate().getDate().getTime() - getStartDate().getDate().getTime() > 7200000) {
       return false;
     }
     // check if this tap in is adjacent to the previous tap out
@@ -152,8 +151,8 @@ public class Trip {
    */
   @Override
   public String toString(){
-      StringBuilder ret = new StringBuilder("Trip Start: " + DateUtils.formatDatetime(this.getStartDate()) +
-              " | End: " + DateUtils.formatDatetime(this.getEndDate()) +
+      StringBuilder ret = new StringBuilder("Trip Start: " + this.getStartDate().toDateTimeString() +
+              " | End: " + this.getEndDate().toDateTimeString() +
               " | Cost: " + this.getCost());
       ret.append(" | Tap Log: ");
       for(TapEvent tapEvent: tapEvents){
@@ -166,5 +165,12 @@ public class Trip {
       String rett = ret.toString();
       rett = rett.substring(0,ret.length()-2);
       return rett;
+  }
+
+  @Override
+  public int compareTo(Trip td) {
+    if (getStartDate() == null || td.getStartDate() == null)
+      return 0;
+    return getStartDate().compareTo(td.getStartDate());
   }
 }

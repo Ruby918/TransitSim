@@ -7,17 +7,17 @@ import java.util.Date;
  */
 abstract public class TapEvent {
 
-    private Date date;
+    private TransitDate date;
     private Station station;
 
-    public TapEvent(Station station, Date date){
+    public TapEvent(Station station, TransitDate date){
         this.station = station;
         this.date = date;
     }
 
     public TapEvent(Station station){
         this.station = station;
-        this.date = new Date();
+        this.date = new TransitDate(new Date());
     }
 
     /**
@@ -25,7 +25,7 @@ abstract public class TapEvent {
      *
      * @returnthe <code>Date</code> this <code>TapEvent</code> was made.
      */
-    public Date getDate() {
+    public TransitDate getTransitDate() {
         return date;
     }
 
