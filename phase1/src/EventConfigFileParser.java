@@ -101,7 +101,7 @@ public class EventConfigFileParser extends ConfigFileParser {
         break;
       case "Routes":
         message = "Routes:" + System.lineSeparator()
-            + indentString(getStringFromListMultiline(transitSystem.getRoutes(), "Routes"));
+            + indentString(getStringFromListMultiline(transitSystem.getMap().getRoutes(), "Routes"));
         break;
       case "Customers":
         switch (parameters[1]) {
@@ -153,7 +153,7 @@ public class EventConfigFileParser extends ConfigFileParser {
       case "Cards":
         switch (parameters[1]) {
           case "New":
-            transitSystem.generateCard(customer);
+            transitSystem.issueCard(customer);
             message = "Successfully added a card to this customer.";
             break;
           case "View":
