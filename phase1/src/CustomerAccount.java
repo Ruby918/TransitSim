@@ -23,9 +23,9 @@ public class CustomerAccount {
 
   public Card getCard(int id) {
 
-    for (int i = 0; i < this.cards.size(); i++) {
-      if (id == this.cards.get(i).getCardId()) {
-        return this.cards.get(i);
+    for (Card card : this.cards) {
+      if (id == card.getCardId()) {
+        return card;
       }
     }
     return null;
@@ -105,8 +105,7 @@ public class CustomerAccount {
     if ((trips.size() == 0) && invalidTapDates.size() == 0) return 0;
 
     // account for trip costs
-    for (int i = 0; i < trips.size(); i++) {
-      Trip trip = trips.get(i);
+    for (Trip trip : trips) {
       boolean tripCostAdded = false;
       for (int j = 0; j < months.size(); j++) {
         if (DateUtils.datesInSameMonth(trip.getStartDate(), months.get(j))) {
@@ -121,8 +120,7 @@ public class CustomerAccount {
       }
     }
     // account for pathological tap costs
-    for (int i = 0; i < invalidTapDates.size(); i++) {
-      Date date = invalidTapDates.get(i);
+    for (Date date : invalidTapDates) {
       boolean tapCostAdded = false;
       for (int j = 0; j < months.size(); j++) {
         if (DateUtils.datesInSameMonth(date, months.get(j))) {
@@ -143,7 +141,7 @@ public class CustomerAccount {
       sum += cost;
     }
     if (sum == 0) return 0;
-    return sum/costs.size();
+    return sum / costs.size();
   }
 
   @Override
