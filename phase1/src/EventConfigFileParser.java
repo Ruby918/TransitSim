@@ -2,16 +2,30 @@
 
 import java.util.ArrayList;
 
-public class EventDataParser extends DataParser {
+/**
+ * Class for parsing this transit system's events.txt configuration.
+ */
+public class EventConfigFileParser extends ConfigFileParser {
 
+  /**
+   * Current output message, generated from parsing a line of input from events.txt.
+   */
   private String message;
-  private TransitFareManager ttc;
+  /**
+   * TransitFareManager object to which the parsed configuration pertains.
+   */
+  private TransitFareManager transitSystem;
 
-  public EventDataParser(String filename, TransitFareManager ttc) {
+  public EventConfigFileParser(String filename, TransitFareManager transitSystem) {
     super(filename);
-    this.ttc = ttc;
+    this.transitSystem = transitSystem;
   }
 
+  /**
+   * Parses a line this object's configuration file.
+   *
+   * @param line line in configuration file to be parsed
+   */
   protected void parseLine(String line) {
 
     // Ignore empty line
@@ -45,6 +59,11 @@ public class EventDataParser extends DataParser {
     System.out.println("OUTPUT   :   " + message + System.lineSeparator());
   }
 
+  /**
+   * Parses admin commands i.e. lines beginning with "Admin:" in the configuration file.
+   *
+   * @param data parameters of the admin command
+   */
   private void parseAdminCommand(String[] data) {
 
     String[] parameters = data[1].split(", ");
@@ -82,16 +101,17 @@ public class EventDataParser extends DataParser {
         break;
       case "Routes":
         message = "Routes:" + System.lineSeparator()
-            + indentString(getStringFromListMultiline(ttc.getRoutes(), "Routes"));
+            + indentString(getStringFromListMultiline(transitSystem.getRoutes(), "Routes"));
         break;
       case "Customers":
         switch (parameters[1]) {
           case "Total":
             message = "Customers: " + System.lineSeparator()
-                + indentString(getStringFromListMultiline(ttc.getCustomers(), "Customers"));
+                + indentString(
+                getStringFromListMultiline(transitSystem.getCustomers(), "Customers"));
             break;
           case "Create":
-            ttc.createCustomerAccount(parameters[2], parameters[3]);
+            transitSystem.createCustomerAccount(parameters[2], parameters[3]);
             message = "Successfully created customer account.";
             break;
           default:
@@ -100,16 +120,21 @@ public class EventDataParser extends DataParser {
         break;
       case "Cards":
         message = "Cards: " + System.lineSeparator()
-            + indentString(getStringFromListMultiline(ttc.getCards(), "Cards"));
+            + indentString(getStringFromListMultiline(transitSystem.getCards(), "Cards"));
         break;
       default:
         message = "That is not a valid admin command.";
     }
   }
 
+  /**
+   * Parses customer commands i.e. lines beginning with "Customer:" in the configuration file.
+   *
+   * @param data parameters of the customer command
+   */
   private void parseCustomerCommand(String[] data) {
 
-    CustomerAccount customer = ttc.getCustomerById(Integer.parseInt(data[1]));
+    CustomerAccount customer = transitSystem.getCustomerById(Integer.parseInt(data[1]));
     if (customer == null) {
       message = "That customer does not exist.";
       return;
@@ -128,7 +153,7 @@ public class EventDataParser extends DataParser {
       case "Cards":
         switch (parameters[1]) {
           case "New":
-            ttc.generateCard(customer);
+            transitSystem.generateCard(customer);
             message = "Successfully added a card to this customer.";
             break;
           case "View":
@@ -151,9 +176,14 @@ public class EventDataParser extends DataParser {
     }
   }
 
+  /**
+   * Parses card commands i.e. lines beginning with "Card:" in the configuration file.
+   *
+   * @param data parameters of the card command
+   */
   private void parseCardCommand(String[] data) {
 
-    Card card = ttc.getCardById(Integer.parseInt(data[1]));
+    Card card = transitSystem.getCardById(Integer.parseInt(data[1]));
     if (card == null) {
       message = "That card does not exist.";
       return;
@@ -205,8 +235,15 @@ public class EventDataParser extends DataParser {
     }
   }
 
+  /**
+   * Parses card tap in commands, i.e. commands starting with "Card: <cardId>: Tap In," in the
+   * configuration file.
+   *
+   * @param card card that is to be tapped
+   * @param parameters parameters of the command
+   */
   private void parseCardTapIn(Card card, String[] parameters) {
-    Station station = ttc.getMap()
+    Station station = transitSystem.getMap()
         .getStationByNameAndRoute(parameters[3], parameters[2], parameters[1]);
     if (station == null) {
       message = "That is not a valid station.";
@@ -235,8 +272,15 @@ public class EventDataParser extends DataParser {
         + station.toString() + " using " + card.toString() + ".";
   }
 
+  /**
+   * Parses card tap out commands, i.e. commands starting with "Card: <cardId>: Tap Out," in the
+   * configuration file.
+   *
+   * @param card card that is to be tapped
+   * @param parameters parameters of the command
+   */
   private void parseCardTapOut(Card card, String[] parameters) {
-    Station station = ttc.getMap()
+    Station station = transitSystem.getMap()
         .getStationByNameAndRoute(parameters[3], parameters[2], parameters[1]);
     if (station == null) {
       message = "That is not a valid station.";

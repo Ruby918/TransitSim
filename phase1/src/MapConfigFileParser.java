@@ -2,15 +2,26 @@
 
 import java.util.ArrayList;
 
-public class MapDataParser extends DataParser {
+/**
+ * Class for parsing this transit system's map configuration.
+ */
+public class MapConfigFileParser extends ConfigFileParser {
 
+  /**
+   * Map object to which the parsed configuration pertains.
+   */
   private Map map;
 
-  public MapDataParser(String filename, Map map) {
+  public MapConfigFileParser(String filename, Map map) {
     super(filename);
     this.map = map;
   }
 
+  /**
+   * Parses a line this object's configuration file.
+   *
+   * @param line line in configuration file to be parsed
+   */
   @Override
   protected void parseLine(String line) {
     String[] data = line.split(": ");
@@ -23,12 +34,22 @@ public class MapDataParser extends DataParser {
     }
   }
 
+  /**
+   * Adds route data to this object's map.
+   *
+   * @param data parameters of new route
+   */
   private void addRouteData(String[] data) {
     String type = data[0];
     String name = data[1];
     this.map.addRouteByNameAndType(name, type);
   }
 
+  /**
+   * Adds station data to this object's map.
+   *
+   * @param data parameters of new station
+   */
   private void addStationData(String[] data) {
     String routeType = data[0];
     String routeName = data[1];
@@ -37,6 +58,12 @@ public class MapDataParser extends DataParser {
     route.addStationByName(stationName);
   }
 
+  /**
+   * Adds hub data to this object's map. In effect, this just means that the stations in the hub are
+   * deemed adjacent and thus it is legal to transfer between them.
+   *
+   * @param data string of pipe-separated stations to be made adjacent
+   */
   private void addHubData(String data) {
     ArrayList<Station> stations = new ArrayList<>();
     String[] stationStrings = data.split(" \\| ");

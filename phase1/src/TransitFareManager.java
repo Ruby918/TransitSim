@@ -15,14 +15,14 @@ public class TransitFareManager {
   public static void main(String[] args) {
     // Create map
     Map thisMap = new Map();
-    MapDataParser mapData = new MapDataParser("map.txt", thisMap);
+    MapConfigFileParser mapData = new MapConfigFileParser("map.txt", thisMap);
     mapData.parse();
 
     // Create transit fare manager
     TransitFareManager ttc = new TransitFareManager(thisMap);
 
     // Process events from events.txt
-    EventDataParser eventData = new EventDataParser("events.txt", ttc);
+    EventConfigFileParser eventData = new EventConfigFileParser("events.txt", ttc);
     eventData.parse();
   }
 

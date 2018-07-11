@@ -231,6 +231,6 @@ public class CustomerAccount {
         + " | ID: "
         + Integer.toString(this.id)
         + " | Cards: "
-        + DataParser.getStringFromList(cards, "Cards");
+        + ConfigFileParser.getStringFromList(cards, "Cards");
   }
 }
