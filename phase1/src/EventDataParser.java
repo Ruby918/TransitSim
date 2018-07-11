@@ -159,6 +159,10 @@ public class EventDataParser extends DataParser {
       case "Details":
         message = card.toString();
         break;
+      case "Recent Trips":
+        message = "Recent Trips: " + System.lineSeparator()
+            + indentString(card.listRecentTrips());
+        break;
       case "Add Funds":
         switch (parameters[1]) {
           case "10":

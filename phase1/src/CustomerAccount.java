@@ -1,6 +1,8 @@
 /*  Dan */
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class CustomerAccount {
 
@@ -41,6 +43,14 @@ public class CustomerAccount {
     return email;
   }
 
+  public ArrayList<Trip> getTrips() {
+    ArrayList<Trip> trips = new ArrayList<>();
+    for (Card card : cards) {
+      trips.addAll(card.getTrips());
+    }
+    return trips;
+  }
+
   public void addCard(Card card) {
     this.cards.add(card);
   }
@@ -76,8 +86,22 @@ public class CustomerAccount {
   }
 
   public String listRecentTrips() {
-    // stub
-    return "";
+    String ret = "";
+    ArrayList<Trip> recentTrips = getRecentTrips();
+    if (recentTrips.size() == 0) return "No trips.";
+    for (Trip trip : recentTrips) {
+      ret += trip.toString() + System.lineSeparator();
+    }
+    return ret.trim();
+  }
+
+  public ArrayList<Trip> getRecentTrips() {
+    ArrayList<Trip> trips = getTrips();
+    // The following line of code is from https://stackoverflow.com/a/44525425/3200577
+    // (User: Stimpson Cat)
+    trips.sort(Comparator.comparing(o -> o.getStartDate()));
+    if (trips.size() <= 3) return trips;
+    else return new ArrayList<>(trips.subList(trips.size() - 4, trips.size() - 1));
   }
 
   public String getAverageMonthlyCost() {

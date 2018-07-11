@@ -37,6 +37,7 @@ There are three types of commands: Admin, Customer, and Card.
 ### Card commands
 
 - See overview of card: `Card: <cardId>: Details`
+- See three most recent trips: `Card: <cardId>: Recent Trips`
 - Add money (10, 20, or 50 only) to card: `Card: <cardId>: Add Funds, <moneyAmount:10,20,50>`
 - See balance: `Card: <cardId>: Balance`
 - Deactivate: `Card: <cardId>: Deactivate`

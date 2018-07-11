@@ -1,6 +1,7 @@
 /* Dan */
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 
 public class Card {
@@ -17,6 +18,10 @@ public class Card {
 
     public int getCardId() {
         return cardId;
+    }
+
+    public ArrayList<Trip> getTrips() {
+        return trips;
     }
 
     public void deactivate() {
@@ -106,6 +111,24 @@ public class Card {
 
         // charge the card the price of this tap
         balance -= price;
+    }
+
+    public ArrayList<Trip> getRecentTrips() {
+        // The following line of code is from https://stackoverflow.com/a/44525425/3200577
+        // (User: Stimpson Cat)
+        trips.sort(Comparator.comparing(o -> o.getStartDate()));
+        if (trips.size() <= 3) return trips;
+        else return new ArrayList<>(trips.subList(trips.size() - 4, trips.size() - 1));
+    }
+
+    public String listRecentTrips() {
+        String ret = "";
+        ArrayList<Trip> recentTrips = getRecentTrips();
+        if (recentTrips.size() == 0) return "No trips.";
+        for (Trip trip : recentTrips) {
+            ret += trip.toString() + System.lineSeparator();
+        }
+        return ret.trim();
     }
 
     @Override
