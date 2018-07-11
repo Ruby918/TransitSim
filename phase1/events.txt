@@ -63,3 +63,4 @@ Card: 2: Recent Trips
 Admin: Trips, 11/07/2018
 Admin: Stations, 11/07/2018
 Customer: 0: Average Cost
+Customer: 1: Average Cost

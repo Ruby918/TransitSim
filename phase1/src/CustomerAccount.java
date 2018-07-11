@@ -102,6 +102,8 @@ public class CustomerAccount {
     ArrayList<Trip> trips = getTrips();
     ArrayList<Date> invalidTapDates = getInvalidTapDates();
 
+    if ((trips.size() == 0) && invalidTapDates.size() == 0) return 0;
+
     // account for trip costs
     for (int i = 0; i < trips.size(); i++) {
       Trip trip = trips.get(i);
@@ -140,6 +142,7 @@ public class CustomerAccount {
     for (double cost : costs) {
       sum += cost;
     }
+    if (sum == 0) return 0;
     return sum/costs.size();
   }
 
