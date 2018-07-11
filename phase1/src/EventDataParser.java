@@ -1,3 +1,5 @@
+/* Danya */
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -64,7 +66,8 @@ public class EventDataParser extends DataParser {
         message = "Trips: " + System.lineSeparator();
         switch (parameters[1]) {
           case "Total":
-            message += indentString(getStringFromListMultiline(StatisticsManager.getTrips(), "Trips"));
+            message += indentString(
+                getStringFromListMultiline(StatisticsManager.getTrips(), "Trips"));
             break;
           default:
             Date date = DateUtils.getDateFromDateString(parameters[1]);
@@ -124,7 +127,7 @@ public class EventDataParser extends DataParser {
         message = "Successfully updated customer's name to " + parameters[1] + ".";
         break;
       case "Cards":
-        switch (parameters[1]){
+        switch (parameters[1]) {
           case "New":
             ttc.generateCard(customer);
             message = "Successfully added a card to this customer.";
@@ -133,7 +136,8 @@ public class EventDataParser extends DataParser {
             message = "Cards: " + System.lineSeparator()
                 + indentString(getStringFromList(customer.getCards(), "Cards"));
             break;
-          default: message = "That is not a valid customer card command.";
+          default:
+            message = "That is not a valid customer card command.";
         }
         break;
       case "Average Cost":
@@ -203,7 +207,8 @@ public class EventDataParser extends DataParser {
   }
 
   private void parseCardTapIn(Card card, String[] parameters) {
-    Station station = ttc.getMap().getStationByNameAndRoute(parameters[3], parameters[2], parameters[1]);
+    Station station = ttc.getMap()
+        .getStationByNameAndRoute(parameters[3], parameters[2], parameters[1]);
     if (station == null) {
       message = "That is not a valid station.";
       return;
@@ -217,7 +222,7 @@ public class EventDataParser extends DataParser {
     }
     try {
       card.tapIn(station, date);
-    } catch(TapDeactivatedCardException e) {
+    } catch (TapDeactivatedCardException e) {
       message = "Error: That card has been deactivated.";
       return;
     } catch (InsufficientFundsException e) {
@@ -232,7 +237,8 @@ public class EventDataParser extends DataParser {
   }
 
   private void parseCardTapOut(Card card, String[] parameters) {
-    Station station = ttc.getMap().getStationByNameAndRoute(parameters[3], parameters[2], parameters[1]);
+    Station station = ttc.getMap()
+        .getStationByNameAndRoute(parameters[3], parameters[2], parameters[1]);
     if (station == null) {
       message = "That is not a valid station.";
       return;
@@ -246,7 +252,7 @@ public class EventDataParser extends DataParser {
     }
     try {
       card.tapOut(station, date);
-    } catch(TapDeactivatedCardException e) {
+    } catch (TapDeactivatedCardException e) {
       message = "Error: That card has been deactivated.";
       return;
     } catch (IllegalTapLocationException e) {

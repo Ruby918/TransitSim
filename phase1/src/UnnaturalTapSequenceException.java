@@ -1,3 +1,5 @@
+/* Brian */
+
 /**
  * Thrown to indicate when a <code>TapEvent</code> is illegal according to the previous tap history of a
  * <code>Trip</code>.
