@@ -1,5 +1,5 @@
 /* Dan */
-// imports utility libraries needed for program.
+
 import java.util.ArrayList;
 
 /**
@@ -113,8 +113,8 @@ public class StatisticsManager {
   public static ArrayList<Trip> getTripsOnDate(TransitDate date) {
     ArrayList<Trip> tripsOnDate = new ArrayList<>();
     for (Trip trip : trips) {
-      if (trip.getStartDate().onSameDay(date)
-          || trip.getEndDate().onSameDay(date)) tripsOnDate.add(trip);
+      if (trip.getStartDate().onSameDay(date) || trip.getEndDate().onSameDay(date))
+        tripsOnDate.add(trip);
     }
     return tripsOnDate;
   }
@@ -175,7 +175,8 @@ public class StatisticsManager {
     ArrayList<Station> stationsReached = new ArrayList<>();
     for (Trip trip : trips) {
       for (TapEvent event : trip.getTapEvents()) {
-        if (date.onSameDay(event.getTransitDate())) { //determine if station was tapped on the particular date
+        if (date.onSameDay(
+            event.getTransitDate())) { // determine if station was tapped on the particular date
           stationsReached.add(event.getStation());
         }
       }

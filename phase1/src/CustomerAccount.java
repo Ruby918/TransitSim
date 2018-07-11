@@ -1,5 +1,5 @@
 /*  Dan */
-// imports utility libraries needed for program.
+
 import java.util.ArrayList;
 import java.util.Collections;
 

@@ -1,5 +1,5 @@
 /* Dan */
-// imports utility libraries needed for program.
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -12,9 +12,10 @@ public class Card {
   // Instance variables storing information on the card.
   private static final int MAX_CHARGE = 6;
   private double balance = 19;
-  private ArrayList<Trip> trips = new ArrayList<>();
+  private ArrayList<Trip> trips = new ArrayList<>(); // Array list of trips recorded onto card.
+  // Array list of invalid tap dates recorded onto card.
   private ArrayList<TransitDate> invalidTapEventDates = new ArrayList<>();
-  private Trip activeTrip = null;
+  private Trip activeTrip = null; // Trip Card is actively going through; null if no trip is active.
   private boolean isActive = true;
   private int cardId;
 
@@ -87,7 +88,7 @@ public class Card {
    *
    * @param tapEvent - tap event which was invalid.
    */
-  public void addInvalidTap(TapEvent tapEvent) {
+  private void addInvalidTap(TapEvent tapEvent) {
     this.invalidTapEventDates.add(tapEvent.getTransitDate());
     StatisticsManager.addInvalidTapEvent(tapEvent.getTransitDate());
     this.balance -= MAX_CHARGE;
