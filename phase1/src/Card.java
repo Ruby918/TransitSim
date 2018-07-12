@@ -209,7 +209,7 @@ public class Card {
    *
    * @return - array list of the last 3 trips taken by customer account.
    */
-  public ArrayList<Trip> getRecentTrips() {
+  public ArrayList<Trip> calculateRecentTrips() {
     Collections.sort(trips);
     if (trips.size() <= 3) {
       return trips;

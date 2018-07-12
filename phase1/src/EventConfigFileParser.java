@@ -200,7 +200,7 @@ public class EventConfigFileParser extends ConfigFileParser {
         break;
       case "Recent Trips":
         message = "Recent Trips: " + System.lineSeparator()
-            + indentString(getStringFromListMultiline(card.getRecentTrips(), "Trips"));
+            + indentString(getStringFromListMultiline(card.calculateRecentTrips(), "Trips"));
         break;
       case "Add Funds":
         switch (parameters[1]) {
