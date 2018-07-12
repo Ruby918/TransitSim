@@ -91,7 +91,7 @@ public class CustomerAccount {
    *
    * @return - array list of trips taken by the customer.
    */
-  public ArrayList<Trip> getTrips() {
+  public ArrayList<Trip> listAllTrips() {
     ArrayList<Trip> trips = new ArrayList<>();
     for (Card card : cards) {
       trips.addAll(card.getTrips());
@@ -104,7 +104,7 @@ public class CustomerAccount {
    *
    * @return - array list of days that an invalid tap occurred.
    */
-  public ArrayList<TransitDate> getInvalidTapDates() {
+  public ArrayList<TransitDate> listAllInvalidTapDates() {
     ArrayList<TransitDate> invalidTapDates = new ArrayList<>();
     for (Card card : cards) {
       invalidTapDates.addAll(card.getInvalidTapEventDates());
@@ -135,8 +135,8 @@ public class CustomerAccount {
    *
    * @return - array list of the last 3 trips taken by customer account.
    */
-  public ArrayList<Trip> getRecentTrips() {
-    ArrayList<Trip> trips = getTrips();
+  public ArrayList<Trip> calculateRecentTrips() {
+    ArrayList<Trip> trips = listAllTrips();
     Collections.sort(trips);
     if (trips.size() <= 3) {
       return trips;
@@ -150,12 +150,12 @@ public class CustomerAccount {
    *
    * @return - average monthly cost of customer.
    */
-  public double getAverageMonthlyCost() {
+  public double calculateAverageMonthlyCost() {
     // array lists needed to track customers data.
     ArrayList<TransitDate> months = new ArrayList<>();
     ArrayList<Double> costs = new ArrayList<>();
-    ArrayList<Trip> trips = getTrips();
-    ArrayList<TransitDate> invalidTapDates = getInvalidTapDates();
+    ArrayList<Trip> trips = listAllTrips();
+    ArrayList<TransitDate> invalidTapDates = listAllInvalidTapDates();
 
     if ((trips.size() == 0) && invalidTapDates.size() == 0) {
       return 0;

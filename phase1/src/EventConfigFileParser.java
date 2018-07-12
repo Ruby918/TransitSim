@@ -168,11 +168,11 @@ public class EventConfigFileParser extends ConfigFileParser {
         }
         break;
       case "Average Cost":
-        message = "$" + customer.getAverageMonthlyCost();
+        message = "$" + customer.calculateAverageMonthlyCost();
         break;
       case "Recent Trips":
         message = "Recent Trips:" + System.lineSeparator()
-            + indentString(getStringFromListMultiline(customer.getRecentTrips(), "Trips"));
+            + indentString(getStringFromListMultiline(customer.calculateRecentTrips(), "Trips"));
         break;
       default:
         message = "That is not a valid customer command.";
