@@ -131,28 +131,6 @@ public class CustomerAccount {
   }
 
   /**
-   * Adds money to a card belonging to the customer account.
-   *
-   * @param money - amount of money inputted into the card.
-   * @param id - id of the card which to add the money to.
-   */
-  public void loadMoney(Double money, int id) {
-    Card card = getCard(id);
-    while (money != 0) {
-      if (money >= 50) {
-        card.addFiftyDollars(); // adds 50 dollars to the card
-        money -= 50;
-      } else if (money >= 20) {
-        card.addTwentyDollars(); // adds 20 dollars to the card
-        money -= 20;
-      } else {
-        card.addTenDollars(); // adds 10 dollars to the card
-        money -= 10;
-      }
-    }
-  }
-
-  /**
    * Returns an array list of the last 3 trips taken by customer account.
    *
    * @return - array list of the last 3 trips taken by customer account.

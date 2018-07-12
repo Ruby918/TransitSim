@@ -112,8 +112,10 @@ public class EventConfigFileParser extends ConfigFileParser {
                 getStringFromListMultiline(transitSystem.getCustomers(), "Customers"));
             break;
           case "Create":
-            transitSystem.createCustomerAccount(parameters[2], parameters[3]);
-            message = "Successfully created customer account.";
+            CustomerAccount customer = transitSystem
+                .createCustomerAccount(parameters[2], parameters[3]);
+            message = "Successfully created customer account: "
+                + System.lineSeparator() + indentString(customer.toString());
             break;
           default:
             message = "That is not a valid admin customer command.";
@@ -154,8 +156,8 @@ public class EventConfigFileParser extends ConfigFileParser {
       case "Cards":
         switch (parameters[1]) {
           case "New":
-            transitSystem.issueCard(customer);
-            message = "Successfully added a card to this customer.";
+            Card card = transitSystem.issueCard(customer);
+            message = "Successfully added a card to this customer: " + card.toString();
             break;
           case "View":
             message = "Cards: " + System.lineSeparator()
@@ -237,8 +239,8 @@ public class EventConfigFileParser extends ConfigFileParser {
   }
 
   /**
-   * Parses card tap in commands, i.e. commands starting with "Card: <cardId>: Tap In," in the
-   * configuration file.
+   * Parses card tap in commands, i.e. commands starting with "Card: `cardId`: Tap In,"
+   * int the configuration file.
    *
    * @param card card that is to be tapped
    * @param parameters parameters of the command
@@ -266,7 +268,8 @@ public class EventConfigFileParser extends ConfigFileParser {
       message = "Error: That card has insufficient funds.";
       return;
     } catch (IllegalTapLocationException e) {
-      message = "Error: The location of this tap event is a bit odd. You have been charged for a $6 trip.";
+      message = "Error: The location of this tap event is a bit odd. "
+          + "You have been charged for a $6 trip.";
       return;
     }
     message = "You have successfully tapped in at "
@@ -274,8 +277,8 @@ public class EventConfigFileParser extends ConfigFileParser {
   }
 
   /**
-   * Parses card tap out commands, i.e. commands starting with "Card: <cardId>: Tap Out," in the
-   * configuration file.
+   * Parses card tap out commands, i.e. commands starting with "Card: `cardId`: Tap Out,"
+   * int the configuration file.
    *
    * @param card card that is to be tapped
    * @param parameters parameters of the command
@@ -300,7 +303,8 @@ public class EventConfigFileParser extends ConfigFileParser {
       message = "Error: That card has been deactivated.";
       return;
     } catch (IllegalTapLocationException e) {
-      message = "Error: The location of this tap event is a bit odd. You have been charged for a $6 trip.";
+      message = "Error: The location of this tap event is a bit odd. "
+          + "You have been charged for a $6 trip.";
       return;
     }
     message = "You have successfully tapped out at "

@@ -1,7 +1,7 @@
 /* Brian */
 
 /**
- * A tap out at a <code>BusStation</code> or <code>SubwayStation</code>
+ * A tap out at a <code>BusStation</code> or <code>SubwayStation</code>.
  */
 public class TapOutEvent extends TapEvent {
 
@@ -9,7 +9,9 @@ public class TapOutEvent extends TapEvent {
     super(station, date);
   }
 
-  public TapOutEvent(Station station) {
-    super(station);
+  @Override
+  public String toString() {
+    return "Tap Out at " + getStation().toString()
+        + " (" + getTransitDate().toDateTimeString() + ")";
   }
 }

@@ -24,6 +24,11 @@ public class TransitFareManager {
     this.map = map;
   }
 
+  /**
+   * Main method of the app. Creates a map using the map configuration at map.txt, creates a transit
+   * fare manager with that map, and then applying the events in events.txt to the new transit fare
+   * manager.
+   */
   public static void main(String[] args) {
     // Create map
     Map thisMap = new Map();
@@ -68,7 +73,7 @@ public class TransitFareManager {
 
   /**
    * Creates and returns a new card object. Generates ID for new card based in the number of
-   * existing cards. Adds this new card to <customer>.
+   * existing cards. Adds this new card to customer.
    *
    * @param customer customer to which the card is issued
    * @return new card object

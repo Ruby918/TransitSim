@@ -1,7 +1,5 @@
 /* Loic */
 
-import java.util.ArrayList;
-
 /**
  * Class modeling a Subway Route.
  *
@@ -9,22 +7,12 @@ import java.util.ArrayList;
  */
 public class SubwayRoute extends Route {
 
-  /**
-   * constructor of SubwayRoute
-   */
   public SubwayRoute(String name) {
     super(name);
   }
 
   /**
-   * alternative constructor of SubwayRoute that takes stations within its route.
-   */
-  public SubwayRoute(String name, ArrayList<Station> stations) {
-    super(name, stations);
-  }
-
-  /**
-   * get the generic identifier of a Subway Route
+   * Get the generic identifier of a Subway Route.
    */
   @Override
   public String getGenericIdentifier() {

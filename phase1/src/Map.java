@@ -33,8 +33,8 @@ public class Map {
    * @return - returns True if the Route is either a Bus Route or a Subway Route.
    */
   private boolean routeIsType(Route route, String type) {
-    return (((type.equals("Subway")) && route instanceof SubwayRoute) ||
-        ((type.equals("Bus")) && route instanceof BusRoute));
+    return (((type.equals("Subway")) && route instanceof SubwayRoute)
+        || ((type.equals("Bus")) && route instanceof BusRoute));
   }
 
   /**
@@ -62,7 +62,7 @@ public class Map {
     } else {
       newRoute = new BusRoute(name);
     }
-    this.routes.add(newRoute);
+    addRoute(newRoute);
   }
 
   /**

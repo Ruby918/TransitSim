@@ -123,13 +123,13 @@ public class StatisticsManager {
   /**
    * returns revenue collected from recorded trips.
    *
-   * @param trip - array list of trips.
+   * @param trips - array list of trips.
    * @return - revenue collected from recorded trips.
    */
-  public static double calculateRevenueFromTrips(ArrayList<Trip> trip) {
+  public static double calculateRevenueFromTrips(ArrayList<Trip> trips) {
     double revenue = 0;
-    for (Trip aTrip : trip) {
-      revenue += aTrip.getCost();
+    for (Trip trip : trips) {
+      revenue += trip.getCost();
     }
     return revenue;
   }

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * Class for parsing a configuration file.
  */
-abstract public class ConfigFileParser {
+public abstract class ConfigFileParser {
 
   /**
    * Name of the file containing the configuration to be parsed.
@@ -24,7 +24,7 @@ abstract public class ConfigFileParser {
    *
    * @param line line in configuration file to be parsed
    */
-  abstract protected void parseLine(String line);
+  protected abstract void parseLine(String line);
 
   /**
    * Indents the given string by 13 spaces.
@@ -38,44 +38,45 @@ abstract public class ConfigFileParser {
   }
 
   /**
-   * Turns an arraylist of objects into a comma-separated string by calling toString on each of
-   * them. If there are no objects, returns the string "No \<categoryName\>." using parameter
+   * Turns an ArrayList of objects into a comma-separated string by calling toString on each of
+   * them. If there are no objects, returns the string "No `categoryName`." using parameter
    * categoryName.
    *
-   * @param list arraylist of objects
+   * @param list ArrayList of objects
    * @param categoryName name of this category of objects
    * @return comma-separated list of object strings
    */
   public static String getStringFromList(ArrayList list, String categoryName) {
-    String ret = "";
     if (list.size() == 0) {
       return "No " + categoryName + ".";
     }
+    StringBuilder ret = new StringBuilder();
     for (Object item : list) {
-      ret += item.toString() + ", ";
+      ret.append(item.toString());
+      ret.append(", ");
     }
-    ret = ret.substring(0, ret.length() - 2);
-    return ret;
+    return ret.substring(0, ret.length() - 2);
   }
 
   /**
-   * Turns an arraylist of objects into a newline-separated string by calling toString on each of
-   * them. If there are no objects, returns the string "No \<categoryName\>." using parameter
+   * Turns an ArrayList of objects into a newline-separated string by calling toString on each of
+   * them. If there are no objects, returns the string "No `categoryName`." using parameter
    * categoryName.
    *
-   * @param list arraylist of objects
+   * @param list ArrayList of objects
    * @param categoryName name of this category of objects
    * @return newline-separated list of object strings
    */
   public static String getStringFromListMultiline(ArrayList list, String categoryName) {
-    String ret = "";
     if (list.size() == 0) {
       return "No " + categoryName + ".";
     }
+    StringBuilder ret = new StringBuilder();
     for (Object item : list) {
-      ret += item.toString() + System.lineSeparator();
+      ret.append(item.toString());
+      ret.append(System.lineSeparator());
     }
-    return ret.trim();
+    return ret.toString().trim();
   }
 
   /**

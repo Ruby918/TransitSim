@@ -1,11 +1,9 @@
 /* Brian */
 
-import java.util.Date;
-
 /**
- * A Tap at a <code>BusStation</code> or <code>SubwayStation</code>
+ * A Tap at a <code>BusStation</code> or <code>SubwayStation</code>.
  */
-abstract public class TapEvent {
+public abstract class TapEvent {
 
   private TransitDate date;
   private Station station;
@@ -13,11 +11,6 @@ abstract public class TapEvent {
   public TapEvent(Station station, TransitDate date) {
     this.station = station;
     this.date = date;
-  }
-
-  public TapEvent(Station station) {
-    this.station = station;
-    this.date = new TransitDate(new Date());
   }
 
   /**

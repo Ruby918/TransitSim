@@ -122,10 +122,7 @@ public class Trip implements Comparable<Trip> {
     }
     // check if this tap in is adjacent to the previous tap out
     Station previousStation = tapEvents.get(tapEvents.size() - 1).getStation();
-    if (!tapInEvent.getStation().isAdjacentToStation(previousStation)) {
-      return false;
-    }
-    return true;
+    return tapInEvent.getStation().isAdjacentToStation(previousStation);
   }
 
   private boolean isTapInEventLegal(TapInEvent tapInEvent) {
@@ -134,10 +131,7 @@ public class Trip implements Comparable<Trip> {
     }
     TapEvent previousTap = tapEvents.get(tapEvents.size() - 1);
     // 2 tapInEvents in a row is not legal.
-    if (previousTap instanceof TapInEvent) {
-      return false;
-    }
-    return true;
+    return !(previousTap instanceof TapInEvent);
   }
 
   private boolean isTapOutEventLegal(TapOutEvent tapOutEvent) {
@@ -150,11 +144,8 @@ public class Trip implements Comparable<Trip> {
     if (previousTap instanceof TapOutEvent) {
       return false;
     }
-    // if last tap in wasn't at same route as tap out route
-    if (!(previousTap.getStation().getRoute() == tapOutEvent.getStation().getRoute())) {
-      return false;
-    }
-    return true;
+    // if last tap in was at same route as tap out route
+    return previousTap.getStation().getRoute() == tapOutEvent.getStation().getRoute();
   }
 
   /**
@@ -164,25 +155,14 @@ public class Trip implements Comparable<Trip> {
    */
   @Override
   public String toString() {
-    StringBuilder ret =
-        new StringBuilder(
-            "Trip Start: "
-                + this.getStartDate().toDateTimeString()
-                + " | End: "
-                + this.getEndDate().toDateTimeString()
-                + " | Cost: "
-                + this.getCost());
-    ret.append(" | Tap Log: ");
-    for (TapEvent tapEvent : tapEvents) {
-      if (tapEvent instanceof TapInEvent) {
-        ret.append("Tap In at ");
-      } else {
-        ret.append("Tap Out at ");
-      }
-      ret.append(tapEvent.getStation().toString() + ", ");
-    }
-    String rett = ret.substring(0, ret.length() - 2);
-    return rett;
+    return "Trip Start: "
+        + this.getStartDate().toDateTimeString()
+        + " | End: "
+        + this.getEndDate().toDateTimeString()
+        + " | Cost: "
+        + this.getCost()
+        + " | Tap Log: "
+        + ConfigFileParser.getStringFromList(tapEvents, "Taps");
   }
 
   @Override

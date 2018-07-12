@@ -1,7 +1,7 @@
 /* Loic */
 
 /**
- * Class modeling a Bus station
+ * Class modeling a Bus station.
  *
  * @author group 0136
  */
@@ -17,9 +17,6 @@ public class BusStation extends Station {
     return "Bus Stop";
   }
 
-  /**
-   * Constructor of BusStation
-   */
   public BusStation(String name, Route route) {
     super(name, 2, 0, route);
   }

@@ -1,9 +1,7 @@
 /* Loic */
 
-import java.util.ArrayList;
-
 /**
- * Class modeling a Bus Route
+ * Class modeling a Bus Route.
  *
  * @author group 0136
  */
@@ -14,13 +12,6 @@ public class BusRoute extends Route {
    */
   public BusRoute(String name) {
     super(name);
-  }
-
-  /**
-   * BusRoute constructor that is initialized with a route of stations.
-   */
-  public BusRoute(String name, ArrayList<Station> stations) {
-    super(name, stations);
   }
 
   /**

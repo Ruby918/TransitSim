@@ -8,7 +8,7 @@ import java.util.ArrayList;
  *
  * @author group 0136
  */
-abstract public class Route {
+public abstract class Route {
 
   private final String name;
   private ArrayList<Station> stations = new ArrayList<>();
@@ -31,12 +31,12 @@ abstract public class Route {
   /**
    * Add a station by name.
    */
-  abstract public void addStationByName(String name);
+  public abstract void addStationByName(String name);
 
   /**
    * Get the generic identifier.
    */
-  abstract public String getGenericIdentifier();
+  public abstract String getGenericIdentifier();
 
   /**
    * Get the name of the station.

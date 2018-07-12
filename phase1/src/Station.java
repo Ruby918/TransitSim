@@ -7,16 +7,30 @@ import java.util.ArrayList;
  *
  * @author group 0136
  */
-abstract public class Station {
-
-  protected final double passThroughPrice;
-  protected final double tapInPrice;
-  private final String name;
-  private final Route route;
-  private final ArrayList<Station> adjacentStations = new ArrayList<>();
+public abstract class Station {
 
   /**
-   * Station constructor
+   * Price of passing through this station.
+   */
+  protected final double passThroughPrice;
+  /**
+   * Price of tapping in to this station.
+   */
+  protected final double tapInPrice;
+  /**
+   * List of adjacent stations, i.e. stations which one may legally transfer to on one trip.
+   */
+  private final ArrayList<Station> adjacentStations = new ArrayList<>();
+  private final String name;
+  private final Route route;
+
+  /**
+   * Station constructor.
+   *
+   * @param name name of station
+   * @param tapInPrice price of tapping into this station
+   * @param passThroughPrice price of passing through this station
+   * @param route route that this station is on
    */
   public Station(String name, double tapInPrice, double passThroughPrice, Route route) {
     this.name = name;
@@ -26,9 +40,9 @@ abstract public class Station {
   }
 
   /**
-   * Return generic identifier of a station
+   * Return generic identifier of a station.
    */
-  abstract public String getGenericIdentifier();
+  public abstract String getGenericIdentifier();
 
   /**
    * Add a station adjacent to this station.

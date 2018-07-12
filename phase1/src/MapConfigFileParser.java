@@ -25,12 +25,19 @@ public class MapConfigFileParser extends ConfigFileParser {
   @Override
   protected void parseLine(String line) {
     String[] data = line.split(": ");
-    if (data[0].equals("Route")) {
-      addRouteData(data[1].split(", "));
-    } else if (data[0].equals("Station")) {
-      addStationData(data[1].split(", "));
-    } else if (data[0].equals("Hub")) {
-      addHubData(data[1]);
+    switch (data[0]) {
+      case "Route":
+        addRouteData(data[1].split(", "));
+        break;
+      case "Station":
+        addStationData(data[1].split(", "));
+        break;
+      case "Hub":
+        addHubData(data[1]);
+        break;
+      default:
+        System.out.println("Warning: "
+            + "Could not parse the following map configuration: " + line);
     }
   }
 
