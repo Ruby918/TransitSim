@@ -13,6 +13,8 @@
 ## Feature Summaries
 
 ### Brian
+Make different types of discounts for cards. easy stuff.
+
 ### Dan
 ### Danya
 ### Loic
