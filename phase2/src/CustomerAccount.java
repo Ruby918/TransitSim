@@ -113,7 +113,9 @@ public class CustomerAccount {
    * @param card - Card of which to add to customers accounts array list of cards.
    */
   public void addCard(Card card) {
-    this.cards.add(card);
+    if (!this.cards.contains(card)) {
+      this.cards.add(card);
+    }
   }
 
   /**
