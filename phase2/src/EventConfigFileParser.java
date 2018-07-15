@@ -85,7 +85,7 @@ public class EventConfigFileParser extends ConfigFileParser {
         switch (parameters[1]) {
           case "Total":
             message += indentString(
-                getStringFromListMultiline(StatisticsManager.getTrips(), "Trips"));
+                getStringFromListMultiline(Trip.trips, "Trips"));
             break;
           default:
             TransitDate date = TransitDate.createFromDateString(parameters[1]);

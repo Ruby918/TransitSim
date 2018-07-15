@@ -11,6 +11,12 @@ public class Trip implements Comparable<Trip> {
   private double cost;
   private ArrayList<TapEvent> tapEvents = new ArrayList<>();
 
+  protected static ArrayList<Trip> trips = new ArrayList<>();
+
+  public Trip() {
+    trips.add(this);
+  }
+
   /**
    * Returns the <code>Date</code> of the first tap in of this <code>Trip</code>.
    *

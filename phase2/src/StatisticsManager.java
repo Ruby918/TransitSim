@@ -9,46 +9,6 @@ import java.util.ArrayList;
  */
 public class StatisticsManager {
 
-  // Instance variables storing information the transit system.
-  private static ArrayList<TransitDate> invalidTapEventsDates = new ArrayList<>();
-  private static ArrayList<Trip> trips = new ArrayList<>();
-
-  /**
-   * Returns an array list of dates where invalid taps occurred.
-   *
-   * @return - array list of dates where invalid taps occurred.
-   */
-  public static ArrayList<TransitDate> getInvalidTapEvents() {
-    return invalidTapEventsDates;
-  }
-
-  /**
-   * Returns an array list trips taken.
-   *
-   * @return - array list trips taken.
-   */
-  public static ArrayList<Trip> getTrips() {
-    return trips;
-  }
-
-  /**
-   * Adds a trip to the array list of recorded trips.
-   *
-   * @param trip - trip to add to the array list of recorded trips.
-   */
-  public static void addTrip(Trip trip) {
-    trips.add(trip);
-  }
-
-  /**
-   * Adds a invalid tap date to the array list of recorded invalid taps dates.
-   *
-   * @param date - date to add to the array list of recorded invalid tap dates.
-   */
-  public static void addInvalidTapEvent(TransitDate date) {
-    invalidTapEventsDates.add(date);
-  }
-
   /**
    * returns the number of trips on a single day.
    *
@@ -57,7 +17,7 @@ public class StatisticsManager {
    */
   public static ArrayList<Trip> getTripsOnDate(TransitDate date) {
     ArrayList<Trip> tripsOnDate = new ArrayList<>();
-    for (Trip trip : trips) {
+    for (Trip trip : Trip.trips) {
       if (trip.getStartDate().onSameDay(date) || trip.getEndDate().onSameDay(date)) {
         tripsOnDate.add(trip);
       }

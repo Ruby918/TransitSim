@@ -106,7 +106,7 @@ public class Card {
   /**
    * Registers and records an invalid tap.
    *
-   * <p>In the case of an invalid tap, the information is passed onto StatisticsManager, active
+   * <p>In the case of an invalid tap, active
    * trip is turned null and MAX_Charge is taken off balance.
    *
    * @param tapEvent - tap event which was invalid.
@@ -149,7 +149,6 @@ public class Card {
     // create new trip, if there isn't a currently active trip
     if (this.activeTrip == null) {
       this.activeTrip = new Trip();
-      StatisticsManager.addTrip(this.activeTrip);
       this.trips.add(this.activeTrip);
     }
 
