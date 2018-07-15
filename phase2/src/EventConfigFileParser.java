@@ -73,11 +73,11 @@ public class EventConfigFileParser extends ConfigFileParser {
         message = "$";
         switch (parameters[1]) {
           case "Total":
-            message += StatisticsManager.calculateRevenue();
+            message += transitSystem.stats.calculateRevenue();
             break;
           default:
             TransitDate date = TransitDate.createFromDateString(parameters[1]);
-            message += StatisticsManager.calculateRevenueOnDate(date);
+            message += transitSystem.stats.calculateRevenueOnDate(date);
         }
         break;
       case "Trips":
@@ -89,13 +89,13 @@ public class EventConfigFileParser extends ConfigFileParser {
             break;
           default:
             TransitDate date = TransitDate.createFromDateString(parameters[1]);
-            ArrayList<Trip> trips = StatisticsManager.getTripsOnDate(date);
+            ArrayList<Trip> trips = transitSystem.stats.getTripsOnDate(date);
             message += indentString(getStringFromListMultiline(trips, "Trips"));
         }
         break;
       case "Stations":
         TransitDate date = TransitDate.createFromDateString(parameters[1]);
-        ArrayList<Station> stations = StatisticsManager.getStationsReachedOnDate(date);
+        ArrayList<Station> stations = transitSystem.stats.getStationsReachedOnDate(date);
         message = "Stations: " + System.lineSeparator()
             + indentString(getStringFromListMultiline(stations, "Stations"));
         break;

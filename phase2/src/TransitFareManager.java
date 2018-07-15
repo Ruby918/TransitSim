@@ -19,9 +19,14 @@ public class TransitFareManager {
    * Map of this transit system.
    */
   private Map map;
+  /**
+   * Stats of this transit system
+   */
+  protected StatisticsManager stats;
 
-  public TransitFareManager(Map map) {
+  public TransitFareManager(Map map, StatisticsManager stats) {
     this.map = map;
+    this.stats = stats;
   }
 
   /**
@@ -35,8 +40,11 @@ public class TransitFareManager {
     MapConfigFileParser mapData = new MapConfigFileParser("map.txt", thisMap);
     mapData.parse();
 
+    // Create stats manager
+    StatisticsManager stats = new StatisticsManager();
+
     // Create transit fare manager
-    TransitFareManager ttc = new TransitFareManager(thisMap);
+    TransitFareManager ttc = new TransitFareManager(thisMap, stats);
 
     // Process events from events.txt
     EventConfigFileParser eventData = new EventConfigFileParser("events.txt", ttc);
