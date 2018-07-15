@@ -17,4 +17,8 @@ Make different types of discounts for cards. easy stuff.
 
 ### Dan
 ### Danya
+Add a fleet of trains and buses, and manage their scheduling. 
+Visualize them in the GUI. 
+Add support for collecting stats on how long people waited for a vehicle at the stations, etc. 
+
 ### Loic
