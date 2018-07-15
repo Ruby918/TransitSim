@@ -16,6 +16,7 @@ public class Card {
   private ArrayList<Trip> trips = new ArrayList<>(); // Array list of trips recorded onto card.
   // Array list of invalid tap dates recorded onto card.
   private ArrayList<TransitDate> invalidTapEventDates = new ArrayList<>();
+  private final ArrayList<Transaction> transactions = new ArrayList<>();
   private Trip activeTrip = null; // Trip Card is actively going through; null if no trip is active.
   private boolean isActive = true;
   private int cardId;
@@ -92,6 +93,24 @@ public class Card {
   }
 
   /**
+   * Decrease the balance of this card by `amount`.
+   *
+   * @param amount amount to be removed from balance
+   */
+  protected void removeFunds(double amount) {
+    this.balance -= amount;
+  }
+
+  /**
+   * Create transaction with the end goal of decreasing the balance of this card by `amount`.
+   *
+   * @param amount amount to be removed from balance
+   * @param date date of transaction
+   */
+  private void createTransaction(double amount, TransitDate date) {
+    this.transactions.add(new Transaction(this, amount, date));
+  }
+  /**
    * Registers and records an invalid tap.
    *
    * <p>In the case of an invalid tap, the information is passed onto StatisticsManager, active
@@ -102,7 +121,7 @@ public class Card {
   private void addInvalidTap(TapEvent tapEvent) {
     this.invalidTapEventDates.add(tapEvent.getTransitDate());
     StatisticsManager.addInvalidTapEvent(tapEvent.getTransitDate());
-    this.balance -= MAX_CHARGE;
+    createTransaction(MAX_CHARGE, tapEvent.getTransitDate());
     this.activeTrip = null;
   }
 
@@ -157,7 +176,9 @@ public class Card {
     }
 
     // charge the card the price of this tap
-    balance -= price;
+    if (price != 0) {
+      createTransaction(price, date);
+    }
   }
 
   /**
@@ -201,7 +222,9 @@ public class Card {
     }
 
     // charge the card the price of this tap
-    balance -= price;
+    if (price != 0) {
+      createTransaction(price, date);
+    }
   }
 
   /**

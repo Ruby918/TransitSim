@@ -50,61 +50,6 @@ public class StatisticsManager {
   }
 
   /**
-   * returns the number of invalid taps on a single day.
-   *
-   * @param day - the day of which invalid taps occurred.
-   * @return - the number of invalid taps on a single day.
-   */
-  public static int countInvalidTapsOnDate(TransitDate day) {
-    int counter = 0;
-
-    for (TransitDate invalidTapEventsDate : invalidTapEventsDates) {
-      if (day.onSameDay(invalidTapEventsDate)) {
-        counter++;
-      }
-    }
-    return counter;
-  }
-
-  /**
-   * returns the number of invalid taps on a multiple days.
-   *
-   * @param days - the array list of days of which invalid taps occurred.
-   * @return - the number of invalid taps on a multiple days.
-   */
-  public static int countInvalidTapsMultiDays(ArrayList<TransitDate> days) {
-    int counter = 0;
-
-    for (TransitDate day : days) {
-      for (TransitDate invalidTapEventsDate : invalidTapEventsDates) {
-        if (day.onSameDay(invalidTapEventsDate)) {
-          counter++;
-        }
-      }
-    }
-    return counter;
-  }
-
-  /**
-   * returns the number of taps on a single day.
-   *
-   * @param date - the day of which taps occurred.
-   * @return - the number of taps on a single day.
-   */
-  public static ArrayList<TapEvent> getTapsOnDate(TransitDate date) {
-    ArrayList<TapEvent> dateMatchTapEvents = new ArrayList<>();
-
-    for (Trip trip : trips) {
-      for (int x = 0; x < trip.getTapEvents().size(); x++) {
-        if (date.onSameDay(trip.getTapEvents().get(x).getTransitDate())) {
-          dateMatchTapEvents.add(trip.getTapEvents().get(x));
-        }
-      }
-    }
-    return dateMatchTapEvents;
-  }
-
-  /**
    * returns the number of trips on a single day.
    *
    * @param date - the day of which trips occurred.
@@ -121,28 +66,19 @@ public class StatisticsManager {
   }
 
   /**
-   * returns revenue collected from recorded trips.
-   *
-   * @param trips - array list of trips.
-   * @return - revenue collected from recorded trips.
-   */
-  public static double calculateRevenueFromTrips(ArrayList<Trip> trips) {
-    double revenue = 0;
-    for (Trip trip : trips) {
-      revenue += trip.getCost();
-    }
-    return revenue;
-  }
-
-  /**
    * returns revenue gained on a single day.
    *
    * @param date - the day to return revenue from.
    * @return - revenue gained on a single day.
    */
   public static double calculateRevenueOnDate(TransitDate date) {
-    ArrayList<Trip> tripsOnDate = getTripsOnDate(date);
-    return calculateRevenueFromTrips(tripsOnDate) + countInvalidTapsOnDate(date) * 6;
+    double sum = 0;
+    for (Transaction transaction : Transaction.transactions) {
+      if (date.onSameDay(transaction.getDate())) {
+        sum += transaction.getAmount();
+      }
+    }
+    return sum;
   }
 
   /**
@@ -151,18 +87,11 @@ public class StatisticsManager {
    * @return - total revenue.
    */
   public static double calculateRevenue() {
-    return calculateRevenueFromTrips(trips) + invalidTapEventsDates.size() * 6;
-  }
-
-  /**
-   * Calculate total profit gained thus far.
-   *
-   * @param cost - total cost of running the transit system.
-   * @param trips - array list of trips that will be used determine revenue.
-   * @return - total profit.
-   */
-  public static double calculateProfit(ArrayList<Trip> trips, double cost) {
-    return cost - calculateRevenueFromTrips(trips);
+    double sum = 0;
+    for (Transaction transaction : Transaction.transactions) {
+      sum += transaction.getAmount();
+    }
+    return sum;
   }
 
   /**
