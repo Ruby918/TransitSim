@@ -5,8 +5,8 @@
  */
 public class TapOutEvent extends TapEvent {
 
-  public TapOutEvent(Station station, TransitDate date) {
-    super(station, date);
+  public TapOutEvent(Station station, TransitDate date, Card card) {
+    super(station, date, card);
   }
 
   @Override

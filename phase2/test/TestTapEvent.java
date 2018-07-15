@@ -9,7 +9,7 @@ public class TestTapEvent {
     Route sr = new SubwayRoute("SR");
     Station st = new SubwayStation("ST", sr);
 
-    TapInEvent te = new TapInEvent(st, TransitDate.createFromDateString("10/10/2010"));
+    TapInEvent te = new TapInEvent(st, TransitDate.createFromDateString("10/10/2010"), null);
     assertEquals(te.getStation(), st);
   }
 

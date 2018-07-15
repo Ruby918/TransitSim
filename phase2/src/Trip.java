@@ -69,6 +69,7 @@ public class Trip implements Comparable<Trip> {
   public double registerTapInEvent(TapInEvent tapInEvent)
       throws TripInvalidTapEventException, TripUnnaturalTapSequenceException {
     if (!isTapInEventLegal(tapInEvent)) {
+      tapInEvent.flagAsUnnatural();
       throw new TripUnnaturalTapSequenceException();
     }
     if (!canAddTapInToCurrentTrip(tapInEvent)) {
@@ -95,6 +96,7 @@ public class Trip implements Comparable<Trip> {
   public double registerTapOutEvent(TapOutEvent tapOutEvent)
       throws TripUnnaturalTapSequenceException {
     if (!isTapOutEventLegal(tapOutEvent)) {
+      tapOutEvent.flagAsUnnatural();
       throw new TripUnnaturalTapSequenceException();
     }
 

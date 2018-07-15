@@ -1,5 +1,7 @@
 /* Brian */
 
+import java.util.ArrayList;
+
 /**
  * A Tap at a <code>BusStation</code> or <code>SubwayStation</code>.
  */
@@ -7,10 +9,15 @@ public abstract class TapEvent {
 
   private TransitDate date;
   private Station station;
+  private Card card;
+  private boolean flagged = false;
 
-  public TapEvent(Station station, TransitDate date) {
+  protected static ArrayList<TapEvent> unnaturalTapEvents = new ArrayList<>();
+
+  public TapEvent(Station station, TransitDate date, Card card) {
     this.station = station;
     this.date = date;
+    this.card = card;
   }
 
   /**
@@ -29,5 +36,18 @@ public abstract class TapEvent {
    */
   public Station getStation() {
     return station;
+  }
+
+  public void flagAsUnnatural() {
+    this.flagged = true;
+    unnaturalTapEvents.add(this);
+  }
+
+  public boolean isFlagged() {
+    return this.flagged;
+  }
+
+  public boolean hasCard(Card card) {
+    return this.card.equals(card);
   }
 }

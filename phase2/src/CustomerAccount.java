@@ -99,17 +99,12 @@ public class CustomerAccount {
     return trips;
   }
 
-  /**
-   * Returns an array list of days that an invalid tap occurred.
-   *
-   * @return - array list of days that an invalid tap occurred.
-   */
-  public ArrayList<TransitDate> listAllInvalidTapDates() {
-    ArrayList<TransitDate> invalidTapDates = new ArrayList<>();
+  public ArrayList<Transaction> listAllTransactions() {
+    ArrayList<Transaction> transactions = new ArrayList<>();
     for (Card card : cards) {
-      invalidTapDates.addAll(card.getInvalidTapEventDates());
+      transactions.addAll(card.getTransactions());
     }
-    return invalidTapDates;
+    return transactions;
   }
 
   /**
@@ -154,41 +149,24 @@ public class CustomerAccount {
     // array lists needed to track customers data.
     ArrayList<TransitDate> months = new ArrayList<>();
     ArrayList<Double> costs = new ArrayList<>();
-    ArrayList<Trip> trips = listAllTrips();
-    ArrayList<TransitDate> invalidTapDates = listAllInvalidTapDates();
+    ArrayList<Transaction> transactions = listAllTransactions();
 
-    if ((trips.size() == 0) && invalidTapDates.size() == 0) {
+    if (transactions.size() == 0) {
       return 0;
     }
 
-    // account for trip costs
-    for (Trip trip : trips) {
-      boolean tripCostAdded = false;
+    for (Transaction transaction : transactions) {
+      boolean amountAdded = false;
       for (int j = 0; j < months.size(); j++) {
-        if (trip.getStartDate().inSameMonth(months.get(j))) {
-          costs.set(j, costs.get(j) + trip.getCost());
-          tripCostAdded = true;
+        if (transaction.getDate().inSameMonth(months.get(j))) {
+          costs.set(j, costs.get(j) + transaction.getAmount());
+          amountAdded = true;
           break;
         }
       }
-      if (!tripCostAdded) {
-        months.add(trip.getStartDate());
-        costs.add(trip.getCost());
-      }
-    }
-    // account for pathological tap costs
-    for (TransitDate date : invalidTapDates) {
-      boolean tapCostAdded = false;
-      for (int j = 0; j < months.size(); j++) {
-        if (date.inSameMonth(months.get(j))) {
-          costs.set(j, costs.get(j) + 6);
-          tapCostAdded = true;
-          break;
-        }
-      }
-      if (!tapCostAdded) {
-        months.add(date);
-        costs.add(6.0);
+      if (!amountAdded) {
+        months.add(transaction.getDate());
+        costs.add(transaction.getAmount());
       }
     }
 
