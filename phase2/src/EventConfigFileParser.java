@@ -102,7 +102,7 @@ public class EventConfigFileParser extends ConfigFileParser {
       case "Routes":
         message = "Routes:" + System.lineSeparator()
             + indentString(
-            getStringFromListMultiline(transitSystem.getMap().getRoutes(), "Routes"));
+            getStringFromListMultiline(transitSystem.map.getRoutes(), "Routes"));
         break;
       case "Customers":
         switch (parameters[1]) {
@@ -246,7 +246,7 @@ public class EventConfigFileParser extends ConfigFileParser {
    * @param parameters parameters of the command
    */
   private void parseCardTapIn(Card card, String[] parameters) {
-    Station station = transitSystem.getMap()
+    Station station = transitSystem.map
         .getStationByNameAndRoute(parameters[3], parameters[2], parameters[1]);
     if (station == null) {
       message = "That is not a valid station.";
@@ -284,7 +284,7 @@ public class EventConfigFileParser extends ConfigFileParser {
    * @param parameters parameters of the command
    */
   private void parseCardTapOut(Card card, String[] parameters) {
-    Station station = transitSystem.getMap()
+    Station station = transitSystem.map
         .getStationByNameAndRoute(parameters[3], parameters[2], parameters[1]);
     if (station == null) {
       message = "That is not a valid station.";

@@ -18,7 +18,7 @@ public class TransitFareManager {
   /**
    * Map of this transit system.
    */
-  private Map map;
+  protected Map map;
   /**
    * Stats of this transit system
    */
@@ -49,11 +49,6 @@ public class TransitFareManager {
     // Process events from events.txt
     EventConfigFileParser eventData = new EventConfigFileParser("events.txt", ttc);
     eventData.parse();
-  }
-
-
-  public Map getMap() {
-    return this.map;
   }
 
   public ArrayList<CustomerAccount> getCustomers() {
