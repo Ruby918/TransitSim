@@ -3,21 +3,16 @@ import java.util.ArrayList;
 public class Transaction {
 
   private final Card card;
-  private final double amount;
+  private final Price price;
   private final TransitDate date;
-
   static ArrayList<Transaction> transactions = new ArrayList<>();
 
-  public Transaction(Card card, double amount, TransitDate date) {
+  public Transaction(Card card, Price price, TransitDate date) {
     this.card = card;
     this.date = date;
-    this.amount = amount;
-    card.removeFunds(amount);
+    this.price = price;
+    card.removeFunds(price.getFinalPrice());
     transactions.add(this);
-  }
-
-  public double getAmount() {
-    return this.amount;
   }
 
   public TransitDate getDate() {

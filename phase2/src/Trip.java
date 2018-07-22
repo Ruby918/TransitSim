@@ -7,11 +7,11 @@ import java.util.ArrayList;
  */
 public class Trip implements Comparable<Trip> {
 
-  protected static final double MAX_CHARGE = 6;
+  public static final double MAX_CHARGE = 6;
   private double cost;
   private ArrayList<TapEvent> tapEvents = new ArrayList<>();
 
-  protected static ArrayList<Trip> trips = new ArrayList<>();
+  private static ArrayList<Trip> trips = new ArrayList<>();
 
   public Trip() {
     trips.add(this);
@@ -68,12 +68,12 @@ public class Trip implements Comparable<Trip> {
    * returns the charge for the tap.
    *
    * @param tapInEvent the tap event to be registered
-   * @return the charge of the tap
+   * @return a <code>Price</code> object representing the price of the tap
    * @throws TripInvalidTapEventException if the tap is the start of a new trip
    * @throws TripUnnaturalTapSequenceException if the tap is illegal
    */
-  public double registerTapInEvent(TapInEvent tapInEvent)
-      throws TripInvalidTapEventException, TripUnnaturalTapSequenceException {
+  public Price registerTapInEvent(TapInEvent tapInEvent)
+          throws TripInvalidTapEventException, TripUnnaturalTapSequenceException {
     if (!isTapInEventLegal(tapInEvent)) {
       tapInEvent.flagAsUnnatural();
       throw new TripUnnaturalTapSequenceException();
@@ -86,8 +86,10 @@ public class Trip implements Comparable<Trip> {
     if (cost + tapPrice > MAX_CHARGE) {
       tapPrice = MAX_CHARGE - cost;
     }
-    cost += tapPrice;
-    return tapPrice;
+    Price price = new Price(tapPrice);
+    price.applyPriceModifiers(tapInEvent.getTransitDate());
+    cost += price.getFinalPrice();
+    return price;
   }
 
   /**
@@ -99,13 +101,11 @@ public class Trip implements Comparable<Trip> {
    * @return the charge for the tap
    * @throws TripUnnaturalTapSequenceException if the tap is illegal
    */
-  public double registerTapOutEvent(TapOutEvent tapOutEvent)
-      throws TripUnnaturalTapSequenceException {
+  public Price registerTapOutEvent(TapOutEvent tapOutEvent) throws TripUnnaturalTapSequenceException {
     if (!isTapOutEventLegal(tapOutEvent)) {
       tapOutEvent.flagAsUnnatural();
       throw new TripUnnaturalTapSequenceException();
     }
-
     Station stationIn = tapEvents.get(tapEvents.size() - 1).getStation();
     Station stationOut = tapOutEvent.getStation();
     tapEvents.add(tapOutEvent);
@@ -114,8 +114,10 @@ public class Trip implements Comparable<Trip> {
     if (cost + tapPrice > MAX_CHARGE) {
       tapPrice = MAX_CHARGE - cost;
     }
-    cost += tapPrice;
-    return tapPrice;
+    Price price = new Price(tapPrice);
+    price.applyPriceModifiers(tapOutEvent.getTransitDate());
+    cost += price.getFinalPrice();
+    return price;
   }
 
   private boolean canAddTapInToCurrentTrip(TapInEvent tapInEvent) {

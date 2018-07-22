@@ -11,7 +11,6 @@ import java.util.Collections;
 public class Card {
 
   // Instance variables storing information on the card.
-  private static final int MAX_CHARGE = 6;
   private double balance = 19;
   private ArrayList<Trip> trips = new ArrayList<>(); // Array list of trips recorded onto card.
   private final ArrayList<Transaction> transactions = new ArrayList<>();
@@ -93,11 +92,11 @@ public class Card {
   /**
    * Create transaction with the end goal of decreasing the balance of this card by `amount`.
    *
-   * @param amount amount to be removed from balance
+   * @param pr the <code>Price</code>
    * @param date date of transaction
    */
-  private void createTransaction(double amount, TransitDate date) {
-    this.transactions.add(new Transaction(this, amount, date));
+  private void createTransaction(Price price, TransitDate date) {
+    this.transactions.add(new Transaction(this, price, date));
   }
 
   public ArrayList<Transaction> getTransactions() {
@@ -113,7 +112,9 @@ public class Card {
    */
   private void addInvalidTap(TapEvent tapEvent) {
     tapEvent.flagAsUnnatural();
-    createTransaction(MAX_CHARGE, tapEvent.getTransitDate());
+    Price price = new Price();
+    price.setFinalPrice(Trip.MAX_CHARGE);
+    createTransaction(price, tapEvent.getTransitDate());
     this.activeTrip = null;
   }
 
@@ -153,11 +154,11 @@ public class Card {
     }
 
     // register the tap to the active trip
-    double price = 0;
+    Price price = new Price();
     try {
       price = activeTrip.registerTapInEvent(tapInEvent);
     } catch (TripUnnaturalTapSequenceException e) {
-      // this tap took a place at a nonsensical location
+      // this tap took place at a nonsensical location
       addInvalidTap(tapInEvent);
       throw new IllegalTapLocationException();
     } catch (TripInvalidTapEventException f) {
@@ -167,7 +168,7 @@ public class Card {
     }
 
     // charge the card the price of this tap
-    if (price != 0) {
+    if (price.getFinalPrice() != -1) {
       createTransaction(price, date);
     }
   }
@@ -204,7 +205,7 @@ public class Card {
     }
 
     // register tap out event with current trip
-    double price;
+    Price price = new Price();
     try {
       price = activeTrip.registerTapOutEvent(tapOutEvent);
     } catch (TripUnnaturalTapSequenceException e) {
@@ -213,7 +214,7 @@ public class Card {
     }
 
     // charge the card the price of this tap
-    if (price != 0) {
+    if (price.getFinalPrice() != -1) {
       createTransaction(price, date);
     }
   }
