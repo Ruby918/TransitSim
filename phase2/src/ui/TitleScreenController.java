@@ -26,7 +26,7 @@ public class TitleScreenController {
     try {
       FXMLLoader userLoader = new FXMLLoader();
       userLoader.setLocation(getClass().getResource("user_screen.fxml"));
-      Scene userScene = new Scene(userLoader.load(), 400, 400);
+      Scene userScene = new Scene(userLoader.load(), 500, 500);
       Stage userStage = new Stage();
       userStage.setScene(userScene);
       owner.hide();
