@@ -1,0 +1,47 @@
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.Button?>
+
+<GridPane fx:controller="ui.TitleScreenController"
+  xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="15" vgap="15">
+  <padding>
+    <Insets top="10" right="10" bottom="10" left="10"/>
+  </padding>
+
+  <columnConstraints>
+    <ColumnConstraints maxWidth="Infinity"
+      halignment="CENTER" hgrow="ALWAYS">
+    </ColumnConstraints>
+  </columnConstraints>
+
+  <!-- Add Title Label -->
+  <Label  text="Loic UI v0.1"
+          GridPane.columnIndex="0" GridPane.rowIndex="0"
+          GridPane.columnSpan="2" GridPane.rowSpan="1"
+          GridPane.halignment="CENTER">
+      <font>
+        <Font name="Comic Sans MS" size="24"></Font>
+      </font>
+  </Label>
+
+  <!-- Add User Button -->
+  <Button fx:id="userButton" text="User"
+          prefWidth="100" prefHeight="40" defaultButton="true"
+          GridPane.columnIndex="0" GridPane.rowIndex="1"
+          GridPane.columnSpan="1" GridPane.rowSpan="1"
+          GridPane.halignment="LEFT"
+          onAction="#handleUserButtonAction">
+  </Button>
+
+  <!-- Add Admin Button -->
+  <Button fx:id="adminButton" text="Admin"
+          prefWidth="100" prefHeight="40" defaultButton="false"
+          GridPane.columnIndex="0" GridPane.rowIndex="1"
+          GridPane.columnSpan="1" GridPane.rowSpan="1"
+          GridPane.halignment="RIGHT"
+          onAction="#handleAdminButtonAction">
+  </Button>
+</GridPane>
