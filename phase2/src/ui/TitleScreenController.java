@@ -25,8 +25,8 @@ public class TitleScreenController {
     Window owner = userButton.getScene().getWindow();
     try {
       FXMLLoader userLoader = new FXMLLoader();
-      userLoader.setLocation(getClass().getResource("user_screen.fxml"));
-      Scene userScene = new Scene(userLoader.load(), 500, 500);
+      userLoader.setLocation(getClass().getResource("user_login_screen.fxml"));
+      Scene userScene = new Scene(userLoader.load(), 350, 250);
       Stage userStage = new Stage();
       userStage.setScene(userScene);
       owner.hide();
@@ -41,8 +41,8 @@ public class TitleScreenController {
     Window owner = adminButton.getScene().getWindow();
     try {
       FXMLLoader adminLoader = new FXMLLoader();
-      adminLoader.setLocation(getClass().getResource("admin_screen.fxml"));
-      Scene adminScene = new Scene(adminLoader.load(), 500, 500);
+      adminLoader.setLocation(getClass().getResource("admin_login_screen.fxml"));
+      Scene adminScene = new Scene(adminLoader.load(), 350, 250);
       Stage adminStage = new Stage();
       adminStage.setScene(adminScene);
       owner.hide();

@@ -1,4 +1,6 @@
+./AdminLoginScreenController.java
 ./AdminScreenController.java
 ./TitleScreen.java
 ./TitleScreenController.java
+./UserLoginScreenController.java
 ./UserScreenController.java
