@@ -1,5 +1,6 @@
 /* Danya */
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -9,7 +10,7 @@ import java.util.GregorianCalendar;
  * Class for date of transit system event. This class is basically a wrapper for java.util.Date,
  * with some added functionality.
  */
-public class TransitDate implements Comparable<TransitDate> {
+public class TransitDate implements Comparable<TransitDate>, Serializable {
 
   private Date date;
 

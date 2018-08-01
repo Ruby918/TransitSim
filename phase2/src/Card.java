@@ -1,5 +1,6 @@
 /* Dan */
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -8,7 +9,7 @@ import java.util.Collections;
  *
  * @author group 0136
  */
-public class Card {
+public class Card implements Serializable {
 
   // Instance variables storing information on the card.
   private double balance = 19;

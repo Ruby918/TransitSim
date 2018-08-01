@@ -1,5 +1,6 @@
 /* Loic */
 
+import java.io.Serializable;
 import java.lang.Math;
 import java.util.ArrayList;
 
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  *
  * @author group 0136
  */
-public abstract class Route {
+public abstract class Route implements Serializable {
 
   private final String name;
   private ArrayList<Station> stations = new ArrayList<>();

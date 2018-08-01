@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Price {
+public class Price implements Serializable {
     private double rawPrice;
     private double finalPrice;
     private ArrayList<PriceModifier> priceModifiers = new ArrayList<>();

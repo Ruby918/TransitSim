@@ -1,5 +1,6 @@
 /* Loic */
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -7,7 +8,7 @@ import java.util.ArrayList;
  *
  * @author group 0136
  */
-public class Map {
+public class Map implements Serializable {
 
   private final ArrayList<Route> routes = new ArrayList<>();
 

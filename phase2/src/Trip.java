@@ -1,11 +1,12 @@
 /* Brian */
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * A transit journey consisting of bus and subway rides.
  */
-public class Trip implements Comparable<Trip> {
+public class Trip implements Comparable<Trip>, Serializable {
 
   private double cost;
   private ArrayList<TapEvent> tapEvents = new ArrayList<>();

@@ -1,11 +1,12 @@
 /* Brian */
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * A Tap at a <code>BusStation</code> or <code>SubwayStation</code>.
  */
-public abstract class TapEvent {
+public abstract class TapEvent implements Serializable {
 
   private TransitDate date;
   private Station station;

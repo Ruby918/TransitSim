@@ -1,6 +1,6 @@
-import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Transaction {
+public class Transaction implements Serializable {
 
   private final Card card;
   private final Price price;

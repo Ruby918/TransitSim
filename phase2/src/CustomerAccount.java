@@ -1,5 +1,6 @@
 /*  Dan */
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -8,7 +9,7 @@ import java.util.Collections;
  *
  * @author group 0136
  */
-public class CustomerAccount {
+public class CustomerAccount implements Serializable {
 
   // Instance variables storing information on customer.
   private String name;

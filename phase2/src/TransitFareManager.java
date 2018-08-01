@@ -1,11 +1,12 @@
 /* Danya */
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Main class of the transit system.
  */
-public class TransitFareManager {
+public class TransitFareManager implements Serializable {
 
   /**
    * List of customers that have accounts with this transit system.
