@@ -17,15 +17,24 @@
     </ColumnConstraints>
   </columnConstraints>
 
-  <!-- Add Title Label -->
-  <Label  text="User Screen"
+
+  <!-- Add 'Create Card' Button -->
+  <Button fx:id="createCard" text="Create Card"
+          prefWidth="200" prefHeight="50" defaultButton="false"
           GridPane.columnIndex="0" GridPane.rowIndex="0"
           GridPane.columnSpan="2" GridPane.rowSpan="1"
-          GridPane.halignment="CENTER">
-      <font>
-        <Font name="Comic Sans MS" size="24"></Font>
-      </font>
-  </Label>
+          GridPane.halignment="CENTER"
+          onAction="#handleCreateCardButton">
+  </Button>
+
+  <!-- Add 'Load Current Card' Button -->
+  <Button fx:id="loadCard" text="Load Current Card"
+          prefWidth="200" prefHeight="50" defaultButton="false"
+          GridPane.columnIndex="0" GridPane.rowIndex="1"
+          GridPane.columnSpan="2" GridPane.rowSpan="1"
+          GridPane.halignment="CENTER"
+          onAction="#handleLoadCardButton">
+  </Button>
 
   <!-- Add Return Button -->
   <Button fx:id="userReturn" text="Return"

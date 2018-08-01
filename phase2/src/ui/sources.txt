@@ -1,5 +1,7 @@
 ./AdminLoginScreenController.java
 ./AdminScreenController.java
+./CreateCardScreenController.java
+./LoadCardScreenController.java
 ./TitleScreen.java
 ./TitleScreenController.java
 ./UserLoginScreenController.java

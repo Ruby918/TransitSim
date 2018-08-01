@@ -18,6 +18,27 @@ public class UserScreenController {
   private Button userReturn;
 
   @FXML
+  private Button createCard;
+
+  @FXML
+  private Button loadCard;
+
+  @FXML
+  protected void handleCreateCardButton(ActionEvent event) {
+    Window owner = createCard.getScene().getWindow();
+    try {
+      FXMLLoader createLoader = new FXMLLoader();
+      createLoader.setLocation(getClass().getResource("create_card_screen.fxml"));
+      Scene createScene = new Scene(createLoader.load(), 300, 250);
+      Stage createStage = new Stage();
+      createStage.setScene(createScene);
+      createStage.show();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  @FXML
   protected void handleUserReturnButtonAction(ActionEvent event) {
     Window owner = userReturn.getScene().getWindow();
     try {
@@ -28,6 +49,20 @@ public class UserScreenController {
       mainStage.setScene(mainScene);
       owner.hide();
       mainStage.show();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  @FXML
+  protected void handleLoadCardButton(ActionEvent event) {
+    try {
+      FXMLLoader loadLoader = new FXMLLoader();
+      loadLoader.setLocation(getClass().getResource("load_card_screen.fxml"));
+      Scene loadScene = new Scene(loadLoader.load(), 270, 150);
+      Stage loadStage = new Stage();
+      loadStage.setScene(loadScene);
+      loadStage.show();
     } catch (IOException e) {
       e.printStackTrace();
     }

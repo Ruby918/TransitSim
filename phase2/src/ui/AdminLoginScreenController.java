@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 public class AdminLoginScreenController {
+
   @FXML
   private Button loginButton;
 
