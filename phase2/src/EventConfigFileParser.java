@@ -66,6 +66,7 @@ public class EventConfigFileParser extends ConfigFileParser {
 
     // Print output message
     logger.log(System.lineSeparator() + "OUTPUT   :   " + message + System.lineSeparator());
+
   }
 
   /**

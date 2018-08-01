@@ -37,4 +37,5 @@ public class TransitLogger {
   public void error(String message) {
     logger.log(Level.SEVERE, message);
   }
+
 }
