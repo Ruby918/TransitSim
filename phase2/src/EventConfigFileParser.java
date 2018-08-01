@@ -1,6 +1,12 @@
 /* Danya */
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.Handler;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.FileHandler;
 
 /**
  * Class for parsing this transit system's events.txt configuration.
@@ -17,10 +23,32 @@ public class EventConfigFileParser extends ConfigFileParser {
   private TransitFareManager transitSystem;
   private StatisticsManager stats;
 
+  private final Logger logger =
+      Logger.getLogger(EventConfigFileParser.class.getName());
+
   public EventConfigFileParser(String filename, TransitFareManager transitSystem, StatisticsManager stats) {
+
     super(filename);
     this.transitSystem = transitSystem;
     this.stats = stats;
+
+    // Associate the handler with the logger.
+    try {
+      Handler consoleHandler = new ConsoleHandler();
+      Handler fileHandler = new FileHandler("log/events.log", true);
+      logger.setLevel(Level.ALL);
+      consoleHandler.setLevel(Level.ALL);
+      fileHandler.setLevel(Level.ALL);
+      logger.addHandler(consoleHandler);
+      logger.addHandler(fileHandler);
+    } catch (IOException e) {
+      Handler consoleHandler = new ConsoleHandler();
+      logger.setLevel(Level.ALL);
+      consoleHandler.setLevel(Level.ALL);
+      logger.addHandler(consoleHandler);
+      logger.log(Level.SEVERE, "Could not open log file.");
+      e.printStackTrace();
+    }
   }
 
   /**
@@ -39,7 +67,7 @@ public class EventConfigFileParser extends ConfigFileParser {
     message = "";
 
     // Print input message
-    System.out.println("INPUT    :   " + line);
+    logger.log(Level.FINEST, System.lineSeparator() + "INPUT    :   " + line + System.lineSeparator());
 
     // Parse according to command type
     String[] lineData = line.split(": ");
@@ -58,7 +86,8 @@ public class EventConfigFileParser extends ConfigFileParser {
     }
 
     // Print output message
-    System.out.println("OUTPUT   :   " + message + System.lineSeparator());
+    logger.log(Level.FINEST,System.lineSeparator() + "OUTPUT   :   " + message + System.lineSeparator());
+
   }
 
   /**
