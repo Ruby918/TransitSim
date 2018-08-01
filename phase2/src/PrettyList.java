@@ -1,5 +1,10 @@
 import java.util.ArrayList;
 
+/**
+ * Class for list which has a nice-looking string representation.
+ *
+ * @param <T> the type of the contents of the list
+ */
 public class PrettyList<T> {
 
   private ArrayList<T> list;
