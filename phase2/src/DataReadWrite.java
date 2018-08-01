@@ -46,7 +46,6 @@ public class DataReadWrite<T> {
       throw new DataReadException();
     }
 
-
     return data;
   }
 
