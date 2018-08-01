@@ -17,8 +17,10 @@ public class Main {
       DataReadWrite<TransitFareManager> dataReadWrite = new DataReadWrite<>(path);
       transitFareManager = dataReadWrite.read();
       StatisticsManager stats = new StatisticsManager(transitFareManager);
-    } catch (Exception e) {
-
+    } catch (DataWriteException e) {
+      logger.error("Couldn't write serializable file " + path);
+    } catch (DataReadException e) {
+      logger.error("Couldn't read from serializable file " + path);
     }
   }
 }

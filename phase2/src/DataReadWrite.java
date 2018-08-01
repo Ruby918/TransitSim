@@ -16,37 +16,52 @@ public class DataReadWrite<T> {
   private String path;
   private File file;
 
-  public DataReadWrite(String path) throws IOException {
-    this.path = path;
+  public DataReadWrite(String path) throws DataWriteException {
 
-    file = new File(path);
-    if (!file.exists()) {
-      file.createNewFile();
+    try {
+      this.path = path;
+
+      file = new File(path);
+      if (!file.exists()) {
+        file.createNewFile();
+      }
+    } catch (IOException e) {
+      throw new DataWriteException();
     }
   }
 
-  public T read() throws ClassNotFoundException, IOException {
+  public T read() throws DataReadException {
 
     T data;
 
-    InputStream file = new FileInputStream(path);
-    InputStream buffer = new BufferedInputStream(file);
-    ObjectInput input = new ObjectInputStream(buffer);
+    try {
+      InputStream file = new FileInputStream(path);
+      InputStream buffer = new BufferedInputStream(file);
+      ObjectInput input = new ObjectInputStream(buffer);
 
-    //deserialize the Map
-    data = (T) input.readObject();
-    input.close();
+      //deserialize the Map
+      data = (T) input.readObject();
+      input.close();
+    } catch (Exception e) {
+      throw new DataReadException();
+    }
+
 
     return data;
   }
 
-  public void save(T object) throws IOException {
+  public void save(T object) throws DataWriteException {
 
-    OutputStream file = new FileOutputStream(path);
-    OutputStream buffer = new BufferedOutputStream(file);
-    ObjectOutput output = new ObjectOutputStream(buffer);
+    try {
+      OutputStream file = new FileOutputStream(path);
+      OutputStream buffer = new BufferedOutputStream(file);
+      ObjectOutput output = new ObjectOutputStream(buffer);
 
-    output.writeObject(object);
-    output.close();
+      output.writeObject(object);
+      output.close();
+    } catch (IOException e) {
+      throw new DataWriteException();
+    }
+
   }
 }
