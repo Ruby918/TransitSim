@@ -191,6 +191,8 @@ public class CustomerAccount {
   @Override
   public String toString() {
 
+    PrettyList<Card> prettyCards = new PrettyList<>(cards, "Cards");
+
     return "Name: "
         + this.name
         + " | Email: "
@@ -198,6 +200,6 @@ public class CustomerAccount {
         + " | ID: "
         + Integer.toString(this.id)
         + " | Cards: "
-        + ConfigFileParser.getStringFromList(cards, "Cards");
+        + prettyCards.toString();
   }
 }

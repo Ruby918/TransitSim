@@ -12,7 +12,7 @@ public abstract class TapEvent {
   private Card card;
   private boolean flagged = false;
 
-  protected static ArrayList<TapEvent> unnaturalTapEvents = new ArrayList<>();
+  protected ArrayList<TapEvent> unnaturalTapEvents = new ArrayList<>();
 
   public TapEvent(Station station, TransitDate date, Card card) {
     this.station = station;

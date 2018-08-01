@@ -19,14 +19,13 @@ public class TransitFareManager {
    * Map of this transit system.
    */
   protected Map map;
-  /**
-   * Stats of this transit system
-   */
-  protected StatisticsManager stats;
 
-  public TransitFareManager(Map map, StatisticsManager stats) {
+  private ArrayList<Trip> trips = new ArrayList<>();
+  private ArrayList<Transaction> transactions = new ArrayList<>();
+  public final double MAX_CHARGE = 6;
+
+  public TransitFareManager(Map map) {
     this.map = map;
-    this.stats = stats;
   }
 
   public ArrayList<CustomerAccount> getCustomers() {
@@ -35,6 +34,14 @@ public class TransitFareManager {
 
   public ArrayList<Card> getCards() {
     return cards;
+  }
+
+  public ArrayList<Trip> getTrips() {
+    return this.trips;
+  }
+
+  public ArrayList<Transaction> getTransactions() {
+    return this.transactions;
   }
 
   /**
@@ -61,7 +68,7 @@ public class TransitFareManager {
    */
   public Card issueCard(CustomerAccount customer) {
     // Increment card id by one for every new card
-    Card card = new Card(this.cards.size());
+    Card card = new Card(this.cards.size(), this);
     this.cards.add(card);
     customer.addCard(card);
     return card;
@@ -85,6 +92,18 @@ public class TransitFareManager {
    */
   public Card getCardById(int id) {
     return this.cards.get(id);
+  }
+
+  public Trip createTrip() {
+    Trip trip = new Trip(MAX_CHARGE);
+    this.trips.add(trip);
+    return trip;
+  }
+
+  public Transaction createTransaction(Card card, Price price, TransitDate date) {
+    Transaction transaction = new Transaction(card, price, date);
+    this.transactions.add(transaction);
+    return transaction;
   }
 
 }

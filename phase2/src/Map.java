@@ -82,7 +82,7 @@ public class Map {
   /**
    * Bundle stations as adjacent stops.
    */
-  public static void makeAdjacent(ArrayList<Station> stations) {
+  public void makeAdjacent(ArrayList<Station> stations) {
     for (int i = 0; i < stations.size(); i++) {
       for (int j = 0; j < stations.size(); j++) {
         if (!(j == i)) {

@@ -17,12 +17,14 @@ public class Card {
   private Trip activeTrip = null; // Trip Card is actively going through; null if no trip is active.
   private boolean isActive = true;
   private int cardId;
+  private TransitFareManager transitFareManager;
 
   /**
    * A constructor for the card class that sets the id.
    */
-  public Card(int id) {
+  public Card(int id, TransitFareManager transitFareManager) {
     this.cardId = id;
+    this.transitFareManager = transitFareManager;
   }
 
   /**
@@ -92,11 +94,11 @@ public class Card {
   /**
    * Create transaction with the end goal of decreasing the balance of this card by `amount`.
    *
-   * @param pr the <code>Price</code>
+   * @param price the <code>Price</code>
    * @param date date of transaction
    */
   private void createTransaction(Price price, TransitDate date) {
-    this.transactions.add(new Transaction(this, price, date));
+    this.transitFareManager.createTransaction(this, price, date);
   }
 
   public ArrayList<Transaction> getTransactions() {
@@ -113,7 +115,7 @@ public class Card {
   private void addInvalidTap(TapEvent tapEvent) {
     tapEvent.flagAsUnnatural();
     Price price = new Price();
-    price.setFinalPrice(Trip.MAX_CHARGE);
+    price.setFinalPrice(transitFareManager.MAX_CHARGE);
     createTransaction(price, tapEvent.getTransitDate());
     this.activeTrip = null;
   }
@@ -149,7 +151,7 @@ public class Card {
 
     // create new trip, if there isn't a currently active trip
     if (this.activeTrip == null) {
-      this.activeTrip = new Trip();
+      this.activeTrip = transitFareManager.createTrip();
       this.trips.add(this.activeTrip);
     }
 

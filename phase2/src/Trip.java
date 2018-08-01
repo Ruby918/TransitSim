@@ -7,14 +7,12 @@ import java.util.ArrayList;
  */
 public class Trip implements Comparable<Trip> {
 
-  public static final double MAX_CHARGE = 6;
   private double cost;
   private ArrayList<TapEvent> tapEvents = new ArrayList<>();
+  private double maxCharge;
 
-  private static ArrayList<Trip> trips = new ArrayList<>();
-
-  public Trip() {
-    trips.add(this);
+  public Trip(double maxCharge) {
+    this.maxCharge = maxCharge;
   }
 
   /**
@@ -83,8 +81,8 @@ public class Trip implements Comparable<Trip> {
     }
     tapEvents.add(tapInEvent);
     double tapPrice = tapInEvent.getStation().tapInPrice;
-    if (cost + tapPrice > MAX_CHARGE) {
-      tapPrice = MAX_CHARGE - cost;
+    if (cost + tapPrice > maxCharge) {
+      tapPrice = maxCharge - cost;
     }
     Price price = new Price(tapPrice);
     price.applyPriceModifiers(tapInEvent.getTransitDate());
@@ -111,8 +109,8 @@ public class Trip implements Comparable<Trip> {
     tapEvents.add(tapOutEvent);
     int routeLength = stationOut.getRoute().getRouteLength(stationIn, stationOut);
     double tapPrice = routeLength * stationOut.passThroughPrice;
-    if (cost + tapPrice > MAX_CHARGE) {
-      tapPrice = MAX_CHARGE - cost;
+    if (cost + tapPrice > maxCharge) {
+      tapPrice = maxCharge - cost;
     }
     Price price = new Price(tapPrice);
     price.applyPriceModifiers(tapOutEvent.getTransitDate());
@@ -165,6 +163,7 @@ public class Trip implements Comparable<Trip> {
    */
   @Override
   public String toString() {
+    PrettyList<TapEvent> prettyEvents = new PrettyList<>(tapEvents, "Taps");
     return "Trip Start: "
         + this.getStartDate().toDateTimeString()
         + " | End: "
@@ -172,7 +171,7 @@ public class Trip implements Comparable<Trip> {
         + " | Cost: "
         + this.getCost()
         + " | Tap Log: "
-        + ConfigFileParser.getStringFromList(tapEvents, "Taps");
+        + prettyEvents.toString();
   }
 
   @Override

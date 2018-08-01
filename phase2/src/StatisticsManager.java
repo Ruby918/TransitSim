@@ -9,6 +9,12 @@ import java.util.ArrayList;
  */
 public class StatisticsManager {
 
+  private TransitFareManager transitFareManager;
+
+  public StatisticsManager(TransitFareManager transitFareManager) {
+    this.transitFareManager = transitFareManager;
+  }
+
   /**
    * returns the number of trips on a single day.
    *
@@ -17,7 +23,7 @@ public class StatisticsManager {
    */
   public ArrayList<Trip> getTripsOnDate(TransitDate date) {
     ArrayList<Trip> tripsOnDate = new ArrayList<>();
-    for (Trip trip : Trip.trips) {
+    for (Trip trip : transitFareManager.getTrips()) {
       if (trip.getStartDate().onSameDay(date) || trip.getEndDate().onSameDay(date)) {
         tripsOnDate.add(trip);
       }
@@ -33,7 +39,7 @@ public class StatisticsManager {
    */
   public double calculateRevenueOnDate(TransitDate date) {
     double sum = 0;
-    for (Transaction transaction : Transaction.transactions) {
+    for (Transaction transaction : transitFareManager.getTransactions()) {
       if (date.onSameDay(transaction.getDate())) {
         sum += transaction.getAmount();
       }
@@ -48,7 +54,7 @@ public class StatisticsManager {
    */
   public double calculateRevenue() {
     double sum = 0;
-    for (Transaction transaction : Transaction.transactions) {
+    for (Transaction transaction : transitFareManager.getTransactions()) {
       sum += transaction.getAmount();
     }
     return sum;

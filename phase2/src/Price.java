@@ -3,18 +3,16 @@ import java.util.ArrayList;
 public class Price {
     private double rawPrice;
     private double finalPrice;
-    private ArrayList<PriceModifier> priceModifiers;
+    private ArrayList<PriceModifier> priceModifiers = new ArrayList<>();
 
     public Price(){
         rawPrice = -1;
         finalPrice = -1;
-        priceModifiers = null;
     }
 
     public Price(double rawPrice){
         this.rawPrice = rawPrice;
         finalPrice = -1;
-        priceModifiers = null;
     }
     public void applyPriceModifiers(TransitDate date){
         finalPrice = rawPrice;

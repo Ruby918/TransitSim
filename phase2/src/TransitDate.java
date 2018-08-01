@@ -17,41 +17,49 @@ public class TransitDate implements Comparable<TransitDate> {
     this.date = date;
   }
 
+  public TransitDate(String dateString) {
+    this.date = createDateFromDateString(dateString);
+  }
+
+  public TransitDate(String dateString, String timeString) {
+    this.date = createDateFromDateTimeString(dateString, timeString);
+  }
+
   public Date getDate() {
     return date;
   }
 
   /**
-   * Creates and returns an instance of TransitDate using the dateString formatted as DD/MM/YYYY.
+   * Creates and returns an instance of Date using the dateString formatted as DD/MM/YYYY.
    *
    * @param dateString string representing date as DD/MM/YYYY
    */
-  public static TransitDate createFromDateString(String dateString) {
+  private Date createDateFromDateString(String dateString) {
     String[] dateParts = dateString.split("/");
     int day = Integer.parseInt(dateParts[0]);
     int month = Integer.parseInt(dateParts[1]) - 1;
     int year = Integer.parseInt(dateParts[2]);
     Calendar calendar = new GregorianCalendar(year, month, day);
-    return new TransitDate(calendar.getTime());
+    return calendar.getTime();
   }
 
   /**
-   * Creates and returns an instance of TransitDate using the datetimeString formatted as DD/MM/YYYY
-   * HH:MM.
+   * Creates and returns an instance of Date using the dateString formatted as DD/MM/YYYY
+   * and timeString as HH:MM.
    *
-   * @param datetimeString string representing datetime as DD/MM/YYYY HH:MM
+   * @param dateString string representing date as DD/MM/YYYY
+   * @param timeString string representing time as HH:MM
    */
-  public static TransitDate createFromDatetimeString(String datetimeString) {
-    String[] datetimeParts = datetimeString.split(" ");
-    String[] dateParts = datetimeParts[0].split("/");
-    String[] timeParts = datetimeParts[1].split(":");
+  private Date createDateFromDateTimeString(String dateString, String timeString) {
+    String[] dateParts = dateString.split("/");
+    String[] timeParts = timeString.split(":");
     int day = Integer.parseInt(dateParts[0]);
     int month = Integer.parseInt(dateParts[1]) - 1;
     int year = Integer.parseInt(dateParts[2]);
     int hour = Integer.parseInt(timeParts[0]);
     int minute = Integer.parseInt(timeParts[1]);
     Calendar calendar = new GregorianCalendar(year, month, day, hour, minute, 0);
-    return new TransitDate(calendar.getTime());
+    return calendar.getTime();
   }
 
   /**
@@ -96,6 +104,15 @@ public class TransitDate implements Comparable<TransitDate> {
   public String toDateTimeString() {
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
     return sdf.format(date);
+  }
+
+  public TransitDate addTime(int time){
+    Date date = new Date();
+    Calendar calendar = Calendar.getInstance();
+    calendar.setTime(date);
+    calendar.add(Calendar.DATE, time);
+    date = calendar.getTime();
+    return new TransitDate(date);
   }
 
   /**

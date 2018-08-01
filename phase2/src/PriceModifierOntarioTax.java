@@ -1,14 +1,10 @@
 import java.util.Date;
 
 public class PriceModifierOntarioTax extends PriceModifier {
-  public static final double TAX_MULTIPLIER = 1.15;
-  public static final TransitDate START_DATE = new TransitDate(new Date());
-  public static final TransitDate END_DATE = new TransitDate(new Date(Long.MAX_VALUE));
-  public static final String NAME = "Ontario Tax";
-  public static final int USAGE_LIMIT = Integer.MAX_VALUE;
+  private final double TAX_MULTIPLIER = 1.15;
 
-  public PriceModifierOntarioTax() {
-    super(START_DATE, END_DATE, USAGE_LIMIT, NAME);
+  public PriceModifierOntarioTax(TransitDate date) {
+    super(date, date.addTime(Integer.MAX_VALUE), Integer.MAX_VALUE, "Ontario Tax");
   }
 
   @Override

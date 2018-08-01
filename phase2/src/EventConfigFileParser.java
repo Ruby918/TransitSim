@@ -15,10 +15,12 @@ public class EventConfigFileParser extends ConfigFileParser {
    * TransitFareManager object to which the parsed configuration pertains.
    */
   private TransitFareManager transitSystem;
+  private StatisticsManager stats;
 
-  public EventConfigFileParser(String filename, TransitFareManager transitSystem) {
+  public EventConfigFileParser(String filename, TransitFareManager transitSystem, StatisticsManager stats) {
     super(filename);
     this.transitSystem = transitSystem;
+    this.stats = stats;
   }
 
   /**
@@ -67,49 +69,51 @@ public class EventConfigFileParser extends ConfigFileParser {
   private void parseAdminCommand(String[] data) {
 
     String[] parameters = data[1].split(", ");
+    PrettyList<Trip> prettyTrips = new PrettyList<>(transitSystem.getTrips(), "Trips");
 
     switch (parameters[0]) {
       case "Revenue":
         message = "$";
         switch (parameters[1]) {
           case "Total":
-            message += transitSystem.stats.calculateRevenue();
+            message += stats.calculateRevenue();
             break;
           default:
-            TransitDate date = TransitDate.createFromDateString(parameters[1]);
-            message += transitSystem.stats.calculateRevenueOnDate(date);
+            TransitDate date = new TransitDate(parameters[1]);
+            message += stats.calculateRevenueOnDate(date);
         }
         break;
       case "Trips":
         message = "Trips: " + System.lineSeparator();
         switch (parameters[1]) {
           case "Total":
-            message += indentString(
-                getStringFromListMultiline(Trip.trips, "Trips"));
+            message += indentString(prettyTrips.toStringMultiline());
             break;
           default:
-            TransitDate date = TransitDate.createFromDateString(parameters[1]);
-            ArrayList<Trip> trips = transitSystem.stats.getTripsOnDate(date);
-            message += indentString(getStringFromListMultiline(trips, "Trips"));
+            TransitDate date = new TransitDate(parameters[1]);
+            PrettyList<Trip> prettyTripsOnDate = new PrettyList<>(stats.getTripsOnDate(date), "Trips");
+            message += indentString(prettyTripsOnDate.toStringMultiline());
         }
         break;
       case "Stations":
-        TransitDate date = TransitDate.createFromDateString(parameters[1]);
-        ArrayList<Station> stations = transitSystem.stats.getStationsReachedOnDate(date);
+        TransitDate date = new TransitDate(parameters[1]);
+        ArrayList<Station> stations = stats.getStationsReachedOnDate(date);
+        PrettyList<Station> prettyStations = new PrettyList<>(stations, "Stations");
+
         message = "Stations: " + System.lineSeparator()
-            + indentString(getStringFromListMultiline(stations, "Stations"));
+            + indentString(prettyStations.toStringMultiline());
         break;
       case "Routes":
+        PrettyList<Route> prettyRoute = new PrettyList<>(transitSystem.map.getRoutes(), "Routes");
         message = "Routes:" + System.lineSeparator()
-            + indentString(
-            getStringFromListMultiline(transitSystem.map.getRoutes(), "Routes"));
+            + indentString(prettyRoute.toStringMultiline());
         break;
       case "Customers":
         switch (parameters[1]) {
           case "Total":
+            PrettyList<CustomerAccount> prettyCustomers = new PrettyList<>(transitSystem.getCustomers(), "Customers");
             message = "Customers: " + System.lineSeparator()
-                + indentString(
-                getStringFromListMultiline(transitSystem.getCustomers(), "Customers"));
+                + indentString(prettyCustomers.toStringMultiline());
             break;
           case "Create":
             CustomerAccount customer = transitSystem
@@ -122,8 +126,9 @@ public class EventConfigFileParser extends ConfigFileParser {
         }
         break;
       case "Cards":
+        PrettyList<Card> prettyCards = new PrettyList<>(transitSystem.getCards(), "Cards");
         message = "Cards: " + System.lineSeparator()
-            + indentString(getStringFromListMultiline(transitSystem.getCards(), "Cards"));
+            + indentString(prettyCards.toStringMultiline());
         break;
       default:
         message = "That is not a valid admin command.";
@@ -144,6 +149,7 @@ public class EventConfigFileParser extends ConfigFileParser {
     }
 
     String[] parameters = data[2].split(", ");
+    PrettyList<Card> prettyCards = new PrettyList<>(customer.getCards(), "Cards");
 
     switch (parameters[0]) {
       case "Details":
@@ -161,7 +167,7 @@ public class EventConfigFileParser extends ConfigFileParser {
             break;
           case "View":
             message = "Cards: " + System.lineSeparator()
-                + indentString(getStringFromList(customer.getCards(), "Cards"));
+                + indentString(prettyCards.toString());
             break;
           default:
             message = "That is not a valid customer card command.";
@@ -171,8 +177,9 @@ public class EventConfigFileParser extends ConfigFileParser {
         message = "$" + customer.calculateAverageMonthlyCost();
         break;
       case "Recent Trips":
+        PrettyList<Trip> prettyTrips = new PrettyList<>(customer.calculateRecentTrips(), "Trips");
         message = "Recent Trips:" + System.lineSeparator()
-            + indentString(getStringFromListMultiline(customer.calculateRecentTrips(), "Trips"));
+            + indentString(prettyTrips.toStringMultiline());
         break;
       default:
         message = "That is not a valid customer command.";
@@ -199,8 +206,9 @@ public class EventConfigFileParser extends ConfigFileParser {
         message = card.toString();
         break;
       case "Recent Trips":
+        PrettyList<Trip> prettyTrips = new PrettyList<>(card.calculateRecentTrips(), "Trips");
         message = "Recent Trips: " + System.lineSeparator()
-            + indentString(getStringFromListMultiline(card.calculateRecentTrips(), "Trips"));
+            + indentString(prettyTrips.toStringMultiline());
         break;
       case "Add Funds":
         switch (parameters[1]) {
@@ -254,7 +262,8 @@ public class EventConfigFileParser extends ConfigFileParser {
     }
     TransitDate date;
     try {
-      date = TransitDate.createFromDatetimeString(parameters[4]);
+      String[] datetimeParts = parameters[4].split(" ");
+      date = new TransitDate(datetimeParts[0], datetimeParts[1]);
     } catch (ArrayIndexOutOfBoundsException e) {
       message = "Error: That datetime is incorrectly formatted.";
       return;
@@ -292,7 +301,8 @@ public class EventConfigFileParser extends ConfigFileParser {
     }
     TransitDate date;
     try {
-      date = TransitDate.createFromDatetimeString(parameters[4]);
+      String[] datetimeParts = parameters[4].split(" ");
+      date = new TransitDate(datetimeParts[0], datetimeParts[1]);
     } catch (ArrayIndexOutOfBoundsException e) {
       message = "Error: That datetime is incorrectly formatted.";
       return;

@@ -11,14 +11,14 @@ public class Main {
     MapConfigFileParser mapData = new MapConfigFileParser("map.txt", thisMap);
     mapData.parse();
 
-    // Create stats manager
-    StatisticsManager stats = new StatisticsManager();
-
     // Create transit fare manager
-    TransitFareManager ttc = new TransitFareManager(thisMap, stats);
+    TransitFareManager transitFareManager = new TransitFareManager(thisMap);
+
+    // Create stats manager
+    StatisticsManager stats = new StatisticsManager(transitFareManager);
 
     // Process events from events.txt
-    EventConfigFileParser eventData = new EventConfigFileParser("events.txt", ttc);
+    EventConfigFileParser eventData = new EventConfigFileParser("events.txt", transitFareManager, stats);
     eventData.parse();
   }
 }
