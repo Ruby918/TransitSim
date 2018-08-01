@@ -23,6 +23,7 @@ public class Main {
 
   public static void main(String[] args) {
 
+    TransitLogger logger = new TransitLogger();
     // Reads serializable transit fare manager from file.
     // Populates the record list using stored data, if it exists.
     String path = "data/transitFareManager.ser";
@@ -33,8 +34,6 @@ public class Main {
 
         // Create stats manager
         StatisticsManager stats = new StatisticsManager(transitFareManager);
-        System.out.println(stats.calculateRevenue());
-        System.out.println(stats.getTripsOnDate(new TransitDate("8/07/2018")));
 
       } else {
         file.createNewFile();
@@ -51,7 +50,7 @@ public class Main {
         StatisticsManager stats = new StatisticsManager(transitFareManager);
 
         // Process events from events.txt
-        EventConfigFileParser eventData = new EventConfigFileParser("events.txt", transitFareManager, stats);
+        EventConfigFileParser eventData = new EventConfigFileParser("events.txt", transitFareManager, stats, logger);
         eventData.parse();
 
         saveToFile("data/transitFareManager.ser");
