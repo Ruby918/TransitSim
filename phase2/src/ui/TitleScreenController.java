@@ -13,12 +13,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
-public class TitleScreenController {
+public class TitleScreenController extends UiController {
   @FXML
   private Button userButton;
 
   @FXML
   private Button adminButton;
+
+  public void initialize() {
+    System.out.println(transitFareManager.getCustomers());
+  }
 
   @FXML
   protected void handleUserButtonAction(ActionEvent event) {

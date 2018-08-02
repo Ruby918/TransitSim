@@ -13,7 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
-public class AdminLoginScreenController {
+public class AdminLoginScreenController extends UiController {
 
   @FXML
   private Button loginButton;

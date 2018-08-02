@@ -13,7 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
-public class CreateCardScreenController {
+public class CreateCardScreenController extends UiController {
   @FXML
   private Button returnButton;
 
