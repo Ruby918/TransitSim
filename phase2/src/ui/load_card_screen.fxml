@@ -27,4 +27,42 @@
           GridPane.halignment="CENTER"
           onAction="#handleAddFiveButtonAction">
   </Button>
+
+  <!-- Add 'Add $10' Button (Make the text 2 lines) -->
+  <Button fx:id="addTen" text="Add $10"
+          prefWidth="50" prefHeight="50" defaultButton="false"
+          GridPane.columnIndex="1" GridPane.rowIndex="0"
+          GridPane.columnSpan="1" GridPane.rowSpan="1"
+          GridPane.halignment="CENTER"
+          onAction="#handleAddTenButtonAction">
+  </Button>
+
+  <!-- Add 'Add $20' Button (Make the text 2 lines) -->
+  <Button fx:id="addTwo" text="Add $20"
+          prefWidth="50" prefHeight="50" defaultButton="false"
+          GridPane.columnIndex="2" GridPane.rowIndex="0"
+          GridPane.columnSpan="1" GridPane.rowSpan="1"
+          GridPane.halignment="CENTER"
+          onAction="#handleAddTwoButtonAction">
+  </Button>
+
+  <!-- Add 'Add $50' Button (Make the text 2 lines) -->
+  <Button fx:id="addFiveTen" text="Add $50"
+          prefWidth="50" prefHeight="50" defaultButton="false"
+          GridPane.columnIndex="3" GridPane.rowIndex="0"
+          GridPane.columnSpan="1" GridPane.rowSpan="1"
+          GridPane.halignment="CENTER"
+          onAction="#handleAddFiveTenButtonAction">
+  </Button>
+
+  <!-- Add Return Button -->
+  <Button fx:id="returnButton" text="Return"
+          prefWidth="100" prefHeight="20" defaultButton="false"
+          GridPane.columnIndex="0" GridPane.rowIndex="5"
+          GridPane.columnSpan="1" GridPane.rowSpan="1"
+          GridPane.halignment="CENTER"
+          onAction="#handleReturnButtonAction">
+  </Button>
+
+
 </GridPane>
