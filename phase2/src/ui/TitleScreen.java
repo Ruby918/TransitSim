@@ -15,10 +15,16 @@ public class TitleScreen extends Application {
 
   @Override
   public void start(Stage stage) throws Exception {
-    Parent root = FXMLLoader.load(getClass().getResource("title_screen.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("template/title_screen.fxml"));
 
     Scene scene = new Scene(root, 270, 150);
     stage.setScene(scene);
     stage.show();
+  }
+
+  @Override
+  public void stop(){
+    System.out.println("Stage is closing");
+    // Save file
   }
 }

@@ -26,7 +26,7 @@ public class AdminLoginScreenController {
     Window owner = loginButton.getScene().getWindow();
     try {
       FXMLLoader loginLoader = new FXMLLoader();
-      loginLoader.setLocation(getClass().getResource("admin_screen.fxml"));
+      loginLoader.setLocation(getClass().getResource("template/admin_screen.fxml"));
       Scene loginScene = new Scene(loginLoader.load(), 500, 500);
       Stage loginStage = new Stage();
       loginStage.setScene(loginScene);
@@ -42,7 +42,7 @@ public class AdminLoginScreenController {
     Window owner = returnButton.getScene().getWindow();
     try {
       FXMLLoader returnLoader = new FXMLLoader();
-      returnLoader.setLocation(getClass().getResource("title_screen.fxml"));
+      returnLoader.setLocation(getClass().getResource("template/title_screen.fxml"));
       Scene returnScene = new Scene(returnLoader.load(), 270, 150);
       Stage returnStage = new Stage();
       returnStage.setScene(returnScene);

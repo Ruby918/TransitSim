@@ -22,7 +22,7 @@ public class AdminScreenController {
     Window owner = adminReturn.getScene().getWindow();
     try {
       FXMLLoader mainLoader = new FXMLLoader();
-      mainLoader.setLocation(getClass().getResource("title_screen.fxml"));
+      mainLoader.setLocation(getClass().getResource("template/title_screen.fxml"));
       Scene mainScene = new Scene(mainLoader.load(), 270, 150);
       Stage mainStage = new Stage();
       mainStage.setScene(mainScene);

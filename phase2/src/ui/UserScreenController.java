@@ -28,7 +28,7 @@ public class UserScreenController {
     Window owner = createCard.getScene().getWindow();
     try {
       FXMLLoader createLoader = new FXMLLoader();
-      createLoader.setLocation(getClass().getResource("create_card_screen.fxml"));
+      createLoader.setLocation(getClass().getResource("template/create_card_screen.fxml"));
       Scene createScene = new Scene(createLoader.load(), 300, 250);
       Stage createStage = new Stage();
       createStage.setScene(createScene);
@@ -43,7 +43,7 @@ public class UserScreenController {
     Window owner = userReturn.getScene().getWindow();
     try {
       FXMLLoader mainLoader = new FXMLLoader();
-      mainLoader.setLocation(getClass().getResource("title_screen.fxml"));
+      mainLoader.setLocation(getClass().getResource("template/title_screen.fxml"));
       Scene mainScene = new Scene(mainLoader.load(), 270, 150);
       Stage mainStage = new Stage();
       mainStage.setScene(mainScene);
@@ -58,7 +58,7 @@ public class UserScreenController {
   protected void handleLoadCardButton(ActionEvent event) {
     try {
       FXMLLoader loadLoader = new FXMLLoader();
-      loadLoader.setLocation(getClass().getResource("load_card_screen.fxml"));
+      loadLoader.setLocation(getClass().getResource("template/load_card_screen.fxml"));
       Scene loadScene = new Scene(loadLoader.load(), 350, 200);
       Stage loadStage = new Stage();
       loadStage.setScene(loadScene);
