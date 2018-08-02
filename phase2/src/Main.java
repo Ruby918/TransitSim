@@ -25,6 +25,19 @@ public class Main {
       logger.error("Couldn't write serializable file " + path);
     } catch (DataReadException e) {
       logger.error("Couldn't read from serializable file " + path);
+
+      // Create data from events.txt and map.txt
+      Map map = new Map();
+      MapConfigFileParser mapConfigFileParser = new MapConfigFileParser("map.txt", map);
+      mapConfigFileParser.parse();
+      transitFareManager = new TransitFareManager(map);
+      StatisticsManager stats = new StatisticsManager(transitFareManager);
+      EventConfigFileParser eventConfigFileParser = new EventConfigFileParser("events.txt", transitFareManager, stats, logger);
+      eventConfigFileParser.parse();
+      try {
+        DataReadWrite<TransitFareManager> dataReadWrite = new DataReadWrite<>(path);
+        dataReadWrite.save(transitFareManager);
+      } catch (Exception e2) {}
     }
   }
 }
