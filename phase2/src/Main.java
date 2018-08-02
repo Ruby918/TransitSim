@@ -1,3 +1,4 @@
+import ui.TitleScreen;
 
 public class Main {
 
@@ -13,6 +14,8 @@ public class Main {
 
     TransitLogger logger = new TransitLogger();
     String path = "data/transitFareManager.ser";
+
+    TitleScreen.view();
 
     try {
       DataReadWrite<TransitFareManager> dataReadWrite = new DataReadWrite<>(path);
