@@ -1,7 +1,7 @@
 package ui;
 
-import transit.TransitFareManager;
+import api.Api;
 
 public class UiController {
-  public static TransitFareManager transitFareManager;
+  public static Api api;
 }

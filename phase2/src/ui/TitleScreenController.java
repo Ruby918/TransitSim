@@ -21,7 +21,8 @@ public class TitleScreenController extends UiController {
   private Button adminButton;
 
   public void initialize() {
-    System.out.println(transitFareManager.getCustomers());
+    // test api functionality
+    System.out.println(api.getCustomers());
   }
 
   @FXML

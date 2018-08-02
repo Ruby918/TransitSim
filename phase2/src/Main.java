@@ -1,4 +1,13 @@
-package transit;
+import transit.DataReadException;
+import transit.DataReadWrite;
+import transit.DataWriteException;
+import transit.EventConfigFileParser;
+import transit.Map;
+import transit.MapConfigFileParser;
+import transit.StatisticsManager;
+import transit.TransitFareManager;
+import transit.TransitLogger;
+import api.Api;
 
 import ui.TitleScreen;
 import ui.UiController;
@@ -11,17 +20,19 @@ public class Main {
    * manager.
    */
 
-  private static TransitFareManager transitFareManager;
-
   public static void main(String[] args) {
 
+    TransitFareManager transitFareManager;
     TransitLogger logger = new TransitLogger();
+    StatisticsManager stats;
     String path = "data/transitFareManager.ser";
 
     try {
       DataReadWrite<TransitFareManager> dataReadWrite = new DataReadWrite<>(path);
       transitFareManager = dataReadWrite.read();
-      StatisticsManager stats = new StatisticsManager(transitFareManager);
+      stats = new StatisticsManager(transitFareManager);
+      Api api = new Api(transitFareManager, stats, logger);
+      UiController.api = api;
     } catch (DataWriteException e) {
       logger.error("Couldn't write serializable file " + path);
     } catch (DataReadException e) {
@@ -32,16 +43,17 @@ public class Main {
       MapConfigFileParser mapConfigFileParser = new MapConfigFileParser("map.txt", map);
       mapConfigFileParser.parse();
       transitFareManager = new TransitFareManager(map);
-      StatisticsManager stats = new StatisticsManager(transitFareManager);
+      stats = new StatisticsManager(transitFareManager);
       EventConfigFileParser eventConfigFileParser = new EventConfigFileParser("events.txt", transitFareManager, stats, logger);
       eventConfigFileParser.parse();
+      Api api = new Api(transitFareManager, stats, logger);
+      UiController.api = api;
       try {
         DataReadWrite<TransitFareManager> dataReadWrite = new DataReadWrite<>(path);
         dataReadWrite.save(transitFareManager);
       } catch (Exception e2) {}
     }
 
-    UiController.transitFareManager = transitFareManager;
     TitleScreen.view();
 
   }
