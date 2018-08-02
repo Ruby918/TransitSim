@@ -16,6 +16,7 @@ public class CustomerAccount implements Serializable {
   private String email;
   private ArrayList<Card> cards = new ArrayList<>();
   private int id;
+  private boolean active = true;
 
   /**
    * A constructor for the CustomerAccount class that sets a name, email and id.
@@ -49,6 +50,14 @@ public class CustomerAccount implements Serializable {
       }
     }
     return null;
+  }
+
+  public void deactivateAccount() {
+    this.active = false;
+  }
+
+  public void activateAccount() {
+    this.active = true;
   }
 
   /**
