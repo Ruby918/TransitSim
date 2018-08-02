@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 
 public class LoadCardScreenController extends UiController {
 
@@ -31,24 +32,46 @@ public class LoadCardScreenController extends UiController {
   private Button returnButton;
 
   @FXML
+  private Button resetCounter;
+
+  @FXML
+  private Label moneyCount;
+
+  @FXML
   protected void handleAddFiveButtonAction(ActionEvent event) {
-    // Make the display add 5 TO DO
     // Make the card load $5 TO DO BACKEND
+    String moneyCountLabel = moneyCount.getText();
+    double newTotal = Double.parseDouble(moneyCountLabel) + 5.00;
+    moneyCount.setText(Double.toString(newTotal)+"0");
   }
 
   @FXML
   protected void handleAddTenButtonAction(ActionEvent event) {
-
+    // Make the card load $10 TO DO BACKEND
+    String moneyCountLabel = moneyCount.getText();
+    double newTotal = Double.parseDouble(moneyCountLabel) + 10.00;
+    moneyCount.setText(Double.toString(newTotal)+"0");
   }
 
   @FXML
   protected void handleAddTwoButtonAction(ActionEvent event) {
-
+    // Make the card load $20 TO DO BACKEND
+    String moneyCountLabel = moneyCount.getText();
+    double newTotal = Double.parseDouble(moneyCountLabel) + 20.00;
+    moneyCount.setText(Double.toString(newTotal)+"0");
   }
 
   @FXML
   protected void handleAddFiveTenButtonAction(ActionEvent event) {
+    // Make the card load $50 TO DO BACKEND
+    String moneyCountLabel = moneyCount.getText();
+    double newTotal = Double.parseDouble(moneyCountLabel) + 50.00;
+    moneyCount.setText(Double.toString(newTotal)+"0");
+  }
 
+  @FXML
+  protected void handleResetCounterButtonAction(ActionEvent event) {
+    moneyCount.setText(Double.toString(0.00)+"0");
   }
 
   @FXML
