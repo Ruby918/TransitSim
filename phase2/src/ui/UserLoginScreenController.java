@@ -39,6 +39,9 @@ public class UserLoginScreenController extends UiController {
       user = api.loginCustomer(email, password);
       System.out.println(user);
     } catch (LoginFailedException e) {
+      if (email.isEmpty()) {
+        email = "<blank>";
+      }
       logger.error("Login failed with email " + email);
     }
 
