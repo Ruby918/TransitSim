@@ -31,22 +31,4 @@
         <Font name="Comic Sans MS" size="24"></Font>
       </font>
   </Label>
-
-  <!-- Add User Button -->
-  <Button fx:id="userButton" text="User"
-          prefWidth="100" prefHeight="40" defaultButton="true"
-          GridPane.columnIndex="0" GridPane.rowIndex="1"
-          GridPane.columnSpan="1" GridPane.rowSpan="1"
-          GridPane.halignment="LEFT"
-          onAction="#handleUserButtonAction">
-  </Button>
-
-  <!-- Add Admin Button -->
-  <Button fx:id="adminButton" text="Admin"
-          prefWidth="100" prefHeight="40" defaultButton="false"
-          GridPane.columnIndex="0" GridPane.rowIndex="1"
-          GridPane.columnSpan="1" GridPane.rowSpan="1"
-          GridPane.halignment="RIGHT"
-          onAction="#handleAdminButtonAction">
-  </Button>
 </GridPane>
