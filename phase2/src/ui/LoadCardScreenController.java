@@ -2,37 +2,19 @@
 
 package ui;
 
-import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Window;
-import javafx.stage.Stage;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 
 public class LoadCardScreenController extends UiController {
-
-  @FXML
-  private Button addFive;
-
-  @FXML
-  private Button addTen;
-
-  @FXML
-  private Button addTwo;
 
   @FXML
   public Button addFiveTen;
 
   @FXML
   private Button returnButton;
-
-  @FXML
-  private Button resetCounter;
 
   @FXML
   private Button addMoney;

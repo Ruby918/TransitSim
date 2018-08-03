@@ -25,10 +25,10 @@ public class AdminCustomersController extends UiController {
 
   public void initialize(){
 
-    Id.setCellValueFactory(new PropertyValueFactory<UserForTableView, Integer>("id"));
-    Name.setCellValueFactory(new PropertyValueFactory<UserForTableView, String>("name"));
-    Email.setCellValueFactory(new PropertyValueFactory<UserForTableView, String>("email"));
-    IsAdmin.setCellValueFactory(new PropertyValueFactory<UserForTableView, Boolean>("isAdmin"));
+    Id.setCellValueFactory(new PropertyValueFactory<>("id"));
+    Name.setCellValueFactory(new PropertyValueFactory<>("name"));
+    Email.setCellValueFactory(new PropertyValueFactory<>("email"));
+    IsAdmin.setCellValueFactory(new PropertyValueFactory<>("isAdmin"));
 
     tableView.getItems().setAll(api.getUsersForTableView());
   }
