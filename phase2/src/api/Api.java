@@ -33,7 +33,7 @@ public class Api {
     try {
       UserAccount user = transitFareManager.getCustomerByEmail(email);
       if (user.validatePassword(password)) {
-        logger.log("Api has successfully logged in user with email " + email);
+        logger.log.fine("Api has successfully logged in user with email " + email);
         return user;
       }
       throw new LoginFailedException();

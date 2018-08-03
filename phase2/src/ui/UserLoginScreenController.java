@@ -41,7 +41,7 @@ public class UserLoginScreenController extends UiController {
       if (email.isEmpty()) {
         email = "<blank>";
       }
-      logger.error("Login failed with email " + email);
+      logger.log.warning("Login failed with email " + email);
     }
 
     try {

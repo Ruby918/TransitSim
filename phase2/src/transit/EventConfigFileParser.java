@@ -46,7 +46,7 @@ public class EventConfigFileParser extends ConfigFileParser {
     message = "";
 
     // Print input message
-    logger.log(System.lineSeparator() + "INPUT    :   " + line + System.lineSeparator());
+    logger.log.fine(System.lineSeparator() + "INPUT    :   " + line + System.lineSeparator());
 
     // Parse according to command type
     String[] lineData = line.split(": ");
@@ -65,7 +65,7 @@ public class EventConfigFileParser extends ConfigFileParser {
     }
 
     // Print output message
-    logger.log(System.lineSeparator() + "OUTPUT   :   " + message + System.lineSeparator());
+    logger.log.fine(System.lineSeparator() + "OUTPUT   :   " + message + System.lineSeparator());
 
   }
 

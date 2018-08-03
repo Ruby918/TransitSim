@@ -8,39 +8,30 @@ import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 
 public class TransitLogger {
-  private final Logger logger =
+  public final Logger log =
       Logger.getLogger(EventConfigFileParser.class.getName());
 
   public TransitLogger() {
 
     // Disable default console handler
-    logger.setUseParentHandlers(false);
+    log.setUseParentHandlers(false);
 
-    // Associate the handler with the logger.
+    // Associate the handler with the log.
     try {
       Handler consoleHandler = new ConsoleHandler();
       Handler fileHandler = new FileHandler("log/events.log", true);
-      logger.setLevel(Level.ALL);
+      log.setLevel(Level.ALL);
       consoleHandler.setLevel(Level.ALL);
       fileHandler.setLevel(Level.ALL);
-      logger.addHandler(consoleHandler);
-      logger.addHandler(fileHandler);
+      log.addHandler(consoleHandler);
+      log.addHandler(fileHandler);
     } catch (IOException e) {
       Handler consoleHandler = new ConsoleHandler();
-      logger.setLevel(Level.ALL);
+      log.setLevel(Level.ALL);
       consoleHandler.setLevel(Level.ALL);
-      logger.addHandler(consoleHandler);
-      logger.log(Level.SEVERE, "Could not open log file.");
-      e.printStackTrace();
+      log.addHandler(consoleHandler);
+      log.log(Level.SEVERE, "Could not open log file.");
     }
-  }
-
-  public void log(String message) {
-    logger.log(Level.FINEST, message);
-  }
-
-  public void error(String message) {
-    logger.log(Level.SEVERE, message);
   }
 
 }

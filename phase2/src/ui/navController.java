@@ -77,7 +77,7 @@ public class NavController extends UiController implements Initializable {
       owner.hide();
       loginStage.show();
     } catch (IOException e) {
-      logger.error("Failed to load " + template + " from nav.");
+      logger.log.severe("Failed to load " + template + " from nav.");
     }
   }
 }
