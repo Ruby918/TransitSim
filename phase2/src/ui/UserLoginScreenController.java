@@ -28,14 +28,6 @@ public class UserLoginScreenController extends UiController {
   @FXML
   private PasswordField passField;
 
-  @FXML
-  private NavController navController;
-
-  @FXML
-  public void initialize() {
-    navController.loginButton.setVisible(false);
-  }
-
 
   @FXML
   protected void handleLoginButtonAction(ActionEvent event) {
