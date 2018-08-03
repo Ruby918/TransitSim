@@ -10,6 +10,18 @@ public class Price implements Serializable {
     private ArrayList<PriceModifier> priceModifiers = new ArrayList<>();
     private final PriceModifier ONTARIO_TAX;
 
+    public Price() {
+        this.rawPrice = 0;
+        finalPrice = -1;
+        ONTARIO_TAX = new PriceModifierOntarioTax(new TransitDate(new Date()));
+    }
+
+    public Price(double rawPrice) {
+        this.rawPrice = rawPrice;
+        finalPrice = -1;
+        ONTARIO_TAX = new PriceModifierOntarioTax(new TransitDate(new Date()));
+    }
+
     public Price(TransitDate today){
         rawPrice = -1;
         finalPrice = -1;
