@@ -21,13 +21,12 @@ public class PriceModifierMonthlyPass extends PriceModifier {
         return rawPrice;
     }
     public boolean isValid(TransitDate date){
-        return !this.usedToday() && super.isValid(date);
+        return !this.usedToday(date) && super.isValid(date);
     }
-    private boolean usedToday(){
-        TransitDate dateToday = new TransitDate(new Date());
+    private boolean usedToday(TransitDate today){
         boolean usedToday = false;
         for (Transaction transaction: this.getTransactionsAppliedTo()){
-            if (transaction.getDate().onSameDay(dateToday)){
+            if (transaction.getDate().onSameDay(today)){
                 return true;
             }
         }

@@ -2,22 +2,24 @@ package transit;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Price implements Serializable {
     private double rawPrice;
     private double finalPrice;
     private ArrayList<PriceModifier> priceModifiers = new ArrayList<>();
-//    private final PriceModifier ONTARIO_TAX;
+    private final PriceModifier ONTARIO_TAX;
 
-    public Price(){
+    public Price(TransitDate today){
         rawPrice = -1;
         finalPrice = -1;
-//        ONTARIO_TAX = new PriceModifierOntarioTax(new TransitDate(new Date));
+        ONTARIO_TAX = new PriceModifierOntarioTax(today);
     }
 
-    public Price(double rawPrice){
+    public Price(TransitDate today, double rawPrice){
         this.rawPrice = rawPrice;
         finalPrice = -1;
+        ONTARIO_TAX = new PriceModifierOntarioTax(today);
     }
     public void applyPriceModifiers(TransitDate date){
         finalPrice = rawPrice;
@@ -25,6 +27,11 @@ public class Price implements Serializable {
             if (priceModifier.isValid(date))
             finalPrice = priceModifier.modifyPrice(finalPrice);
         }
+        //apply ontario tax
+        if (ONTARIO_TAX.isValid(date)){
+            finalPrice = ONTARIO_TAX.modifyPrice(finalPrice);
+        }
+
     }
 
     public double getFinalPrice() {
