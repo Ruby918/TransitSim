@@ -8,13 +8,31 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
   xmlns:fx="http://javafx.com/fxml"
-  fx:controller="ui.navController"
+  fx:controller="ui.NavController"
   prefHeight="400.0" prefWidth="600.0">
 
   <children>
     <HBox id="hbox_top" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
       <Label fx:id="loggedInLabel" prefHeight="20.0" text="" />
+
+      <Button fx:id="logoutButton" text="Logout"
+        prefWidth="75" prefHeight="40" defaultButton="false"
+        GridPane.columnIndex="0" GridPane.rowIndex="4"
+        GridPane.columnSpan="1" GridPane.rowSpan="1"
+        GridPane.halignment="LEFT"
+        onAction="#handleLogoutButtonAction">
+      </Button>
+
+      <Button fx:id="loginButton" text="Login"
+        prefWidth="75" prefHeight="40" defaultButton="false"
+        GridPane.columnIndex="0" GridPane.rowIndex="4"
+        GridPane.columnSpan="1" GridPane.rowSpan="1"
+        GridPane.halignment="LEFT"
+        onAction="#handleLoginButtonAction">
+      </Button>
+
     </HBox>
+
   </children>
 
 </AnchorPane>
