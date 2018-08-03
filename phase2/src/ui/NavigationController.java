@@ -14,7 +14,7 @@ import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
-public class NavController extends UiController implements Initializable {
+public class NavigationController extends UiController implements Initializable {
 
   @FXML
   protected MenuBar menuBar;
