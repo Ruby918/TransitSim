@@ -13,6 +13,9 @@ public class TransitLogger {
 
   public TransitLogger() {
 
+    // Disable default console handler
+    logger.setUseParentHandlers(false);
+
     // Associate the handler with the logger.
     try {
       Handler consoleHandler = new ConsoleHandler();

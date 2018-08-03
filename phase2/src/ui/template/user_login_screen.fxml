@@ -50,7 +50,7 @@
     </Button>
 
     <!-- Add Username Label -->
-    <Label  text="Username"
+    <Label  text="Email"
             GridPane.columnIndex="0" GridPane.rowIndex="1"
             GridPane.columnSpan="1" GridPane.rowSpan="1"
             GridPane.halignment="CENTER">

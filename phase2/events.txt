@@ -1,5 +1,7 @@
 Admin: Customers, Create, Danya Lette, danya.lette@mail.utoronto.ca
-Admin: Customers, Create, John Doe, email@mail.utoronto.ca
+Admin: Customers, Create, Brian Quach, brian.quach@mail.utoronto.ca
+Admin: Customers, Create, Loic Nassif-Lachapelle, loic.nassif.lachapelle@mail.utoronto.ca
+Admin: Customers, Create, Dhanraj Patel, dhanraj.patel@mail.utoronto.ca
 Admin: Customers, Total
 Customer: 0: Update Name, Danya Canivet Lette
 Customer: 1: Update Name, Jane Smith

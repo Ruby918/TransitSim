@@ -85,6 +85,15 @@ public class TransitFareManager implements Serializable {
     return this.customers.get(id);
   }
 
+  public CustomerAccount getCustomerByEmail(String email) throws CustomerNotFoundException {
+    for (CustomerAccount customer : this.customers) {
+      if (customer.getEmail().equals(email)) {
+        return customer;
+      }
+    }
+    throw new CustomerNotFoundException();
+  }
+
   /**
    * Returns a card based on the card's ID. Because the IDs were generated incrementally, a card's
    * ID is also the card object's index in the list this.cards.

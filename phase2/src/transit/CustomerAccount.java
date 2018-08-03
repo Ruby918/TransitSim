@@ -14,6 +14,7 @@ public class CustomerAccount implements Serializable {
   // Instance variables storing information on customer.
   private String name;
   private String email;
+  private String password;
   private ArrayList<Card> cards = new ArrayList<>();
   private int id;
   private boolean active = true;
@@ -25,6 +26,7 @@ public class CustomerAccount implements Serializable {
     this.name = name;
     this.email = email;
     this.id = id;
+    this.password = "root";
   }
 
   /**
@@ -58,6 +60,10 @@ public class CustomerAccount implements Serializable {
 
   public void activateAccount() {
     this.active = true;
+  }
+
+  public boolean validatePassword(String password) {
+    return this.password.equals(password);
   }
 
   /**

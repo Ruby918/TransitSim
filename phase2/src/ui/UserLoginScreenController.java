@@ -2,6 +2,7 @@
 
 package ui;
 
+import api.LoginFailedException;
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
@@ -10,8 +11,11 @@ import javafx.scene.control.Button;
 import javafx.stage.Window;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.TextField;
+import javafx.scene.control.PasswordField;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import transit.CustomerAccount;
 
 public class UserLoginScreenController extends UiController {
   @FXML
@@ -21,8 +25,23 @@ public class UserLoginScreenController extends UiController {
   private Button returnButton;
 
   @FXML
+  private TextField userField;
+
+  @FXML
+  private PasswordField passField;
+
+  @FXML
   protected void handleLoginButtonAction(ActionEvent event) {
     Window owner = loginButton.getScene().getWindow();
+    String email = userField.getText();
+    String password = passField.getText();
+    try {
+      user = api.loginCustomer(email, password);
+      System.out.println(user);
+    } catch (LoginFailedException e) {
+      logger.error("Login failed with email " + email);
+    }
+
     try {
       FXMLLoader loginLoader = new FXMLLoader();
       loginLoader.setLocation(getClass().getResource("template/user_screen.fxml"));

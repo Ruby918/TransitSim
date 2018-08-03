@@ -30,14 +30,16 @@ public class Main {
     try {
       DataReadWrite<TransitFareManager> dataReadWrite = new DataReadWrite<>(path);
       transitFareManager = dataReadWrite.read();
+      logger.log("Successfully loaded application state from " + path);
       stats = new StatisticsManager(transitFareManager);
       Api api = new Api(transitFareManager, stats, logger);
       UiController.api = api;
+      UiController.logger = logger;
     } catch (DataWriteException e) {
       logger.error("Couldn't write serializable file " + path);
     } catch (DataReadException e) {
       logger.error("Couldn't read from serializable file " + path);
-
+      logger.log("Creating new application state from events.txt.");
       // Create data from events.txt and map.txt
       Map map = new Map();
       MapConfigFileParser mapConfigFileParser = new MapConfigFileParser("map.txt", map);
@@ -48,6 +50,7 @@ public class Main {
       eventConfigFileParser.parse();
       Api api = new Api(transitFareManager, stats, logger);
       UiController.api = api;
+      UiController.logger = logger;
       try {
         DataReadWrite<TransitFareManager> dataReadWrite = new DataReadWrite<>(path);
         dataReadWrite.save(transitFareManager);

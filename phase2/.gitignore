@@ -2,4 +2,5 @@ out
 *.iml
 .idea
 *.log
+*.log.*
 *.class
