@@ -12,8 +12,8 @@ public class MapConfigFileParser extends ConfigFileParser {
    */
   private Map map;
 
-  public MapConfigFileParser(String filename, Map map) {
-    super(filename);
+  public MapConfigFileParser(String filename, Map map, TransitLogger logger) {
+    super(filename, logger);
     this.map = map;
   }
 
@@ -36,7 +36,7 @@ public class MapConfigFileParser extends ConfigFileParser {
         addHubData(data[1]);
         break;
       default:
-        System.out.println("Warning: "
+        logger.log.severe("Warning: "
             + "Could not parse the following map configuration: " + line);
     }
   }
