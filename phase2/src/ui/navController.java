@@ -36,17 +36,17 @@ public class NavController extends UiController implements Initializable {
 
   @FXML
   protected void handleCustomersButtonAction(ActionEvent event) {
-    loadTemplate("template/admin_screen.fxml");
+    loadTemplate("template/admin_customers_screen.fxml");
   }
 
   @FXML
   protected void handleStatisticsButtonAction(ActionEvent event) {
-    loadTemplate("template/admin_screen.fxml");
+    loadTemplate("template/admin_statistics_screen.fxml");
   }
 
   @FXML
   protected void handleMapButtonAction(ActionEvent event) {
-    loadTemplate("template/admin_screen.fxml");
+    loadTemplate("template/admin_map_screen.fxml");
   }
 
   @FXML
