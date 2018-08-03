@@ -85,7 +85,7 @@ public class LoadCardScreenController extends UiController {
     Window owner = addMoney.getScene().getWindow();
     finalMoneyCount = moneyCount.getText();
     //back end
-    api.addMoney(cardaaaaaa, finalMoneyCount);
+//    api.addMoney(cardaaaaaa, finalMoneyCount);
     try {
       FXMLLoader moneyLoader = new FXMLLoader();
       moneyLoader.setLocation(getClass().getResource("template/success_warning_screen.fxml"));

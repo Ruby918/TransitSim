@@ -7,12 +7,12 @@ public class Price implements Serializable {
     private double rawPrice;
     private double finalPrice;
     private ArrayList<PriceModifier> priceModifiers = new ArrayList<>();
-    private final PriceModifier ONTARIO_TAX;
+//    private final PriceModifier ONTARIO_TAX;
 
     public Price(){
         rawPrice = -1;
         finalPrice = -1;
-        ONTARIO_TAX = new PriceModifierOntarioTax(new TransitDate(new Date));
+//        ONTARIO_TAX = new PriceModifierOntarioTax(new TransitDate(new Date));
     }
 
     public Price(double rawPrice){
