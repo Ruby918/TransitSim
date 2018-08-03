@@ -24,9 +24,10 @@ public class Api {
     return transitFareManager.getCustomers();
   }
 
-  public Card createCard(CustomerAccount customer) {
-    return transitFareManager.issueCard(customer);
+  public void createCard(CustomerAccount customer) {
+    transitFareManager.issueCard(customer);
   }
+  public void addMoney(Card card, double amount){card.addAmount(amount);}
 
   public CustomerAccount loginCustomer(String email, String password) throws LoginFailedException {
     try {
