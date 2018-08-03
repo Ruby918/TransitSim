@@ -6,7 +6,7 @@ public class PriceModifierOntarioTax extends PriceModifier {
   private final double TAX_MULTIPLIER = 1.15;
 
   public PriceModifierOntarioTax(TransitDate date) {
-    super(date, date.addTime(Integer.MAX_VALUE), Integer.MAX_VALUE, "Ontario Tax");
+    super(date.addTime(Integer.MIN_VALUE), date.addTime(Integer.MAX_VALUE), Integer.MAX_VALUE, "Ontario Tax");
   }
 
   @Override

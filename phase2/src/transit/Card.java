@@ -84,6 +84,11 @@ public class Card implements Serializable {
   }
 
   /**
+   * Increases the card balance by the given amount.
+   * @param amount the amount to increase the card balance by
+   */
+  public void addAmount(double amount){this.balance+= amount;}
+  /**
    * Decrease the balance of this card by `amount`.
    *
    * @param amount amount to be removed from balance

@@ -70,7 +70,8 @@ public class TransitDate implements Comparable<TransitDate>, Serializable {
   public boolean onSameDay(TransitDate date2) {
 
     // Code adapted from https://stackoverflow.com/a/2517824/3200577
-    // (User: Michael Borgwardt)
+    // (
+    // User: Michael Borgwardt)
 
     Calendar cal1 = Calendar.getInstance();
     Calendar cal2 = Calendar.getInstance();

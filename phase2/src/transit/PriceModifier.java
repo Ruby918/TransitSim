@@ -28,4 +28,23 @@ public abstract class PriceModifier implements PriceModifiable, Expirable {
         & dateUsed.compareTo(endDate) <= 0
         & numberOfTimesUsed < USAGE_LIMIT);
   }
+
+  public ArrayList<Transaction> getTransactionsAppliedTo() {
+    return transactionsAppliedTo;
+  }
+
+  @Override
+  public String toString(){
+    String ret = name;
+    ret += '\n'+ "Start date: " + startDate;
+    ret +='\n' + "Expiry date:" + endDate;
+    ret +='\n' + "Number of Times Used" + numberOfTimesUsed;
+    ret +='\n'+ "Usage Limit" + USAGE_LIMIT;
+    StringBuilder rett = new StringBuilder(ret);
+    for (Transaction transaction: transactionsAppliedTo){
+      rett.append('\n');
+      rett.append(transaction.toString());
+    }
+    return rett.toString();
+  }
 }
