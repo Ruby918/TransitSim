@@ -20,7 +20,7 @@ public class Api {
     this.logger = transitLogger;
   }
 
-  public ArrayList<UserAccount> getCustomers() {
+  public ArrayList<UserAccount> getUsers() {
     return transitFareManager.getCustomers();
   }
 
