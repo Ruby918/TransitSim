@@ -19,17 +19,6 @@ public class AdminScreenController extends UiController {
 
   @FXML
   protected void handleAdminReturnButtonAction(ActionEvent event) {
-    Window owner = adminReturn.getScene().getWindow();
-    try {
-      FXMLLoader mainLoader = new FXMLLoader();
-      mainLoader.setLocation(getClass().getResource("template/title_screen.fxml"));
-      Scene mainScene = new Scene(mainLoader.load(), 270, 150);
-      Stage mainStage = new Stage();
-      mainStage.setScene(mainScene);
-      owner.hide();
-      mainStage.show();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    loadTemplate(adminReturn, "template/title_screen.fxml");
   }
 }

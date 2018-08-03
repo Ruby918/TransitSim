@@ -84,19 +84,7 @@ public class LoadCardScreenController extends UiController {
     // Add the money to the system TO DO BACKEND
     Window owner = addMoney.getScene().getWindow();
     finalMoneyCount = moneyCount.getText();
-    //back end
-//    api.addMoney(cardaaaaaa, finalMoneyCount);
-    try {
-      FXMLLoader moneyLoader = new FXMLLoader();
-      moneyLoader.setLocation(getClass().getResource("template/success_warning_screen.fxml"));
-      Scene moneyScene = new Scene(moneyLoader.load(), 350, 150);
-      Stage moneyStage = new Stage();
-      moneyStage.setScene(moneyScene);
-      moneyStage.show();
-      owner.hide();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    loadTemplate(addMoney, "template/success_warning_screen.fxml");
   }
 
   @FXML

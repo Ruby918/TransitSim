@@ -83,19 +83,7 @@ public class NavigationController extends UiController implements Initializable 
     return menuLabel;
   }
 
-  private void loadTemplate(String template) {
-    Window owner = menuBar.getScene().getWindow();
-
-    try {
-      FXMLLoader titleLoader = new FXMLLoader();
-      titleLoader.setLocation(getClass().getResource(template));
-      Scene loginScene = new Scene(titleLoader.load(), 500, 500);
-      Stage loginStage = new Stage();
-      loginStage.setScene(loginScene);
-      owner.hide();
-      loginStage.show();
-    } catch (IOException e) {
-      logger.log.severe("Failed to load " + template + " from nav.");
-    }
+  public void loadTemplate(String template){
+    super.loadTemplate(menuBar, template);
   }
 }

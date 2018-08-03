@@ -1,8 +1,9 @@
 package transit;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class PriceModifier implements PriceModifiable, Expirable {
+public abstract class PriceModifier implements PriceModifiable, Expirable, Serializable {
   private TransitDate startDate;
   private TransitDate endDate;
   private ArrayList<Transaction> transactionsAppliedTo;
