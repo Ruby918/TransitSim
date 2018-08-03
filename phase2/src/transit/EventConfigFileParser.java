@@ -16,7 +16,6 @@ public class EventConfigFileParser extends ConfigFileParser {
    */
   private TransitFareManager transitSystem;
   private StatisticsManager stats;
-  private TransitLogger logger;
 
 
   public EventConfigFileParser(String filename,
@@ -24,10 +23,9 @@ public class EventConfigFileParser extends ConfigFileParser {
       StatisticsManager stats,
       TransitLogger logger) {
 
-    super(filename);
+    super(filename, logger);
     this.transitSystem = transitSystem;
     this.stats = stats;
-    this.logger = logger;
   }
 
   /**
