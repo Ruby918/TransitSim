@@ -77,10 +77,19 @@
 
   <!-- Add Reset Counter Button -->
   <Button fx:id="resetCounter" text="Reset Amount"
-          prefWidth="100" prefHeight="20" defaultButton="false"
+          prefWidth="150" prefHeight="20" defaultButton="false"
           GridPane.columnIndex="2" GridPane.rowIndex="3"
           GridPane.columnSpan="1" GridPane.rowSpan="1"
           GridPane.halignment="CENTER"
           onAction="#handleResetCounterButtonAction">
+  </Button>
+
+  <!-- Add 'Add Moneyz' Button -->
+  <Button fx:id="addMoney" text="Add Money"
+          prefWidth="100" prefHeight="20" defaultButton="false"
+          GridPane.columnIndex="1" GridPane.rowIndex="5"
+          GridPane.columnSpan="1" GridPane.rowSpan="1"
+          GridPane.halignment="CENTER"
+          onAction="#handleAddMoneyButtonAction">
   </Button>
 </GridPane>

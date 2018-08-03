@@ -26,7 +26,7 @@ public class LoadCardScreenController extends UiController {
   private Button addTwo;
 
   @FXML
-  private Button addFiveTen;
+  public Button addFiveTen;
 
   @FXML
   private Button returnButton;
@@ -35,11 +35,19 @@ public class LoadCardScreenController extends UiController {
   private Button resetCounter;
 
   @FXML
+  private Button addMoney;
+
+  private static String finalMoneyCount;
+
+  @FXML
   private Label moneyCount;
+
+  public String getMoneyCount() {
+    return finalMoneyCount;
+  }
 
   @FXML
   protected void handleAddFiveButtonAction(ActionEvent event) {
-    // Make the card load $5 TO DO BACKEND
     String moneyCountLabel = moneyCount.getText();
     double newTotal = Double.parseDouble(moneyCountLabel) + 5.00;
     moneyCount.setText(Double.toString(newTotal)+"0");
@@ -47,7 +55,6 @@ public class LoadCardScreenController extends UiController {
 
   @FXML
   protected void handleAddTenButtonAction(ActionEvent event) {
-    // Make the card load $10 TO DO BACKEND
     String moneyCountLabel = moneyCount.getText();
     double newTotal = Double.parseDouble(moneyCountLabel) + 10.00;
     moneyCount.setText(Double.toString(newTotal)+"0");
@@ -55,7 +62,6 @@ public class LoadCardScreenController extends UiController {
 
   @FXML
   protected void handleAddTwoButtonAction(ActionEvent event) {
-    // Make the card load $20 TO DO BACKEND
     String moneyCountLabel = moneyCount.getText();
     double newTotal = Double.parseDouble(moneyCountLabel) + 20.00;
     moneyCount.setText(Double.toString(newTotal)+"0");
@@ -63,7 +69,6 @@ public class LoadCardScreenController extends UiController {
 
   @FXML
   protected void handleAddFiveTenButtonAction(ActionEvent event) {
-    // Make the card load $50 TO DO BACKEND
     String moneyCountLabel = moneyCount.getText();
     double newTotal = Double.parseDouble(moneyCountLabel) + 50.00;
     moneyCount.setText(Double.toString(newTotal)+"0");
@@ -72,6 +77,24 @@ public class LoadCardScreenController extends UiController {
   @FXML
   protected void handleResetCounterButtonAction(ActionEvent event) {
     moneyCount.setText(Double.toString(0.00)+"0");
+  }
+
+  @FXML
+  protected void handleAddMoneyButtonAction(ActionEvent event) {
+    // Add the money to the system TO DO BACKEND
+    Window owner = addMoney.getScene().getWindow();
+    finalMoneyCount = moneyCount.getText();
+    try {
+      FXMLLoader moneyLoader = new FXMLLoader();
+      moneyLoader.setLocation(getClass().getResource("template/success_warning_screen.fxml"));
+      Scene moneyScene = new Scene(moneyLoader.load(), 350, 150);
+      Stage moneyStage = new Stage();
+      moneyStage.setScene(moneyScene);
+      moneyStage.show();
+      owner.hide();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   @FXML

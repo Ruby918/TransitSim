@@ -59,7 +59,7 @@ public class UserScreenController extends UiController {
     try {
       FXMLLoader loadLoader = new FXMLLoader();
       loadLoader.setLocation(getClass().getResource("template/load_card_screen.fxml"));
-      Scene loadScene = new Scene(loadLoader.load(), 350, 200);
+      Scene loadScene = new Scene(loadLoader.load(), 450, 200);
       Stage loadStage = new Stage();
       loadStage.setScene(loadScene);
       loadStage.show();
