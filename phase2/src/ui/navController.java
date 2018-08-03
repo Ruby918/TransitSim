@@ -13,13 +13,13 @@ import javafx.stage.Window;
 public class NavController extends UiController {
 
   @FXML
-  private Button loginButton;
+  protected Button loginButton;
 
   @FXML
-  private Button logoutButton;
+  protected Button logoutButton;
 
   @FXML
-  public Label loggedInLabel;
+  protected Label loggedInLabel;
 
   @FXML
   public void initialize() {
