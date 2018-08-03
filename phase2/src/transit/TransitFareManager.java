@@ -11,7 +11,7 @@ public class TransitFareManager implements Serializable {
   /**
    * List of customers that have accounts with this transit system.
    */
-  private ArrayList<CustomerAccount> customers = new ArrayList<>();
+  private ArrayList<UserAccount> customers = new ArrayList<>();
   /**
    * List of cards that have been issued.
    */
@@ -29,7 +29,7 @@ public class TransitFareManager implements Serializable {
     this.map = map;
   }
 
-  public ArrayList<CustomerAccount> getCustomers() {
+  public ArrayList<UserAccount> getCustomers() {
     return customers;
   }
 
@@ -53,9 +53,9 @@ public class TransitFareManager implements Serializable {
    * @param email customer email
    * @return new customer account object
    */
-  public CustomerAccount createCustomerAccount(String name, String email) {
+  public UserAccount createCustomerAccount(String name, String email, boolean isAdmin) {
     // Increment customer id by one for every new customer
-    CustomerAccount customer = new CustomerAccount(name, email, this.customers.size());
+    UserAccount customer = new UserAccount(name, email, this.customers.size(), isAdmin);
     this.customers.add(customer);
     return customer;
   }
@@ -67,7 +67,7 @@ public class TransitFareManager implements Serializable {
    * @param customer customer to which the card is issued
    * @return new card object
    */
-  public Card issueCard(CustomerAccount customer) {
+  public Card issueCard(UserAccount customer) {
     // Increment card id by one for every new card
     Card card = new Card(this.cards.size(), this);
     this.cards.add(card);
@@ -81,12 +81,12 @@ public class TransitFareManager implements Serializable {
    *
    * @param id id of customer
    */
-  public CustomerAccount getCustomerById(int id) {
+  public UserAccount getCustomerById(int id) {
     return this.customers.get(id);
   }
 
-  public CustomerAccount getCustomerByEmail(String email) throws CustomerNotFoundException {
-    for (CustomerAccount customer : this.customers) {
+  public UserAccount getCustomerByEmail(String email) throws CustomerNotFoundException {
+    for (UserAccount customer : this.customers) {
       if (customer.getEmail().equals(email)) {
         return customer;
       }

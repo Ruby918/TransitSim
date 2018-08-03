@@ -119,13 +119,13 @@ public class EventConfigFileParser extends ConfigFileParser {
       case "Customers":
         switch (parameters[1]) {
           case "Total":
-            PrettyList<CustomerAccount> prettyCustomers = new PrettyList<>(transitSystem.getCustomers(), "Customers");
+            PrettyList<UserAccount> prettyCustomers = new PrettyList<>(transitSystem.getCustomers(), "Customers");
             message = "Customers: " + System.lineSeparator()
                 + indentString(prettyCustomers.toStringMultiline());
             break;
           case "Create":
-            CustomerAccount customer = transitSystem
-                .createCustomerAccount(parameters[2], parameters[3]);
+            UserAccount customer = transitSystem
+                .createCustomerAccount(parameters[2], parameters[3], (parameters[4].equals("admin")));
             message = "Successfully created customer account: "
                 + System.lineSeparator() + indentString(customer.toString());
             break;
@@ -150,7 +150,7 @@ public class EventConfigFileParser extends ConfigFileParser {
    */
   private void parseCustomerCommand(String[] data) {
 
-    CustomerAccount customer = transitSystem.getCustomerById(Integer.parseInt(data[1]));
+    UserAccount customer = transitSystem.getCustomerById(Integer.parseInt(data[1]));
     if (customer == null) {
       message = "That customer does not exist.";
       return;

@@ -19,6 +19,9 @@ public class NavController extends UiController {
   protected Button logoutButton;
 
   @FXML
+  protected Button adminButton;
+
+  @FXML
   protected Label loggedInLabel;
 
   @FXML
@@ -27,17 +30,20 @@ public class NavController extends UiController {
       loggedInLabel.setText("Logged in as " + user.getName());
       logoutButton.setVisible(true);
       loginButton.setVisible(false);
+      if (user.isAdmin) adminButton.setVisible(true);
+      else adminButton.setVisible(false);
     }
     else {
       loggedInLabel.setText("");
       logoutButton.setVisible(false);
       loginButton.setVisible(true);
+      adminButton.setVisible(false);
     }
   }
 
   @FXML
   protected void handleLogoutButtonAction(ActionEvent event) {
-    Window owner = loginButton.getScene().getWindow();
+    Window owner = logoutButton.getScene().getWindow();
     user = null;
 
     try {
@@ -67,6 +73,23 @@ public class NavController extends UiController {
       loginStage.show();
     } catch (IOException e) {
       logger.error("Failed to load login screen from nav.");
+    }
+  }
+
+  @FXML
+  protected void handleAdminButtonAction(ActionEvent event) {
+    Window owner = adminButton.getScene().getWindow();
+
+    try {
+      FXMLLoader adminLoader = new FXMLLoader();
+      adminLoader.setLocation(getClass().getResource("template/admin_screen.fxml"));
+      Scene loginScene = new Scene(adminLoader.load(), 500, 500);
+      Stage loginStage = new Stage();
+      loginStage.setScene(loginScene);
+      owner.hide();
+      loginStage.show();
+    } catch (IOException e) {
+      logger.error("Failed to load admin screen from nav.");
     }
   }
 }

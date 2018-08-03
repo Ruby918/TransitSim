@@ -31,6 +31,14 @@
         onAction="#handleLoginButtonAction">
       </Button>
 
+      <Button fx:id="adminButton" text="Admin"
+        prefWidth="75" prefHeight="40" defaultButton="false"
+        GridPane.columnIndex="0" GridPane.rowIndex="4"
+        GridPane.columnSpan="1" GridPane.rowSpan="1"
+        GridPane.halignment="LEFT"
+        onAction="#handleAdminButtonAction">
+      </Button>
+
     </HBox>
 
   </children>

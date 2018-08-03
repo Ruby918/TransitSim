@@ -13,9 +13,7 @@ import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import transit.CustomerAccount;
 
 public class UserLoginScreenController extends UiController {
   @FXML

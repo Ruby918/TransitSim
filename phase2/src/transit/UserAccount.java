@@ -9,7 +9,7 @@ import java.util.Collections;
  *
  * @author group 0136
  */
-public class CustomerAccount implements Serializable {
+public class UserAccount implements Serializable {
 
   // Instance variables storing information on customer.
   private String name;
@@ -18,15 +18,17 @@ public class CustomerAccount implements Serializable {
   private ArrayList<Card> cards = new ArrayList<>();
   private int id;
   private boolean active = true;
+  public boolean isAdmin;
 
   /**
-   * A constructor for the CustomerAccount class that sets a name, email and id.
+   * A constructor for the UserAccount class that sets a name, email and id.
    */
-  public CustomerAccount(String name, String email, int id) {
+  public UserAccount(String name, String email, int id, boolean isAdmin) {
     this.name = name;
     this.email = email;
     this.id = id;
     this.password = "root";
+    this.isAdmin = isAdmin;
   }
 
   /**
@@ -209,7 +211,7 @@ public class CustomerAccount implements Serializable {
 
     PrettyList<Card> prettyCards = new PrettyList<>(cards, "Cards");
 
-    return "Name: "
+    String st = "Name: "
         + this.name
         + " | Email: "
         + this.email
@@ -217,5 +219,8 @@ public class CustomerAccount implements Serializable {
         + Integer.toString(this.id)
         + " | Cards: "
         + prettyCards.toString();
+
+    if (isAdmin) st += " (Admin)";
+    return st;
   }
 }

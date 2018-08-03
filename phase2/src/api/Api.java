@@ -1,7 +1,7 @@
 package api;
 
 import java.util.ArrayList;
-import transit.CustomerAccount;
+import transit.UserAccount;
 import transit.CustomerNotFoundException;
 import transit.StatisticsManager;
 import transit.TransitFareManager;
@@ -20,18 +20,18 @@ public class Api {
     this.logger = transitLogger;
   }
 
-  public ArrayList<CustomerAccount> getCustomers() {
+  public ArrayList<UserAccount> getCustomers() {
     return transitFareManager.getCustomers();
   }
 
-  public void createCard(CustomerAccount customer) {
+  public void createCard(UserAccount customer) {
     transitFareManager.issueCard(customer);
   }
   public void addMoney(Card card, double amount){card.addAmount(amount);}
 
-  public CustomerAccount loginCustomer(String email, String password) throws LoginFailedException {
+  public UserAccount loginCustomer(String email, String password) throws LoginFailedException {
     try {
-      CustomerAccount user = transitFareManager.getCustomerByEmail(email);
+      UserAccount user = transitFareManager.getCustomerByEmail(email);
       if (user.validatePassword(password)) {
         return user;
       }

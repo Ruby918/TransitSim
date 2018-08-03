@@ -26,7 +26,7 @@ There are three types of commands: Admin, Customer, and Card.
 - See all stations reached on a specific day: `Admin: Stations, DD/MM/YYYY`
 - See all routes: `Admin: Routes`
 - See all customers: `Admin: Customers, Total`
-- Create customer: `Admin: Customers, Create, <customerName>, <customerEmail>`
+- Create customer: `Admin: Customers, Create, <customerName>, <customerEmail>, <admin/customer>`
 - See all cards: `Admin: Cards`
 
 ### Customer commands
