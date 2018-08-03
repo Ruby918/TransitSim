@@ -29,7 +29,7 @@ public class UserScreenController extends UiController {
     try {
       FXMLLoader createLoader = new FXMLLoader();
       createLoader.setLocation(getClass().getResource("template/create_card_screen.fxml"));
-      Scene createScene = new Scene(createLoader.load(), 300, 250);
+      Scene createScene = new Scene(createLoader.load(), 1000, 1000);
       Stage createStage = new Stage();
       createStage.setScene(createScene);
       createStage.show();
@@ -44,7 +44,7 @@ public class UserScreenController extends UiController {
     try {
       FXMLLoader mainLoader = new FXMLLoader();
       mainLoader.setLocation(getClass().getResource("template/title_screen.fxml"));
-      Scene mainScene = new Scene(mainLoader.load(), 270, 150);
+      Scene mainScene = new Scene(mainLoader.load(), 1000, 1000);
       Stage mainStage = new Stage();
       mainStage.setScene(mainScene);
       owner.hide();
@@ -59,7 +59,7 @@ public class UserScreenController extends UiController {
     try {
       FXMLLoader loadLoader = new FXMLLoader();
       loadLoader.setLocation(getClass().getResource("template/load_card_screen.fxml"));
-      Scene loadScene = new Scene(loadLoader.load(), 450, 200);
+      Scene loadScene = new Scene(loadLoader.load(), 1000, 1000);
       Stage loadStage = new Stage();
       loadStage.setScene(loadScene);
       loadStage.show();

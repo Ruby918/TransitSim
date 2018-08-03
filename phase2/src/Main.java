@@ -42,7 +42,7 @@ public class Main {
       logger.log.fine("Creating new application state from events.txt.");
       // Create data from events.txt and map.txt
       Map map = new Map();
-      MapConfigFileParser mapConfigFileParser = new MapConfigFileParser("map.txt", map);
+      MapConfigFileParser mapConfigFileParser = new MapConfigFileParser("map.txt", map, logger);
       mapConfigFileParser.parse();
       transitFareManager = new TransitFareManager(map);
       stats = new StatisticsManager(transitFareManager);

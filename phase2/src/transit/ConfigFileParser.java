@@ -14,9 +14,11 @@ public abstract class ConfigFileParser {
    * Name of the file containing the configuration to be parsed.
    */
   private String fileName;
+  protected TransitLogger logger;
 
-  public ConfigFileParser(String fileName) {
+  public ConfigFileParser(String fileName, TransitLogger logger) {
     this.fileName = fileName;
+    this.logger = logger;
   }
 
   /**
@@ -49,7 +51,7 @@ public abstract class ConfigFileParser {
         line = fileReader.readLine();
       }
     } catch (IOException e) {
-      System.out.println("Cannot read data file: " + fileName);
+     logger.log.severe("Cannot read data file: " + fileName);
     }
   }
 }

@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.Menu;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
@@ -34,8 +35,18 @@ public class NavController extends UiController implements Initializable {
   }
 
   @FXML
-  protected void handleAdminButtonAction(ActionEvent event) {
-    loadTemplate("template/admin_screen.fxml");
+  protected void handleCustomersButtonAction(ActionEvent event) {
+    loadTemplate("template/admin_customers_screen.fxml");
+  }
+
+  @FXML
+  protected void handleStatisticsButtonAction(ActionEvent event) {
+    loadTemplate("template/admin_statistics_screen.fxml");
+  }
+
+  @FXML
+  protected void handleMapButtonAction(ActionEvent event) {
+    loadTemplate("template/admin_map_screen.fxml");
   }
 
   @FXML
@@ -46,8 +57,15 @@ public class NavController extends UiController implements Initializable {
       Label menuLogoutLabel = addMenuLabel("Logout");
       menuLogoutLabel.setOnMouseClicked(event -> handleLogoutButtonAction(null));
       if (user.isAdmin) {
-        Label menuAdminLabel = addMenuLabel("Admin");
-        menuAdminLabel.setOnMouseClicked(event -> handleAdminButtonAction(null));
+        Menu menuAdmin = new Menu("Admin");
+        MenuItem menuItem1 = new MenuItem("Customers");
+        menuItem1.setOnAction(event -> handleCustomersButtonAction(null));
+        MenuItem menuItem2 = new MenuItem("Statistics");
+        menuItem2.setOnAction(event -> handleStatisticsButtonAction(null));
+        MenuItem menuItem3 = new MenuItem("Map");
+        menuItem3.setOnAction(event -> handleMapButtonAction(null));
+        menuAdmin.getItems().addAll(menuItem1, menuItem2, menuItem3);
+        menuBar.getMenus().add(menuAdmin);
       }
     }
     else {
@@ -58,11 +76,11 @@ public class NavController extends UiController implements Initializable {
   }
 
   private Label addMenuLabel(String label) {
-    Menu menuLogin = new Menu();
-    Label menuLoginLabel = new Label(label);
-    menuLogin.setGraphic(menuLoginLabel);
-    menuBar.getMenus().add(menuLogin);
-    return menuLoginLabel;
+    Menu menu = new Menu();
+    Label menuLabel = new Label(label);
+    menu.setGraphic(menuLabel);
+    menuBar.getMenus().add(menu);
+    return menuLabel;
   }
 
   private void loadTemplate(String template) {
