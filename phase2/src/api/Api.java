@@ -20,8 +20,13 @@ public class Api {
     this.logger = transitLogger;
   }
 
-  public ArrayList<UserAccount> getUsers() {
-    return transitFareManager.getCustomers();
+  public ArrayList<UserForTableView> getUsersForTableView() {
+    ArrayList<UserForTableView> result = new ArrayList<>();
+    ArrayList<UserAccount> users = transitFareManager.getCustomers();
+    for (UserAccount user : users){
+      result.add(new UserForTableView(user));
+    }
+    return result;
   }
 
   public void createCard(UserAccount customer) {
