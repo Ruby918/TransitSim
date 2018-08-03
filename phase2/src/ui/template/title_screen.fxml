@@ -7,6 +7,8 @@
 
 <GridPane fx:controller="ui.TitleScreenController"
   xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="15" vgap="15">
+
+
   <padding>
     <Insets top="10" right="10" bottom="10" left="10"/>
   </padding>
@@ -18,6 +20,9 @@
   </columnConstraints>
 
   <!-- Add Title Label -->
+
+  <fx:include fx:id="child" source="nav_bar.fxml"/>
+
   <Label  text="Loic UI v0.1"
           GridPane.columnIndex="0" GridPane.rowIndex="0"
           GridPane.columnSpan="2" GridPane.rowSpan="1"

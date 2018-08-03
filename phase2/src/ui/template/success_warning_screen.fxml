@@ -20,6 +20,9 @@
   </columnConstraints>
 
   <!-- Add Msg label -->
+
+  <fx:include fx:id="nav" source="nav_bar.fxml"/>
+
   <Label  fx:id="SuccessMsg" text="Success! You've Added 0 CAD to your account."
           GridPane.columnIndex="0" GridPane.rowIndex="0"
           GridPane.columnSpan="2" GridPane.rowSpan="1"

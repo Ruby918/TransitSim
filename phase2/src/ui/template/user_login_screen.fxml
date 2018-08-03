@@ -22,6 +22,9 @@
     </columnConstraints>
 
     <!-- Add Title Screen -->
+
+    <fx:include fx:id="nav" source="nav_bar.fxml"/>
+
     <Label  text="User Login"
             GridPane.columnIndex="0" GridPane.rowIndex="0"
             GridPane.columnSpan="2" GridPane.rowSpan="1"
