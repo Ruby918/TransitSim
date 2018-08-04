@@ -43,7 +43,7 @@ public class LoadCardScreenController extends UiController {
   private Label moneyCount;
 
   public String getMoneyCount() {
-    return finalMoneyCount;
+      return finalMoneyCount;
   }
 
   @FXML

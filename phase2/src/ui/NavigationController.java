@@ -89,7 +89,7 @@ public class NavigationController extends UiController implements Initializable 
     try {
       FXMLLoader titleLoader = new FXMLLoader();
       titleLoader.setLocation(getClass().getResource(template));
-      Scene loginScene = new Scene(titleLoader.load(), 500, 500);
+      Scene loginScene = new Scene(titleLoader.load(), 300, 250);
       Stage loginStage = new Stage();
       loginStage.setScene(loginScene);
       owner.hide();

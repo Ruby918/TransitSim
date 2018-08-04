@@ -1,12 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- create card -->
 
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import java.lang.String?>
 
 <GridPane fx:controller="ui.CreateCardScreenController"
   xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="15" vgap="15">
@@ -21,12 +22,9 @@
   </columnConstraints>
 
   <!-- Add Return Button -->
-
-  <fx:include fx:id="nav" source="nav_bar.fxml"/>
-
   <Button fx:id="returnButton" Text="Return"
           prefWidth="100" prefHeight="20" defaultButton="false"
-          GridPane.columnIndex="0" GridPane.rowIndex="10"
+          GridPane.columnIndex="0" GridPane.rowIndex="3"
           GridPane.columnSpan="1" GridPane.rowSpan="1"
           GridPane.halignment="LEFT"
           onAction="#handleReturnButtonAction">
@@ -34,7 +32,7 @@
 
   <!-- Name of Card Label -->
   <Label  text="Enter Name of New Card"
-          GridPane.columnIndex="0" GridPane.rowIndex="1"
+          GridPane.columnIndex="0" GridPane.rowIndex="0"
           GridPane.columnSpan="1" GridPane.rowSpan="1"
           GridPane.halignment="LEFT">
         <font>
@@ -44,7 +42,7 @@
 
   <!-- TextField for Card Name -->
   <TextField  fx:id="nameField" prefWidth="100"
-              GridPane.columnIndex="0" GridPane.rowIndex="2"
+              GridPane.columnIndex="0" GridPane.rowIndex="1"
               GridPane.columnSpan="2" GridPane.rowSpan="1"
               GridPane.halignment="CENTER">
   </TextField>
@@ -52,9 +50,23 @@
   <!-- 'Create' Button -->
   <Button fx:id="createButton" text="Create Card"
           prefWidth="100" prefHeight="20" defaultButton="false"
-          GridPane.columnIndex="1" GridPane.rowIndex="10"
+          GridPane.columnIndex="0" GridPane.rowIndex="3"
           GridPane.columnSpan="1" GridPane.rowSpan="1"
-          GridPane.halignment="LEFT"
+          GridPane.halignment="RIGHT"
           onAction="#handleCreateCardButton">
   </Button>
+
+  <!-- Combobox for type of card -->
+  <ComboBox fx:id="cardTypeCombo" prefWidth="250.0" promptText="Choose Card Type"
+            GridPane.columnIndex="0" GridPane.rowIndex="2">
+    <items>
+      <FXCollections fx:factory="observableArrayList">
+        <String fx:value="Regular Pass" />
+        <String fx:value="Senior Pass (65+): 80% off" />
+        <String fx:value="Kids Pass (12 Under): FREE" />
+        <String fx:value="Monthly Pass: 10% off" />
+        <String fx:value="Student Pass: 20% off" />
+      </FXCollections>
+    </items>
+  </ComboBox>
 </GridPane>

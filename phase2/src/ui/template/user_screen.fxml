@@ -18,33 +18,28 @@
   </columnConstraints>
 
 
-  <!-- Add 'Create Card' Button -->
-
   <fx:include fx:id="nav" source="nav_bar.fxml"/>
 
-  <Button fx:id="createCard" text="Create Card"
-          prefWidth="200" prefHeight="50" defaultButton="false"
+  <!-- Add 'Create Card' Button -->
+
+  <Button fx:id="createCard" text="Create&#13;&#10; Card"
+          prefWidth="75" prefHeight="75" defaultButton="false"
           GridPane.columnIndex="0" GridPane.rowIndex="0"
-          GridPane.columnSpan="2" GridPane.rowSpan="1"
-          GridPane.halignment="CENTER"
+          GridPane.columnSpan="1" GridPane.rowSpan="1"
+          GridPane.halignment="LEFT"
           onAction="#handleCreateCardButton">
   </Button>
 
   <!-- Add 'Load Current Card' Button -->
-  <Button fx:id="loadCard" text="Load Current Card"
-          prefWidth="200" prefHeight="50" defaultButton="false"
-          GridPane.columnIndex="0" GridPane.rowIndex="1"
-          GridPane.columnSpan="2" GridPane.rowSpan="1"
+
+  <Button fx:id="loadCard" text="Load&#13;&#10; Current&#13;&#10; Card"
+          prefWidth="75" prefHeight="75" defaultButton="false"
+          GridPane.columnIndex="0" GridPane.rowIndex="0"
+          GridPane.columnSpan="1" GridPane.rowSpan="1"
           GridPane.halignment="CENTER"
           onAction="#handleLoadCardButton">
   </Button>
 
-  <!-- Add Return Button -->
-  <Button fx:id="userReturn" text="Return"
-          prefWidth="100" prefHeight="20" defaultButton="false"
-          GridPane.columnIndex="0" GridPane.rowIndex="28"
-          GridPane.columnSpan="1" GridPane.rowSpan="1"
-          GridPane.halignment="LEFT"
-          onAction="#handleUserReturnButtonAction">
-  </Button>
+  <!-- Add 'Tap into Station' Button -->
+
 </GridPane>

@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Window;
+import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,6 +20,9 @@ public class CreateCardScreenController extends UiController {
 
   @FXML
   private Button createButton;
+
+  @FXML
+  private ComboBox<String> fruitCombo;
 
   @FXML
   protected void handleReturnButtonAction(ActionEvent event) {

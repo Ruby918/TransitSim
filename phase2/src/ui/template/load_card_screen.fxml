@@ -22,8 +22,6 @@
 
   <!-- Add 'Add $5' Button -->
 
-  <fx:include fx:id="nav" source="nav_bar.fxml"/>
-
   <Button fx:id="addFive" text="Add&#13;&#10; $5"
           prefWidth="50" prefHeight="50" defaultButton="false"
           GridPane.columnIndex="0" GridPane.rowIndex="0"

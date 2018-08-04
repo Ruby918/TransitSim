@@ -46,7 +46,7 @@ public class UserLoginScreenController extends UiController {
     try {
       FXMLLoader loginLoader = new FXMLLoader();
       loginLoader.setLocation(getClass().getResource("template/user_screen.fxml"));
-      Scene loginScene = new Scene(loginLoader.load(), 500, 500);
+      Scene loginScene = new Scene(loginLoader.load(), 500, 300);
       Stage loginStage = new Stage();
       loginStage.setScene(loginScene);
       owner.hide();
