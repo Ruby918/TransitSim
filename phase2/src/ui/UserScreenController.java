@@ -49,4 +49,19 @@ public class UserScreenController extends UiController {
       e.printStackTrace();
     }
   }
+
+  @FXML
+  protected void handleModCardButton(ActionEvent event) {
+
+  }
+
+  @FXML
+  protected void handleTapInCardButton(ActionEvent event) {
+
+  }
+
+  @FXML
+  protected void handleTapOutCardButton(ActionEvent event) {
+
+  }
 }

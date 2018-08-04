@@ -22,9 +22,6 @@ public class CreateCardScreenController extends UiController {
   private Button createButton;
 
   @FXML
-  private ComboBox<String> fruitCombo;
-
-  @FXML
   protected void handleReturnButtonAction(ActionEvent event) {
     Window owner = returnButton.getScene().getWindow();
     owner.hide();
@@ -32,10 +29,20 @@ public class CreateCardScreenController extends UiController {
 
   @FXML
   protected void handleCreateCardButton(ActionEvent event) {
-    // Make a message appear on current stage TO DO (maybe)
-    // Create the card TO DO BACKEND. done
+  // Make a message appear on current stage TO DO (maybe)
     api.createCard(UiController.user);
     Window owner = returnButton.getScene().getWindow();
     owner.hide();
+    try {
+      FXMLLoader moneyLoader = new FXMLLoader();
+      moneyLoader.setLocation(getClass().getResource("template/success_create_screen.fxml"));
+      Scene moneyScene = new Scene(moneyLoader.load(), 350, 150);
+      Stage moneyStage = new Stage();
+      moneyStage.setScene(moneyScene);
+      moneyStage.show();
+      owner.hide();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }

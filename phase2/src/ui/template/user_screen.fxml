@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.control.Button?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.ComboBox?>
 
 <GridPane fx:controller="ui.UserScreenController"
   xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="15" vgap="15">
@@ -20,11 +22,42 @@
 
   <fx:include fx:id="nav" source="nav_bar.fxml"/>
 
+  <!-- Add 'Current Balance' Display -->
+  <Label  fx:id="balanceLabel" text="Current Balance: 0.00 CAD"
+          GridPane.columnIndex="0" GridPane.rowIndex="0"
+          GridPane.columnSpan="2" GridPane.rowSpan="1"
+          GridPane.valignment="CENTER">
+      <font>
+        <Font name="Comic Sans MS" size="18"></Font>
+      </font>
+  </Label>
+
+  <!-- Add ComboBox for selecting Card -->
+  <ComboBox fx:id="selectCardCombo" prefWidth="150.0" promptText="Choose Card"
+            GridPane.columnIndex="0" GridPane.rowIndex="0"
+            GridPane.valignment="BOTTOM"
+            GridPane.halignment="LEFT">
+    <items>
+      <FXCollections fx:factory="observableArrayList">
+      </FXCollections>
+    </items>
+  </ComboBox>
+
+  <!-- Add ComboBox for choosing Station -->
+  <ComboBox fx:id="selectStationCombo" prefWidth="150.0" promptText="Choose Station"
+            GridPane.columnIndex="0" GridPane.rowIndex="0"
+            GridPane.valignment="BOTTOM"
+            GridPane.halignment="RIGHT">
+    <items>
+      <FXCollections fx:factory="observableArrayList">
+      </FXCollections>
+    </items>
+  </ComboBox>
   <!-- Add 'Create Card' Button -->
 
   <Button fx:id="createCard" text="Create&#13;&#10; Card"
           prefWidth="75" prefHeight="75" defaultButton="false"
-          GridPane.columnIndex="0" GridPane.rowIndex="0"
+          GridPane.columnIndex="0" GridPane.rowIndex="1"
           GridPane.columnSpan="1" GridPane.rowSpan="1"
           GridPane.halignment="LEFT"
           onAction="#handleCreateCardButton">
@@ -34,12 +67,40 @@
 
   <Button fx:id="loadCard" text="Load&#13;&#10; Current&#13;&#10; Card"
           prefWidth="75" prefHeight="75" defaultButton="false"
-          GridPane.columnIndex="0" GridPane.rowIndex="0"
+          GridPane.columnIndex="0" GridPane.rowIndex="1"
           GridPane.columnSpan="1" GridPane.rowSpan="1"
           GridPane.halignment="CENTER"
           onAction="#handleLoadCardButton">
   </Button>
 
+  <!-- Add 'Modify Current Card Type' Button -->
+
+  <Button fx:id="modCard" text="Modify&#13;&#10; Current&#13;&#10; Card Type"
+          prefWidth="75" prefHeight="75" defaultButton="false"
+          GridPane.columnIndex="0" GridPane.rowIndex="1"
+          GridPane.columnSpan="1" GridPane.rowSpan="1"
+          GridPane.halignment="RIGHT"
+          onAction="#handleModCardButton">
+  </Button>
+
   <!-- Add 'Tap into Station' Button -->
+
+  <Button fx:id="tapIn" text="Tap Into&#13;&#10; Selected&#13;&#10; Station"
+          prefWidth="75" prefHeight="75" defaultButton="false"
+          GridPane.columnIndex="0" GridPane.rowIndex="2"
+          GridPane.columnSpan="1" GridPane.rowSpan="1"
+          GridPane.halignment="LEFT"
+          onAction="#handleTapInCardButton">
+  </Button>
+
+  <!-- Add 'Tap outa Station' Button -->
+  <Button fx:id="tapOut" text="Tap Out&#13;&#10; Of Selected&#13;&#10; Station"
+          prefWidth="75" prefHeight="75" defaultButton="false"
+          GridPane.columnIndex="0" GridPane.rowIndex="2"
+          GridPane.columnSpan="1" GridPane.rowSpan="1"
+          GridPane.halignment="RIGHT"
+          onAction="#handleTapOutCardButton">
+  </Button>
+
 
 </GridPane>
