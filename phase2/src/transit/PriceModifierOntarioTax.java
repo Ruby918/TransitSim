@@ -8,13 +8,13 @@ public class PriceModifierOntarioTax extends PriceModifier {
   public PriceModifierOntarioTax() {
     super(new TransitDate(new Date(0)), new TransitDate(new Date(0)).addTime(Integer.MAX_VALUE), Integer.MAX_VALUE, "Ontario Tax");
   }
-  public Price
 
   @Override
-  public double modifyPrice(double rawPrice) {
+  public double modifyPrice(double rawPrice, TransitDate dateUsed) {
     if (isValid(new TransitDate(new Date()))) {
       numberOfTimesUsed++;
       rawPrice = rawPrice * TAX_MULTIPLIER;
+      this.addDateUsed(dateUsed);
     }
     return rawPrice;
   }

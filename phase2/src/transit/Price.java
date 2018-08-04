@@ -65,11 +65,11 @@ public class Price implements Serializable {
     finalPrice = rawPrice;
     if (priceModifiers != null) {
       for (PriceModifier priceModifier : priceModifiers) {
-        if (priceModifier.isValid(date)) finalPrice = priceModifier.modifyPrice(finalPrice);
+        if (priceModifier.isValid(date)) finalPrice = priceModifier.modifyPrice(finalPrice, date);
       }
       // apply ontario tax
       if (ONTARIO_TAX.isValid(date)) {
-        finalPrice = ONTARIO_TAX.modifyPrice(finalPrice);
+        finalPrice = ONTARIO_TAX.modifyPrice(finalPrice, date);
       }
       finalPrice = Math.max(finalPrice, maxFinalPrice);
     }

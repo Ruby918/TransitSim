@@ -9,6 +9,7 @@ public abstract class PriceModifier implements PriceModifiable, Expirable {
   int numberOfTimesUsed;
   // maximum number of times the price modifier can be used; -1 if there is no limit;
   private final int USAGE_LIMIT;
+  private ArrayList<TransitDate> datesUsed;
 
   public PriceModifier(TransitDate startDate, TransitDate endDate, int USAGE_LIMIT, String name) {
     this.startDate = startDate;
@@ -16,10 +17,18 @@ public abstract class PriceModifier implements PriceModifiable, Expirable {
     this.USAGE_LIMIT = USAGE_LIMIT;
     numberOfTimesUsed = 0;
     this.name = name;
+    datesUsed = new ArrayList();
   }
 
+  public ArrayList<TransitDate> getDatesUsed() {
+    return datesUsed;
+  }
+
+  public void addDateUsed(TransitDate dateUsed){
+    this.datesUsed.add(dateUsed);
+  }
   @Override
-  public abstract double modifyPrice(double rawPrice);
+  public abstract double modifyPrice(double rawPrice, TransitDate dateUsed);
 
   @Override
   public boolean isValid(TransitDate dateUsed) {

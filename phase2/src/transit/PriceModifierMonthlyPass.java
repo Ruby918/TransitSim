@@ -13,10 +13,11 @@ public class PriceModifierMonthlyPass extends PriceModifier {
 
 
     @Override
-    public double modifyPrice(double rawPrice) {
+    public double modifyPrice(double rawPrice, TransitDate dateUsed) {
         if (isValid(new TransitDate(new Date()))) {
             numberOfTimesUsed++;
             rawPrice = 0;
+            this.addDateUsed(dateUsed);
         }
         return rawPrice;
     }
@@ -25,8 +26,8 @@ public class PriceModifierMonthlyPass extends PriceModifier {
     }
 
     private boolean usedToday(TransitDate today){
-        for (Transaction transaction: this.getTransactionsAppliedTo()){
-            if (transaction.getDate().onSameDay(today)){
+        for (TransitDate dateUsed: this.getDatesUsed()){
+            if (dateUsed.onSameDay(today)){
                 return true;
             }
         }

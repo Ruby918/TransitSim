@@ -12,10 +12,11 @@ public class PriceModifierCharityPass extends PriceModifier {
 
 
     @Override
-    public double modifyPrice(double rawPrice) {
+    public double modifyPrice(double rawPrice, TransitDate dateUsed) {
         if (isValid(new TransitDate(new Date()))) {
             numberOfTimesUsed++;
             rawPrice += 1;
+            this.addDateUsed(dateUsed);
         }
         return rawPrice;
     }
