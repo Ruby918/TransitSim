@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public abstract class PriceModifier implements PriceModifiable, Expirable {
   private TransitDate startDate;
   private TransitDate endDate;
-  private ArrayList<Transaction> transactionsAppliedTo;
   private String name;
   int numberOfTimesUsed;
   // maximum number of times the price modifier can be used; -1 if there is no limit;
@@ -29,10 +28,6 @@ public abstract class PriceModifier implements PriceModifiable, Expirable {
         & numberOfTimesUsed < USAGE_LIMIT);
   }
 
-  public ArrayList<Transaction> getTransactionsAppliedTo() {
-    return transactionsAppliedTo;
-  }
-
   @Override
   public String toString(){
     String ret = name;
@@ -40,11 +35,6 @@ public abstract class PriceModifier implements PriceModifiable, Expirable {
     ret +='\n' + "Expiry date:" + endDate;
     ret +='\n' + "Number of Times Used" + numberOfTimesUsed;
     ret +='\n'+ "Usage Limit" + USAGE_LIMIT;
-    StringBuilder rett = new StringBuilder(ret);
-    for (Transaction transaction: transactionsAppliedTo){
-      rett.append('\n');
-      rett.append(transaction.toString());
-    }
-    return rett.toString();
+    return ret.toString();
   }
 }

@@ -1,6 +1,7 @@
 package transit;/* Dan */
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -19,6 +20,7 @@ public class Card implements Serializable {
   private boolean isActive = true;
   private int cardId;
   private TransitFareManager transitFareManager;
+  private ArrayList<PriceModifier> priceModifiers;
 
   /**
    * A constructor for the card class that sets the id.
@@ -26,6 +28,12 @@ public class Card implements Serializable {
   public Card(int id, TransitFareManager transitFareManager) {
     this.cardId = id;
     this.transitFareManager = transitFareManager;
+    priceModifiers = null;
+  }
+  public Card(int id, TransitFareManager transitFareManager, ArrayList<PriceModifier> priceModifiers) {
+    this.cardId = id;
+    this.transitFareManager = transitFareManager;
+    this.priceModifiers = priceModifiers;
   }
 
   /**
@@ -44,6 +52,10 @@ public class Card implements Serializable {
    */
   public ArrayList<Trip> getTrips() {
     return trips;
+  }
+
+  public ArrayList<PriceModifier> getPriceModifiers() {
+    return priceModifiers;
   }
 
   /**
@@ -164,7 +176,7 @@ public class Card implements Serializable {
     // register the tap to the active trip
     Price price = new Price();
     try {
-      price = activeTrip.registerTapInEvent(tapInEvent);
+      price = activeTrip.registerTapInEvent(tapInEvent, this);
     } catch (TripUnnaturalTapSequenceException e) {
       // this tap took place at a nonsensical location
       addInvalidTap(tapInEvent);
@@ -215,7 +227,7 @@ public class Card implements Serializable {
     // register tap out event with current trip
     Price price = new Price();
     try {
-      price = activeTrip.registerTapOutEvent(tapOutEvent);
+      price = activeTrip.registerTapOutEvent(tapOutEvent, this);
     } catch (TripUnnaturalTapSequenceException e) {
       addInvalidTap(tapOutEvent);
       throw new IllegalTapLocationException();

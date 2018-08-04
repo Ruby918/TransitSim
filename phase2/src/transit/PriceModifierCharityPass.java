@@ -15,7 +15,7 @@ public class PriceModifierCharityPass extends PriceModifier {
     public double modifyPrice(double rawPrice) {
         if (isValid(new TransitDate(new Date()))) {
             numberOfTimesUsed++;
-            rawPrice = 0;
+            rawPrice += 1;
         }
         return rawPrice;
     }

@@ -58,6 +58,10 @@ public class Trip implements Comparable<Trip>, Serializable {
     return this.cost;
   }
 
+  public double getMaxCharge() {
+    return maxCharge;
+  }
+
   /**
    * Checks if the given <code>TapInEvent</code> is legal and if it is the start of a new
    * <code>Trip
@@ -71,7 +75,7 @@ public class Trip implements Comparable<Trip>, Serializable {
    * @throws TripInvalidTapEventException if the tap is the start of a new trip
    * @throws TripUnnaturalTapSequenceException if the tap is illegal
    */
-  public Price registerTapInEvent(TapInEvent tapInEvent)
+  public Price registerTapInEvent(TapInEvent tapInEvent, Card card)
           throws TripInvalidTapEventException, TripUnnaturalTapSequenceException {
     if (!isTapInEventLegal(tapInEvent)) {
       tapInEvent.flagAsUnnatural();
@@ -82,10 +86,8 @@ public class Trip implements Comparable<Trip>, Serializable {
     }
     tapEvents.add(tapInEvent);
     double tapPrice = tapInEvent.getStation().tapInPrice;
-    if (cost + tapPrice > maxCharge) {
-      tapPrice = maxCharge - cost;
-    }
-    Price price = new Price(tapPrice);
+    double maxFinalPrice = maxCharge - cost;
+    Price price = new Price(tapInEvent.getTransitDate(), tapPrice, card.getPriceModifiers(), maxFinalPrice);
     price.applyPriceModifiers(tapInEvent.getTransitDate());
     cost += price.getFinalPrice();
     return price;
@@ -100,7 +102,7 @@ public class Trip implements Comparable<Trip>, Serializable {
    * @return the charge for the tap
    * @throws TripUnnaturalTapSequenceException if the tap is illegal
    */
-  public Price registerTapOutEvent(TapOutEvent tapOutEvent) throws TripUnnaturalTapSequenceException {
+  public Price registerTapOutEvent(TapOutEvent tapOutEvent, Card card) throws TripUnnaturalTapSequenceException {
     if (!isTapOutEventLegal(tapOutEvent)) {
       tapOutEvent.flagAsUnnatural();
       throw new TripUnnaturalTapSequenceException();
@@ -110,10 +112,8 @@ public class Trip implements Comparable<Trip>, Serializable {
     tapEvents.add(tapOutEvent);
     int routeLength = stationOut.getRoute().getRouteLength(stationIn, stationOut);
     double tapPrice = routeLength * stationOut.passThroughPrice;
-    if (cost + tapPrice > maxCharge) {
-      tapPrice = maxCharge - cost;
-    }
-    Price price = new Price(tapPrice);
+    double maxFinalPrice = maxCharge-cost;
+    Price price = new Price(tapOutEvent.getTransitDate(), tapPrice, card.getPriceModifiers(), maxFinalPrice);
     price.applyPriceModifiers(tapOutEvent.getTransitDate());
     cost += price.getFinalPrice();
     return price;
