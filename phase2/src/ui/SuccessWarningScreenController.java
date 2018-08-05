@@ -5,6 +5,7 @@ package ui;
 import java.io.IOException;
 
 import ui.LoadCardScreenController;
+import ui.UserScreenController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -40,6 +41,16 @@ public class SuccessWarningScreenController extends UiController {
   @FXML
   protected void handleReturnMsgButtonAction(ActionEvent event) {
     Window owner = returnMsgButton.getScene().getWindow();
-    owner.hide();
+    try {
+      FXMLLoader createLoader = new FXMLLoader();
+      createLoader.setLocation(getClass().getResource("template/user_screen.fxml"));
+      Scene createScene = new Scene(createLoader.load(), 350, 400);
+      Stage createStage = new Stage();
+      createStage.setScene(createScene);
+      createStage.show();
+      owner.hide();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }

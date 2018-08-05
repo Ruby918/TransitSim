@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import api.Api;
 
 public class UserScreenController extends UiController {
 
@@ -27,16 +26,19 @@ public class UserScreenController extends UiController {
   private Label balanceLabel;
 
   @FXML
-  public void initialize() {
-    double moneyInCard = Api.getMoney(card);
+  protected void initialize() {
     String textLine = balanceLabel.getText();
-    String[] cut = textLine.split("\\s+");
-    cut[2] = Double.toString(moneyInCard);
     String updatedText="";
-    for (int i=0; i<cut.length; i++) {
-      updatedText += cut[i] + " ";
+    if (user.hasCard()) {
+      double moneyInCard = UiController.api.getMoney(user.getCards().get(0));
+      String[] cut = textLine.split("\\s+");
+      cut[2] = Double.toString(moneyInCard);
+      for (int i=0; i<cut.length; i++) {
+        updatedText += cut[i] + " ";
+      }
+    } else {
+      updatedText=textLine;
     }
-
     balanceLabel.setText(updatedText);
   }
 
@@ -50,6 +52,7 @@ public class UserScreenController extends UiController {
       Stage createStage = new Stage();
       createStage.setScene(createScene);
       createStage.show();
+      owner.hide();
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -57,6 +60,7 @@ public class UserScreenController extends UiController {
 
   @FXML
   protected void handleLoadCardButton(ActionEvent event) {
+    Window owner = createCard.getScene().getWindow();
     try {
       FXMLLoader loadLoader = new FXMLLoader();
       loadLoader.setLocation(getClass().getResource("template/load_card_screen.fxml"));
@@ -64,6 +68,7 @@ public class UserScreenController extends UiController {
       Stage loadStage = new Stage();
       loadStage.setScene(loadScene);
       loadStage.show();
+      owner.hide();
     } catch (IOException e) {
       e.printStackTrace();
     }

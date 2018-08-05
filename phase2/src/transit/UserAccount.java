@@ -31,6 +31,8 @@ public class UserAccount implements Serializable {
     this.isAdmin = isAdmin;
   }
 
+  public boolean hasCard(){ return cards.size() != 0;}
+
   /**
    * A getter which returns the id of the Customer account.
    *
