@@ -7,11 +7,13 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Window;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import api.Api;
 
 public class UserScreenController extends UiController {
 
@@ -20,6 +22,23 @@ public class UserScreenController extends UiController {
 
   @FXML
   private Button loadCard;
+
+  @FXML
+  private Label balanceLabel;
+
+  @FXML
+  public void initialize() {
+    double moneyInCard = Api.getMoney(card);
+    String textLine = balanceLabel.getText();
+    String[] cut = textLine.split("\\s+");
+    cut[2] = Double.toString(moneyInCard);
+    String updatedText="";
+    for (int i=0; i<cut.length; i++) {
+      updatedText += cut[i] + " ";
+    }
+
+    balanceLabel.setText(updatedText);
+  }
 
   @FXML
   protected void handleCreateCardButton(ActionEvent event) {

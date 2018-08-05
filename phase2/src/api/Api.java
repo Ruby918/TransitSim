@@ -40,4 +40,9 @@ public class Api {
     } catch (CustomerNotFoundException e) {}
       throw new LoginFailedException();
   }
+
+  // UI needs to know how much money in a card so it can display it.
+  public double getMoney(Card card) {
+    return card.getBalance();
+  }
 }
