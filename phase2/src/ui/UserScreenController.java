@@ -4,15 +4,18 @@ package ui;
 
 import java.io.IOException;
 
+import transit.Card;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Window;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import java.util.ArrayList;
 
 public class UserScreenController extends UiController {
 
@@ -26,7 +29,11 @@ public class UserScreenController extends UiController {
   private Label balanceLabel;
 
   @FXML
+  private ComboBox selectCardCombo;
+
+  @FXML
   protected void initialize() {
+    // Update the balance
     String textLine = balanceLabel.getText();
     String updatedText="";
     if (user.hasCard()) {
@@ -40,6 +47,12 @@ public class UserScreenController extends UiController {
       updatedText=textLine;
     }
     balanceLabel.setText(updatedText);
+
+    // Display all cards user owns
+    ArrayList<Card> listOfCards = user.getCards();
+    for (int i=0; i<listOfCards.size(); i++) {
+      selectCardCombo.getItems().addAll(listOfCards.get(i).getCardId());
+    }
   }
 
   @FXML

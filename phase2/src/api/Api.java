@@ -45,4 +45,16 @@ public class Api {
   public double getMoney(Card card) {
     return card.getBalance();
   }
+
+  public void handleTapIn() {
+
+  }
+
+  public void handleTapOut() {
+
+  }
+
+  public void handleCreateCard() {
+
+  }
 }
