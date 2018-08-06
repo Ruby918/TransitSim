@@ -9,15 +9,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.Menu;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.stage.Window;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
@@ -30,8 +26,12 @@ public class AdminStatisticsController extends UiController{
     private Button confirm;
 
     @FXML
+    private TextField dateField;
+    @FXML
     protected void handleConfirmButtonAction(ActionEvent event) {
         Window owner = confirm.getScene().getWindow();
+        System.out.println(dateField.getText());
+
         try {
             FXMLLoader mainLoader = new FXMLLoader();
             mainLoader.setLocation(getClass().getResource("template/show_stats.fxml"));
