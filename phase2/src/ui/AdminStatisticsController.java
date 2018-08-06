@@ -12,7 +12,6 @@ public class AdminStatisticsController extends UiController{
     private TextField dateField;
     @FXML
     protected void handleConfirmButtonAction(ActionEvent event) {
-        System.out.println(dateField.getText());
         loadTemplate("template/show_stats.fxml", confirm);
     }
 

@@ -105,6 +105,8 @@ public class TransitFareManager implements Serializable {
       user.setEmail(newEmail);
       user.setAdmin(isAdmin);
     }
+    users.remove(oldEmail);
+    users.put(newEmail, user);
   }
 
   public void deleteUser(String email) {
