@@ -1,10 +1,5 @@
 import transit.DataReadException;
-import transit.DataReadWrite;
 import transit.DataWriteException;
-import transit.EventConfigFileParser;
-import transit.Map;
-import transit.MapConfigFileParser;
-import transit.StatisticsManager;
 import transit.TransitFareManager;
 import transit.TransitLogger;
 import api.Api;
@@ -20,44 +15,27 @@ public class Main {
    * manager.
    */
 
+  private static TransitFareManager transitFareManager;
+  private static TransitLogger logger = new TransitLogger();
+
   public static void main(String[] args) {
 
-    TransitFareManager transitFareManager;
-    TransitLogger logger = new TransitLogger();
-    StatisticsManager stats;
     String path = "data/transitFareManager.ser";
+    Api api = new Api(logger);
+    UiController.api = api;
+    UiController.logger = logger;
 
     try {
-      DataReadWrite<TransitFareManager> dataReadWrite = new DataReadWrite<>(path);
-      transitFareManager = dataReadWrite.read();
-      logger.log.fine("Successfully loaded application state from " + path);
-      stats = new StatisticsManager(transitFareManager);
-      Api api = new Api(transitFareManager, stats, logger);
-      UiController.api = api;
-      UiController.logger = logger;
+      api.loadApplicationStateFromFile(path);
     } catch (DataWriteException e) {
       logger.log.severe("Couldn't write serializable file " + path);
     } catch (DataReadException e) {
-      logger.log.severe("Couldn't read from serializable file " + path);
-      logger.log.fine("Creating new application state from events.txt.");
-      // Create data from events.txt and map.txt
-      Map map = new Map();
-      MapConfigFileParser mapConfigFileParser = new MapConfigFileParser("map.txt", map, logger);
-      mapConfigFileParser.parse();
-      transitFareManager = new TransitFareManager(map);
-      stats = new StatisticsManager(transitFareManager);
-      EventConfigFileParser eventConfigFileParser = new EventConfigFileParser("events.txt", transitFareManager, stats, logger);
-      eventConfigFileParser.parse();
-      Api api = new Api(transitFareManager, stats, logger);
-      UiController.api = api;
-      UiController.logger = logger;
-      try {
-        DataReadWrite<TransitFareManager> dataReadWrite = new DataReadWrite<>(path);
-        dataReadWrite.save(transitFareManager);
-      } catch (Exception e2) {}
+      logger.log.severe("Couldn't load application state from file " + path);
+      api.loadApplicationStateFromEventsTxt();
+      api.saveApplicationStateToFile(path);
     }
-
     TitleScreen.view();
 
   }
+
 }

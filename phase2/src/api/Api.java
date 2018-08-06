@@ -10,10 +10,41 @@ public class Api {
   private StatisticsManager statisticsManager;
   private TransitLogger logger;
 
-  public Api(TransitFareManager transitFareManager, StatisticsManager statisticsManager, TransitLogger transitLogger) {
-    this.transitFareManager = transitFareManager;
-    this.statisticsManager= statisticsManager;
-    this.logger = transitLogger;
+  public Api(TransitLogger logger) {
+    this.logger = logger;
+  }
+
+  public void loadApplicationStateFromFile(String fileName) throws DataReadException, DataWriteException {
+    DataReadWrite<TransitFareManager> dataReadWrite = new DataReadWrite<>(fileName);
+    transitFareManager = dataReadWrite.read();
+    logger.log.fine("Successfully loaded application state from " + fileName);
+    statisticsManager = new StatisticsManager(transitFareManager);
+  }
+
+  public void loadApplicationStateFromEventsTxt() {
+    logger.log.fine("Creating new application state from events.txt.");
+    // Create data from events.txt and map.txt
+    Map map = new Map();
+    MapConfigFileParser mapConfigFileParser = new MapConfigFileParser("map.txt", map, logger);
+    mapConfigFileParser.parse();
+    transitFareManager = new TransitFareManager(map);
+    statisticsManager = new StatisticsManager(transitFareManager);
+    EventConfigFileParser eventConfigFileParser = new EventConfigFileParser("events.txt", transitFareManager, statisticsManager, logger);
+    eventConfigFileParser.parse();
+  }
+
+  public void saveApplicationState() {
+   saveApplicationStateToFile("data/transitFareManager.ser");
+  }
+
+  public void saveApplicationStateToFile(String fileName) {
+    try {
+      DataReadWrite<TransitFareManager> dataReadWrite = new DataReadWrite<>(fileName);
+      dataReadWrite.save(transitFareManager);
+      logger.log.fine("Successfully saved application state to file " + fileName);
+    } catch (Exception e) {
+      logger.log.severe("Couldn't save application state to file " + fileName);
+    }
   }
 
   public ArrayList<UserAccount> getUsers() {
