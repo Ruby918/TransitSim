@@ -71,6 +71,10 @@ public class UserScreenController extends UiController {
   @FXML
   protected void handleCreateCardButton(ActionEvent event) {
     Window owner = createCard.getScene().getWindow();
+
+    //back end
+    UiController.api.createCard(user);
+
     try {
       FXMLLoader createLoader = new FXMLLoader();
       createLoader.setLocation(getClass().getResource("template/create_card_screen.fxml"));
@@ -86,6 +90,10 @@ public class UserScreenController extends UiController {
 
   @FXML
   protected void handleLoadCardButton(ActionEvent event) {
+    // back end
+    double amount = Double.parseDouble(balanceLabel.getText());
+    UiController.api.loadMoney(card, amount);
+
     Window owner = createCard.getScene().getWindow();
     try {
       FXMLLoader loadLoader = new FXMLLoader();
@@ -102,16 +110,19 @@ public class UserScreenController extends UiController {
 
   @FXML
   protected void handleModCardButton(ActionEvent event) {
-
+    //backEnd
+    UiController.api.addPriceModifier(card, priceModifier);
   }
 
   @FXML
   protected void handleTapInCardButton(ActionEvent event) {
-
+    //backEnd
+    UiController.api.tapIn(station, card);
   }
 
   @FXML
   protected void handleTapOutCardButton(ActionEvent event) {
-
+    //backEnd
+    UiController.api.tapOut(station, card);
   }
 }

@@ -24,7 +24,7 @@ public class Api {
   public void createCard(UserAccount customer) {
     transitFareManager.issueCard(customer);
   }
-  public void addMoney(Card card, double amount){card.addAmount(amount);}
+  public void loadMoney(Card card, double amount){card.addAmount(amount);}
 
   public UserAccount loginCustomer(String email, String password) throws LoginFailedException {
     try {
@@ -61,11 +61,26 @@ public class Api {
     }
 
 
-  public void handleTapIn() {
+  public void tapIn(Station station, Card card) {
+    try{
+    card.tapIn(station, new TransitDate(new Date()));
+    }
+    catch (Exception e){
+      // TODO: 2018-08-06
 
+    }
   }
 
-  public void handleTapOut() {
+  public void tapOut(Station station, Card card) {
+    try{
+      card.tapOut(station, new TransitDate(new Date()));
+    }
+    catch (Exception e){
+      // TODO: 2018-08-06
 
+    }
+  }
+  public void addPriceModifier(Card card, PriceModifier priceModifier){
+    card.setPriceModifier(priceModifier);
   }
 }

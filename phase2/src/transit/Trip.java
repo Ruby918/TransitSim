@@ -87,7 +87,7 @@ public class Trip implements Comparable<Trip>, Serializable {
     tapEvents.add(tapInEvent);
     double tapPrice = tapInEvent.getStation().tapInPrice;
     double maxFinalPrice = maxCharge - cost;
-    Price price = new Price(tapInEvent.getTransitDate(), tapPrice, card.getPriceModifiers(), maxFinalPrice);
+    Price price = new Price(tapInEvent.getTransitDate(), tapPrice, card.getPriceModifier(), maxFinalPrice);
     price.applyPriceModifiers(tapInEvent.getTransitDate());
     cost += price.getFinalPrice();
     return price;
@@ -113,7 +113,7 @@ public class Trip implements Comparable<Trip>, Serializable {
     int routeLength = stationOut.getRoute().getRouteLength(stationIn, stationOut);
     double tapPrice = routeLength * stationOut.passThroughPrice;
     double maxFinalPrice = maxCharge-cost;
-    Price price = new Price(tapOutEvent.getTransitDate(), tapPrice, card.getPriceModifiers(), maxFinalPrice);
+    Price price = new Price(tapOutEvent.getTransitDate(), tapPrice, card.getPriceModifier(), maxFinalPrice);
     price.applyPriceModifiers(tapOutEvent.getTransitDate());
     cost += price.getFinalPrice();
     return price;

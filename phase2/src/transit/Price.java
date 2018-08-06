@@ -8,14 +8,14 @@ public class Price implements Serializable {
   private double rawPrice;
   private double finalPrice;
   private double maxFinalPrice;
-  private ArrayList<PriceModifier> priceModifiers;
+  private PriceModifier priceModifier;
   private final PriceModifier ONTARIO_TAX;
 
   public Price() {
     this.rawPrice = 0;
     finalPrice = -1;
     ONTARIO_TAX = new PriceModifierOntarioTax();
-    priceModifiers = null;
+    priceModifier = null;
     maxFinalPrice = Double.MAX_VALUE;
   }
 
@@ -23,7 +23,7 @@ public class Price implements Serializable {
     this.rawPrice = rawPrice;
     finalPrice = -1;
     ONTARIO_TAX = new PriceModifierOntarioTax();
-    priceModifiers = null;
+    priceModifier = null;
     maxFinalPrice = Double.MAX_VALUE;
   }
 
@@ -31,7 +31,7 @@ public class Price implements Serializable {
     rawPrice = -1;
     finalPrice = -1;
     ONTARIO_TAX = new PriceModifierOntarioTax();
-    priceModifiers = null;
+    priceModifier = null;
     maxFinalPrice = Double.MAX_VALUE;
   }
 
@@ -39,19 +39,16 @@ public class Price implements Serializable {
     this.rawPrice = rawPrice;
     finalPrice = -1;
     ONTARIO_TAX = new PriceModifierOntarioTax();
-    priceModifiers = null;
+    priceModifier = null;
     maxFinalPrice = Double.MAX_VALUE;
   }
 
   public Price(
-      TransitDate today,
-      double rawPrice,
-      ArrayList<PriceModifier> priceModifiers,
-      double maxFinalPrice) {
+      TransitDate today, double rawPrice, PriceModifier priceModifier, double maxFinalPrice) {
     this.rawPrice = rawPrice;
     finalPrice = -1;
     ONTARIO_TAX = new PriceModifierOntarioTax();
-    this.priceModifiers = priceModifiers;
+    this.priceModifier = priceModifier;
     this.maxFinalPrice = maxFinalPrice;
   }
 
@@ -63,16 +60,14 @@ public class Price implements Serializable {
    */
   public void applyPriceModifiers(TransitDate date) {
     finalPrice = rawPrice;
-    if (priceModifiers != null) {
-      for (PriceModifier priceModifier : priceModifiers) {
-        if (priceModifier.isValid(date)) finalPrice = priceModifier.modifyPrice(finalPrice, date);
-      }
-      // apply ontario tax
-      if (ONTARIO_TAX.isValid(date)) {
-        finalPrice = ONTARIO_TAX.modifyPrice(finalPrice, date);
-      }
-      finalPrice = Math.max(finalPrice, maxFinalPrice);
+    if (priceModifier != null) {
+      if (priceModifier.isValid(date)) finalPrice = priceModifier.modifyPrice(finalPrice, date);
     }
+    // apply ontario tax
+    if (ONTARIO_TAX.isValid(date)) {
+      finalPrice = ONTARIO_TAX.modifyPrice(finalPrice, date);
+    }
+    finalPrice = Math.max(finalPrice, maxFinalPrice);
   }
 
   public double getFinalPrice() {
@@ -83,8 +78,8 @@ public class Price implements Serializable {
     this.finalPrice = finalPrice;
   }
 
-  /** @param priceModifiers */
-  public void setPriceModifiers(ArrayList<PriceModifier> priceModifiers) {
-    this.priceModifiers = priceModifiers;
+  /** @param priceModifier */
+  public void setPriceModifier(PriceModifier priceModifier) {
+    this.priceModifier = priceModifier;
   }
 }

@@ -20,7 +20,7 @@ public class Card implements Serializable {
   private boolean isActive = true;
   private int cardId;
   private TransitFareManager transitFareManager;
-  private ArrayList<PriceModifier> priceModifiers;
+  private PriceModifier priceModifier;
 
   /**
    * A constructor for the card class that sets the id.
@@ -28,12 +28,12 @@ public class Card implements Serializable {
   public Card(int id, TransitFareManager transitFareManager) {
     this.cardId = id;
     this.transitFareManager = transitFareManager;
-    priceModifiers = null;
+    priceModifier = null;
   }
-  public Card(int id, TransitFareManager transitFareManager, ArrayList<PriceModifier> priceModifiers) {
+  public Card(int id, TransitFareManager transitFareManager, PriceModifier priceModifier) {
     this.cardId = id;
     this.transitFareManager = transitFareManager;
-    this.priceModifiers = priceModifiers;
+    this.priceModifier = priceModifier;
   }
 
   /**
@@ -54,8 +54,8 @@ public class Card implements Serializable {
     return trips;
   }
 
-  public ArrayList<PriceModifier> getPriceModifiers() {
-    return priceModifiers;
+  public PriceModifier getPriceModifier() {
+    return priceModifier;
   }
 
   /**
@@ -117,6 +117,10 @@ public class Card implements Serializable {
    */
   private void createTransaction(Price price, TransitDate date) {
     this.transitFareManager.createTransaction(this, price, date);
+  }
+
+  public void setPriceModifier(PriceModifier priceModifier) {
+    this.priceModifier = priceModifier;
   }
 
   public ArrayList<Transaction> getTransactions() {
