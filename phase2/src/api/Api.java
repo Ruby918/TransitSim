@@ -2,6 +2,7 @@ package api;
 
 import java.util.ArrayList;
 
+import java.util.List;
 import transit.*;
 
 public class Api {
@@ -47,8 +48,13 @@ public class Api {
     }
   }
 
-  public ArrayList<UserAccount> getUsers() {
-    return transitFareManager.getCustomers();
+  public ArrayList<UserForTableView> getUsers() {
+    ArrayList<UserAccount> users =  transitFareManager.getCustomers();
+    ArrayList<UserForTableView> result = new ArrayList<>();
+    for (UserAccount user : users){
+      result.add(new UserForTableView(user));
+    }
+    return result;
   }
 
   public void createCard(UserAccount customer) {

@@ -1,5 +1,6 @@
 package ui;
 
+import api.UserForTableView;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.fxml.FXML;
@@ -32,16 +33,6 @@ public class AdminCustomersController extends UiController {
     Email.setCellValueFactory(new PropertyValueFactory<UserForTableView, String>("email"));
     IsAdmin.setCellValueFactory(new PropertyValueFactory<UserForTableView, Boolean>("isAdmin"));
 
-    tableView.getItems().setAll(parseUserList());
+    tableView.getItems().setAll(api.getUsers());
   }
-
-  private List<UserForTableView> parseUserList(){
-    ArrayList<UserForTableView> result = new ArrayList<>();
-    ArrayList<UserAccount> users = api.getUsers();
-    for (UserAccount user : users){
-      result.add(new UserForTableView(user));
-    }
-    return result;
-  }
-
 }
