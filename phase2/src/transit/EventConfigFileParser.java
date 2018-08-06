@@ -117,18 +117,18 @@ public class EventConfigFileParser extends ConfigFileParser {
       case "Customers":
         switch (parameters[1]) {
           case "Total":
-            PrettyList<UserAccount> prettyCustomers = new PrettyList<>(transitSystem.getCustomers(), "Customers");
+            PrettyList<UserAccount> prettyCustomers = new PrettyList<>(transitSystem.getUsers(), "Customers");
             message = "Customers: " + System.lineSeparator()
                 + indentString(prettyCustomers.toStringMultiline());
             break;
           case "Create":
             UserAccount customer = transitSystem
-                .createCustomerAccount(parameters[2], parameters[3], (parameters[4].equals("admin")));
-            message = "Successfully created customer account: "
+                .createUserAccount(parameters[2], parameters[3], (parameters[4].equals("admin")));
+            message = "Successfully created user account: "
                 + System.lineSeparator() + indentString(customer.toString());
             break;
           default:
-            message = "That is not a valid admin customer command.";
+            message = "That is not a valid admin user command.";
         }
         break;
       case "Cards":
@@ -142,15 +142,15 @@ public class EventConfigFileParser extends ConfigFileParser {
   }
 
   /**
-   * Parses customer commands i.e. lines beginning with "Customer:" in the configuration file.
+   * Parses user commands i.e. lines beginning with "Customer:" in the configuration file.
    *
-   * @param data parameters of the customer command
+   * @param data parameters of the user command
    */
   private void parseCustomerCommand(String[] data) {
 
     UserAccount customer = transitSystem.getCustomerById(Integer.parseInt(data[1]));
     if (customer == null) {
-      message = "That customer does not exist.";
+      message = "That user does not exist.";
       return;
     }
 
@@ -163,20 +163,20 @@ public class EventConfigFileParser extends ConfigFileParser {
         break;
       case "Update Name":
         customer.setName(parameters[1]);
-        message = "Successfully updated customer's name to " + parameters[1] + ".";
+        message = "Successfully updated user's name to " + parameters[1] + ".";
         break;
       case "Cards":
         switch (parameters[1]) {
           case "New":
             Card card = transitSystem.issueCard(customer);
-            message = "Successfully added a card to this customer: " + card.toString();
+            message = "Successfully added a card to this user: " + card.toString();
             break;
           case "View":
             message = "Cards: " + System.lineSeparator()
                 + indentString(prettyCards.toString());
             break;
           default:
-            message = "That is not a valid customer card command.";
+            message = "That is not a valid user card command.";
         }
         break;
       case "Average Cost":
@@ -188,7 +188,7 @@ public class EventConfigFileParser extends ConfigFileParser {
             + indentString(prettyTrips.toStringMultiline());
         break;
       default:
-        message = "That is not a valid customer command.";
+        message = "That is not a valid user command.";
     }
   }
 

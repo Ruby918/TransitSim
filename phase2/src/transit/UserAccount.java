@@ -11,7 +11,7 @@ import java.util.Collections;
  */
 public class UserAccount implements Serializable {
 
-  // Instance variables storing information on customer.
+  // Instance variables storing information on user.
   private String name;
   private String email;
   private String password;
@@ -107,9 +107,9 @@ public class UserAccount implements Serializable {
   }
 
   /**
-   * Returns an array list of trips taken by the customer.
+   * Returns an array list of trips taken by the user.
    *
-   * @return - array list of trips taken by the customer.
+   * @return - array list of trips taken by the user.
    */
   public ArrayList<Trip> listAllTrips() {
     ArrayList<Trip> trips = new ArrayList<>();
@@ -148,9 +148,9 @@ public class UserAccount implements Serializable {
   }
 
   /**
-   * Returns an array list of the last 3 trips taken by customer account.
+   * Returns an array list of the last 3 trips taken by user account.
    *
-   * @return - array list of the last 3 trips taken by customer account.
+   * @return - array list of the last 3 trips taken by user account.
    */
   public ArrayList<Trip> calculateRecentTrips() {
     ArrayList<Trip> trips = listAllTrips();
@@ -163,9 +163,9 @@ public class UserAccount implements Serializable {
   }
 
   /**
-   * Returns the average monthly cost of customer.
+   * Returns the average monthly cost of user.
    *
-   * @return - average monthly cost of customer.
+   * @return - average monthly cost of user.
    */
   public double calculateAverageMonthlyCost() {
     // array lists needed to track customers data.

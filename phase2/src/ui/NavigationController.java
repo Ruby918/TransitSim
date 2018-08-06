@@ -39,7 +39,7 @@ public class NavigationController extends UiController implements Initializable 
 
   @FXML
   protected void handleCustomersButtonAction(ActionEvent event) {
-    loadTemplate("template/admin_customers_screen.fxml");
+    loadTemplate("template/admin_users_screen.fxml");
   }
 
   @FXML

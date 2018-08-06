@@ -1,18 +1,27 @@
 package api;
 
 import java.util.ArrayList;
-
-import java.util.List;
 import transit.*;
 
 public class Api {
+
+  public UserApi user;
+  public CardApi card;
+  public MapApi map;
 
   private TransitFareManager transitFareManager;
   private StatisticsManager statisticsManager;
   private TransitLogger logger;
 
+
   public Api(TransitLogger logger) {
     this.logger = logger;
+  }
+
+  private void init() {
+    user = new UserApi(transitFareManager, logger);
+    card = new CardApi(transitFareManager, logger);
+    map = new MapApi(transitFareManager, logger);
   }
 
   public void loadApplicationStateFromFile(String fileName) throws DataReadException, DataWriteException {
@@ -20,6 +29,7 @@ public class Api {
     transitFareManager = dataReadWrite.read();
     logger.log.fine("Successfully loaded application state from " + fileName);
     statisticsManager = new StatisticsManager(transitFareManager);
+    init();
   }
 
   public void loadApplicationStateFromEventsTxt() {
@@ -32,6 +42,7 @@ public class Api {
     statisticsManager = new StatisticsManager(transitFareManager);
     EventConfigFileParser eventConfigFileParser = new EventConfigFileParser("events.txt", transitFareManager, statisticsManager, logger);
     eventConfigFileParser.parse();
+    init();
   }
 
   public void saveApplicationState() {
@@ -49,7 +60,7 @@ public class Api {
   }
 
   public ArrayList<UserForTableView> getUsers() {
-    ArrayList<UserAccount> users =  transitFareManager.getCustomers();
+    ArrayList<UserAccount> users =  transitFareManager.getUsers();
     ArrayList<UserForTableView> result = new ArrayList<>();
     for (UserAccount user : users){
       result.add(new UserForTableView(user));

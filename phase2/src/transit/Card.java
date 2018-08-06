@@ -244,9 +244,9 @@ public class Card implements Serializable {
   }
 
   /**
-   * Returns an array list of the last 3 trips taken by customer account.
+   * Returns an array list of the last 3 trips taken by user account.
    *
-   * @return - array list of the last 3 trips taken by customer account.
+   * @return - array list of the last 3 trips taken by user account.
    */
   public ArrayList<Trip> calculateRecentTrips() {
     Collections.sort(trips);

@@ -9,9 +9,9 @@ import java.util.ArrayList;
 public class TransitFareManager implements Serializable {
 
   /**
-   * List of customers that have accounts with this transit system.
+   * List of users that have accounts with this transit system.
    */
-  private ArrayList<UserAccount> customers = new ArrayList<>();
+  private ArrayList<UserAccount> users = new ArrayList<>();
   /**
    * List of cards that have been issued.
    */
@@ -29,8 +29,8 @@ public class TransitFareManager implements Serializable {
     this.map = map;
   }
 
-  public ArrayList<UserAccount> getCustomers() {
-    return customers;
+  public ArrayList<UserAccount> getUsers() {
+    return users;
   }
 
   public ArrayList<Card> getCards() {
@@ -50,25 +50,25 @@ public class TransitFareManager implements Serializable {
   }
 
   /**
-   * Creates and returns a new customer account. Generates ID for new customer based on number of
-   * existing customers.
+   * Creates and returns a new user account. Generates ID for new user based on number of
+   * existing users.
    *
-   * @param name customer name
-   * @param email customer email
-   * @return new customer account object
+   * @param name user name
+   * @param email user email
+   * @return new user account object
    */
-  public UserAccount createCustomerAccount(String name, String email, boolean isAdmin) {
-    // Increment customer id by one for every new customer
-    UserAccount customer = new UserAccount(name, email, this.customers.size(), isAdmin);
-    this.customers.add(customer);
-    return customer;
+  public UserAccount createUserAccount(String name, String email, boolean isAdmin) {
+    // Increment user id by one for every new user
+    UserAccount user = new UserAccount(name, email, this.users.size(), isAdmin);
+    this.users.add(user);
+    return user;
   }
 
   /**
    * Creates and returns a new card object. Generates ID for new card based in the number of
-   * existing cards. Adds this new card to customer.
+   * existing cards. Adds this new card to user.
    *
-   * @param customer customer to which the card is issued
+   * @param customer user to which the card is issued
    * @return new card object
    */
   public Card issueCard(UserAccount customer) {
@@ -80,17 +80,17 @@ public class TransitFareManager implements Serializable {
   }
 
   /**
-   * Returns a customer based on the customer's ID. Because the IDs were generated incrementally, a
-   * customer's ID is also the customer object's index in the list this.customers.
+   * Returns a user based on the user's ID. Because the IDs were generated incrementally, a
+   * user's ID is also the user object's index in the list this.users.
    *
-   * @param id id of customer
+   * @param id id of user
    */
   public UserAccount getCustomerById(int id) {
-    return this.customers.get(id);
+    return this.users.get(id);
   }
 
   public UserAccount getCustomerByEmail(String email) throws CustomerNotFoundException {
-    for (UserAccount customer : this.customers) {
+    for (UserAccount customer : this.users) {
       if (customer.getEmail().equals(email)) {
         return customer;
       }

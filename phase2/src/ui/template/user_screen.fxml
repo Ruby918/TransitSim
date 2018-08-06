@@ -95,7 +95,7 @@
   </Button>
 
   <!-- Add 'Tap outa Station' Button -->
-  <Button fx:id="tapOutButton" text="Tap Out&#13;&#10; Of Selected&#13;&#10; Station"
+  <Button fx:id="tapOut" text="Tap Out&#13;&#10; Of Selected&#13;&#10; Station"
           prefWidth="75" prefHeight="75" defaultButton="false"
           GridPane.columnIndex="0" GridPane.rowIndex="2"
           GridPane.columnSpan="1" GridPane.rowSpan="1"

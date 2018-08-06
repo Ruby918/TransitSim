@@ -77,7 +77,6 @@ public class LoadCardScreenController extends UiController {
 
   @FXML
   protected void handleReturnButtonAction(ActionEvent event) {
-    Window owner = returnButton.getScene().getWindow();
-    owner.hide();
+    loadTemplate("template/user_screen.fxml", returnButton);
   }
 }
