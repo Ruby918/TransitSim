@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import java.util.ArrayList;
 import transit.PriceModifier;
 import transit.Station;
+import transit.TransitDate;
 import transit.UserAccount;
 
 public class UserScreenController extends UiController {
@@ -41,10 +42,15 @@ public class UserScreenController extends UiController {
 
     // get current user
     user = (UserAccount) dataStore.get("currentUser").data();
-    // get current user
+    // get current station
     station = (Station) dataStore.get("currentStation").data();
-    // get current user
+    // get current priceModifier
     priceModifier = (PriceModifier) dataStore.get("currentPriceModifier").data();
+
+    // set default date and time to now
+    TransitDate date = new TransitDate();
+    dateField.setText(date.toDateString());
+    timeField.setText(date.toTimeString());
 
     // Update the balance
     String textLine = balanceLabel.getText();

@@ -14,6 +14,10 @@ public class TransitDate implements Comparable<TransitDate>, Serializable {
 
   private Date date;
 
+  public TransitDate() {
+    this.date = new Date();
+  }
+
   public TransitDate(Date date) {
     this.date = date;
   }
@@ -106,6 +110,15 @@ public class TransitDate implements Comparable<TransitDate>, Serializable {
   public String toDateTimeString() {
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
     return sdf.format(date);
+  }
+
+  public String toTimeString() {
+    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+    return sdf.format(date);
+  }
+
+  public String toDateString() {
+    return toString();
   }
 
   public TransitDate addTime(int time){
