@@ -24,10 +24,6 @@ public class SubwayRoute extends Route {
    */
   @Override
   public void addStationByName(String name) {
-    Station newStation = new SubwayStation(name, this);
-    this.addStation(newStation);
-    StatisticsManager.allStations.add(newStation);
-
-
+    this.addStation(new SubwayStation(name, this));
   }
 }
