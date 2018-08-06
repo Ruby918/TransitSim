@@ -29,7 +29,6 @@ public class CreateCardScreenController extends UiController {
 
   @FXML
   protected void handleCreateCardButton(ActionEvent event) {
-  // Make a message appear on current stage TO DO (maybe)
     api.createCard(UiController.user);
     Window owner = returnButton.getScene().getWindow();
     owner.hide();

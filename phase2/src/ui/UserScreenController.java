@@ -4,15 +4,19 @@ package ui;
 
 import java.io.IOException;
 
+import transit.Card;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Window;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import java.util.ArrayList;
+import javafx.beans.property.SimpleStringProperty;
 
 public class UserScreenController extends UiController {
 
@@ -26,12 +30,16 @@ public class UserScreenController extends UiController {
   private Label balanceLabel;
 
   @FXML
+  private ComboBox selectCardCombo;
+
+  @FXML
   protected void initialize() {
+    // Update the balance
     String textLine = balanceLabel.getText();
     String updatedText="";
+    String[] cut = textLine.split("\\s+");
     if (user.hasCard()) {
       double moneyInCard = UiController.api.getMoney(user.getCards().get(0));
-      String[] cut = textLine.split("\\s+");
       cut[2] = Double.toString(moneyInCard);
       for (int i=0; i<cut.length; i++) {
         updatedText += cut[i] + " ";
@@ -40,6 +48,24 @@ public class UserScreenController extends UiController {
       updatedText=textLine;
     }
     balanceLabel.setText(updatedText);
+
+    // Display all cards user owns
+    ArrayList<Card> listOfCards = user.getCards();
+    for (int i=0; i<listOfCards.size(); i++) {
+      selectCardCombo.getItems().addAll(listOfCards.get(i).getCardId());
+    }
+
+    selectCardCombo.valueProperty().addListener((obs, oldVal, newVal) -> {
+      String[] cut2 = balanceLabel.getText().split("\\s+");
+      String updatedText2="";
+      String id = selectCardCombo.getSelectionModel().getSelectedItem().toString();
+      card = user.getCard(Integer.parseInt(id));
+      cut2[2] = Double.toString(UiController.api.getMoney(card));
+      for (int i=0; i<cut2.length; i++) {
+        updatedText2 += cut2[i] + " ";
+      }
+      balanceLabel.setText(updatedText2);
+    });
   }
 
   @FXML

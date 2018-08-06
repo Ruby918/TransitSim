@@ -81,7 +81,6 @@ public class LoadCardScreenController extends UiController {
 
   @FXML
   protected void handleAddMoneyButtonAction(ActionEvent event) {
-    // Add the money to the system TO DO BACKEND
     Window owner = addMoney.getScene().getWindow();
     finalMoneyCount = moneyCount.getText();
     // back end
