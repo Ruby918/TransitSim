@@ -1,0 +1,45 @@
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.Button?>
+
+<GridPane fx:controller="ui.UserScreenController"
+  xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="15" vgap="15">
+  <padding>
+    <Insets top="10" right="10" bottom="10" left="10"/>
+  </padding>
+
+  <columnConstraints>
+    <ColumnConstraints maxWidth="Infinity"
+      halignment="CENTER" hgrow="ALWAYS">
+    </ColumnConstraints>
+  </columnConstraints>
+
+
+  <fx:include fx:id="nav" source="nav_bar.fxml"/>
+
+  <!-- Add 'Create Card' Button -->
+
+  <Button fx:id="createCard" text="Create&#13;&#10; Card"
+          prefWidth="75" prefHeight="75" defaultButton="false"
+          GridPane.columnIndex="0" GridPane.rowIndex="0"
+          GridPane.columnSpan="1" GridPane.rowSpan="1"
+          GridPane.halignment="LEFT"
+          onAction="#handleCreateCardButton">
+  </Button>
+
+  <!-- Add 'Load Current Card' Button -->
+
+  <Button fx:id="loadCard" text="Load&#13;&#10; Current&#13;&#10; Card"
+          prefWidth="75" prefHeight="75" defaultButton="false"
+          GridPane.columnIndex="0" GridPane.rowIndex="0"
+          GridPane.columnSpan="1" GridPane.rowSpan="1"
+          GridPane.halignment="CENTER"
+          onAction="#handleLoadCardButton">
+  </Button>
+
+  <!-- Add 'Tap into Station' Button -->
+
+</GridPane>

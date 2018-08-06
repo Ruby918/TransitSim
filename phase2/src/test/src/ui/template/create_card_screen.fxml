@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- create card -->
+
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import java.lang.String?>
+
+<GridPane fx:controller="ui.CreateCardScreenController"
+  xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="15" vgap="15">
+  <padding>
+    <Insets top="10" right="10" bottom="10" left="10"/>
+  </padding>
+
+  <columnConstraints>
+    <ColumnConstraints maxWidth="Infinity"
+      halignment="CENTER" hgrow="ALWAYS">
+    </ColumnConstraints>
+  </columnConstraints>
+
+  <!-- Add Return Button -->
+  <Button fx:id="returnButton" Text="Return"
+          prefWidth="100" prefHeight="20" defaultButton="false"
+          GridPane.columnIndex="0" GridPane.rowIndex="3"
+          GridPane.columnSpan="1" GridPane.rowSpan="1"
+          GridPane.halignment="LEFT"
+          onAction="#handleReturnButtonAction">
+  </Button>
+
+  <!-- Name of Card Label -->
+  <Label  text="Enter Name of New Card"
+          GridPane.columnIndex="0" GridPane.rowIndex="0"
+          GridPane.columnSpan="1" GridPane.rowSpan="1"
+          GridPane.halignment="LEFT">
+        <font>
+          <Font name="Comic Sans MS" size="12"></Font>
+        </font>
+  </Label>
+
+  <!-- TextField for Card Name -->
+  <TextField  fx:id="nameField" prefWidth="100"
+              GridPane.columnIndex="0" GridPane.rowIndex="1"
+              GridPane.columnSpan="2" GridPane.rowSpan="1"
+              GridPane.halignment="CENTER">
+  </TextField>
+
+  <!-- 'Create' Button -->
+  <Button fx:id="createButton" text="Create Card"
+          prefWidth="100" prefHeight="20" defaultButton="false"
+          GridPane.columnIndex="0" GridPane.rowIndex="3"
+          GridPane.columnSpan="1" GridPane.rowSpan="1"
+          GridPane.halignment="RIGHT"
+          onAction="#handleCreateCardButton">
+  </Button>
+
+  <!-- Combobox for type of card -->
+  <ComboBox fx:id="cardTypeCombo" prefWidth="250.0" promptText="Choose Card Type"
+            GridPane.columnIndex="0" GridPane.rowIndex="2">
+    <items>
+      <FXCollections fx:factory="observableArrayList">
+        <String fx:value="Regular Pass" />
+        <String fx:value="Senior Pass (65+): 80% off" />
+        <String fx:value="Kids Pass (12 Under): FREE" />
+        <String fx:value="Monthly Pass: 10% off" />
+        <String fx:value="Student Pass: 20% off" />
+      </FXCollections>
+    </items>
+  </ComboBox>
+</GridPane>
