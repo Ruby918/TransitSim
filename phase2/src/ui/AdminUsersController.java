@@ -76,7 +76,7 @@ public class AdminUsersController extends UiController {
   }
 
   private void updateView() {
-    tableViewUsers.getItems().setAll(api.getUsers());
+    tableViewUsers.getItems().setAll(api.user.get());
 
   }
 

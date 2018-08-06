@@ -59,15 +59,6 @@ public class Api {
     }
   }
 
-  public ArrayList<UserForTableView> getUsers() {
-    ArrayList<UserAccount> users =  transitFareManager.getUsers();
-    ArrayList<UserForTableView> result = new ArrayList<>();
-    for (UserAccount user : users){
-      result.add(new UserForTableView(user));
-    }
-    return result;
-  }
-
   public ArrayList<StationForTableView> getStations() {
     ArrayList<Station> stations =  transitFareManager.getMap().getStations();
     ArrayList<StationForTableView> result = new ArrayList<>();
@@ -81,19 +72,6 @@ public class Api {
     transitFareManager.issueCard(customer);
   }
   public void loadMoney(Card card, double amount){card.addAmount(amount);}
-
-  public UserAccount loginCustomer(String email, String password) throws LoginFailedException {
-    try {
-      UserAccount user = transitFareManager.getUserByEmail(email);
-      if (user.validatePassword(password)) {
-        logger.log.fine("Successfully logged in user with email " + email);
-        return user;
-      }
-      throw new LoginFailedException();
-    } catch (CustomerNotFoundException e) {}
-    logger.log.warning("Failed failed to log in user with email " + email);
-    throw new LoginFailedException();
-  }
 
   // UI needs to know how much money in a card so it can display it.
   public double getMoney(Card card) {

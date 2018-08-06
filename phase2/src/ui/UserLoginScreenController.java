@@ -35,7 +35,7 @@ public class UserLoginScreenController extends UiController {
     }
 
     try {
-      UserAccount user = api.loginCustomer(email, password);
+      UserAccount user = api.user.login(email, password);
       dataStore.set("currentUser", new UiData<UserAccount>(user));
       loadTemplate("template/user_screen.fxml", loginButton);
     } catch (LoginFailedException e) {
