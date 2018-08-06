@@ -58,7 +58,7 @@ public class AdminUsersController extends UiController {
       logger.log.fine("Created user " + user.toString());
       updateView();
     } catch (CreateUserException e) {
-      errorMessage.setText("Failed to create user. Emails must be unique.");
+      errorMessage.setText("Failed to create user. All fields are required. Emails must be unique.");
     }
   }
 

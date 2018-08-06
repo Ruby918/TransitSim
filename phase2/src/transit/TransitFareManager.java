@@ -82,19 +82,8 @@ public class TransitFareManager implements Serializable {
     return card;
   }
 
-  /**
-   * Returns a user based on the user's ID. Because the IDs were generated incrementally, a
-   * user's ID is also the user object's index in the list this.users.
-   *
-   * @param id id of user
-   */
-  public UserAccount getUserByIndex(int id) {
-    return this.getUsers().get(id);
-  }
-
-  public UserAccount getUserByEmail(String email) throws CustomerNotFoundException {
+  public UserAccount getUserByEmail(String email) {
     UserAccount user = this.users.get(email);
-    if (user == null) throw new CustomerNotFoundException();
     return user;
   }
 

@@ -148,27 +148,27 @@ public class EventConfigFileParser extends ConfigFileParser {
    */
   private void parseCustomerCommand(String[] data) {
 
-    UserAccount customer = transitSystem.getUserByIndex(Integer.parseInt(data[1]));
-    if (customer == null) {
+    UserAccount user = transitSystem.getUserByEmail(data[1]);
+    if (user == null) {
       message = "That user does not exist.";
       return;
     }
 
     String[] parameters = data[2].split(", ");
-    PrettyList<Card> prettyCards = new PrettyList<>(customer.getCards(), "Cards");
+    PrettyList<Card> prettyCards = new PrettyList<>(user.getCards(), "Cards");
 
     switch (parameters[0]) {
       case "Details":
-        message = customer.toString();
+        message = user.toString();
         break;
       case "Update Name":
-        customer.setName(parameters[1]);
+        user.setName(parameters[1]);
         message = "Successfully updated user's name to " + parameters[1] + ".";
         break;
       case "Cards":
         switch (parameters[1]) {
           case "New":
-            Card card = transitSystem.issueCard(customer);
+            Card card = transitSystem.issueCard(user);
             message = "Successfully added a card to this user: " + card.toString();
             break;
           case "View":
@@ -180,10 +180,10 @@ public class EventConfigFileParser extends ConfigFileParser {
         }
         break;
       case "Average Cost":
-        message = "$" + customer.calculateAverageMonthlyCost();
+        message = "$" + user.calculateAverageMonthlyCost();
         break;
       case "Recent Trips":
-        PrettyList<Trip> prettyTrips = new PrettyList<>(customer.calculateRecentTrips(), "Trips");
+        PrettyList<Trip> prettyTrips = new PrettyList<>(user.calculateRecentTrips(), "Trips");
         message = "Recent Trips:" + System.lineSeparator()
             + indentString(prettyTrips.toStringMultiline());
         break;

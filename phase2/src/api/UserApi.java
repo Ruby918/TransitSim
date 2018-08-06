@@ -8,12 +8,8 @@ public class UserApi extends ChildApi {
     super(transitFareManager, logger);
   }
   public UserAccount create(String name, String email, boolean isAdmin) throws CreateUserException {
-    try {
-      transitFareManager.getUserByEmail(email);
-      throw new CreateUserException();
-    } catch (CustomerNotFoundException e) {
-      return transitFareManager.createUserAccount(name, email, isAdmin);
-    }
+    if (name.isEmpty() || email.isEmpty() || (transitFareManager.getUserByEmail(email) != null)) throw new CreateUserException();
+    return transitFareManager.createUserAccount(name, email, isAdmin);
   }
 
   public void update(String oldEmail, String name, String newEmail, boolean isAdmin) {
@@ -36,7 +32,7 @@ public class UserApi extends ChildApi {
   public UserAccount login(String email, String password) throws LoginFailedException {
     try {
       UserAccount user = transitFareManager.getUserByEmail(email);
-      if (user.validatePassword(password)) {
+      if (user != null && user.validatePassword(password)) {
         logger.log.fine("Successfully logged in user with email " + email);
         return user;
       } else throw new Exception();
