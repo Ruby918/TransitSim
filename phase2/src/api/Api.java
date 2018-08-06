@@ -1,12 +1,9 @@
 package api;
 
 import java.util.ArrayList;
-import transit.UserAccount;
-import transit.CustomerNotFoundException;
-import transit.StatisticsManager;
-import transit.TransitFareManager;
-import transit.TransitLogger;
-import transit.Card;
+import java.util.Date;
+
+import transit.*;
 
 public class Api {
 
@@ -45,6 +42,24 @@ public class Api {
   public double getMoney(Card card) {
     return card.getBalance();
   }
+
+  //stats info
+    public ArrayList<Trip> getDailyProfits(TransitDate date){
+      return this.statisticsManager.getTripsOnDate(date);
+    }
+
+    public double getRevenueOnDate(TransitDate date){
+        return this.statisticsManager.calculateRevenueOnDate(date);
+    }
+
+    public double getTotalRevenueOnDate(){
+        return this.statisticsManager.calculateRevenue();
+    }
+
+    public ArrayList<Station> getStationsReachedOnDate(TransitDate date){
+        return this.statisticsManager.getStationsReachedOnDate(date);
+    }
+
 
   public void handleTapIn() {
 
