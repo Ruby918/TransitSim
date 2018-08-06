@@ -1,18 +1,13 @@
 package ui;
 
-import java.io.IOException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.Menu;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 import transit.UserAccount;
 
 public class NavigationController extends UiController implements Initializable {
@@ -90,18 +85,6 @@ public class NavigationController extends UiController implements Initializable 
   }
 
   private void loadTemplate(String template) {
-    Window owner = menuBar.getScene().getWindow();
-
-    try {
-      FXMLLoader titleLoader = new FXMLLoader();
-      titleLoader.setLocation(getClass().getResource(template));
-      Scene loginScene = new Scene(titleLoader.load(), 300, 250);
-      Stage loginStage = new Stage();
-      loginStage.setScene(loginScene);
-      owner.hide();
-      loginStage.show();
-    } catch (IOException e) {
-      logger.log.severe("Failed to load " + template + " from nav.");
-    }
+    super.loadTemplate(template, menuBar);
   }
 }
