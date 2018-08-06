@@ -63,8 +63,8 @@ public class Api {
     }
 
 
-  public void tapIn(Station station, Card card, String dateString) {
-    TransitDate date = new TransitDate(dateString);
+  public void tapIn(Station station, Card card, String dateString, String timeStrring) {
+    TransitDate date = new TransitDate(dateString, timeStrring);
     logger.log.fine("Tapping into " + station + " on " + dateString + " with card " + card);
     try{
     card.tapIn(station, date);
@@ -75,8 +75,8 @@ public class Api {
     }
   }
 
-  public void tapOut(Station station, Card card, String dateString) {
-    TransitDate date = new TransitDate(dateString);
+  public void tapOut(Station station, Card card, String dateString, String timeStrring) {
+    TransitDate date = new TransitDate(dateString, timeStrring);
     logger.log.fine("Tapping out of " + station + " on " + dateString + " with card " + card);
     try{
       card.tapOut(station, date);

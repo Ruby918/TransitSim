@@ -4,6 +4,7 @@ package ui;
 
 import java.io.IOException;
 
+import javafx.scene.control.TextField;
 import transit.Card;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,6 +32,12 @@ public class UserScreenController extends UiController {
 
   @FXML
   private ComboBox selectCardCombo;
+
+  @FXML
+  private TextField dateField;
+
+  @FXML
+  private TextField timeField;
 
   @FXML
   protected void initialize() {
@@ -117,12 +124,12 @@ public class UserScreenController extends UiController {
   @FXML
   protected void handleTapInCardButton(ActionEvent event) {
     //backEnd
-//    UiController.api.tapIn(station, card);
+    UiController.api.tapIn(station, card, dateField.getText(), timeField.getText());
   }
 
   @FXML
   protected void handleTapOutCardButton(ActionEvent event) {
     //backEnd
-//    UiController.api.tapOut(station, card);
+    UiController.api.tapOut(station, card, dateField.getText(), timeField.getText());
   }
 }

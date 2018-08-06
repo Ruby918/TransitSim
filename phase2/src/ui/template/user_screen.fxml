@@ -7,6 +7,7 @@
 <?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.ComboBox?>
 
+<?import javafx.scene.control.TextField?>
 <GridPane fx:controller="ui.UserScreenController"
   xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="15" vgap="15">
   <padding>
@@ -102,5 +103,25 @@
           onAction="#handleTapOutCardButton">
   </Button>
 
+  <Label
+    GridPane.columnIndex="0" GridPane.rowIndex="3"
+    GridPane.columnSpan="1" GridPane.rowSpan="1"
+    text="Enter date (DD/MM/YYYY):"/>
+  <TextField fx:id="dateField" prefWidth="100"
+    text="06/08/2018"
+    GridPane.columnIndex="0" GridPane.rowIndex="4"
+    GridPane.columnSpan="1" GridPane.rowSpan="1"
+    GridPane.halignment="LEFT">
+  </TextField>
+  <Label
+    GridPane.columnIndex="0" GridPane.rowIndex="5"
+    GridPane.columnSpan="1" GridPane.rowSpan="1"
+    text="Enter time (HH:MM):"/>
+  <TextField fx:id="timeField" prefWidth="100"
+    text="10:30"
+    GridPane.columnIndex="0" GridPane.rowIndex="6"
+    GridPane.columnSpan="1" GridPane.rowSpan="1"
+    GridPane.halignment="RIGHT">
+  </TextField>
 
 </GridPane>
