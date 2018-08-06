@@ -1,7 +1,6 @@
 package api;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import transit.*;
 
@@ -30,25 +29,26 @@ public class Api {
     try {
       UserAccount user = transitFareManager.getCustomerByEmail(email);
       if (user.validatePassword(password)) {
-        logger.log.fine("Api has successfully logged in user with email " + email);
+        logger.log.fine("Successfully logged in user with email " + email);
         return user;
       }
       throw new LoginFailedException();
     } catch (CustomerNotFoundException e) {}
-      throw new LoginFailedException();
+    logger.log.warning("Failed failed to log in user with email " + email);
+    throw new LoginFailedException();
   }
 
   // UI needs to know how much money in a card so it can display it.
   public double getMoney(Card card) {
+    logger.log.fine("Getting balance for card " + card);
     return card.getBalance();
   }
 
   //stats info
-    public ArrayList<Trip> getDailyProfits(TransitDate date){
-      return this.statisticsManager.getTripsOnDate(date);
-    }
 
-    public double getRevenueOnDate(TransitDate date){
+    public double getRevenueOnDate(String dateString){
+        TransitDate date = new TransitDate(dateString);
+        logger.log.fine("Getting revenue for date " + dateString);
         return this.statisticsManager.calculateRevenueOnDate(date);
     }
 
@@ -56,31 +56,37 @@ public class Api {
         return this.statisticsManager.calculateRevenue();
     }
 
-    public ArrayList<Station> getStationsReachedOnDate(TransitDate date){
-        return this.statisticsManager.getStationsReachedOnDate(date);
+    public ArrayList<Station> getStationsReachedOnDate(String dateString){
+      TransitDate date = new TransitDate(dateString);
+      logger.log.fine("Getting stations reached on date " + dateString);
+      return this.statisticsManager.getStationsReachedOnDate(date);
     }
 
 
-  public void tapIn(Station station, Card card) {
+  public void tapIn(Station station, Card card, String dateString) {
+    TransitDate date = new TransitDate(dateString);
+    logger.log.fine("Tapping into " + station + " on " + dateString + " with card " + card);
     try{
-    card.tapIn(station, new TransitDate(new Date()));
+    card.tapIn(station, date);
     }
     catch (Exception e){
-      // TODO: 2018-08-06
+      logger.log.warning("Tap in failed.");
 
     }
   }
 
-  public void tapOut(Station station, Card card) {
+  public void tapOut(Station station, Card card, String dateString) {
+    TransitDate date = new TransitDate(dateString);
+    logger.log.fine("Tapping out of " + station + " on " + dateString + " with card " + card);
     try{
-      card.tapOut(station, new TransitDate(new Date()));
+      card.tapOut(station, date);
     }
     catch (Exception e){
-      // TODO: 2018-08-06
-
+      logger.log.warning("Tap out failed.");
     }
   }
   public void addPriceModifier(Card card, PriceModifier priceModifier){
+    logger.log.fine("Adding price modifier " + priceModifier + " to card " + card);
     card.setPriceModifier(priceModifier);
   }
 }

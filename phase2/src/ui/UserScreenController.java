@@ -117,12 +117,12 @@ public class UserScreenController extends UiController {
   @FXML
   protected void handleTapInCardButton(ActionEvent event) {
     //backEnd
-    UiController.api.tapIn(station, card);
+//    UiController.api.tapIn(station, card);
   }
 
   @FXML
   protected void handleTapOutCardButton(ActionEvent event) {
     //backEnd
-    UiController.api.tapOut(station, card);
+//    UiController.api.tapOut(station, card);
   }
 }
