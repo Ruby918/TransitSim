@@ -1,6 +1,7 @@
 package ui;
 
 import api.CreateUserException;
+import api.UpdateUserException;
 import api.UserForTableView;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
@@ -70,8 +71,13 @@ public class AdminUsersController extends UiController {
 
   @FXML
   public void handleSaveButton() {
-    api.user.update(selectedUser.getEmail(), nameField.getText(), emailField.getText(), isAdminCheckBox.isSelected());
-    updateView();
+    try {
+      api.user.update(selectedUser.getEmail(), nameField.getText(), emailField.getText(),
+          isAdminCheckBox.isSelected());
+      updateView();
+    } catch (UpdateUserException e) {
+      errorMessage.setText("Failed to update user. All fields are required. Emails must be unique.");
+    }
   }
 
   public void initialize(){

@@ -12,7 +12,8 @@ public class UserApi extends ChildApi {
     return transitFareManager.createUserAccount(name, email, isAdmin);
   }
 
-  public void update(String oldEmail, String name, String newEmail, boolean isAdmin) {
+  public void update(String oldEmail, String name, String newEmail, boolean isAdmin) throws UpdateUserException {
+    if (oldEmail.isEmpty() || name.isEmpty() || newEmail.isEmpty() || (!(transitFareManager.getUserByEmail(newEmail) == null) || (newEmail == oldEmail))) throw new UpdateUserException();
     transitFareManager.updateUser(oldEmail, name, newEmail, isAdmin);
   }
 
