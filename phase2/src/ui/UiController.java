@@ -8,8 +8,6 @@ import javafx.scene.control.Control;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import transit.TransitLogger;
-import transit.Station;
-import transit.PriceModifier;
 
 public class UiController {
   public static Api api;
@@ -22,13 +20,13 @@ public class UiController {
     Window owner = control.getScene().getWindow();
 
     try {
-      FXMLLoader titleLoader = new FXMLLoader();
-      titleLoader.setLocation(getClass().getResource(template));
-      Scene loginScene = new Scene(titleLoader.load(), 600, 600);
-      Stage loginStage = new Stage();
-      loginStage.setScene(loginScene);
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource(template));
+      Scene scene = new Scene(loader.load(), 600, 600);
+      Stage stage = new Stage();
+      stage.setScene(scene);
       owner.hide();
-      loginStage.show();
+      stage.show();
     } catch (IOException e) {
       logger.log.severe("Failed to load " + template);
     }
