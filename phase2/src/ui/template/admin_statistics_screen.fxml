@@ -5,13 +5,33 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+
+
+
+<GridPane xmlns="http://javafx.com/javafx"
   xmlns:fx="http://javafx.com/fxml"
   fx:controller="ui.AdminStatisticsController"
   prefHeight="400.0" prefWidth="600.0">
   <children>
     <fx:include fx:id="child" source="nav_bar.fxml"/>
     <Label text="Statistics" />
+
   </children>
-</AnchorPane>
+
+  <Label  text="Date of Stats: "
+          GridPane.columnIndex="0" GridPane.rowIndex="0"
+          GridPane.columnSpan="2" GridPane.rowSpan="1"
+          GridPane.halignment="CENTER">
+    <font>
+      <Font name="Comic Sans MS" size="24"></Font>
+    </font>
+  </Label>
+
+
+
+
+
+</GridPane>
+

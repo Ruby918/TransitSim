@@ -27,29 +27,23 @@ import javafx.scene.Scene;
 
 public class AdminStatisticsController extends UiController{
 
-    private Button returnButton;
-    @FXML
+    private Button adminReturn;
 
-    protected void handleReturnButtonAction(ActionEvent event) {
-        Window owner = this.returnButton.getScene().getWindow();
-        owner.hide();
-    }
-    protected void handleCreateCardButton(ActionEvent event) {
-        // Make a message appear on current stage TO DO (maybe)
-        api.createCard(UiController.user);
-        Window owner = returnButton.getScene().getWindow();
-        owner.hide();
+    @FXML
+    protected void handleAdminReturnButtonAction(ActionEvent event) {
+        Window owner = adminReturn.getScene().getWindow();
         try {
-            FXMLLoader moneyLoader = new FXMLLoader();
-            moneyLoader.setLocation(getClass().getResource("template/success_create_screen.fxml"));
-            Scene moneyScene = new Scene(moneyLoader.load(), 350, 150);
-            Stage moneyStage = new Stage();
-            moneyStage.setScene(moneyScene);
-            moneyStage.show();
+            FXMLLoader mainLoader = new FXMLLoader();
+            mainLoader.setLocation(getClass().getResource("template/admin_statistics_screen.fxml"));
+            Scene mainScene = new Scene(mainLoader.load(), 500, 500);
+            Stage mainStage = new Stage();
+            mainStage.setScene(mainScene);
             owner.hide();
+            mainStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
 }

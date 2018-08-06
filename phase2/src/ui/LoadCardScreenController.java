@@ -85,9 +85,6 @@ public class LoadCardScreenController extends UiController {
     finalMoneyCount = moneyCount.getText();
     // back end
     if (card == null) {
-      UiController.api.addMoney(user.getCards().get(0), Double.parseDouble(finalMoneyCount));
-    } else {
-      UiController.api.addMoney(card, Double.parseDouble(finalMoneyCount));
     }
     try {
       FXMLLoader moneyLoader = new FXMLLoader();

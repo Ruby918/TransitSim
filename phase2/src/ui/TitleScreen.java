@@ -21,6 +21,7 @@ public class TitleScreen extends Application {
     Scene scene = new Scene(root, 270, 150);
     stage.setScene(scene);
     stage.show();
+
   }
 
   @Override
