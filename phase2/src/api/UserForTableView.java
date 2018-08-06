@@ -2,29 +2,18 @@ package api;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import transit.UserAccount;
 
 public class UserForTableView {
 
-  private final SimpleIntegerProperty id;
   private final SimpleStringProperty name;
   private final SimpleStringProperty email;
   private final SimpleBooleanProperty isAdmin;
 
   public UserForTableView(UserAccount user) {
-    id = new SimpleIntegerProperty(user.getId());
     name = new SimpleStringProperty(user.getName());
     email = new SimpleStringProperty(user.getEmail());
-    isAdmin = new SimpleBooleanProperty(user.isAdmin);
-  }
-
-  public int getId() {
-    return id.get();
-  }
-
-  public void setId(int newId) {
-    id.set(newId);
+    isAdmin = new SimpleBooleanProperty(user.isAdmin());
   }
 
   public String getName() {

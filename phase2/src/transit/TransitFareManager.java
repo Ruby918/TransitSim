@@ -2,6 +2,7 @@ package transit;/* Danya */
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Main class of the transit system.
@@ -11,7 +12,7 @@ public class TransitFareManager implements Serializable {
   /**
    * List of users that have accounts with this transit system.
    */
-  private ArrayList<UserAccount> users = new ArrayList<>();
+  private HashMap<String, UserAccount> users = new HashMap<>();
   /**
    * List of cards that have been issued.
    */
@@ -30,7 +31,9 @@ public class TransitFareManager implements Serializable {
   }
 
   public ArrayList<UserAccount> getUsers() {
-    return users;
+    ArrayList<UserAccount> usersList = new ArrayList<>();
+    usersList.addAll(users.values());
+    return usersList;
   }
 
   public ArrayList<Card> getCards() {
@@ -59,8 +62,8 @@ public class TransitFareManager implements Serializable {
    */
   public UserAccount createUserAccount(String name, String email, boolean isAdmin) {
     // Increment user id by one for every new user
-    UserAccount user = new UserAccount(name, email, this.users.size(), isAdmin);
-    this.users.add(user);
+    UserAccount user = new UserAccount(name, email, isAdmin);
+    this.users.put(email, user);
     return user;
   }
 
@@ -85,17 +88,27 @@ public class TransitFareManager implements Serializable {
    *
    * @param id id of user
    */
-  public UserAccount getCustomerById(int id) {
-    return this.users.get(id);
+  public UserAccount getUserByIndex(int id) {
+    return this.getUsers().get(id);
   }
 
-  public UserAccount getCustomerByEmail(String email) throws CustomerNotFoundException {
-    for (UserAccount customer : this.users) {
-      if (customer.getEmail().equals(email)) {
-        return customer;
-      }
+  public UserAccount getUserByEmail(String email) throws CustomerNotFoundException {
+    UserAccount user = this.users.get(email);
+    if (user == null) throw new CustomerNotFoundException();
+    return user;
+  }
+
+  public void updateUser(String oldEmail, String name, String newEmail, boolean isAdmin) {
+    UserAccount user = this.users.get(oldEmail);
+    if (user != null) {
+      user.setName(name);
+      user.setEmail(newEmail);
+      user.setAdmin(isAdmin);
     }
-    throw new CustomerNotFoundException();
+  }
+
+  public void deleteUser(String email) {
+    this.users.remove(email);
   }
 
   /**

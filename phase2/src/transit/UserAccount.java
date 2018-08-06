@@ -16,31 +16,36 @@ public class UserAccount implements Serializable {
   private String email;
   private String password;
   private ArrayList<Card> cards = new ArrayList<>();
-  private int id;
   private boolean active = true;
-  public boolean isAdmin;
+  private boolean isAdmin;
 
   /**
-   * A constructor for the UserAccount class that sets a name, email and id.
+   * A constructor for the UserAccount class that sets a name, email.
    */
-  public UserAccount(String name, String email, int id, boolean isAdmin) {
+  public UserAccount(String name, String email, boolean isAdmin) {
     this.name = name;
     this.email = email;
-    this.id = id;
     this.password = "root";
     this.isAdmin = isAdmin;
   }
 
-  public boolean hasCard(){ return cards.size() != 0;}
-
-  /**
-   * A getter which returns the id of the Customer account.
-   *
-   * @return - id of the Customer account.
-   */
-  public int getId() {
-    return id;
+  public boolean isAdmin() {
+    return isAdmin;
   }
+
+  public void setAdmin(boolean admin) {
+    isAdmin = admin;
+  }
+
+  public void deactivateAccount() {
+    this.active = false;
+  }
+
+  public void activateAccount() {
+    this.active = true;
+  }
+
+  public boolean hasCard(){ return cards.size() != 0;}
 
   /**
    * Returns the Card of Customer account given the cards id.
@@ -56,14 +61,6 @@ public class UserAccount implements Serializable {
       }
     }
     return null;
-  }
-
-  public void deactivateAccount() {
-    this.active = false;
-  }
-
-  public void activateAccount() {
-    this.active = true;
   }
 
   public boolean validatePassword(String password) {
@@ -104,6 +101,10 @@ public class UserAccount implements Serializable {
    */
   public String getEmail() {
     return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
   }
 
   /**
@@ -217,8 +218,6 @@ public class UserAccount implements Serializable {
         + this.name
         + " | Email: "
         + this.email
-        + " | ID: "
-        + Integer.toString(this.id)
         + " | Cards: "
         + prettyCards.toString();
 

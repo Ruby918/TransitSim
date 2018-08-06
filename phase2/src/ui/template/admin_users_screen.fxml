@@ -16,7 +16,6 @@
   </Label>
   <TableView fx:id="tableViewUsers" GridPane.columnIndex="0" GridPane.rowIndex="1">
     <columns>
-      <TableColumn prefWidth="50.0" text="ID" fx:id="Id" />
       <TableColumn prefWidth="200.0" text="Name" fx:id="Name" />
       <TableColumn prefWidth="250.0" text="Email" fx:id="Email" />
       <TableColumn prefWidth="75.0" text="Is Admin" fx:id="IsAdmin" />

@@ -11,11 +11,10 @@ import transit.UserAccount;
 
 public class AdminUsersController extends UiController {
 
-  @FXML
-  private TableView<UserForTableView> tableViewUsers;
+  private UserForTableView selectedUser;
 
   @FXML
-  private TableColumn<UserForTableView, Integer> Id;
+  private TableView<UserForTableView> tableViewUsers;
 
   @FXML
   private TableColumn<UserForTableView, String> Name;
@@ -38,9 +37,12 @@ public class AdminUsersController extends UiController {
   @FXML
   public void handleUserSelect() {
     UserForTableView user = tableViewUsers.getSelectionModel().getSelectedItem();
-    nameField.setText(user.getName());
-    emailField.setText(user.getEmail());
-    isAdminCheckBox.setSelected(user.getIsAdmin());
+    if (user != null) {
+      selectedUser = user;
+      nameField.setText(user.getName());
+      emailField.setText(user.getEmail());
+      isAdminCheckBox.setSelected(user.getIsAdmin());
+    }
   }
 
   @FXML
@@ -52,19 +54,20 @@ public class AdminUsersController extends UiController {
 
   @FXML
   public void handleDeleteButton() {
-    
+    api.user.delete(selectedUser.getEmail());
+    updateView();
   }
 
   @FXML
   public void handleSaveButton() {
-
+    api.user.update(selectedUser.getEmail(), nameField.getText(), emailField.getText(), isAdminCheckBox.isSelected());
+    updateView();
   }
 
   public void initialize(){
 
     tableViewUsers.getSelectionModel().selectedIndexProperty().addListener((num) -> handleUserSelect());
 
-    Id.setCellValueFactory(new PropertyValueFactory<UserForTableView, Integer>("id"));
     Name.setCellValueFactory(new PropertyValueFactory<UserForTableView, String>("name"));
     Email.setCellValueFactory(new PropertyValueFactory<UserForTableView, String>("email"));
     IsAdmin.setCellValueFactory(new PropertyValueFactory<UserForTableView, Boolean>("isAdmin"));

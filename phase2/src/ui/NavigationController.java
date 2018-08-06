@@ -64,7 +64,7 @@ public class NavigationController extends UiController implements Initializable 
       menuLogoutLabel.setOnMouseClicked(event -> handleLogoutButtonAction(null));
       Label menuAccountLabel = addMenuLabel("My Account");
       menuAccountLabel.setOnMouseClicked(event -> handleMyAccountButtonAction(null));
-      if (user.isAdmin) {
+      if (user.isAdmin()) {
         createAdminMenu();
       }
     }

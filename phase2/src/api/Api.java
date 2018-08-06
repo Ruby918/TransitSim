@@ -84,7 +84,7 @@ public class Api {
 
   public UserAccount loginCustomer(String email, String password) throws LoginFailedException {
     try {
-      UserAccount user = transitFareManager.getCustomerByEmail(email);
+      UserAccount user = transitFareManager.getUserByEmail(email);
       if (user.validatePassword(password)) {
         logger.log.fine("Successfully logged in user with email " + email);
         return user;

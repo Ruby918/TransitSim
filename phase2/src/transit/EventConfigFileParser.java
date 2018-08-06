@@ -148,7 +148,7 @@ public class EventConfigFileParser extends ConfigFileParser {
    */
   private void parseCustomerCommand(String[] data) {
 
-    UserAccount customer = transitSystem.getCustomerById(Integer.parseInt(data[1]));
+    UserAccount customer = transitSystem.getUserByIndex(Integer.parseInt(data[1]));
     if (customer == null) {
       message = "That user does not exist.";
       return;
