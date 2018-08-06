@@ -57,6 +57,15 @@ public class Api {
     return result;
   }
 
+  public ArrayList<StationForTableView> getStations() {
+    ArrayList<Station> stations =  transitFareManager.getMap().getStations();
+    ArrayList<StationForTableView> result = new ArrayList<>();
+    for (Station station : stations){
+      result.add(new StationForTableView(station));
+    }
+    return result;
+  }
+
   public void createCard(UserAccount customer) {
     transitFareManager.issueCard(customer);
   }

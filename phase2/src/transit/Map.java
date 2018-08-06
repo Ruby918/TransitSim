@@ -80,6 +80,14 @@ public class Map implements Serializable {
     return route.getStationByName(stationName);
   }
 
+  public ArrayList<Station> getStations() {
+    ArrayList<Station> stations = new ArrayList<>();
+    for (Route route : routes) {
+      stations.addAll(route.getStations());
+    }
+    return stations;
+  }
+
   /**
    * Bundle stations as adjacent stops.
    */

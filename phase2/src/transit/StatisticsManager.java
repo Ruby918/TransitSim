@@ -10,18 +10,9 @@ import java.util.ArrayList;
 public class StatisticsManager {
 
   private TransitFareManager transitFareManager;
-  protected static ArrayList<Station> allStations;
 
   public StatisticsManager(TransitFareManager transitFareManager) {
     this.transitFareManager = transitFareManager;
-  }
-
-  public ArrayList<Station> getAllStations() {
-    return allStations;
-  }
-
-  public void addStations(Station station) {
-    allStations.add(station);
   }
 
   /**

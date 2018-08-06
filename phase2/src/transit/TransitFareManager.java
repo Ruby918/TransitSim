@@ -45,6 +45,10 @@ public class TransitFareManager implements Serializable {
     return this.transactions;
   }
 
+  public Map getMap() {
+    return map;
+  }
+
   /**
    * Creates and returns a new customer account. Generates ID for new customer based on number of
    * existing customers.

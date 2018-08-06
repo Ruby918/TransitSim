@@ -29,6 +29,10 @@ public abstract class Route implements Serializable {
     this.stations = stations;
   }
 
+  public ArrayList<Station> getStations() {
+    return this.stations;
+  }
+
   /**
    * Add a station by name.
    */
@@ -104,5 +108,9 @@ public abstract class Route implements Serializable {
     }
     ret = new StringBuilder(ret.substring(0, ret.length() - 2));
     return ret + ")";
+  }
+
+  public String toStringSimple() {
+    return this.name + " " + getGenericIdentifier();
   }
 }
