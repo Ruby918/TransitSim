@@ -53,8 +53,4 @@ public class Api {
   public void handleTapOut() {
 
   }
-
-  public void handleCreateCard() {
-
-  }
 }
