@@ -2,15 +2,10 @@
 
 package ui;
 
-import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Window;
-import javafx.stage.Stage;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import transit.Card;
 
@@ -23,68 +18,60 @@ public class LoadCardScreenController extends UiController {
   private Button returnButton;
 
   @FXML
-  private Button addMoney;
+  private Button addMoneyButton;
 
   private static String finalMoneyCount;
 
   @FXML
-  private Label moneyCount;
+  private Label moneyCountField;
 
-  public String getMoneyCount() {
+  public String getMoneyCountField() {
       return finalMoneyCount;
   }
 
   @FXML
   protected void handleAddFiveButtonAction(ActionEvent event) {
-    String moneyCountLabel = moneyCount.getText();
+    String moneyCountLabel = moneyCountField.getText();
     double newTotal = Double.parseDouble(moneyCountLabel) + 5.00;
-    moneyCount.setText(Double.toString(newTotal)+"0");
+    moneyCountField.setText(Double.toString(newTotal)+"0");
   }
 
   @FXML
   protected void handleAddTenButtonAction(ActionEvent event) {
-    String moneyCountLabel = moneyCount.getText();
+    String moneyCountLabel = moneyCountField.getText();
     double newTotal = Double.parseDouble(moneyCountLabel) + 10.00;
-    moneyCount.setText(Double.toString(newTotal)+"0");
+    moneyCountField.setText(Double.toString(newTotal)+"0");
   }
 
   @FXML
   protected void handleAddTwoButtonAction(ActionEvent event) {
-    String moneyCountLabel = moneyCount.getText();
+    String moneyCountLabel = moneyCountField.getText();
     double newTotal = Double.parseDouble(moneyCountLabel) + 20.00;
-    moneyCount.setText(Double.toString(newTotal)+"0");
+    moneyCountField.setText(Double.toString(newTotal)+"0");
   }
 
   @FXML
   protected void handleAddFiveTenButtonAction(ActionEvent event) {
-    String moneyCountLabel = moneyCount.getText();
+    String moneyCountLabel = moneyCountField.getText();
     double newTotal = Double.parseDouble(moneyCountLabel) + 50.00;
-    moneyCount.setText(Double.toString(newTotal)+"0");
+    moneyCountField.setText(Double.toString(newTotal)+"0");
   }
 
   @FXML
   protected void handleResetCounterButtonAction(ActionEvent event) {
-    moneyCount.setText(Double.toString(0.00)+"0");
+    moneyCountField.setText(Double.toString(0.00)+"0");
   }
 
   @FXML
   protected void handleAddMoneyButtonAction(ActionEvent event) {
-    Window owner = addMoney.getScene().getWindow();
-    finalMoneyCount = moneyCount.getText();
+    finalMoneyCount = moneyCountField.getText();
 
     Card card = (Card) dataStore.get("currentCard").data();
     if (card != null) {
-      try {
-        FXMLLoader moneyLoader = new FXMLLoader();
-        moneyLoader.setLocation(getClass().getResource("template/success_warning_screen.fxml"));
-        Scene moneyScene = new Scene(moneyLoader.load(), 350, 150);
-        Stage moneyStage = new Stage();
-        moneyStage.setScene(moneyScene);
-        moneyStage.show();
-        owner.hide();
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
+      loadTemplate("template/success_warning_screen.fxml", addMoneyButton);
+      // TODO actually add money
+    } else {
+      // TODO do something
     }
   }
 

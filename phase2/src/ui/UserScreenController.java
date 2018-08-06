@@ -2,8 +2,6 @@
 
 package ui;
 
-import java.io.IOException;
-
 import javafx.scene.control.TextField;
 import transit.Card;
 import javafx.event.ActionEvent;
@@ -11,10 +9,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.stage.Window;
-import javafx.stage.Stage;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import java.util.ArrayList;
 import transit.PriceModifier;
 import transit.Station;
@@ -91,41 +85,17 @@ public class UserScreenController extends UiController {
 
   @FXML
   protected void handleCreateCardButton(ActionEvent event) {
-    Window owner = createCardButton.getScene().getWindow();
 
     //back end
     api.createCard(user);
-
-    try {
-      FXMLLoader createLoader = new FXMLLoader();
-      createLoader.setLocation(getClass().getResource("template/create_card_screen.fxml"));
-      Scene createScene = new Scene(createLoader.load(), 300, 200);
-      Stage createStage = new Stage();
-      createStage.setScene(createScene);
-      createStage.show();
-      owner.hide();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    loadTemplate("template/create_card_screen.fxml", createCardButton);
   }
 
   @FXML
   protected void handleLoadCardButton(ActionEvent event) {
 
-    Window owner = createCardButton.getScene().getWindow();
     // TODO actually load card
-
-    try {
-      FXMLLoader loadLoader = new FXMLLoader();
-      loadLoader.setLocation(getClass().getResource("template/load_card_screen.fxml"));
-      Scene loadScene = new Scene(loadLoader.load(), 300, 200);
-      Stage loadStage = new Stage();
-      loadStage.setScene(loadScene);
-      loadStage.show();
-      owner.hide();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    loadTemplate("template/load_card_screen.fxml", createCardButton);
   }
 
   @FXML

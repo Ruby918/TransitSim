@@ -3,17 +3,12 @@
 package ui;
 
 import api.LoginFailedException;
-import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.stage.Window;
-import javafx.stage.Stage;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
-import javafx.scene.Scene;
 import transit.UserAccount;
 
 public class UserLoginScreenController extends UiController {
@@ -32,7 +27,6 @@ public class UserLoginScreenController extends UiController {
 
   @FXML
   protected void handleLoginButtonAction(ActionEvent event) {
-    Window owner = loginButton.getScene().getWindow();
     String email = userField.getText();
     String password = passField.getText();
 
@@ -43,36 +37,14 @@ public class UserLoginScreenController extends UiController {
     try {
       UserAccount user = api.loginCustomer(email, password);
       dataStore.set("currentUser", new UiData<UserAccount>(user));
+      loadTemplate("template/user_screen.fxml", loginButton);
     } catch (LoginFailedException e) {
       // TODO display something in the UI
-    }
-
-    try {
-      FXMLLoader loginLoader = new FXMLLoader();
-      loginLoader.setLocation(getClass().getResource("template/user_screen.fxml"));
-      Scene loginScene = new Scene(loginLoader.load(), 350, 400);
-      Stage loginStage = new Stage();
-      loginStage.setScene(loginScene);
-      owner.hide();
-      loginStage.show();
-    } catch (IOException e) {
-      e.printStackTrace();
     }
   }
 
   @FXML
   protected void handleReturnButtonAction(ActionEvent event) {
-    Window owner = returnButton.getScene().getWindow();
-    try {
-      FXMLLoader returnLoader = new FXMLLoader();
-      returnLoader.setLocation(getClass().getResource("template/title_screen.fxml"));
-      Scene returnScene = new Scene(returnLoader.load(), 270, 150);
-      Stage returnStage = new Stage();
-      returnStage.setScene(returnScene);
-      owner.hide();
-      returnStage.show();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    loadTemplate("template/title_screen.fxml", returnButton);
   }
 }
