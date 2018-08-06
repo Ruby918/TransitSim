@@ -26,15 +26,15 @@ import javafx.scene.Scene;
 
 
 public class AdminStatisticsController extends UiController{
-
-    private Button adminReturn;
+    @FXML
+    private Button confirm;
 
     @FXML
-    protected void handleAdminReturnButtonAction(ActionEvent event) {
-        Window owner = adminReturn.getScene().getWindow();
+    protected void handleConfirmButtonAction(ActionEvent event) {
+        Window owner = confirm.getScene().getWindow();
         try {
             FXMLLoader mainLoader = new FXMLLoader();
-            mainLoader.setLocation(getClass().getResource("template/admin_statistics_screen.fxml"));
+            mainLoader.setLocation(getClass().getResource("template/show_stats.fxml"));
             Scene mainScene = new Scene(mainLoader.load(), 500, 500);
             Stage mainStage = new Stage();
             mainStage.setScene(mainScene);

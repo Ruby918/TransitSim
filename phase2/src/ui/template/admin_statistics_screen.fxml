@@ -18,16 +18,27 @@
     <fx:include fx:id="child" source="nav_bar.fxml"/>
     <Label text="Statistics" />
 
+
+    <Label  text="Date of Stats: "
+            GridPane.columnIndex="0" GridPane.rowIndex="0"
+            GridPane.columnSpan="2" GridPane.rowSpan="1"
+            GridPane.halignment="CENTER">
+      <font>
+        <Font name="Comic Sans MS" size="24"></Font>
+      </font>
+    </Label>
+
+    <Button fx:id="confirm" text="confirm"
+            prefWidth="100" prefHeight="20" defaultButton="false"
+            GridPane.columnIndex="0" GridPane.rowIndex="3"
+            GridPane.columnSpan="1" GridPane.rowSpan="1"
+            GridPane.halignment="RIGHT"
+            onAction="#handleConfirmButtonAction">
+    </Button>
+
   </children>
 
-  <Label  text="Date of Stats: "
-          GridPane.columnIndex="0" GridPane.rowIndex="0"
-          GridPane.columnSpan="2" GridPane.rowSpan="1"
-          GridPane.halignment="CENTER">
-    <font>
-      <Font name="Comic Sans MS" size="24"></Font>
-    </font>
-  </Label>
+
 
 
 
