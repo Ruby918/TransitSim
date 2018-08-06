@@ -49,9 +49,14 @@
     GridPane.halignment="LEFT"
   />
 
+  <Label fx:id="errorMessage"
+    GridPane.columnIndex="0" GridPane.rowIndex="8"
+    GridPane.columnSpan="1" GridPane.rowSpan="1"
+    text=""/>
+
   <Button fx:id="deleteButton" text="Delete User"
     prefWidth="175" prefHeight="75" defaultButton="false"
-    GridPane.columnIndex="0" GridPane.rowIndex="8"
+    GridPane.columnIndex="0" GridPane.rowIndex="9"
     GridPane.columnSpan="1" GridPane.rowSpan="1"
     GridPane.halignment="LEFT"
     onAction="#handleDeleteButton">
@@ -59,7 +64,7 @@
 
   <Button fx:id="createButton" text="Create User"
     prefWidth="175" prefHeight="75" defaultButton="false"
-    GridPane.columnIndex="0" GridPane.rowIndex="8"
+    GridPane.columnIndex="0" GridPane.rowIndex="9"
     GridPane.columnSpan="1" GridPane.rowSpan="1"
     GridPane.halignment="CENTER"
     onAction="#handleCreateButton">
@@ -67,7 +72,7 @@
 
   <Button fx:id="saveButton" text="Save User"
     prefWidth="175" prefHeight="75" defaultButton="false"
-    GridPane.columnIndex="0" GridPane.rowIndex="8"
+    GridPane.columnIndex="0" GridPane.rowIndex="9"
     GridPane.columnSpan="1" GridPane.rowSpan="1"
     GridPane.halignment="RIGHT"
     onAction="#handleSaveButton">

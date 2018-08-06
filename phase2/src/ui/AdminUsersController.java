@@ -1,8 +1,10 @@
 package ui;
 
+import api.CreateUserException;
 import api.UserForTableView;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -35,6 +37,9 @@ public class AdminUsersController extends UiController {
   private CheckBox isAdminCheckBox;
 
   @FXML
+  private Label errorMessage;
+
+  @FXML
   public void handleUserSelect() {
     UserForTableView user = tableViewUsers.getSelectionModel().getSelectedItem();
     if (user != null) {
@@ -47,9 +52,14 @@ public class AdminUsersController extends UiController {
 
   @FXML
   public void handleCreateButton() {
-    UserAccount user =  api.user.create(nameField.getText(), emailField.getText(), isAdminCheckBox.isSelected());
-    logger.log.fine("Created user " + user.toString());
-    updateView();
+    try {
+      UserAccount user = api.user
+          .create(nameField.getText(), emailField.getText(), isAdminCheckBox.isSelected());
+      logger.log.fine("Created user " + user.toString());
+      updateView();
+    } catch (CreateUserException e) {
+      errorMessage.setText("Failed to create user. Emails must be unique.");
+    }
   }
 
   @FXML
@@ -76,8 +86,8 @@ public class AdminUsersController extends UiController {
   }
 
   private void updateView() {
+    errorMessage.setText("");
     tableViewUsers.getItems().setAll(api.user.get());
-
   }
 
 
