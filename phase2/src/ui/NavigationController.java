@@ -33,6 +33,11 @@ public class NavigationController extends UiController implements Initializable 
   }
 
   @FXML
+  protected void handleMyAccountButtonAction(ActionEvent event) {
+    loadTemplate("template/user_screen.fxml");
+  }
+
+  @FXML
   protected void handleCustomersButtonAction(ActionEvent event) {
     loadTemplate("template/admin_customers_screen.fxml");
   }
@@ -57,16 +62,10 @@ public class NavigationController extends UiController implements Initializable 
       loggedInLabel.setText("Logged in as " + user.getName());
       Label menuLogoutLabel = addMenuLabel("Logout");
       menuLogoutLabel.setOnMouseClicked(event -> handleLogoutButtonAction(null));
+      Label menuAccountLabel = addMenuLabel("My Account");
+      menuAccountLabel.setOnMouseClicked(event -> handleMyAccountButtonAction(null));
       if (user.isAdmin) {
-        Menu menuAdmin = new Menu("Admin");
-        MenuItem menuItem1 = new MenuItem("Customers");
-        menuItem1.setOnAction(event -> handleCustomersButtonAction(null));
-        MenuItem menuItem2 = new MenuItem("Statistics");
-        menuItem2.setOnAction(event -> handleStatisticsButtonAction(null));
-        MenuItem menuItem3 = new MenuItem("Map");
-        menuItem3.setOnAction(event -> handleMapButtonAction(null));
-        menuAdmin.getItems().addAll(menuItem1, menuItem2, menuItem3);
-        menuBar.getMenus().add(menuAdmin);
+        createAdminMenu();
       }
     }
     else {
@@ -82,6 +81,18 @@ public class NavigationController extends UiController implements Initializable 
     menu.setGraphic(menuLabel);
     menuBar.getMenus().add(menu);
     return menuLabel;
+  }
+
+  private void createAdminMenu() {
+    Menu menuAdmin = new Menu("Admin");
+    MenuItem menuItem1 = new MenuItem("Customers");
+    menuItem1.setOnAction(event -> handleCustomersButtonAction(null));
+    MenuItem menuItem2 = new MenuItem("Statistics");
+    menuItem2.setOnAction(event -> handleStatisticsButtonAction(null));
+    MenuItem menuItem3 = new MenuItem("Map");
+    menuItem3.setOnAction(event -> handleMapButtonAction(null));
+    menuAdmin.getItems().addAll(menuItem1, menuItem2, menuItem3);
+    menuBar.getMenus().add(menuAdmin);
   }
 
   private void loadTemplate(String template) {
