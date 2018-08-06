@@ -10,11 +10,10 @@ import java.util.ArrayList;
 public class StatisticsManager {
 
   private TransitFareManager transitFareManager;
-  private ArrayList<Station> allStations;
+  protected static ArrayList<Station> allStations;
 
   public StatisticsManager(TransitFareManager transitFareManager) {
     this.transitFareManager = transitFareManager;
-    this.allStations = new ArrayList<Station>();
   }
 
   public ArrayList<Station> getAllStations() {
@@ -22,7 +21,7 @@ public class StatisticsManager {
   }
 
   public void addStations(Station station) {
-    this.allStations.add(station);
+    allStations.add(station);
   }
 
   /**

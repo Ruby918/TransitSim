@@ -29,6 +29,8 @@ public class BusRoute extends Route {
    */
   @Override
   public void addStationByName(String name) {
-    this.addStation(new BusStation(name, this));
+    Station newStation = new BusStation(name, this);
+    this.addStation(newStation);
+    StatisticsManager.allStations.add(newStation);
   }
 }
