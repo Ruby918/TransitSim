@@ -16,14 +16,19 @@ import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import java.util.ArrayList;
+import transit.PriceModifier;
+import transit.Station;
 import transit.UserAccount;
 
 public class UserScreenController extends UiController {
 
   private UserAccount user;
+  private Card card;
+  private Station station;
+  private PriceModifier priceModifier;
 
   @FXML
-  private Button createCard;
+  private Button createCardButton;
 
   @FXML
   private Label balanceLabel;
@@ -41,15 +46,18 @@ public class UserScreenController extends UiController {
   protected void initialize() {
 
     // get current user
-    UiData userData = dataStore.get("currentUser");
-    if (userData != null) user = (UserAccount) userData.data();
+    user = (UserAccount) dataStore.get("currentUser").data();
+    // get current user
+    station = (Station) dataStore.get("currentStation").data();
+    // get current user
+    priceModifier = (PriceModifier) dataStore.get("currentPriceModifier").data();
 
     // Update the balance
     String textLine = balanceLabel.getText();
     String updatedText="";
     String[] cut = textLine.split("\\s+");
     if (user.hasCard()) {
-      double moneyInCard = UiController.api.getMoney(user.getCards().get(0));
+      double moneyInCard = api.getMoney(user.getCards().get(0));
       cut[2] = Double.toString(moneyInCard);
       for (int i=0; i<cut.length; i++) {
         updatedText += cut[i] + " ";
@@ -69,8 +77,11 @@ public class UserScreenController extends UiController {
       String[] cut2 = balanceLabel.getText().split("\\s+");
       String updatedText2="";
       String id = selectCardCombo.getSelectionModel().getSelectedItem().toString();
+
       card = user.getCard(Integer.parseInt(id));
-      cut2[2] = Double.toString(UiController.api.getMoney(card));
+      dataStore.set("currentCard", new UiData<Card>(card));
+
+      cut2[2] = Double.toString(api.getMoney(card));
       for (int i=0; i<cut2.length; i++) {
         updatedText2 += cut2[i] + " ";
       }
@@ -80,10 +91,10 @@ public class UserScreenController extends UiController {
 
   @FXML
   protected void handleCreateCardButton(ActionEvent event) {
-    Window owner = createCard.getScene().getWindow();
+    Window owner = createCardButton.getScene().getWindow();
 
     //back end
-    UiController.api.createCard(user);
+    api.createCard(user);
 
     try {
       FXMLLoader createLoader = new FXMLLoader();
@@ -100,11 +111,10 @@ public class UserScreenController extends UiController {
 
   @FXML
   protected void handleLoadCardButton(ActionEvent event) {
-    // back end
-    double amount = Double.parseDouble(balanceLabel.getText());
-    UiController.api.loadMoney(card, amount);
 
-    Window owner = createCard.getScene().getWindow();
+    Window owner = createCardButton.getScene().getWindow();
+    // TODO actually load card
+
     try {
       FXMLLoader loadLoader = new FXMLLoader();
       loadLoader.setLocation(getClass().getResource("template/load_card_screen.fxml"));
@@ -121,18 +131,18 @@ public class UserScreenController extends UiController {
   @FXML
   protected void handleModCardButton(ActionEvent event) {
     //backEnd
-    UiController.api.addPriceModifier(card, priceModifier);
+    api.addPriceModifier(card, priceModifier);
   }
 
   @FXML
   protected void handleTapInCardButton(ActionEvent event) {
     //backEnd
-    UiController.api.tapIn(station, card, dateField.getText(), timeField.getText());
+    api.tapIn(station, card, dateField.getText(), timeField.getText());
   }
 
   @FXML
   protected void handleTapOutCardButton(ActionEvent event) {
     //backEnd
-    UiController.api.tapOut(station, card, dateField.getText(), timeField.getText());
+    api.tapOut(station, card, dateField.getText(), timeField.getText());
   }
 }

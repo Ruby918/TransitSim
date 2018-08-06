@@ -56,7 +56,7 @@
   </ComboBox>
   <!-- Add 'Create Card' Button -->
 
-  <Button fx:id="createCard" text="Create&#13;&#10; Card"
+  <Button fx:id="createCardButton" text="Create&#13;&#10; Card"
           prefWidth="75" prefHeight="75" defaultButton="false"
           GridPane.columnIndex="0" GridPane.rowIndex="1"
           GridPane.columnSpan="1" GridPane.rowSpan="1"
@@ -66,7 +66,7 @@
 
   <!-- Add 'Load Current Card' Button -->
 
-  <Button fx:id="loadCard" text="Load&#13;&#10; Current&#13;&#10; Card"
+  <Button fx:id="loadCardButton" text="Load&#13;&#10; Current&#13;&#10; Card"
           prefWidth="75" prefHeight="75" defaultButton="false"
           GridPane.columnIndex="0" GridPane.rowIndex="1"
           GridPane.columnSpan="1" GridPane.rowSpan="1"
@@ -76,7 +76,7 @@
 
   <!-- Add 'Modify Current Card Type' Button -->
 
-  <Button fx:id="modCard" text="Modify&#13;&#10; Current&#13;&#10; Card Type"
+  <Button fx:id="modCardButton" text="Modify&#13;&#10; Current&#13;&#10; Card Type"
           prefWidth="75" prefHeight="75" defaultButton="false"
           GridPane.columnIndex="0" GridPane.rowIndex="1"
           GridPane.columnSpan="1" GridPane.rowSpan="1"
@@ -86,7 +86,7 @@
 
   <!-- Add 'Tap into Station' Button -->
 
-  <Button fx:id="tapIn" text="Tap Into&#13;&#10; Selected&#13;&#10; Station"
+  <Button fx:id="tapInButton" text="Tap Into&#13;&#10; Selected&#13;&#10; Station"
           prefWidth="75" prefHeight="75" defaultButton="false"
           GridPane.columnIndex="0" GridPane.rowIndex="2"
           GridPane.columnSpan="1" GridPane.rowSpan="1"
@@ -95,7 +95,7 @@
   </Button>
 
   <!-- Add 'Tap outa Station' Button -->
-  <Button fx:id="tapOut" text="Tap Out&#13;&#10; Of Selected&#13;&#10; Station"
+  <Button fx:id="tapOutButton" text="Tap Out&#13;&#10; Of Selected&#13;&#10; Station"
           prefWidth="75" prefHeight="75" defaultButton="false"
           GridPane.columnIndex="0" GridPane.rowIndex="2"
           GridPane.columnSpan="1" GridPane.rowSpan="1"

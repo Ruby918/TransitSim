@@ -56,8 +56,7 @@ public class NavigationController extends UiController implements Initializable 
   public void initialize(java.net.URL arg0, ResourceBundle arg1) {
 
     // get current user
-    UiData userData = dataStore.get("currentUser");
-    if (userData != null) user = (UserAccount) userData.data();
+    user = (UserAccount) dataStore.get("currentUser").data();
 
     if (user != null) {
       loggedInLabel.setText("Logged in as " + user.getName());

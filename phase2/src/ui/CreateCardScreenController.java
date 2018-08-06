@@ -27,9 +27,8 @@ public class CreateCardScreenController extends UiController {
   protected void handleCreateCardButton(ActionEvent event) {
 
     // get current user
-    UiData userData = dataStore.get("currentUser");
-    if (userData != null) {
-      UserAccount user = (UserAccount) userData.data();
+    UserAccount user = (UserAccount) dataStore.get("currentUser").data();
+    if (user != null) {
       api.createCard(user);
     } else {
       logger.log.warning("Can't create card on null user.");

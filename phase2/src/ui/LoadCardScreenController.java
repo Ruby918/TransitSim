@@ -10,29 +10,17 @@ import javafx.scene.control.Button;
 import javafx.stage.Window;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import transit.Card;
 
 public class LoadCardScreenController extends UiController {
-
-  @FXML
-  private Button addFive;
-
-  @FXML
-  private Button addTen;
-
-  @FXML
-  private Button addTwo;
 
   @FXML
   public Button addFiveTen;
 
   @FXML
   private Button returnButton;
-
-  @FXML
-  private Button resetCounter;
 
   @FXML
   private Button addMoney;
@@ -83,19 +71,20 @@ public class LoadCardScreenController extends UiController {
   protected void handleAddMoneyButtonAction(ActionEvent event) {
     Window owner = addMoney.getScene().getWindow();
     finalMoneyCount = moneyCount.getText();
-    // back end
-    if (card == null) {
-    }
-    try {
-      FXMLLoader moneyLoader = new FXMLLoader();
-      moneyLoader.setLocation(getClass().getResource("template/success_warning_screen.fxml"));
-      Scene moneyScene = new Scene(moneyLoader.load(), 350, 150);
-      Stage moneyStage = new Stage();
-      moneyStage.setScene(moneyScene);
-      moneyStage.show();
-      owner.hide();
-    } catch (IOException e) {
-      e.printStackTrace();
+
+    Card card = (Card) dataStore.get("currentCard").data();
+    if (card != null) {
+      try {
+        FXMLLoader moneyLoader = new FXMLLoader();
+        moneyLoader.setLocation(getClass().getResource("template/success_warning_screen.fxml"));
+        Scene moneyScene = new Scene(moneyLoader.load(), 350, 150);
+        Stage moneyStage = new Stage();
+        moneyStage.setScene(moneyScene);
+        moneyStage.show();
+        owner.hide();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
     }
   }
 
