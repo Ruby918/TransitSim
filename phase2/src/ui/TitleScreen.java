@@ -21,12 +21,10 @@ public class TitleScreen extends Application {
     Scene scene = new Scene(root, 270, 150);
     stage.setScene(scene);
     stage.show();
-
   }
 
   @Override
   public void stop(){
-    System.out.println("Stage is closing");
-    // Save file
+    UiController.api.saveApplicationState();
   }
 }
