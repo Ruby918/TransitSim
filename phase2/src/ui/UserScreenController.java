@@ -14,18 +14,16 @@ import javafx.scene.control.Label;
 import javafx.stage.Window;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import java.util.ArrayList;
-import javafx.beans.property.SimpleStringProperty;
+import transit.UserAccount;
 
 public class UserScreenController extends UiController {
 
-  @FXML
-  private Button createCard;
+  private UserAccount user;
 
   @FXML
-  private Button loadCard;
+  private Button createCard;
 
   @FXML
   private Label balanceLabel;
@@ -41,6 +39,11 @@ public class UserScreenController extends UiController {
 
   @FXML
   protected void initialize() {
+
+    // get current user
+    UiData userData = dataStore.get("currentUser");
+    if (userData != null) user = (UserAccount) userData.data();
+
     // Update the balance
     String textLine = balanceLabel.getText();
     String updatedText="";

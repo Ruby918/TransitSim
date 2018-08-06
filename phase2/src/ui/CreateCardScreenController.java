@@ -8,18 +8,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Window;
-import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import transit.UserAccount;
 
 public class CreateCardScreenController extends UiController {
   @FXML
   private Button returnButton;
-
-  @FXML
-  private Button createButton;
 
   @FXML
   protected void handleReturnButtonAction(ActionEvent event) {
@@ -29,7 +25,16 @@ public class CreateCardScreenController extends UiController {
 
   @FXML
   protected void handleCreateCardButton(ActionEvent event) {
-    api.createCard(UiController.user);
+
+    // get current user
+    UiData userData = dataStore.get("currentUser");
+    if (userData != null) {
+      UserAccount user = (UserAccount) userData.data();
+      api.createCard(user);
+    } else {
+      logger.log.warning("Can't create card on null user.");
+    }
+
     Window owner = returnButton.getScene().getWindow();
     owner.hide();
     try {

@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.scene.Scene;
+import transit.UserAccount;
 
 public class UserLoginScreenController extends UiController {
   @FXML
@@ -34,12 +35,16 @@ public class UserLoginScreenController extends UiController {
     Window owner = loginButton.getScene().getWindow();
     String email = userField.getText();
     String password = passField.getText();
+
+    if (email.isEmpty()) {
+      email = "<blank>";
+    }
+
     try {
-      user = api.loginCustomer(email, password);
+      UserAccount user = api.loginCustomer(email, password);
+      dataStore.set("currentUser", new UiData<UserAccount>(user));
     } catch (LoginFailedException e) {
-      if (email.isEmpty()) {
-        email = "<blank>";
-      }
+      // TODO display something in the UI
     }
 
     try {

@@ -13,8 +13,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import transit.UserAccount;
 
 public class NavigationController extends UiController implements Initializable {
+
+  private UserAccount user;
 
   @FXML
   protected MenuBar menuBar;
@@ -25,7 +28,7 @@ public class NavigationController extends UiController implements Initializable 
 
   @FXML
   protected void handleLogoutButtonAction(ActionEvent event) {
-    user = null;
+    dataStore.set("currentUser", null);
     loadTemplate("template/title_screen.fxml");
   }
 
@@ -51,6 +54,10 @@ public class NavigationController extends UiController implements Initializable 
 
   @FXML
   public void initialize(java.net.URL arg0, ResourceBundle arg1) {
+
+    // get current user
+    UiData userData = dataStore.get("currentUser");
+    if (userData != null) user = (UserAccount) userData.data();
 
     if (user != null) {
       loggedInLabel.setText("Logged in as " + user.getName());
