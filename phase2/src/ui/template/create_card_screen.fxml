@@ -55,17 +55,4 @@
           onAction="#handleCreateCardButton">
   </Button>
 
-  <!-- Combobox for type of card -->
-  <ComboBox fx:id="cardTypeCombo" prefWidth="250.0" promptText="Choose Card Type"
-            GridPane.columnIndex="0" GridPane.rowIndex="2">
-    <items>
-      <FXCollections fx:factory="observableArrayList">
-        <String fx:value="Regular Pass" />
-        <String fx:value="Senior Pass (65+): 80% off" />
-        <String fx:value="Kids Pass (12 Under): FREE" />
-        <String fx:value="Monthly Pass: 10% off" />
-        <String fx:value="Student Pass: 20% off" />
-      </FXCollections>
-    </items>
-  </ComboBox>
 </GridPane>

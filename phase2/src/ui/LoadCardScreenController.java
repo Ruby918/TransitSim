@@ -22,12 +22,12 @@ public class LoadCardScreenController extends UiController {
   private Label balanceField;
 
   @FXML
-  private Label nameField;
+  private Label nameLabel;
 
   public void initialize() {
     card = (Card) dataStore.get("currentCard").data();
     balanceField.setText(card.getBalanceString());
-    nameField.setText(card.getNickname());
+    nameLabel.setText(card.getNickname());
   }
 
   @FXML

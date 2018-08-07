@@ -28,7 +28,7 @@
     </font>
   </Label>
 
-  <Label  fx:id="nameField" text=""
+  <Label  fx:id="nameLabel" text=""
     GridPane.columnIndex="1" GridPane.rowIndex="0"
     GridPane.columnSpan="1" GridPane.rowSpan="1"
     GridPane.halignment="CENTER">

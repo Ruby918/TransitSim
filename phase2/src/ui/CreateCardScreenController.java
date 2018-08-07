@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import transit.UserAccount;
 
 public class CreateCardScreenController extends UiController {
+
   @FXML
   private Button returnButton;
 
@@ -30,7 +31,6 @@ public class CreateCardScreenController extends UiController {
       loadTemplate(SUCCESS_SCREEN, returnButton);
     } else {
       logger.log.warning("Can't create card on null user.");
-      // TODO display something
     }
   }
 }
