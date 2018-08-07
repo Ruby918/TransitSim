@@ -18,7 +18,7 @@ public class Api {
 
   private TransitFareManager transitFareManager;
   private StatisticsManager statisticsManager;
-  private transient EasyLogger logger = new EasyLogger("api");
+  private EasyLogger logger = new EasyLogger("api");
 
   private void init() {
     user = new UserApi(transitFareManager, logger);
@@ -60,20 +60,6 @@ public class Api {
       logger.log.severe("Couldn't save application state to file " + fileName);
     }
   }
-
-  public ArrayList<SimpleStation> getStationsSimple() {
-    ArrayList<Station> stations =  getStations();
-    ArrayList<SimpleStation> result = new ArrayList<>();
-    for (Station station : stations){
-      result.add(new SimpleStation(station));
-    }
-    return result;
-  }
-
-  public ArrayList<Station> getStations() {
-    return transitFareManager.getMap().getStations();
-  }
-
   //stats info
 
     public double getRevenueOnDate(String dateString){

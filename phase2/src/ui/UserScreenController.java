@@ -76,7 +76,7 @@ public class UserScreenController extends UiController {
     selectCardCombo.valueProperty().addListener((obs, oldVal, newVal) -> handleCardSelect());
 
     // Display all stations
-    ArrayList<Station> stationsList = api.getStations();
+    ArrayList<Station> stationsList = api.map.getStations();
     for (Station station : stationsList) {
       String stationString = station + " (" + station.getRoute().toStringSimple() + ")";
       stations.put(stationString, station);

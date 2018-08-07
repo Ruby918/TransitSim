@@ -12,17 +12,43 @@
     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
   </padding>
   <fx:include fx:id="child" source="nav_bar.fxml"/>
-  <Label text="Stations"
+
+
+  <Label text="Routes"
     GridPane.columnIndex="0" GridPane.rowIndex="0">
     <font>
       <Font size="20"/>
     </font>
   </Label>
-  <TableView fx:id="tableViewStations" GridPane.columnIndex="0" GridPane.rowIndex="1">
+  <TableView fx:id="tableViewRoutes" GridPane.columnIndex="0" GridPane.rowIndex="1">
     <columns>
-      <TableColumn prefWidth="100.0" text="Name" fx:id="Name" />
-      <TableColumn prefWidth="180.0" text="Route" fx:id="Route" />
+      <TableColumn prefWidth="100.0" text="Name" fx:id="RouteName"/>
+      <TableColumn prefWidth="120.0" text="Type" fx:id="RouteType"/>
+    </columns>
+  </TableView>
+
+
+  <Label fx:id="stationsLabel" text="Stations"
+    GridPane.columnIndex="0" GridPane.rowIndex="2">
+    <font>
+      <Font size="20"/>
+    </font>
+  </Label>
+  <Button text="Clear Station Filter"
+    prefWidth="175" prefHeight="75" defaultButton="false"
+    GridPane.columnIndex="0" GridPane.rowIndex="3"
+    GridPane.columnSpan="1" GridPane.rowSpan="1"
+    GridPane.halignment="LEFT"
+    onAction="#handleClearButton">
+  </Button>
+  <TableView fx:id="tableViewStations" GridPane.columnIndex="0" GridPane.rowIndex="4">
+    <columns>
+      <TableColumn prefWidth="100.0" text="Name" fx:id="StationName"/>
+      <TableColumn prefWidth="120.0" text="Type" fx:id="StationType"/>
+      <TableColumn prefWidth="180.0" text="Route" fx:id="StationRoute"/>
       <TableColumn prefWidth="300.0" text="Adjacent To" fx:id="Adjacent" />
     </columns>
   </TableView>
+
+
 </GridPane>
