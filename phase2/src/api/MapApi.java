@@ -9,6 +9,11 @@ public class MapApi extends ChildApi{
     super(transitFareManager, logger);
   }
 
+  public Station getStation(SimpleStation station) {
+    String routeType = station.getType().equals("Subway Station")? "Subway" : "Bus";
+    return transitFareManager.getMap().getStationByNameAndRoute(station.getName(), station.getRoute(), routeType);
+  }
+
   public ArrayList<SimpleStation> getStationsSimple() {
     ArrayList<Station> stations =  getStations();
     ArrayList<SimpleStation> result = new ArrayList<>();
@@ -47,4 +52,18 @@ public class MapApi extends ChildApi{
     return transitFareManager.getMap().getRoutes();
   }
 
+  public ArrayList<Route> getRoutes(Station station) {
+    ArrayList<Route> routes = transitFareManager.getMap().getRoutes();
+    ArrayList<Route> result = new ArrayList<>();
+    for (Route route : routes) {
+      if (station instanceof BusStation && route instanceof BusRoute) {
+        result.add(route);
+      }
+      if (station instanceof SubwayStation && route instanceof SubwayRoute) {
+        result.add(route);
+      }
+    }
+
+    return result;
+  }
 }

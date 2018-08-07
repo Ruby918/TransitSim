@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import transit.Station;
 
 public class AdminMapController extends UiController {
 
@@ -37,9 +38,13 @@ public class AdminMapController extends UiController {
   @FXML
   private TableColumn<SimpleRoute, String> RouteType;
 
+  @FXML
+  private EditStationController editStationController;
+
   public void initialize(){
 
     tableViewRoutes.getSelectionModel().selectedIndexProperty().addListener((num) -> handleRouteSelect());
+    tableViewStations.getSelectionModel().selectedIndexProperty().addListener((num) -> handleStationSelect());
 
     StationName.setCellValueFactory(new PropertyValueFactory<SimpleStation, String>("name"));
     StationType.setCellValueFactory(new PropertyValueFactory<SimpleStation, String>("type"));
@@ -57,9 +62,18 @@ public class AdminMapController extends UiController {
     SimpleRoute route = tableViewRoutes.getSelectionModel().getSelectedItem();
     if (route != null) {
       stationsLabel.setText("Stations (" + route.getName() + " " + route.getType() + ")");
-      dataStore.set("currentRoute", new UiData<>(route));
       tableViewStations.getItems().clear();
       tableViewStations.getItems().setAll(api.map.getStationsSimple(route));
+    }
+  }
+
+  @FXML
+  public void handleStationSelect() {
+    SimpleStation simpleStation = tableViewStations.getSelectionModel().getSelectedItem();
+    if (simpleStation != null) {
+      Station station = api.map.getStation(simpleStation);
+      dataStore.set("currentStation", new UiData<>(station));
+      editStationController.initialize();
     }
   }
 

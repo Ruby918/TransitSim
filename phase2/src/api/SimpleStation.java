@@ -14,7 +14,7 @@ public class SimpleStation {
 
   public SimpleStation(Station station) {
     name = new SimpleStringProperty(station.getName());
-    route = new SimpleStringProperty(station.getRoute().toStringSimple());
+    route = new SimpleStringProperty(station.getRoute().getName());
     type = new SimpleStringProperty(station.getGenericIdentifier());
     PrettyList<Station> adjacentStations = new PrettyList<>(station.getAdjacent(), "Stations");
     adjacent = new SimpleStringProperty(adjacentStations.toString());

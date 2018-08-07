@@ -100,8 +100,7 @@ public abstract class Route implements Serializable {
    *
    * @return - The concatenated String.
    */
-  @Override
-  public String toString() {
+  public String toStringVerbose() {
     StringBuilder ret = new StringBuilder(this.name + " " + getGenericIdentifier() + " (");
     for (Station station : this.stations) {
       ret.append(station.toString()).append(", ");
@@ -110,7 +109,8 @@ public abstract class Route implements Serializable {
     return ret + ")";
   }
 
-  public String toStringSimple() {
+  @Override
+  public String toString() {
     return this.name + " " + getGenericIdentifier();
   }
 }

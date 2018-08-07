@@ -52,6 +52,10 @@ public abstract class Station implements Serializable {
     this.adjacentStations.add(station);
   }
 
+  public void clearAdjacentStations() {
+    adjacentStations.clear();
+  }
+
   public ArrayList<Station> getAdjacent() {
     return adjacentStations;
   }

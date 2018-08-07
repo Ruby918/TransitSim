@@ -33,10 +33,10 @@ public class UserScreenController extends UiController {
   private Label balanceAmountLabel;
 
   @FXML
-  private ComboBox selectCardCombo;
+  private ComboBox<String> selectCardCombo;
 
   @FXML
-  private ComboBox selectStationCombo;
+  private ComboBox<String> selectStationCombo;
 
   @FXML
   private TextField dateField;
@@ -78,7 +78,7 @@ public class UserScreenController extends UiController {
     // Display all stations
     ArrayList<Station> stationsList = api.map.getStations();
     for (Station station : stationsList) {
-      String stationString = station + " (" + station.getRoute().toStringSimple() + ")";
+      String stationString = station + " (" + station.getRoute().toString() + ")";
       stations.put(stationString, station);
       selectStationCombo.getItems().add(stationString);
     }
