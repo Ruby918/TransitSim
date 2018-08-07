@@ -2,6 +2,7 @@
 
 package ui;
 
+import api.UpdateUserException;
 import javafx.scene.control.TextField;
 import transit.Card;
 import javafx.event.ActionEvent;
@@ -23,10 +24,16 @@ public class UserScreenController extends UiController {
   private PriceModifier priceModifier;
 
   @FXML
+  private Label homepageLabel;
+
+  @FXML
+  private TextField nameField;
+
+  @FXML
   private Button createCardButton;
 
   @FXML
-  private Label balanceLabel;
+  private Label balanceAmountLabel;
 
   @FXML
   private ComboBox selectCardCombo;
@@ -42,8 +49,17 @@ public class UserScreenController extends UiController {
 
     // get current user
     user = (UserAccount) dataStore.get("currentUser").data();
+    homepageLabel.setText(user.getName() + "'s Homepage");
+
     // get current station
     station = (Station) dataStore.get("currentStation").data();
+
+    // get current card
+    card = (Card) dataStore.get("currentCard").data();
+    if (card != null) {
+      updateBalanceLabel();
+    }
+
     // get current priceModifier
     priceModifier = (PriceModifier) dataStore.get("currentPriceModifier").data();
 
@@ -52,41 +68,34 @@ public class UserScreenController extends UiController {
     dateField.setText(date.toDateString());
     timeField.setText(date.toTimeString());
 
-    // Update the balance
-    String textLine = balanceLabel.getText();
-    String updatedText="";
-    String[] cut = textLine.split("\\s+");
-    if (user.hasCard()) {
-      double moneyInCard = api.card.getMoney(user.getCards().get(0));
-      cut[2] = Double.toString(moneyInCard);
-      for (int i=0; i<cut.length; i++) {
-        updatedText += cut[i] + " ";
-      }
-    } else {
-      updatedText=textLine;
-    }
-    balanceLabel.setText(updatedText);
-
     // Display all cards user owns
     ArrayList<Card> listOfCards = user.getCards();
     for (int i=0; i<listOfCards.size(); i++) {
-      selectCardCombo.getItems().addAll(listOfCards.get(i).getCardId());
+      selectCardCombo.getItems().addAll(listOfCards.get(i).getCardId()
+          + " - " + listOfCards.get(i).getNickname());
     }
 
-    selectCardCombo.valueProperty().addListener((obs, oldVal, newVal) -> {
-      String[] cut2 = balanceLabel.getText().split("\\s+");
-      String updatedText2="";
-      String id = selectCardCombo.getSelectionModel().getSelectedItem().toString();
+    selectCardCombo.valueProperty().addListener((obs, oldVal, newVal) -> handleCardSelect());
+  }
 
-      card = user.getCard(Integer.parseInt(id));
-      dataStore.set("currentCard", new UiData<Card>(card));
+  private void updateBalanceLabel() {
+    if (card != null) balanceAmountLabel.setText(Double.toString(card.getBalance()));
+  }
 
-      cut2[2] = Double.toString(api.card.getMoney(card));
-      for (int i=0; i<cut2.length; i++) {
-        updatedText2 += cut2[i] + " ";
-      }
-      balanceLabel.setText(updatedText2);
-    });
+  private void handleCardSelect() {
+    String[] selectedItem = selectCardCombo.getSelectionModel().getSelectedItem().toString().split(" \\- ");
+    card = user.getCard(Integer.parseInt(selectedItem[0]));
+    if (card != null) {
+      dataStore.set("currentCard", new UiData<>(card));
+      updateBalanceLabel();
+    }
+  }
+
+  @FXML
+  protected void handleUpdateNameButton(ActionEvent event) {
+    try {
+      api.user.update(user.getEmail(), nameField.getText(), user.getEmail(), user.isAdmin());
+    } catch (UpdateUserException e){}
   }
 
   @FXML
