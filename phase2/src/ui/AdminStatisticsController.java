@@ -11,18 +11,21 @@ public class AdminStatisticsController extends UiController{
 
     @FXML
     public void initialize() {
-        // set default date and time to now
-        FormattedDate date = new FormattedDate();
-        dateField.setText(date.toDateString());
+        // set date to current filter date
+        FormattedDate date = (FormattedDate) dataStore.get("currentFilterDate").data();
+        if (date != null) dateField.setText(date.toDateString());
+        else dateField.setText("");
     }
 
     @FXML
     public void handleApplyButtonAction() {
-
+        FormattedDate date = new FormattedDate(dateField.getText());
+        dataStore.set("currentFilterDate", new UiData<>(date));
     }
 
     @FXML
     public void handleClearButtonAction() {
-
+        dataStore.set("currentFilterDate", null);
+        dateField.setText("");;
     }
 }
