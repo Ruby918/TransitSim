@@ -45,6 +45,9 @@ public class UserScreenController extends UiController {
   private TextField timeField;
 
   @FXML
+  private NavigationController navigationController;
+
+  @FXML
   protected void initialize() {
 
     // get current user
@@ -80,7 +83,10 @@ public class UserScreenController extends UiController {
   }
 
   private void updateHomepageLabel() {
-    homepageLabel.setText(user.getName() + "'s Homepage");
+    if (user != null) {
+      homepageLabel.setText(user.getName() + "'s Homepage");
+      navigationController.updateLoggedInText(user.getName());
+    }
   }
 
   private void updateBalanceLabel() {

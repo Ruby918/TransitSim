@@ -21,6 +21,7 @@ public class UserAccount implements Serializable {
   private boolean active = true;
   private boolean isAdmin;
 
+
   /**
    * A constructor for the UserAccount class that sets a name, email.
    */

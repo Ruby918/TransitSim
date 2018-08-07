@@ -52,14 +52,18 @@ public class NavigationController extends UiController implements Initializable 
     loadTemplate("template/admin_map_screen.fxml");
   }
 
+  public void updateLoggedInText(String userName) {
+    // get current user
+    loggedInLabel.setText("Logged in as " + userName);
+  }
+
   @FXML
   public void initialize(java.net.URL arg0, ResourceBundle arg1) {
 
-    // get current user
     user = (UserAccount) dataStore.get("currentUser").data();
 
     if (user != null) {
-      loggedInLabel.setText("Logged in as " + user.getName());
+      updateLoggedInText(user.getName());
       Label menuLogoutLabel = addMenuLabel("Logout");
       menuLogoutLabel.setOnMouseClicked(event -> handleLogoutButtonAction(null));
       Label menuAccountLabel = addMenuLabel("My Account");

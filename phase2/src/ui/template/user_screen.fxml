@@ -22,11 +22,10 @@
     </ColumnConstraints>
   </columnConstraints>
 
-
   <fx:include
     GridPane.columnIndex="0" GridPane.rowIndex="0"
     GridPane.columnSpan="5" GridPane.rowSpan="1"
-    fx:id="nav" source="nav_bar.fxml"/>
+    fx:id="navigation" source="nav_bar.fxml"/>
 
   <Label fx:id="homepageLabel" text=""
     GridPane.rowIndex="1"
