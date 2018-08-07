@@ -10,72 +10,49 @@ import transit.Card;
 
 public class LoadCardScreenController extends UiController {
 
+  private Card card;
+
   @FXML
-  public Button addFiveTen;
+  public Button addFifty;
 
   @FXML
   private Button returnButton;
 
   @FXML
-  private Button addMoneyButton;
-
-  private static String finalMoneyCount;
+  private Label balanceField;
 
   @FXML
-  private Label moneyCountField;
+  private Label nameField;
 
-  public String getMoneyCountField() {
-      return finalMoneyCount;
-  }
-
-  @FXML
-  protected void handleAddFiveButtonAction(ActionEvent event) {
-    String moneyCountLabel = moneyCountField.getText();
-    double newTotal = Double.parseDouble(moneyCountLabel) + 5.00;
-    moneyCountField.setText(Double.toString(newTotal)+"0");
+  public void initialize() {
+    card = (Card) dataStore.get("currentCard").data();
+    balanceField.setText(card.getBalanceString());
+    nameField.setText(card.getNickname());
   }
 
   @FXML
   protected void handleAddTenButtonAction(ActionEvent event) {
-    String moneyCountLabel = moneyCountField.getText();
-    double newTotal = Double.parseDouble(moneyCountLabel) + 10.00;
-    moneyCountField.setText(Double.toString(newTotal)+"0");
+    load(10);
   }
 
   @FXML
-  protected void handleAddTwoButtonAction(ActionEvent event) {
-    String moneyCountLabel = moneyCountField.getText();
-    double newTotal = Double.parseDouble(moneyCountLabel) + 20.00;
-    moneyCountField.setText(Double.toString(newTotal)+"0");
+  protected void handleAddTwentyButtonAction(ActionEvent event) {
+    load(20);
   }
 
   @FXML
-  protected void handleAddFiveTenButtonAction(ActionEvent event) {
-    String moneyCountLabel = moneyCountField.getText();
-    double newTotal = Double.parseDouble(moneyCountLabel) + 50.00;
-    moneyCountField.setText(Double.toString(newTotal)+"0");
+  protected void handleAddFiftyButtonAction(ActionEvent event) {
+    load(50);
   }
 
-  @FXML
-  protected void handleResetCounterButtonAction(ActionEvent event) {
-    moneyCountField.setText(Double.toString(0.00)+"0");
-  }
-
-  @FXML
-  protected void handleAddMoneyButtonAction(ActionEvent event) {
-    finalMoneyCount = moneyCountField.getText();
-
-    Card card = (Card) dataStore.get("currentCard").data();
-    if (card != null) {
-      loadTemplate("template/success_warning_screen.fxml", addMoneyButton);
-      // TODO actually add money
-    } else {
-      // TODO do something
-    }
-  }
 
   @FXML
   protected void handleReturnButtonAction(ActionEvent event) {
     loadTemplate("template/user_screen.fxml", returnButton);
+  }
+
+  private void load(double amount) {
+    api.card.load(card, amount);
+    balanceField.setText(card.getBalanceString());
   }
 }

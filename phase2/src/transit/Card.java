@@ -289,7 +289,7 @@ public class Card implements Serializable {
    */
   @Override
   public String toString() {
-    String ret = this.nickname + " ($" + getBalanceString();
+    String ret = this.nickname + " (" + getBalanceString();
     if (this.isActive) {
       ret += ")";
     } else {

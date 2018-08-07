@@ -6,7 +6,6 @@
 <?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
 <?import java.lang.String?>
 
 <GridPane fx:controller="ui.CreateCardScreenController"
@@ -22,7 +21,7 @@
   </columnConstraints>
 
   <!-- Add Return Button -->
-  <Button fx:id="returnButton" Text="Return"
+  <Button fx:id="returnButton" text="Return"
           prefWidth="100" prefHeight="20" defaultButton="false"
           GridPane.columnIndex="0" GridPane.rowIndex="3"
           GridPane.columnSpan="1" GridPane.rowSpan="1"

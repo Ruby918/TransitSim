@@ -15,7 +15,7 @@ public class CardApi extends ChildApi {
   }
 
   public void load(Card card, double amount){
-    logger.log.fine("Loading funds onto card " + card + " ($" + amount + ")");
+    logger.log.fine("Loading funds onto card " + card + " - adding " + amount);
     card.addAmount(amount);
   }
 
