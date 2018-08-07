@@ -1,4 +1,4 @@
-package api;
+package transit.simplemodel;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleBooleanProperty;

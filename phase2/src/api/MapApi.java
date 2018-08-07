@@ -2,6 +2,8 @@ package api;
 
 import java.util.ArrayList;
 import transit.*;
+import transit.simplemodel.SimpleRoute;
+import transit.simplemodel.SimpleStation;
 import util.EasyLogger;
 
 public class MapApi extends ChildApi{

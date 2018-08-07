@@ -1,12 +1,10 @@
 package ui;
 
-import api.SimpleStation;
-import api.SimpleRoute;
+import transit.simplemodel.SimpleStation;
+import transit.simplemodel.SimpleRoute;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import transit.Station;
 
 public class AdminMapController extends UiController {

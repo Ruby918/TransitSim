@@ -1,8 +1,8 @@
 package ui;
 
-import api.SimpleRoute;
-import api.SimpleStation;
-import api.SimpleUser;
+import transit.simplemodel.SimpleRoute;
+import transit.simplemodel.SimpleStation;
+import transit.simplemodel.SimpleUser;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 

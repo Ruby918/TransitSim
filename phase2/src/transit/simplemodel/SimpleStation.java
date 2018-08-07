@@ -1,7 +1,6 @@
-package api;
+package transit.simplemodel;
 
 import javafx.beans.property.SimpleStringProperty;
-import transit.BusStation;
 import util.PrettyList;
 import transit.Station;
 

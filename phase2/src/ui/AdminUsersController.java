@@ -2,7 +2,7 @@ package ui;
 
 import api.CreateUserException;
 import api.UpdateUserException;
-import api.SimpleUser;
+import transit.simplemodel.SimpleUser;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;

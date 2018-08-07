@@ -1,7 +1,5 @@
-package api;
+package transit.simplemodel;
 
-import java.util.ArrayList;
-import java.util.List;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;

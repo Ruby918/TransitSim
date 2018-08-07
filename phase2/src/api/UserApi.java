@@ -2,6 +2,7 @@ package api;
 
 import java.util.ArrayList;
 import transit.*;
+import transit.simplemodel.SimpleUser;
 import util.EasyLogger;
 
 public class UserApi extends ChildApi {
