@@ -6,13 +6,13 @@ import java.util.logging.Logger;
 import java.util.logging.Handler;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
-import transit.EventConfigFileParser;
 
 public class EasyLogger {
-  public final Logger log =
-      Logger.getLogger(EventConfigFileParser.class.getName());
+  public Logger log;
 
-  public EasyLogger() {
+  public EasyLogger(String fileName) {
+
+    log = Logger.getLogger(fileName);
 
     // Disable default console handler
     log.setUseParentHandlers(false);
@@ -20,19 +20,23 @@ public class EasyLogger {
     // Associate the handler with the log.
     try {
       Handler consoleHandler = new ConsoleHandler();
-      Handler fileHandler = new FileHandler("log/events.log", true);
+      Handler fileHandler = new FileHandler("log/" + fileName + ".log", true);
+      Handler fileHandlerSevere = new FileHandler("log/" + fileName + "-error.log", true);
+      // set log levels
       log.setLevel(Level.ALL);
       consoleHandler.setLevel(Level.ALL);
       fileHandler.setLevel(Level.ALL);
+      fileHandlerSevere.setLevel(Level.SEVERE);
+      // add handlers to logger
       log.addHandler(consoleHandler);
       log.addHandler(fileHandler);
+      log.addHandler(fileHandlerSevere);
     } catch (IOException e) {
       Handler consoleHandler = new ConsoleHandler();
       log.setLevel(Level.ALL);
       consoleHandler.setLevel(Level.ALL);
       log.addHandler(consoleHandler);
-      log.log(Level.SEVERE, "Could not open log file.");
+      log.log(Level.SEVERE, "Could not open or create log files.");
     }
   }
-
 }

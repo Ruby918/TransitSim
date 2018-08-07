@@ -16,14 +16,13 @@ public class Main {
    */
 
   private static TransitFareManager transitFareManager;
-  private static EasyLogger logger = new EasyLogger();
+  private static EasyLogger logger = new EasyLogger("main");
 
   public static void main(String[] args) {
 
     String path = "data/transitFareManager.ser";
-    Api api = new Api(logger);
+    Api api = new Api();
     UiController.api = api;
-    UiController.logger = logger;
 
     try {
       api.loadApplicationStateFromFile(path);

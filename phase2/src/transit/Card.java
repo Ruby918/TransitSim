@@ -98,28 +98,6 @@ public class Card implements Serializable {
       return "$" + String.format("%.2f", balance);
     }
   }
-
-  /**
-   * Increases card balance by 10 dollars.
-   */
-  public void addTenDollars() {
-    this.balance += 10;
-  }
-
-  /**
-   * Increases card balance by 20 dollars.
-   */
-  public void addTwentyDollars() {
-    this.balance += 20;
-  }
-
-  /**
-   * Increases card balance by 50 dollars.
-   */
-  public void addFiftyDollars() {
-    this.balance += 50;
-  }
-
   /**
    * Increases the card balance by the given amount.
    * @param amount the amount to increase the card balance by

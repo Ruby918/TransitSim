@@ -18,12 +18,7 @@ public class Api {
 
   private TransitFareManager transitFareManager;
   private StatisticsManager statisticsManager;
-  private EasyLogger logger;
-
-
-  public Api(EasyLogger logger) {
-    this.logger = logger;
-  }
+  private EasyLogger logger = new EasyLogger("api");
 
   private void init() {
     user = new UserApi(transitFareManager, logger);

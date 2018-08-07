@@ -223,15 +223,15 @@ public class EventConfigFileParser extends ConfigFileParser {
       case "Add Funds":
         switch (parameters[1]) {
           case "10":
-            card.addTenDollars();
+            card.addAmount(10);
             message = "Successfully added $10 to card.";
             break;
           case "20":
-            card.addTwentyDollars();
+            card.addAmount(20);
             message = "Successfully added $20 to card.";
             break;
           case "50":
-            card.addFiftyDollars();
+            card.addAmount(50);
             message = "Successfully added $50 to card.";
             break;
           default:

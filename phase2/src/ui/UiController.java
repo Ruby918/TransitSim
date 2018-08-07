@@ -11,7 +11,7 @@ import util.EasyLogger;
 
 public class UiController {
   public static Api api;
-  public static EasyLogger logger;
+  public static EasyLogger logger = new EasyLogger("ui");
 
   //UI runtime data store
   public static UiDataStore dataStore = new UiDataStore();
