@@ -19,4 +19,9 @@ public class PriceModifierOntarioTax extends PriceModifier {
     }
     return rawPrice;
   }
+
+  @Override
+  public String toString() {
+    return "Ontario Tax";
+  }
 }

@@ -22,4 +22,9 @@ public class PriceModifierCharityPass extends PriceModifier {
         }
         return rawPrice;
     }
+
+    @Override
+    public String toString() {
+        return "The Do-Good Pass ($1 to Charity)";
+    }
 }

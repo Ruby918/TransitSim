@@ -2,13 +2,20 @@
 
 package ui;
 
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import transit.Card;
+import transit.PriceModifier;
+import transit.PriceModifierCharityPass;
+import transit.PriceModifierMonthlyPass;
+import transit.PriceModifierOntarioTax;
+import util.FormattedDate;
 
 public class EditCardScreenController extends UiController {
 
@@ -32,12 +39,33 @@ public class EditCardScreenController extends UiController {
   @FXML
   private CheckBox isActiveCheckBox;
 
+  @FXML
+  private ComboBox<PriceModifier> selectPriceModCombo;
+
   public void initialize() {
+
     card = (Card) dataStore.get(UiDataStore.CURRENT_CARD).data();
     balanceField.setText(card.getBalanceString());
     nameLabel.setText(card.getNickname());
     nameField.setText(card.getNickname());
     isActiveCheckBox.setSelected(card.isActive());
+
+    // create price modifiers drop down
+    FormattedDate date = new FormattedDate();
+    ArrayList<PriceModifier> priceModifiers = new ArrayList<>();
+    priceModifiers.add(new PriceModifierOntarioTax());
+    priceModifiers.add(new PriceModifierCharityPass(date));
+    priceModifiers.add(new PriceModifierMonthlyPass(date));
+
+    selectPriceModCombo.getItems().setAll(priceModifiers);
+    PriceModifier currentPriceMod = card.getPriceModifier();
+    if (currentPriceMod instanceof PriceModifierOntarioTax) {
+      selectPriceModCombo.getSelectionModel().select(0);
+    } else if (currentPriceMod instanceof PriceModifierCharityPass) {
+      selectPriceModCombo.getSelectionModel().select(1);
+    } else if (currentPriceMod instanceof PriceModifierMonthlyPass) {
+      selectPriceModCombo.getSelectionModel().select(2);
+    }
   }
 
   @FXML
@@ -63,6 +91,7 @@ public class EditCardScreenController extends UiController {
   @FXML
   protected void handleSaveButtonAction() {
     api.card.update(card, nameField.getText(), isActiveCheckBox.isSelected());
+    card.setPriceModifier(selectPriceModCombo.getSelectionModel().getSelectedItem());
     initialize();
   }
 

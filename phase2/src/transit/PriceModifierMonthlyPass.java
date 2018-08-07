@@ -33,4 +33,9 @@ public class PriceModifierMonthlyPass extends PriceModifier {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "The One-Way Commute, 1 Month (1 Free Per Day)";
+    }
 }

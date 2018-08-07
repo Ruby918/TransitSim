@@ -58,15 +58,17 @@ public class Price implements Serializable {
    * @param date the date the price modifiers are applied
    */
   public void applyPriceModifiers(FormattedDate date) {
-    finalPrice = rawPrice;
-    if (priceModifier != null) {
-      if (priceModifier.isValid(date)) finalPrice = priceModifier.modifyPrice(finalPrice, date);
+    if (rawPrice != 0) {
+      finalPrice = rawPrice;
+      if (priceModifier != null) {
+        if (priceModifier.isValid(date)) finalPrice = priceModifier.modifyPrice(finalPrice, date);
+      }
+      // apply ontario tax
+      if (ONTARIO_TAX.isValid(date)) {
+        finalPrice = ONTARIO_TAX.modifyPrice(finalPrice, date);
+      }
+      finalPrice = Math.min(finalPrice, maxFinalPrice);
     }
-    // apply ontario tax
-    if (ONTARIO_TAX.isValid(date)) {
-      finalPrice = ONTARIO_TAX.modifyPrice(finalPrice, date);
-    }
-    finalPrice = Math.min(finalPrice, maxFinalPrice);
   }
 
   public double getFinalPrice() {
