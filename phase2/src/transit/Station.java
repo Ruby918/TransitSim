@@ -107,7 +107,7 @@ public abstract class Station implements Serializable {
    */
   @Override
   public String toString() {
-    return this.name + " " + getGenericIdentifier();
+    return this.name + " " + getGenericIdentifier() + " (" + this.route.toString() + ")";
   }
 
 }

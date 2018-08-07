@@ -32,6 +32,34 @@ public class StatisticsManager {
     return tripsOnDate;
   }
 
+  public ArrayList<TapEvent> getTaps() {
+    ArrayList<TapEvent> taps = new ArrayList<>();
+    for (Trip trip : transitFareManager.getTrips()) {
+      taps.addAll(trip.getTapEvents());
+    }
+    return taps;
+  }
+
+  public ArrayList<TapEvent> getTapsOnDate(FormattedDate date) {
+    ArrayList<TapEvent> tapsOnDate = new ArrayList<>();
+    for (TapEvent tap : getTaps()) {
+      if (tap.getTransitDate().onSameDay(date)) {
+        tapsOnDate.add(tap);
+      }
+    }
+    return tapsOnDate;
+  }
+
+  public ArrayList<Transaction> getTransactionsOnDate(FormattedDate date) {
+    ArrayList<Transaction> transactions = new ArrayList<>();
+    for (Transaction transaction : transitFareManager.getTransactions()) {
+      if (transaction.getDate().onSameDay(date)) {
+        transactions.add(transaction);
+      }
+    }
+    return transactions;
+  }
+
   /**
    * returns revenue gained on a single day.
    *

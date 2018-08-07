@@ -7,8 +7,8 @@ import util.EasyLogger;
 
 public class UserApi extends ChildApi {
 
-  public UserApi(TransitFareManager transitFareManager, EasyLogger logger) {
-    super(transitFareManager, logger);
+  public UserApi(TransitFareManager transitFareManager, StatisticsManager statisticsManager,EasyLogger logger) {
+    super(transitFareManager, statisticsManager,logger);
   }
 
   public UserAccount create(String name, String email, boolean isAdmin) throws CreateUserException {

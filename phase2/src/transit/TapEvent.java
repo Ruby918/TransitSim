@@ -31,6 +31,10 @@ public abstract class TapEvent implements Serializable {
     return date;
   }
 
+  public Card getCard() {
+    return this.card;
+  }
+
   /**
    * Returns the <code>Station</code> at which this <code>TapEvent</code> was made.
    *

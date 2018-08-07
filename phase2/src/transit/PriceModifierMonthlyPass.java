@@ -12,7 +12,6 @@ public class PriceModifierMonthlyPass extends PriceModifier {
         super(date, date.addTime(30), Integer.MAX_VALUE, "Monthly Pass");
     }
 
-
     @Override
     public double modifyPrice(double rawPrice, FormattedDate dateUsed) {
         if (isValid(new FormattedDate(new Date()))) {

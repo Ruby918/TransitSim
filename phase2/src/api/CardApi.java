@@ -5,8 +5,8 @@ import util.EasyLogger;
 import util.FormattedDate;
 
 public class CardApi extends ChildApi {
-  public CardApi(TransitFareManager transitFareManager, EasyLogger logger) {
-    super(transitFareManager, logger);
+  public CardApi(TransitFareManager transitFareManager, StatisticsManager statisticsManager,EasyLogger logger) {
+    super(transitFareManager, statisticsManager,logger);
   }
 
   public Card create(UserAccount user, String cardNickname) {

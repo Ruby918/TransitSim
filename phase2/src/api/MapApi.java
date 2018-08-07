@@ -7,8 +7,8 @@ import transit.simplemodel.SimpleStation;
 import util.EasyLogger;
 
 public class MapApi extends ChildApi{
-  public MapApi(TransitFareManager transitFareManager, EasyLogger logger) {
-    super(transitFareManager, logger);
+  public MapApi(TransitFareManager transitFareManager, StatisticsManager statisticsManager,EasyLogger logger) {
+    super(transitFareManager, statisticsManager,logger);
   }
 
   public Station getStation(SimpleStation station) {

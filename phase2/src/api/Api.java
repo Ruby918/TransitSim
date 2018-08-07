@@ -22,10 +22,10 @@ public class Api {
   private transient EasyLogger logger = new EasyLogger("api");
 
   private void init() {
-    user = new UserApi(transitFareManager, logger);
-    card = new CardApi(transitFareManager, logger);
-    map = new MapApi(transitFareManager, logger);
-    stats = new StatsApi(transitFareManager, logger);
+    user = new UserApi(transitFareManager, statisticsManager, logger);
+    card = new CardApi(transitFareManager, statisticsManager,logger);
+    map = new MapApi(transitFareManager, statisticsManager,logger);
+    stats = new StatsApi(transitFareManager, statisticsManager,logger);
   }
 
   public void loadApplicationStateFromFile(String fileName) throws DataReadException, DataWriteException {
