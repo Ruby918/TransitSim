@@ -36,13 +36,13 @@ public class EditStationController extends UiController {
     populateStations();
     if (station != null) {
       editStationLabel.setText(station.toString());
-      nameField.setText("Edit " + station.getName());
+      nameField.setText(station.getName());
       selectRouteCombo.getSelectionModel().select(station.getRoute());
       // update current adjacent stations
       currentAdjacentStations.clear();
       currentAdjacentStations.addAll(station.getAdjacent());
     } else {
-      editStationLabel.setText("No station is currently selected.");
+      editStationLabel.setText("No station selected.");
       nameField.setText("");
       selectRouteCombo.getSelectionModel().clearSelection();
       currentAdjacentStations.clear();
@@ -62,6 +62,12 @@ public class EditStationController extends UiController {
     populateAdjacentStations();
   }
 
+  @FXML
+  public void handleSaveButton() {
+    api.map.saveStation(station, nameField.getText(), selectRouteCombo.getSelectionModel().getSelectedItem(), currentAdjacentStations);
+    initialize();
+  }
+
   private void populateRoutes() {
     ArrayList<Route> routes;
     selectRouteCombo.getItems().clear();
@@ -71,6 +77,7 @@ public class EditStationController extends UiController {
   }
 
   private void populateStations() {
+    selectStationCombo.getItems().clear();
     selectStationCombo.getItems().addAll(api.map.getStations());
   }
 

@@ -18,9 +18,19 @@
     </ColumnConstraints>
   </columnConstraints>
 
-  <Label fx:id="editStationLabel" text="No station is currently selected."
+  <Label text="Edit Station: "
+    GridPane.rowIndex="0"
+    GridPane.columnSpan="1"
+    GridPane.valignment="TOP"
+    GridPane.halignment="LEFT">
+    <font>
+      <Font size="15"></Font>
+    </font>
+  </Label>
+  <Label fx:id="editStationLabel" text="No station selected"
     GridPane.rowIndex="0"
     GridPane.columnSpan="2"
+    GridPane.columnIndex="1"
     GridPane.valignment="TOP"
     GridPane.halignment="LEFT">
     <font>
@@ -37,7 +47,7 @@
 
   <ComboBox fx:id="selectRouteCombo" prefWidth="200.0" promptText="Choose Route"
     GridPane.columnIndex="1" GridPane.rowIndex="1"
-    GridPane.columnSpan="1"
+    GridPane.columnSpan="2"
     GridPane.halignment="CENTER">
     <items>
       <FXCollections fx:factory="observableArrayList">
@@ -91,13 +101,12 @@
     onAction="#handleRemoveButton">
   </Button>
 
-  <!--<Button text="Save"-->
-    <!--prefWidth="200" prefHeight="30"-->
-    <!--GridPane.columnIndex="1" GridPane.rowIndex="1"-->
-    <!--GridPane.columnSpan="1" GridPane.rowSpan="1"-->
-    <!--GridPane.halignment="CENTER"-->
-    <!--onAction="#handleSaveButton">-->
-  <!--</Button>-->
-
+  <Button text="Save"
+    prefWidth="200" prefHeight="30"
+    GridPane.columnIndex="0" GridPane.rowIndex="4"
+    GridPane.columnSpan="3" GridPane.rowSpan="1"
+    GridPane.halignment="CENTER"
+    onAction="#handleSaveButton">
+  </Button>
 
 </GridPane>

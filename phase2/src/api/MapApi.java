@@ -66,4 +66,24 @@ public class MapApi extends ChildApi{
 
     return result;
   }
+
+  public void saveStation(Station station, String name, Route route, ArrayList<Station> adjacentStations) {
+    if (station != null) {
+      station.setName(name);
+      station.setRoute(route);
+      // remove former adjacency
+      ArrayList<Station> oldAdjacency = new ArrayList<>();
+      oldAdjacency.addAll(station.getAdjacent());
+      oldAdjacency.add(station);
+      transitFareManager.getMap().removeAdjacency(oldAdjacency);
+      // add new adjacency
+      ArrayList<Station> newAdjacency = new ArrayList<>();
+      newAdjacency.addAll(adjacentStations);
+      newAdjacency.add(station);
+      transitFareManager.getMap().createAdjacency(newAdjacency);
+      logger.log.fine("Successfully updated station.");
+    } else {
+      logger.log.warning("Failed to update station.");
+    }
+  }
 }

@@ -22,8 +22,8 @@ public abstract class Station implements Serializable {
    * List of adjacent stations, i.e. stations which one may legally transfer to on one trip.
    */
   private final ArrayList<Station> adjacentStations = new ArrayList<>();
-  private final String name;
-  private final Route route;
+  private String name;
+  private Route route;
 
   /**
    * Station constructor.
@@ -49,11 +49,12 @@ public abstract class Station implements Serializable {
    * Add a station adjacent to this station.
    */
   public void addAdjacentStation(Station station) {
-    this.adjacentStations.add(station);
+    if (!this.adjacentStations.contains(station))
+      this.adjacentStations.add(station);
   }
 
-  public void clearAdjacentStations() {
-    adjacentStations.clear();
+  public void removeAdjacentStation(Station station) {
+    this.adjacentStations.remove(station);
   }
 
   public ArrayList<Station> getAdjacent() {
@@ -77,10 +78,26 @@ public abstract class Station implements Serializable {
   }
 
   /**
+   * Set the route of this station.
+   */
+  public void setRoute(Route newRoute) {
+    route.removeStation(this);
+    newRoute.addStation(this);
+    route = newRoute;
+  }
+
+  /**
    * Return the name of this station.
    */
   public String getName() {
     return this.name;
+  }
+
+  /**
+   * Set the name of this station.
+   */
+  public void setName(String newName) {
+    name = newName;
   }
 
   /**

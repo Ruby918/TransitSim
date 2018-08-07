@@ -91,12 +91,21 @@ public class Map implements Serializable {
   /**
    * Bundle stations as adjacent stops.
    */
-  public void makeAdjacent(ArrayList<Station> stations) {
-    for (int i = 0; i < stations.size(); i++) {
-      for (int j = 0; j < stations.size(); j++) {
-        if (!(j == i)) {
-          stations.get(i).addAdjacentStation(stations.get(j));
-        }
+  public void createAdjacency(ArrayList<Station> stations) {
+    for (Station station1 : stations) {
+      for (Station station2 : stations) {
+        if (!station1.equals(station2)) station1.addAdjacentStation(station2);
+      }
+    }
+  }
+
+  /**
+   * Bundle stations as adjacent stops.
+   */
+  public void removeAdjacency(ArrayList<Station> stations) {
+    for (Station station1 : stations) {
+      for (Station station2 : stations) {
+        station1.removeAdjacentStation(station2);
       }
     }
   }

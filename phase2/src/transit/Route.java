@@ -51,6 +51,13 @@ public abstract class Route implements Serializable {
   }
 
   /**
+   * Remove a station.
+   */
+  public void removeStation(Station station) {
+    this.stations.remove(station);
+  }
+
+  /**
    * Add a station.
    */
   public void addStation(Station station) {

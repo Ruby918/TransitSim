@@ -84,6 +84,6 @@ public class MapConfigFileParser extends ConfigFileParser {
       Station station = map.getStationByNameAndRoute(stationName, routeName, routeType);
       stations.add(station);
     }
-    map.makeAdjacent(stations);
+    map.createAdjacency(stations);
   }
 }
