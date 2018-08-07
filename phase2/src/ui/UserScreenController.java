@@ -82,8 +82,8 @@ public class UserScreenController extends UiController {
     // Display all cards user owns
     ArrayList<Card> listOfCards = user.getCards();
     for (Card card : listOfCards) {
-      cards.put(card.toString(), card);
-      selectCardCombo.getItems().add(card.toString());
+      cards.put(card.getNickname(), card);
+      selectCardCombo.getItems().add(card.getNickname());
     }
     selectCardCombo.valueProperty().addListener((obs, oldVal, newVal) -> handleCardSelect());
 
@@ -93,7 +93,7 @@ public class UserScreenController extends UiController {
       stations.put(station.toString(), station);
       selectStationCombo.getItems().add(station.toString());
     }
-    selectCardCombo.valueProperty().addListener((obs, oldVal, newVal) -> handleStationSelect());
+    selectStationCombo.valueProperty().addListener((obs, oldVal, newVal) -> handleStationSelect());
   }
 
   private void updateHomepageLabel() {
@@ -154,11 +154,13 @@ public class UserScreenController extends UiController {
   protected void handleTapInCardButton(ActionEvent event) {
     //backEnd
     api.tapIn(station, card, dateField.getText(), timeField.getText());
+    updateBalanceLabel();
   }
 
   @FXML
   protected void handleTapOutCardButton(ActionEvent event) {
     //backEnd
     api.tapOut(station, card, dateField.getText(), timeField.getText());
+    updateBalanceLabel();
   }
 }

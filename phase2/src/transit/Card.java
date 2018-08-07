@@ -281,7 +281,7 @@ public class Card implements Serializable {
    */
   @Override
   public String toString() {
-    String ret = "Card " + Integer.toString(this.cardId) + " (\"" + this.nickname + "\", $" + Double.toString(this.balance);
+    String ret = this.nickname + " ($" + Double.toString(this.balance);
     if (this.isActive) {
       ret += ")";
     } else {
