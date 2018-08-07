@@ -72,4 +72,15 @@
                     GridPane.columnSpan="1" GridPane.rowSpan="1"
                     GridPane.halignment="RIGHT">
     </PasswordField>
+
+    <Label  fx:id="errorMessage"
+      GridPane.columnIndex="0" GridPane.rowIndex="3"
+      GridPane.columnSpan="1" GridPane.rowSpan="1"
+      GridPane.halignment="LEFT"
+      style="-fx-text-fill:red">
+      <font>
+        <Font size="12"></Font>
+      </font>
+    </Label>
+
 </GridPane>
