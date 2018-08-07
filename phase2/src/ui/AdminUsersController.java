@@ -6,11 +6,8 @@ import api.SimpleUser;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-import sun.security.util.Password;
 import transit.UserAccount;
 
 public class AdminUsersController extends UiController {
@@ -19,18 +16,6 @@ public class AdminUsersController extends UiController {
 
   @FXML
   private TableView<SimpleUser> tableViewUsers;
-
-  @FXML
-  private TableColumn<SimpleUser, String> Name;
-
-  @FXML
-  private TableColumn<SimpleUser, String> Email;
-
-  @FXML
-  private TableColumn<SimpleUser, String> Password;
-
-  @FXML
-  private TableColumn<SimpleUser, Boolean> IsAdmin;
 
   @FXML
   private TextField nameField;
@@ -92,15 +77,10 @@ public class AdminUsersController extends UiController {
     }
   }
 
+  @FXML
   public void initialize(){
 
     tableViewUsers.getSelectionModel().selectedIndexProperty().addListener((num) -> handleUserSelect());
-
-    Name.setCellValueFactory(new PropertyValueFactory<SimpleUser, String>("name"));
-    Email.setCellValueFactory(new PropertyValueFactory<SimpleUser, String>("email"));
-    Password.setCellValueFactory(new PropertyValueFactory<SimpleUser, String>("password"));
-    IsAdmin.setCellValueFactory(new PropertyValueFactory<SimpleUser, Boolean>("isAdmin"));
-
     updateView();
   }
 

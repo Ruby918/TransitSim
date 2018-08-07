@@ -5,6 +5,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <GridPane alignment="CENTER" hgap="10.0" vgap="10.0"
   xmlns:fx="http://javafx.com/fxml"
   fx:controller="ui.AdminUsersController">
@@ -20,10 +21,22 @@
   </Label>
   <TableView fx:id="tableViewUsers" GridPane.columnIndex="0" GridPane.rowIndex="1">
     <columns>
-      <TableColumn prefWidth="200.0" text="Name" fx:id="Name" />
-      <TableColumn prefWidth="250.0" text="Email" fx:id="Email" />
-      <TableColumn prefWidth="200.0" text="Password" fx:id="Password" />
-      <TableColumn prefWidth="75.0" text="Is Admin" fx:id="IsAdmin" />
+      <TableColumn prefWidth="200.0" text="Name" fx:id="UserName">
+        <cellValueFactory><PropertyValueFactory property="name" />
+        </cellValueFactory>
+      </TableColumn>
+      <TableColumn prefWidth="250.0" text="Email" fx:id="UserEmail">
+        <cellValueFactory><PropertyValueFactory property="email" />
+        </cellValueFactory>
+      </TableColumn>
+      <TableColumn prefWidth="200.0" text="Password" fx:id="UserPassword">
+        <cellValueFactory><PropertyValueFactory property="password" />
+        </cellValueFactory>
+      </TableColumn>
+      <TableColumn prefWidth="75.0" text="Is Admin" fx:id="UserIsAdmin">
+        <cellValueFactory><PropertyValueFactory property="isAdmin" />
+        </cellValueFactory>
+      </TableColumn>
     </columns>
   </TableView>
   <Label

@@ -21,24 +21,6 @@ public class AdminMapController extends UiController {
   private TableView<SimpleRoute> tableViewRoutes;
 
   @FXML
-  private TableColumn<SimpleStation, String> StationName;
-
-  @FXML
-  private TableColumn<SimpleStation, String> StationType;
-
-  @FXML
-  private TableColumn<SimpleStation, String> StationRoute;
-
-  @FXML
-  private TableColumn<SimpleStation, String> Adjacent;
-
-  @FXML
-  private TableColumn<SimpleRoute, String> RouteName;
-
-  @FXML
-  private TableColumn<SimpleRoute, String> RouteType;
-
-  @FXML
   private EditStationController editStationController;
 
   public void initialize(){
@@ -46,14 +28,7 @@ public class AdminMapController extends UiController {
     tableViewRoutes.getSelectionModel().selectedIndexProperty().addListener((num) -> handleRouteSelect());
     tableViewStations.getSelectionModel().selectedIndexProperty().addListener((num) -> handleStationSelect());
 
-    StationName.setCellValueFactory(new PropertyValueFactory<SimpleStation, String>("name"));
-    StationType.setCellValueFactory(new PropertyValueFactory<SimpleStation, String>("type"));
-    StationRoute.setCellValueFactory(new PropertyValueFactory<SimpleStation, String>("route"));
-    Adjacent.setCellValueFactory(new PropertyValueFactory<SimpleStation, String>("adjacent"));
     tableViewStations.getItems().setAll(api.map.getStationsSimple());
-
-    RouteName.setCellValueFactory(new PropertyValueFactory<SimpleRoute, String>("name"));
-    RouteType.setCellValueFactory(new PropertyValueFactory<SimpleRoute, String>("type"));
     tableViewRoutes.getItems().setAll(api.map.getRoutesSimple());
   }
 

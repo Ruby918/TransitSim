@@ -5,6 +5,7 @@
 <?import javafx.geometry.Insets?>
 
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <GridPane alignment="CENTER" hgap="10.0" vgap="10.0"
   xmlns:fx="http://javafx.com/fxml"
   fx:controller="ui.AdminMapController">
@@ -22,8 +23,18 @@
   </Label>
   <TableView fx:id="tableViewRoutes" GridPane.columnIndex="0" GridPane.rowIndex="1">
     <columns>
-      <TableColumn prefWidth="100.0" text="Name" fx:id="RouteName"/>
-      <TableColumn prefWidth="120.0" text="Type" fx:id="RouteType"/>
+      <TableColumn prefWidth="100.0" text="Name" fx:id="RouteName">
+        <cellValueFactory><PropertyValueFactory property="name" />
+        </cellValueFactory>
+      </TableColumn>
+      <TableColumn prefWidth="120.0" text="Type" fx:id="RouteType">
+        <cellValueFactory><PropertyValueFactory property="type" />
+        </cellValueFactory>
+      </TableColumn>
+      <TableColumn prefWidth="500.0" text="Stations" fx:id="RouteStations">
+        <cellValueFactory><PropertyValueFactory property="stations" />
+        </cellValueFactory>
+      </TableColumn>
     </columns>
   </TableView>
 
@@ -43,10 +54,22 @@
   </Button>
   <TableView fx:id="tableViewStations" GridPane.columnIndex="0" GridPane.rowIndex="4">
     <columns>
-      <TableColumn prefWidth="100.0" text="Name" fx:id="StationName"/>
-      <TableColumn prefWidth="120.0" text="Type" fx:id="StationType"/>
-      <TableColumn prefWidth="100.0" text="Route" fx:id="StationRoute"/>
-      <TableColumn prefWidth="300.0" text="Adjacent To" fx:id="Adjacent" />
+      <TableColumn prefWidth="100.0" text="Name" fx:id="StationName">
+        <cellValueFactory><PropertyValueFactory property="name" />
+        </cellValueFactory>
+      </TableColumn>
+      <TableColumn prefWidth="120.0" text="Type" fx:id="StationType">
+        <cellValueFactory><PropertyValueFactory property="type" />
+        </cellValueFactory>
+      </TableColumn>
+      <TableColumn prefWidth="100.0" text="Route" fx:id="StationRoute">
+        <cellValueFactory><PropertyValueFactory property="route" />
+        </cellValueFactory>
+      </TableColumn>
+      <TableColumn prefWidth="300.0" text="Adjacent To" fx:id="Adjacent" >
+        <cellValueFactory><PropertyValueFactory property="adjacent" />
+        </cellValueFactory>
+      </TableColumn>
     </columns>
   </TableView>
 
