@@ -49,7 +49,8 @@ public class UserScreenController extends UiController {
 
     // get current user
     user = (UserAccount) dataStore.get("currentUser").data();
-    homepageLabel.setText(user.getName() + "'s Homepage");
+    updateHomepageLabel();
+    nameField.setText(user.getName());
 
     // get current station
     station = (Station) dataStore.get("currentStation").data();
@@ -78,6 +79,10 @@ public class UserScreenController extends UiController {
     selectCardCombo.valueProperty().addListener((obs, oldVal, newVal) -> handleCardSelect());
   }
 
+  private void updateHomepageLabel() {
+    homepageLabel.setText(user.getName() + "'s Homepage");
+  }
+
   private void updateBalanceLabel() {
     if (card != null) balanceAmountLabel.setText(Double.toString(card.getBalance()));
   }
@@ -94,7 +99,8 @@ public class UserScreenController extends UiController {
   @FXML
   protected void handleUpdateNameButton(ActionEvent event) {
     try {
-      api.user.update(user.getEmail(), nameField.getText(), user.getEmail(), user.isAdmin());
+      api.user.updateName(user.getEmail(), nameField.getText());
+      updateHomepageLabel();
     } catch (UpdateUserException e){}
   }
 

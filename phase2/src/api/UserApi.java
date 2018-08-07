@@ -18,10 +18,16 @@ public class UserApi extends ChildApi {
     return transitFareManager.createUserAccount(name, email, isAdmin);
   }
 
+  public void updateName(String email, String name) throws UpdateUserException {
+    UserAccount user = transitFareManager.getUserByEmail(email);
+    if (user != null) user.setName(name);
+    else throw new UpdateUserException();
+  }
+
   public void update(String oldEmail, String name, String newEmail, boolean isAdmin)
       throws UpdateUserException {
     if (oldEmail.isEmpty() || name.isEmpty() || newEmail.isEmpty() || (
-        !(transitFareManager.getUserByEmail(newEmail) == null) || (newEmail == oldEmail))) {
+        (transitFareManager.getUserByEmail(newEmail) != null) && (!newEmail.equals(oldEmail)))) {
       logger.log.warning("Failed to update user with email " + oldEmail);
       throw new UpdateUserException();
     }
