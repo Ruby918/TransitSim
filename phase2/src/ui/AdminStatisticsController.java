@@ -10,10 +10,9 @@ public class AdminStatisticsController extends UiController{
 
     @FXML
     private TextField dateField;
+
     @FXML
     protected void handleConfirmButtonAction(ActionEvent event) {
         loadTemplate("template/show_stats.fxml", confirm);
     }
-
-
 }

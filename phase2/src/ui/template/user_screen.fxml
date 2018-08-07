@@ -8,6 +8,7 @@
 <?import javafx.scene.control.ComboBox?>
 
 <?import javafx.scene.control.TextField?>
+
 <GridPane fx:controller="ui.UserScreenController"
   xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="15" vgap="15">
   <padding>
@@ -29,7 +30,7 @@
           GridPane.columnSpan="2" GridPane.rowSpan="1"
           GridPane.valignment="CENTER">
       <font>
-        <Font name="Comic Sans MS" size="18"></Font>
+        <Font size="18"></Font>
       </font>
   </Label>
 

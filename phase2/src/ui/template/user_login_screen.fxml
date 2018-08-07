@@ -12,7 +12,7 @@
 <GridPane fx:controller="ui.UserLoginScreenController"
     xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="15" vgap="15">
     <padding>
-      <Insets top="10" right="10" bottom="10" left="10"/>
+      <Insets top="10" right="100" bottom="10" left="100"/>
     </padding>
 
     <columnConstraints>
@@ -23,7 +23,7 @@
 
     <!-- Add Login Button -->
     <Button fx:id="loginButton" text="Login"
-            prefWidth="75" prefHeight="40" defaultButton="false"
+            prefWidth="200" prefHeight="30" defaultButton="false"
             GridPane.columnIndex="0" GridPane.rowIndex="4"
             GridPane.columnSpan="1" GridPane.rowSpan="1"
             GridPane.halignment="LEFT"
@@ -32,8 +32,8 @@
 
     <!-- Add Return Button -->
     <Button fx:id="returnButton" text="Return"
-            prefWidth="75" prefHeight="40" defaultButton="false"
-            GridPane.columnIndex="0" GridPane.rowIndex="4"
+            prefWidth="200" prefHeight="30" defaultButton="false"
+            GridPane.columnIndex="1" GridPane.rowIndex="4"
             GridPane.columnSpan="1" GridPane.rowSpan="1"
             GridPane.halignment="RIGHT"
             onAction="#handleReturnButtonAction">
@@ -43,33 +43,33 @@
     <Label  text="Email"
             GridPane.columnIndex="0" GridPane.rowIndex="1"
             GridPane.columnSpan="1" GridPane.rowSpan="1"
-            GridPane.halignment="CENTER">
+            GridPane.halignment="LEFT">
           <font>
-            <Font name="Comic Sans MS" size="12"></Font>
+            <Font size="18"></Font>
           </font>
     </Label>
 
     <!-- Add Username Field -->
-    <TextField  fx:id="userField" prefWidth="100"
+    <TextField  fx:id="userField" prefWidth="200"
                 GridPane.columnIndex="1" GridPane.rowIndex="1"
-                GridPane.columnSpan="2" GridPane.rowSpan="1"
-                GridPane.halignment="CENTER">
+                GridPane.columnSpan="1" GridPane.rowSpan="1"
+                GridPane.halignment="RIGHT">
     </TextField>
 
     <!-- Add Password Label -->
     <Label  text="Password"
             GridPane.columnIndex="0" GridPane.rowIndex="2"
             GridPane.columnSpan="1" GridPane.rowSpan="1"
-            GridPane.halignment="CENTER">
+            GridPane.halignment="LEFT">
           <font>
-            <Font name="Comic Sans MS" size="12"></Font>
+            <Font size="18"></Font>
           </font>
     </Label>
 
     <!-- Add Password Field -->
-    <PasswordField  fx:id="passField" prefWidth="100"
+    <PasswordField  fx:id="passField" prefWidth="200"
                     GridPane.columnIndex="1" GridPane.rowIndex="2"
-                    GridPane.columnSpan="2" GridPane.rowSpan="1"
-                    GridPane.halignment="CENTER">
+                    GridPane.columnSpan="1" GridPane.rowSpan="1"
+                    GridPane.halignment="RIGHT">
     </PasswordField>
 </GridPane>

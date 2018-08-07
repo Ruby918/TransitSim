@@ -5,7 +5,6 @@ package ui;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.stage.Window;
 import transit.UserAccount;
 
 public class CreateCardScreenController extends UiController {

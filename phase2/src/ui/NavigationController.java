@@ -38,7 +38,7 @@ public class NavigationController extends UiController implements Initializable 
   }
 
   @FXML
-  protected void handleCustomersButtonAction(ActionEvent event) {
+  protected void handleUsersButtonAction(ActionEvent event) {
     loadTemplate("template/admin_users_screen.fxml");
   }
 
@@ -85,8 +85,8 @@ public class NavigationController extends UiController implements Initializable 
 
   private void createAdminMenu() {
     Menu menuAdmin = new Menu("Admin");
-    MenuItem menuItem1 = new MenuItem("Customers");
-    menuItem1.setOnAction(event -> handleCustomersButtonAction(null));
+    MenuItem menuItem1 = new MenuItem("Users");
+    menuItem1.setOnAction(event -> handleUsersButtonAction(null));
     MenuItem menuItem2 = new MenuItem("Statistics");
     menuItem2.setOnAction(event -> handleStatisticsButtonAction(null));
     MenuItem menuItem3 = new MenuItem("Map");

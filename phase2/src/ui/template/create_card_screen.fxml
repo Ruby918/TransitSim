@@ -36,7 +36,7 @@
           GridPane.columnSpan="1" GridPane.rowSpan="1"
           GridPane.halignment="LEFT">
         <font>
-          <Font name="Comic Sans MS" size="12"></Font>
+          <Font size="12"></Font>
         </font>
   </Label>
 
