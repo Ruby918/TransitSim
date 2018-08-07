@@ -56,8 +56,8 @@ public class EventConfigFileParser extends ConfigFileParser {
       case "Admin":
         parseAdminCommand(lineData);
         break;
-      case "Customer":
-        parseCustomerCommand(lineData);
+      case "User":
+        parseUserCommand(lineData);
         break;
       case "Card":
         parseCardCommand(lineData);
@@ -118,18 +118,18 @@ public class EventConfigFileParser extends ConfigFileParser {
         message = "Routes:" + System.lineSeparator()
             + indentString(prettyRoute.toStringMultiline());
         break;
-      case "Customers":
+      case "Users":
         switch (parameters[1]) {
           case "Total":
-            PrettyList<UserAccount> prettyCustomers = new PrettyList<>(transitSystem.getUsers(), "Customers");
-            message = "Customers: " + System.lineSeparator()
-                + indentString(prettyCustomers.toStringMultiline());
+            PrettyList<UserAccount> prettyUsers = new PrettyList<>(transitSystem.getUsers(), "Users");
+            message = "Users: " + System.lineSeparator()
+                + indentString(prettyUsers.toStringMultiline());
             break;
           case "Create":
-            UserAccount customer = transitSystem
+            UserAccount user = transitSystem
                 .createUserAccount(parameters[2], parameters[3], (parameters[4].equals("admin")));
             message = "Successfully created user account: "
-                + System.lineSeparator() + indentString(customer.toString());
+                + System.lineSeparator() + indentString(user.toString());
             break;
           default:
             message = "That is not a valid admin user command.";
@@ -146,11 +146,11 @@ public class EventConfigFileParser extends ConfigFileParser {
   }
 
   /**
-   * Parses user commands i.e. lines beginning with "Customer:" in the configuration file.
+   * Parses user commands i.e. lines beginning with "User:" in the configuration file.
    *
    * @param data parameters of the user command
    */
-  private void parseCustomerCommand(String[] data) {
+  private void parseUserCommand(String[] data) {
 
     UserAccount user = transitSystem.getUserByEmail(data[1]);
     if (user == null) {

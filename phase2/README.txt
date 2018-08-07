@@ -15,7 +15,7 @@
 
 The file `events.txt` is comprised of a sequence of commands that can be issued to
 the transit fare manager.
-There are three types of commands: Admin, Customer, and Card.
+There are three types of commands: Admin, User, and Card.
 
 ### Admin commands
 
@@ -25,18 +25,18 @@ There are three types of commands: Admin, Customer, and Card.
 - See all trips taken on a specific day: `Admin: Trips, DD/MM/YYYY`
 - See all stations reached on a specific day: `Admin: Stations, DD/MM/YYYY`
 - See all routes: `Admin: Routes`
-- See all customers: `Admin: Customers, Total`
-- Create customer: `Admin: Customers, Create, <customerName>, <customerEmail>, <admin/customer>`
+- See all users: `Admin: Users, Total`
+- Create user: `Admin: Users, Create, <userName>, <userEmail>, <admin/user>`
 - See all cards: `Admin: Cards`
 
-### Customer commands
+### User commands
 
-- See overview of customer account: `Customer: <customerEmail>: Details`
-- Update customer name: `Customer: <customerEmail>: Update Name, <newName>`
-- List this customer's cards: `Customer: <customerEmail>: Cards, View`
-- Request new card for this customer: `Customer: <customerEmail>: Cards, New`
-- Get average transit cost per month: `Customer: <customerEmail>: Average Cost`
-- View three most recent trips: `Customer: <customerEmail>: Recent Trips`
+- See overview of user account: `User: <userEmail>: Details`
+- Update user name: `User: <userEmail>: Update Name, <newName>`
+- List this user's cards: `User: <userEmail>: Cards, View`
+- Request new card for this user: `User: <userEmail>: Cards, New`
+- Get average transit cost per month: `User: <userEmail>: Average Cost`
+- View three most recent trips: `User: <userEmail>: Recent Trips`
 
 ### Card commands
 

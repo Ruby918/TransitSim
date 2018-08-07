@@ -72,22 +72,22 @@ public class TransitFareManager implements Serializable {
    * Creates and returns a new card object. Generates ID for new card based in the number of
    * existing cards. Adds this new card to user.
    *
-   * @param customer user to which the card is issued
+   * @param user user to which the card is issued
    * @return new card object
    */
-  public Card issueCard(UserAccount customer, String nickname) {
+  public Card issueCard(UserAccount user, String nickname) {
     // Increment card id by one for every new card
     Card card = new Card(nickname, this.cards.size(), this);
     this.cards.add(card);
-    customer.addCard(card);
+    user.addCard(card);
     return card;
   }
 
-  public Card issueCard(UserAccount customer) {
+  public Card issueCard(UserAccount user) {
     // Increment card id by one for every new card
     Card card = new Card(this.cards.size(), this);
     this.cards.add(card);
-    customer.addCard(card);
+    user.addCard(card);
     return card;
   }
 

@@ -7,7 +7,7 @@ import util.PrettyList;
 import util.FormattedDate;
 
 /**
- * Class that models the functionality of a transit Customer account.
+ * Class that models the functionality of a transit User account.
  *
  * @author group 0136
  */
@@ -50,7 +50,7 @@ public class UserAccount implements Serializable {
   public boolean hasCard(){ return cards.size() != 0;}
 
   /**
-   * Returns the Card of Customer account given the cards id.
+   * Returns the Card of User account given the cards id.
    *
    * @param id - the id of the card which will be returned.
    * @return - Card with the id matching the given id or null if no such card is found.
@@ -70,36 +70,36 @@ public class UserAccount implements Serializable {
   }
 
   /**
-   * A getter which returns an array list of cards belonging to the Customers account.
+   * A getter which returns an array list of cards belonging to the Users account.
    *
-   * @return - Array list of cards belonging to the Customers account.
+   * @return - Array list of cards belonging to the Users account.
    */
   public ArrayList<Card> getCards() {
     return cards;
   }
 
   /**
-   * A getter which returns the name of the Customer account.
+   * A getter which returns the name of the User account.
    *
-   * @return - name of the Customer account.
+   * @return - name of the User account.
    */
   public String getName() {
     return name;
   }
 
   /**
-   * A setter which changes the name of the Customer account.
+   * A setter which changes the name of the User account.
    *
-   * @param name - name of the Customer account.
+   * @param name - name of the User account.
    */
   public void setName(String name) {
     this.name = name;
   }
 
   /**
-   * A getter which returns the email of the Customer account.
+   * A getter which returns the email of the User account.
    *
-   * @return - email of the Customer account.
+   * @return - email of the User account.
    */
   public String getEmail() {
     return email;
@@ -139,9 +139,9 @@ public class UserAccount implements Serializable {
   }
 
   /**
-   * Adds new card to the customers account array list.
+   * Adds new card to the users account array list.
    *
-   * @param card - Card of which to add to customers accounts array list of cards.
+   * @param card - Card of which to add to users accounts array list of cards.
    */
   public void addCard(Card card) {
     if (!this.cards.contains(card)) {
@@ -150,9 +150,9 @@ public class UserAccount implements Serializable {
   }
 
   /**
-   * Removes new card to the customers account array list.
+   * Removes new card to the users account array list.
    *
-   * @param card - Card of which to remove to customers accounts array list of cards.
+   * @param card - Card of which to remove to users accounts array list of cards.
    */
   public void removeCard(Card card) {
     this.cards.remove(card);
@@ -179,7 +179,7 @@ public class UserAccount implements Serializable {
    * @return - average monthly cost of user.
    */
   public double calculateAverageMonthlyCost() {
-    // array lists needed to track customers data.
+    // array lists needed to track users data.
     ArrayList<FormattedDate> months = new ArrayList<>();
     ArrayList<Double> costs = new ArrayList<>();
     ArrayList<Transaction> transactions = listAllTransactions();
@@ -215,9 +215,9 @@ public class UserAccount implements Serializable {
   }
 
   /**
-   * Returns string representation of customerAccountClass.
+   * Returns string representation of userAccountClass.
    *
-   * @return - string representation of customerAccountClass.
+   * @return - string representation of userAccountClass.
    */
   @Override
   public String toString() {

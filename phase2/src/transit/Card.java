@@ -276,9 +276,9 @@ public class Card implements Serializable {
   }
 
   /**
-   * Returns string representation of customerAccountClass.
+   * Returns string representation of userAccountClass.
    *
-   * @return - string representation of customerAccountClass.
+   * @return - string representation of userAccountClass.
    */
   @Override
   public String toString() {
