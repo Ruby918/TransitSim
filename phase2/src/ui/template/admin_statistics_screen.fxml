@@ -44,7 +44,7 @@
     GridPane.columnIndex="2" GridPane.rowIndex="2"
     GridPane.columnSpan="1" GridPane.rowSpan="1"
     GridPane.halignment="LEFT"
-    onAction="#handleConfirmButtonAction">
+    onAction="#handleApplyButtonAction">
   </Button>
 
   <Button fx:id="clearButton" text="Clear"
@@ -52,7 +52,7 @@
     GridPane.columnIndex="3" GridPane.rowIndex="2"
     GridPane.columnSpan="1" GridPane.rowSpan="1"
     GridPane.halignment="LEFT"
-    onAction="#handleConfirmButtonAction">
+    onAction="#handleClearButtonAction">
   </Button>
 
   <fx:include fx:id="statsTables" source="stats_tables_child_screen.fxml"

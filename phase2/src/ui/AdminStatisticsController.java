@@ -1,18 +1,28 @@
 package ui;
 
-import javafx.event.ActionEvent;
+import javafx.scene.control.TextField;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import util.FormattedDate;
 
 public class AdminStatisticsController extends UiController{
-    @FXML
-    private Button confirm;
 
     @FXML
     private TextField dateField;
 
     @FXML
-    protected void handleConfirmButtonAction(ActionEvent event) {
-        loadTemplate(STATS_DETAIL_SCREEN, confirm);
+    public void initialize() {
+        // set default date and time to now
+        FormattedDate date = new FormattedDate();
+        dateField.setText(date.toDateString());
+    }
+
+    @FXML
+    public void handleApplyButtonAction() {
+
+    }
+
+    @FXML
+    public void handleClearButtonAction() {
+
     }
 }
