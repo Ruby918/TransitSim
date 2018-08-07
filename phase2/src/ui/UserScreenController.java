@@ -23,9 +23,6 @@ public class UserScreenController extends UiController {
   private Station station;
   private PriceModifier priceModifier;
 
-  private HashMap<String, Station> stations = new HashMap<>();
-  private HashMap<String, Card> cards = new HashMap<>();
-
   @FXML
   private Button createCardButton;
 
@@ -33,10 +30,10 @@ public class UserScreenController extends UiController {
   private Label balanceAmountLabel;
 
   @FXML
-  private ComboBox<String> selectCardCombo;
+  private ComboBox<Card> selectCardCombo;
 
   @FXML
-  private ComboBox<String> selectStationCombo;
+  private ComboBox<Station> selectStationCombo;
 
   @FXML
   private TextField dateField;
@@ -80,20 +77,11 @@ public class UserScreenController extends UiController {
     timeField.setText(date.toTimeString());
 
     // Display all cards user owns
-    ArrayList<Card> listOfCards = user.getCards();
-    for (Card card : listOfCards) {
-      cards.put(card.getNickname(), card);
-      selectCardCombo.getItems().add(card.getNickname());
-    }
+    selectCardCombo.getItems().addAll(user.getCards());
     selectCardCombo.valueProperty().addListener((obs, oldVal, newVal) -> handleCardSelect());
 
     // Display all stations
-    ArrayList<Station> stationsList = api.map.getStations();
-    for (Station station : stationsList) {
-      String stationString = station + " (" + station.getRoute().toString() + ")";
-      stations.put(stationString, station);
-      selectStationCombo.getItems().add(stationString);
-    }
+    selectStationCombo.getItems().addAll(api.map.getStations());
     selectStationCombo.valueProperty().addListener((obs, oldVal, newVal) -> handleStationSelect());
   }
 
@@ -104,7 +92,7 @@ public class UserScreenController extends UiController {
 
   private void handleCardSelect() {
     clearMessages();
-    Card newCard = cards.get(selectCardCombo.getSelectionModel().getSelectedItem().toString());
+    Card newCard = selectCardCombo.getSelectionModel().getSelectedItem();
     if (newCard != null) {
       card = newCard;
       dataStore.set("currentCard", new UiData<>(card));
@@ -114,7 +102,7 @@ public class UserScreenController extends UiController {
 
   private void handleStationSelect() {
     clearMessages();
-    Station newStation = stations.get(selectStationCombo.getSelectionModel().getSelectedItem().toString());
+    Station newStation = selectStationCombo.getSelectionModel().getSelectedItem();
     if (newStation != null) {
       station = newStation;
       dataStore.set("currentStation", new UiData<>(station));

@@ -286,11 +286,9 @@ public class Card implements Serializable {
    */
   @Override
   public String toString() {
-    String ret = this.nickname + " (" + getBalanceString();
-    if (this.isActive) {
-      ret += ")";
-    } else {
-      ret += ", deactivated)";
+    String ret = this.nickname;
+    if (!this.isActive) {
+      ret += " (deactivated)";
     }
     return ret;
   }
