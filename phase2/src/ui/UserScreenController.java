@@ -90,8 +90,9 @@ public class UserScreenController extends UiController {
     // Display all stations
     ArrayList<Station> stationsList = api.getStations();
     for (Station station : stationsList) {
-      stations.put(station.toString(), station);
-      selectStationCombo.getItems().add(station.toString());
+      String stationString = station + " (" + station.getRoute().toStringSimple() + ")";
+      stations.put(stationString, station);
+      selectStationCombo.getItems().add(stationString);
     }
     selectStationCombo.valueProperty().addListener((obs, oldVal, newVal) -> handleStationSelect());
   }
