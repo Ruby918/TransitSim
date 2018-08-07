@@ -25,7 +25,7 @@ public class CreateCardScreenController extends UiController {
   protected void handleCreateCardButton(ActionEvent event) {
 
     // get current user
-    UserAccount user = (UserAccount) dataStore.get("currentUser").data();
+    UserAccount user = (UserAccount) dataStore.get(UiDataStore.CURRENT_USER).data();
     if (user != null) {
       api.card.create(user, nameField.getText());
       loadTemplate(SUCCESS_SCREEN, returnButton);

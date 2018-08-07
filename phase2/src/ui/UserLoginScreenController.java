@@ -41,7 +41,7 @@ public class UserLoginScreenController extends UiController {
 
     try {
       UserAccount user = api.user.login(email, password);
-      dataStore.set("currentUser", new UiData<UserAccount>(user));
+      dataStore.set(UiDataStore.CURRENT_USER, new UiData<UserAccount>(user));
       loadTemplate(UiController.HOMEPAGE_SCREEN, loginButton);
     } catch (LoginFailedException e) {
       errorMessage.setText("Log in failed.");

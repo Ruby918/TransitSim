@@ -19,7 +19,7 @@ public class NavigationController extends UiController implements Initializable 
 
   @FXML
   protected void handleLogoutButtonAction(ActionEvent event) {
-    dataStore.set("currentUser", null);
+    dataStore.set(UiDataStore.CURRENT_USER, null);
     loadTemplate(TITLE_SCREEN);
   }
 
@@ -51,7 +51,7 @@ public class NavigationController extends UiController implements Initializable 
   @FXML
   public void initialize(java.net.URL arg0, ResourceBundle arg1) {
 
-    user = (UserAccount) dataStore.get("currentUser").data();
+    user = (UserAccount) dataStore.get(UiDataStore.CURRENT_USER).data();
 
     if (user != null) {
       Label menuLogoutLabel = addMenuLabel("Logout");

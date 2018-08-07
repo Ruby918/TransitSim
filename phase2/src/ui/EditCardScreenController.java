@@ -33,7 +33,7 @@ public class EditCardScreenController extends UiController {
   private CheckBox isActiveCheckBox;
 
   public void initialize() {
-    card = (Card) dataStore.get("currentCard").data();
+    card = (Card) dataStore.get(UiDataStore.CURRENT_CARD).data();
     balanceField.setText(card.getBalanceString());
     nameLabel.setText(card.getNickname());
     nameField.setText(card.getNickname());

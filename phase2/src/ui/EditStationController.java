@@ -31,7 +31,7 @@ public class EditStationController extends UiController {
 
   @FXML
   public void initialize() {
-    station = (Station) dataStore.get("currentStation").data();
+    station = (Station) dataStore.get(UiDataStore.CURRENT_STATION).data();
     populateRoutes();
     populateStations();
     if (station != null) {

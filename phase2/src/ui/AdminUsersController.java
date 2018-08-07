@@ -84,7 +84,7 @@ public class AdminUsersController extends UiController {
           passwordField.getText(), isAdminCheckBox.isSelected());
       updateView();
       // update navigation bar if updated user is the current user
-      UserAccount currentUser = (UserAccount) dataStore.get("currentUser").data();
+      UserAccount currentUser = (UserAccount) dataStore.get(UiDataStore.CURRENT_USER).data();
       if (selectedUser.getEmail().equals(currentUser.getEmail())) {
       }
     } catch (UpdateUserException e) {

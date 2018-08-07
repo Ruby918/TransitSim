@@ -72,7 +72,7 @@ public class AdminMapController extends UiController {
     SimpleStation simpleStation = tableViewStations.getSelectionModel().getSelectedItem();
     if (simpleStation != null) {
       Station station = api.map.getStation(simpleStation);
-      dataStore.set("currentStation", new UiData<>(station));
+      dataStore.set(UiDataStore.CURRENT_STATION, new UiData<>(station));
       editStationController.initialize();
     }
   }

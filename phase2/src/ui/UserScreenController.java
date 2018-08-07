@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import transit.PriceModifier;
 import transit.Station;
 import util.FormattedDate;
 import transit.UserAccount;
@@ -19,7 +18,6 @@ public class UserScreenController extends UiController {
   private UserAccount user;
   private Card card;
   private Station station;
-  private PriceModifier priceModifier;
 
   @FXML
   private Button createCardButton;
@@ -55,19 +53,16 @@ public class UserScreenController extends UiController {
     errorMessage.setText("");
 
     // get current user
-    user = (UserAccount) dataStore.get("currentUser").data();
+    user = (UserAccount) dataStore.get(UiDataStore.CURRENT_USER).data();
 
     // get current station
-    station = (Station) dataStore.get("currentStation").data();
+    station = (Station) dataStore.get(UiDataStore.CURRENT_STATION).data();
 
     // get current card
-    card = (Card) dataStore.get("currentCard").data();
+    card = (Card) dataStore.get(UiDataStore.CURRENT_CARD).data();
     if (card != null) {
       updateBalanceLabel();
     }
-
-    // get current priceModifier
-    priceModifier = (PriceModifier) dataStore.get("currentPriceModifier").data();
 
     // set default date and time to now
     FormattedDate date = new FormattedDate();
@@ -93,7 +88,7 @@ public class UserScreenController extends UiController {
     Card newCard = selectCardCombo.getSelectionModel().getSelectedItem();
     if (newCard != null) {
       card = newCard;
-      dataStore.set("currentCard", new UiData<>(card));
+      dataStore.set(UiDataStore.CURRENT_CARD, new UiData<>(card));
       updateBalanceLabel();
     }
   }
@@ -103,7 +98,7 @@ public class UserScreenController extends UiController {
     Station newStation = selectStationCombo.getSelectionModel().getSelectedItem();
     if (newStation != null) {
       station = newStation;
-      dataStore.set("currentStation", new UiData<>(station));
+      dataStore.set(UiDataStore.CURRENT_STATION, new UiData<>(station));
     }
   }
 
@@ -115,12 +110,6 @@ public class UserScreenController extends UiController {
   @FXML
   protected void handleEditCardButton(ActionEvent event) {
     loadTemplate(EDIT_CARD_SCREEN, createCardButton);
-  }
-
-  @FXML
-  protected void handleModCardButton(ActionEvent event) {
-    //backEnd
-    api.card.addPriceModifier(card, priceModifier);
   }
 
   @FXML

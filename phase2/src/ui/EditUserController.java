@@ -21,7 +21,7 @@ public class EditUserController extends UiController {
   private Label editUserLabel;
 
   public void initialize() {
-    user = (UserAccount) dataStore.get("currentUser").data();
+    user = (UserAccount) dataStore.get(UiDataStore.CURRENT_USER).data();
     updateHomepageLabel();
     nameField.setText(user.getName());
     passwordField.setText(user.getPassword());
