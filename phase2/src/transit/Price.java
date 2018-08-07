@@ -77,6 +77,10 @@ public class Price implements Serializable {
     this.finalPrice = finalPrice;
   }
 
+  public double getRawPrice() {
+    return rawPrice;
+  }
+
   /** @param priceModifier */
   public void setPriceModifier(PriceModifier priceModifier) {
     this.priceModifier = priceModifier;

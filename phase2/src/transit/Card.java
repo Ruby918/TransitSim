@@ -3,6 +3,7 @@ package transit;/* Dan */
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import util.EasyLogger;
 import util.FormattedDate;
 
 /**
@@ -22,6 +23,8 @@ public class Card implements Serializable {
   private TransitFareManager transitFareManager;
   private PriceModifier priceModifier;
   private String nickname;
+
+  private transient EasyLogger logger = new EasyLogger("card");
 
   /**
    * A constructor for the card class that sets the id.
@@ -164,10 +167,12 @@ public class Card implements Serializable {
 
     // check if card is active
     if (!this.isActive) {
+      logger.log.warning("Cannot tap in with deactivated card.");
       throw new TapDeactivatedCardsException();
     }
     // check if card has sufficient funds
     if (this.balance < 0) {
+      logger.log.warning("Cannot tap in due to insufficient funds.");
       throw new InsufficientFundsException();
     }
 
@@ -176,6 +181,7 @@ public class Card implements Serializable {
 
     // create new trip, if there isn't a currently active trip
     if (this.activeTrip == null) {
+      logger.log.fine("Creating new trip for tap in.");
       this.activeTrip = transitFareManager.createTrip();
       this.trips.add(this.activeTrip);
     }
@@ -186,16 +192,20 @@ public class Card implements Serializable {
       price = activeTrip.registerTapInEvent(tapInEvent, this);
     } catch (TripUnnaturalTapSequenceException e) {
       // this tap took place at a nonsensical location
+      logger.log.warning("This tap sequence is not permitted.");
       addInvalidTap(tapInEvent);
       throw new IllegalTapLocationException();
     } catch (TripInvalidTapEventException f) {
       // this tap is not contiguous (in time and space) to the previous tap
+      logger.log.warning("This tap in event is not contiguous (in time and space) to the previous tap.");
       this.activeTrip = null;
       tapIn(station, date);
     }
 
     // charge the card the price of this tap
     if (price.getFinalPrice() != -1) {
+      logger.log.fine("Charging card a final price of " + price.getFinalPrice()
+          + " (raw price of " + price.getRawPrice() + ")");
       createTransaction(price, date);
     }
   }
@@ -218,6 +228,7 @@ public class Card implements Serializable {
 
     // check if card is active
     if (!this.isActive) {
+      logger.log.warning("Cannot tap out with deactivated card.");
       throw new TapDeactivatedCardsException();
     }
 
@@ -227,21 +238,25 @@ public class Card implements Serializable {
     // check if there is a currently active trip
     if (this.activeTrip == null) {
       // cannot tap out without a currently active trip
+      logger.log.warning("Cannot tap out without an active trip.");
       addInvalidTap(tapOutEvent);
       throw new IllegalTapLocationException();
     }
 
     // register tap out event with current trip
-    Price price = new Price();
+    Price price;
     try {
       price = activeTrip.registerTapOutEvent(tapOutEvent, this);
     } catch (TripUnnaturalTapSequenceException e) {
+      logger.log.warning("This tap sequence is not permitted.");
       addInvalidTap(tapOutEvent);
       throw new IllegalTapLocationException();
     }
 
     // charge the card the price of this tap
     if (price.getFinalPrice() != -1) {
+      logger.log.fine("Charging card a final price of " + price.getFinalPrice()
+        + " (raw price of " + price.getRawPrice() + ")");
       createTransaction(price, date);
     }
   }
