@@ -3,6 +3,7 @@ package transit;/* Dan */
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import util.FormattedDate;
 
 /**
  * Class that models the functionality of a transit Card.
@@ -131,7 +132,7 @@ public class Card implements Serializable {
    * @param price the <code>Price</code>
    * @param date date of transaction
    */
-  private void createTransaction(Price price, TransitDate date) {
+  private void createTransaction(Price price, FormattedDate date) {
     this.transitFareManager.createTransaction(this, price, date);
   }
 
@@ -172,7 +173,7 @@ public class Card implements Serializable {
    * @throws TapDeactivatedCardsException - deactivated tap is tapped
    * @throws IllegalTapLocationException - tap location of the tap is not legal
    */
-  public void tapIn(Station station, TransitDate date)
+  public void tapIn(Station station, FormattedDate date)
       throws InsufficientFundsException, TapDeactivatedCardsException, IllegalTapLocationException {
 
     // check if card is active
@@ -226,7 +227,7 @@ public class Card implements Serializable {
    * @throws TapDeactivatedCardsException - deactivated tap is tapped
    * @throws IllegalTapLocationException - tap location of the tap is not legal
    */
-  public void tapOut(Station station, TransitDate date)
+  public void tapOut(Station station, FormattedDate date)
       throws TapDeactivatedCardsException, IllegalTapLocationException {
 
     // check if card is active

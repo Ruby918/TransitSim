@@ -3,6 +3,8 @@ package transit;/*  Dan */
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import util.PrettyList;
+import util.FormattedDate;
 
 /**
  * Class that models the functionality of a transit Customer account.
@@ -170,7 +172,7 @@ public class UserAccount implements Serializable {
    */
   public double calculateAverageMonthlyCost() {
     // array lists needed to track customers data.
-    ArrayList<TransitDate> months = new ArrayList<>();
+    ArrayList<FormattedDate> months = new ArrayList<>();
     ArrayList<Double> costs = new ArrayList<>();
     ArrayList<Transaction> transactions = listAllTransactions();
 

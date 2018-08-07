@@ -12,7 +12,7 @@ import javafx.scene.control.Label;
 import java.util.ArrayList;
 import transit.PriceModifier;
 import transit.Station;
-import transit.TransitDate;
+import util.FormattedDate;
 import transit.UserAccount;
 
 public class UserScreenController extends UiController {
@@ -48,7 +48,7 @@ public class UserScreenController extends UiController {
     priceModifier = (PriceModifier) dataStore.get("currentPriceModifier").data();
 
     // set default date and time to now
-    TransitDate date = new TransitDate();
+    FormattedDate date = new FormattedDate();
     dateField.setText(date.toDateString());
     timeField.setText(date.toTimeString());
 

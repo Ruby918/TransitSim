@@ -1,7 +1,7 @@
-import transit.DataReadException;
-import transit.DataWriteException;
+import util.DataReadException;
+import util.DataWriteException;
 import transit.TransitFareManager;
-import transit.TransitLogger;
+import util.EasyLogger;
 import api.Api;
 
 import ui.TitleScreen;
@@ -16,7 +16,7 @@ public class Main {
    */
 
   private static TransitFareManager transitFareManager;
-  private static TransitLogger logger = new TransitLogger();
+  private static EasyLogger logger = new EasyLogger();
 
   public static void main(String[] args) {
 

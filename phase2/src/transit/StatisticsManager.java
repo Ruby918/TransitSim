@@ -1,6 +1,7 @@
 package transit;/* Dan */
 
 import java.util.ArrayList;
+import util.FormattedDate;
 
 /**
  * Class that manages information and statistics of the transit system.
@@ -21,7 +22,7 @@ public class StatisticsManager {
    * @param date - the day of which trips occurred.
    * @return - the number of trips on a single day.
    */
-  public ArrayList<Trip> getTripsOnDate(TransitDate date) {
+  public ArrayList<Trip> getTripsOnDate(FormattedDate date) {
     ArrayList<Trip> tripsOnDate = new ArrayList<>();
     for (Trip trip : transitFareManager.getTrips()) {
       if (trip.getStartDate().onSameDay(date) || trip.getEndDate().onSameDay(date)) {
@@ -37,7 +38,7 @@ public class StatisticsManager {
    * @param date - the day to return revenue from.
    * @return - revenue gained on a single day.
    */
-  public double calculateRevenueOnDate(TransitDate date) {
+  public double calculateRevenueOnDate(FormattedDate date) {
     double sum = 0;
     for (Transaction transaction : transitFareManager.getTransactions()) {
       if (date.onSameDay(transaction.getDate())) {
@@ -66,7 +67,7 @@ public class StatisticsManager {
    * @param date - date to record the number of stations reached.
    * @return - array list of stations used on one day.
    */
-  public ArrayList<Station> getStationsReachedOnDate(TransitDate date) {
+  public ArrayList<Station> getStationsReachedOnDate(FormattedDate date) {
     ArrayList<Trip> trips = getTripsOnDate(date);
     ArrayList<Station> stationsReached = new ArrayList<>();
     for (Trip trip : trips) {

@@ -2,6 +2,13 @@ package api;
 
 import java.util.ArrayList;
 import transit.*;
+import util.DataReadException;
+import util.DataReadWrite;
+import util.DataWriteException;
+import transit.EventConfigFileParser;
+import util.EasyLogger;
+import util.FormattedDate;
+import transit.MapConfigFileParser;
 
 public class Api {
 
@@ -11,10 +18,10 @@ public class Api {
 
   private TransitFareManager transitFareManager;
   private StatisticsManager statisticsManager;
-  private TransitLogger logger;
+  private EasyLogger logger;
 
 
-  public Api(TransitLogger logger) {
+  public Api(EasyLogger logger) {
     this.logger = logger;
   }
 
@@ -71,7 +78,7 @@ public class Api {
   //stats info
 
     public double getRevenueOnDate(String dateString){
-        TransitDate date = new TransitDate(dateString);
+        FormattedDate date = new FormattedDate(dateString);
         logger.log.fine("Getting revenue for date " + dateString);
         return this.statisticsManager.calculateRevenueOnDate(date);
     }
@@ -81,14 +88,13 @@ public class Api {
     }
 
     public ArrayList<Station> getStationsReachedOnDate(String dateString){
-      TransitDate date = new TransitDate(dateString);
+      FormattedDate date = new FormattedDate(dateString);
       logger.log.fine("Getting stations reached on date " + dateString);
       return this.statisticsManager.getStationsReachedOnDate(date);
     }
 
-
   public void tapIn(Station station, Card card, String dateString, String timeStrring) {
-    TransitDate date = new TransitDate(dateString, timeStrring);
+    FormattedDate date = new FormattedDate(dateString, timeStrring);
     logger.log.fine("Tapping into " + station + " on " + dateString + " with card " + card);
     try{
     card.tapIn(station, date);
@@ -100,7 +106,7 @@ public class Api {
   }
 
   public void tapOut(Station station, Card card, String dateString, String timeStrring) {
-    TransitDate date = new TransitDate(dateString, timeStrring);
+    FormattedDate date = new FormattedDate(dateString, timeStrring);
     logger.log.fine("Tapping out of " + station + " on " + dateString + " with card " + card);
     try{
       card.tapOut(station, date);

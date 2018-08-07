@@ -1,14 +1,14 @@
 package api;
 
 import transit.TransitFareManager;
-import transit.TransitLogger;
+import util.EasyLogger;
 
 public class ChildApi {
 
   protected TransitFareManager transitFareManager;
-  protected TransitLogger logger;
+  protected EasyLogger logger;
 
-  public ChildApi(TransitFareManager transitFareManager, TransitLogger logger) {
+  public ChildApi(TransitFareManager transitFareManager, EasyLogger logger) {
     this.transitFareManager = transitFareManager;
     this.logger = logger;
   }

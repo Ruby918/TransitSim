@@ -1,9 +1,10 @@
 package api;
 
 import transit.*;
+import util.EasyLogger;
 
 public class CardApi extends ChildApi {
-  public CardApi(TransitFareManager transitFareManager, TransitLogger logger) {
+  public CardApi(TransitFareManager transitFareManager, EasyLogger logger) {
     super(transitFareManager, logger);
   }
 

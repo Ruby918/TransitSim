@@ -3,6 +3,7 @@ package transit;/* Danya */
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import util.FormattedDate;
 
 /**
  * Main class of the transit system.
@@ -127,7 +128,7 @@ public class TransitFareManager implements Serializable {
     return trip;
   }
 
-  public Transaction createTransaction(Card card, Price price, TransitDate date) {
+  public Transaction createTransaction(Card card, Price price, FormattedDate date) {
     Transaction transaction = new Transaction(card, price, date);
     this.transactions.add(transaction);
     return transaction;

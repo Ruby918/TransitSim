@@ -2,6 +2,8 @@ package transit;/* Brian */
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import util.FormattedDate;
+import util.PrettyList;
 
 /**
  * A transit journey consisting of bus and subway rides.
@@ -21,7 +23,7 @@ public class Trip implements Comparable<Trip>, Serializable {
    *
    * @return the starting date of the first tap in
    */
-  public TransitDate getStartDate() {
+  public FormattedDate getStartDate() {
     if (tapEvents.size() == 0) {
       return null;
     }
@@ -33,7 +35,7 @@ public class Trip implements Comparable<Trip>, Serializable {
    *
    * @return the date of the last tap
    */
-  public TransitDate getEndDate() {
+  public FormattedDate getEndDate() {
     if (tapEvents.size() == 0) {
       return null;
     }

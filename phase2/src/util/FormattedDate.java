@@ -1,4 +1,4 @@
-package transit;/* Danya */
+package util;/* Danya */
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -10,23 +10,23 @@ import java.util.GregorianCalendar;
  * Class for date of transit system event. This class is basically a wrapper for java.util.Date,
  * with some added functionality.
  */
-public class TransitDate implements Comparable<TransitDate>, Serializable {
+public class FormattedDate implements Comparable<FormattedDate>, Serializable {
 
   private Date date;
 
-  public TransitDate() {
+  public FormattedDate() {
     this.date = new Date();
   }
 
-  public TransitDate(Date date) {
+  public FormattedDate(Date date) {
     this.date = date;
   }
 
-  public TransitDate(String dateString) {
+  public FormattedDate(String dateString) {
     this.date = createDateFromDateString(dateString);
   }
 
-  public TransitDate(String dateString, String timeString) {
+  public FormattedDate(String dateString, String timeString) {
     this.date = createDateFromDateTimeString(dateString, timeString);
   }
 
@@ -68,10 +68,10 @@ public class TransitDate implements Comparable<TransitDate>, Serializable {
   }
 
   /**
-   * Returns whether or not the TransitDate date2 is on the same day as this instance of
-   * TransitDate.
+   * Returns whether or not the FormattedDate date2 is on the same day as this instance of
+   * FormattedDate.
    */
-  public boolean onSameDay(TransitDate date2) {
+  public boolean onSameDay(FormattedDate date2) {
 
     // Code adapted from https://stackoverflow.com/a/2517824/3200577
     // (
@@ -86,10 +86,10 @@ public class TransitDate implements Comparable<TransitDate>, Serializable {
   }
 
   /**
-   * Returns whether or not the TransitDate date2 is in the same month as this instance of
-   * TransitDate.
+   * Returns whether or not the FormattedDate date2 is in the same month as this instance of
+   * FormattedDate.
    */
-  public boolean inSameMonth(TransitDate date2) {
+  public boolean inSameMonth(FormattedDate date2) {
 
     // Code adapted from https://stackoverflow.com/a/2517824/3200577
     // (User: Michael Borgwardt)
@@ -103,7 +103,7 @@ public class TransitDate implements Comparable<TransitDate>, Serializable {
   }
 
   /**
-   * Returns a string representation of this TransitDate formatted as DD/MM/YYYY HH:MM.
+   * Returns a string representation of this FormattedDate formatted as DD/MM/YYYY HH:MM.
    *
    * @return string formatted as DD/MM/YYYY HH:MM
    */
@@ -121,17 +121,17 @@ public class TransitDate implements Comparable<TransitDate>, Serializable {
     return toString();
   }
 
-  public TransitDate addTime(int time){
+  public FormattedDate addTime(int time){
     Date date = new Date();
     Calendar calendar = Calendar.getInstance();
     calendar.setTime(date);
     calendar.add(Calendar.DATE, time);
     date = calendar.getTime();
-    return new TransitDate(date);
+    return new FormattedDate(date);
   }
 
   /**
-   * Returns a string representation of this TransitDate formatted as DD/MM/YYYY.
+   * Returns a string representation of this FormattedDate formatted as DD/MM/YYYY.
    *
    * @return string formatted as DD/MM/YYYY
    */
@@ -145,10 +145,10 @@ public class TransitDate implements Comparable<TransitDate>, Serializable {
    * Calls the compareTo method of this instance's java.util.Date object on td's java.util.Date
    * object.
    *
-   * @param td instance of TransitDate
+   * @param td instance of FormattedDate
    */
   @Override
-  public int compareTo(TransitDate td) {
+  public int compareTo(FormattedDate td) {
     if (getDate() == null || td.getDate() == null) {
       return 0;
     }

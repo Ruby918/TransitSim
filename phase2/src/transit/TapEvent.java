@@ -2,20 +2,21 @@ package transit;/* Brian */
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import util.FormattedDate;
 
 /**
  * A Tap at a <code>BusStation</code> or <code>SubwayStation</code>.
  */
 public abstract class TapEvent implements Serializable {
 
-  private TransitDate date;
+  private FormattedDate date;
   private Station station;
   private Card card;
   private boolean flagged = false;
 
   protected ArrayList<TapEvent> unnaturalTapEvents = new ArrayList<>();
 
-  public TapEvent(Station station, TransitDate date, Card card) {
+  public TapEvent(Station station, FormattedDate date, Card card) {
     this.station = station;
     this.date = date;
     this.card = card;
@@ -26,7 +27,7 @@ public abstract class TapEvent implements Serializable {
    *
    * @return the <code>Date</code> this <code>TapEvent</code> was made.
    */
-  public TransitDate getTransitDate() {
+  public FormattedDate getTransitDate() {
     return date;
   }
 

@@ -1,4 +1,4 @@
-package transit;
+package util;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -6,12 +6,13 @@ import java.util.logging.Logger;
 import java.util.logging.Handler;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
+import transit.EventConfigFileParser;
 
-public class TransitLogger {
+public class EasyLogger {
   public final Logger log =
       Logger.getLogger(EventConfigFileParser.class.getName());
 
-  public TransitLogger() {
+  public EasyLogger() {
 
     // Disable default console handler
     log.setUseParentHandlers(false);

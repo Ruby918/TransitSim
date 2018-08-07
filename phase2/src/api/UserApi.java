@@ -2,10 +2,11 @@ package api;
 
 import java.util.ArrayList;
 import transit.*;
+import util.EasyLogger;
 
 public class UserApi extends ChildApi {
 
-  public UserApi(TransitFareManager transitFareManager, TransitLogger logger) {
+  public UserApi(TransitFareManager transitFareManager, EasyLogger logger) {
     super(transitFareManager, logger);
   }
 

@@ -1,6 +1,8 @@
 package transit;
 
+import util.FormattedDate;
+
 public interface Expirable {
 
-    boolean isValid(TransitDate dateUsed);
+    boolean isValid(FormattedDate dateUsed);
 }

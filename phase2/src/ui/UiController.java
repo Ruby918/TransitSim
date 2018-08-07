@@ -7,11 +7,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Control;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import transit.TransitLogger;
+import util.EasyLogger;
 
 public class UiController {
   public static Api api;
-  public static TransitLogger logger;
+  public static EasyLogger logger;
 
   //UI runtime data store
   public static UiDataStore dataStore = new UiDataStore();

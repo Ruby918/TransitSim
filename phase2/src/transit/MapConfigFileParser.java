@@ -1,6 +1,8 @@
 package transit;/* Danya */
 
 import java.util.ArrayList;
+import util.ConfigFileParser;
+import util.EasyLogger;
 
 /**
  * Class for parsing this transit system's map configuration.
@@ -12,7 +14,7 @@ public class MapConfigFileParser extends ConfigFileParser {
    */
   private Map map;
 
-  public MapConfigFileParser(String filename, Map map, TransitLogger logger) {
+  public MapConfigFileParser(String filename, Map map, EasyLogger logger) {
     super(filename, logger);
     this.map = map;
   }

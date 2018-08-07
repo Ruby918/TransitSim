@@ -1,9 +1,8 @@
-package transit;/* Danya */
+package util;/* Danya */
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * Class for parsing a configuration file.
@@ -14,9 +13,9 @@ public abstract class ConfigFileParser {
    * Name of the file containing the configuration to be parsed.
    */
   private String fileName;
-  protected TransitLogger logger;
+  protected EasyLogger logger;
 
-  public ConfigFileParser(String fileName, TransitLogger logger) {
+  public ConfigFileParser(String fileName, EasyLogger logger) {
     this.fileName = fileName;
     this.logger = logger;
   }

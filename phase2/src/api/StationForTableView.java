@@ -1,7 +1,7 @@
 package api;
 
 import javafx.beans.property.SimpleStringProperty;
-import transit.PrettyList;
+import util.PrettyList;
 import transit.Station;
 
 public class StationForTableView {

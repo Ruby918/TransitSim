@@ -1,6 +1,10 @@
 package transit;/* Danya */
 
 import java.util.ArrayList;
+import util.ConfigFileParser;
+import util.EasyLogger;
+import util.FormattedDate;
+import util.PrettyList;
 
 /**
  * Class for parsing this transit system's events.txt configuration.
@@ -21,7 +25,7 @@ public class EventConfigFileParser extends ConfigFileParser {
   public EventConfigFileParser(String filename,
       TransitFareManager transitSystem,
       StatisticsManager stats,
-      TransitLogger logger) {
+      EasyLogger logger) {
 
     super(filename, logger);
     this.transitSystem = transitSystem;
@@ -85,7 +89,7 @@ public class EventConfigFileParser extends ConfigFileParser {
             message += stats.calculateRevenue();
             break;
           default:
-            TransitDate date = new TransitDate(parameters[1]);
+            FormattedDate date = new FormattedDate(parameters[1]);
             message += stats.calculateRevenueOnDate(date);
         }
         break;
@@ -96,13 +100,13 @@ public class EventConfigFileParser extends ConfigFileParser {
             message += indentString(prettyTrips.toStringMultiline());
             break;
           default:
-            TransitDate date = new TransitDate(parameters[1]);
+            FormattedDate date = new FormattedDate(parameters[1]);
             PrettyList<Trip> prettyTripsOnDate = new PrettyList<>(stats.getTripsOnDate(date), "Trips");
             message += indentString(prettyTripsOnDate.toStringMultiline());
         }
         break;
       case "Stations":
-        TransitDate date = new TransitDate(parameters[1]);
+        FormattedDate date = new FormattedDate(parameters[1]);
         ArrayList<Station> stations = stats.getStationsReachedOnDate(date);
         PrettyList<Station> prettyStations = new PrettyList<>(stations, "Stations");
 
@@ -110,7 +114,7 @@ public class EventConfigFileParser extends ConfigFileParser {
             + indentString(prettyStations.toStringMultiline());
         break;
       case "Routes":
-        PrettyList<Route> prettyRoute = new PrettyList<>(transitSystem.map.getRoutes(), "Routes");
+        PrettyList<Route> prettyRoute = new PrettyList<>(transitSystem.getMap().getRoutes(), "Routes");
         message = "Routes:" + System.lineSeparator()
             + indentString(prettyRoute.toStringMultiline());
         break;
@@ -260,16 +264,16 @@ public class EventConfigFileParser extends ConfigFileParser {
    * @param parameters parameters of the command
    */
   private void parseCardTapIn(Card card, String[] parameters) {
-    Station station = transitSystem.map
+    Station station = transitSystem.getMap()
         .getStationByNameAndRoute(parameters[3], parameters[2], parameters[1]);
     if (station == null) {
       message = "That is not a valid station.";
       return;
     }
-    TransitDate date;
+    FormattedDate date;
     try {
       String[] datetimeParts = parameters[4].split(" ");
-      date = new TransitDate(datetimeParts[0], datetimeParts[1]);
+      date = new FormattedDate(datetimeParts[0], datetimeParts[1]);
     } catch (ArrayIndexOutOfBoundsException e) {
       message = "Error: That datetime is incorrectly formatted.";
       return;
@@ -299,16 +303,16 @@ public class EventConfigFileParser extends ConfigFileParser {
    * @param parameters parameters of the command
    */
   private void parseCardTapOut(Card card, String[] parameters) {
-    Station station = transitSystem.map
+    Station station = transitSystem.getMap()
         .getStationByNameAndRoute(parameters[3], parameters[2], parameters[1]);
     if (station == null) {
       message = "That is not a valid station.";
       return;
     }
-    TransitDate date;
+    FormattedDate date;
     try {
       String[] datetimeParts = parameters[4].split(" ");
-      date = new TransitDate(datetimeParts[0], datetimeParts[1]);
+      date = new FormattedDate(datetimeParts[0], datetimeParts[1]);
     } catch (ArrayIndexOutOfBoundsException e) {
       message = "Error: That datetime is incorrectly formatted.";
       return;
