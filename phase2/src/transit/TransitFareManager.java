@@ -97,11 +97,12 @@ public class TransitFareManager implements Serializable {
     return user;
   }
 
-  public void updateUser(String oldEmail, String name, String newEmail, boolean isAdmin) {
+  public void updateUser(String oldEmail, String name, String newEmail, String password, boolean isAdmin) {
     UserAccount user = this.users.get(oldEmail);
     if (user != null) {
       user.setName(name);
       user.setEmail(newEmail);
+      user.setPassword(password);
       user.setAdmin(isAdmin);
     }
     users.remove(oldEmail);
@@ -119,7 +120,10 @@ public class TransitFareManager implements Serializable {
    * @param id id of card
    */
   public Card getCardById(int id) {
-    return this.cards.get(id);
+    for (Card card : cards) {
+      if (id == card.getCardId()) return card;
+    }
+    return null;
   }
 
   public Trip createTrip() {

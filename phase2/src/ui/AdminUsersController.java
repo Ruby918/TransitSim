@@ -2,7 +2,7 @@ package ui;
 
 import api.CreateUserException;
 import api.UpdateUserException;
-import api.UserForTableView;
+import api.SimpleUser;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -10,29 +10,36 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import sun.security.util.Password;
 import transit.UserAccount;
 
 public class AdminUsersController extends UiController {
 
-  private UserForTableView selectedUser;
+  private SimpleUser selectedUser;
 
   @FXML
-  private TableView<UserForTableView> tableViewUsers;
+  private TableView<SimpleUser> tableViewUsers;
 
   @FXML
-  private TableColumn<UserForTableView, String> Name;
+  private TableColumn<SimpleUser, String> Name;
 
   @FXML
-  private TableColumn<UserForTableView, String> Email;
+  private TableColumn<SimpleUser, String> Email;
 
   @FXML
-  private TableColumn<UserForTableView, Boolean> IsAdmin;
+  private TableColumn<SimpleUser, String> Password;
+
+  @FXML
+  private TableColumn<SimpleUser, Boolean> IsAdmin;
 
   @FXML
   private TextField nameField;
 
   @FXML
   private TextField emailField;
+
+  @FXML
+  private TextField passwordField;
 
   @FXML
   private CheckBox isAdminCheckBox;
@@ -45,11 +52,12 @@ public class AdminUsersController extends UiController {
 
   @FXML
   public void handleUserSelect() {
-    UserForTableView user = tableViewUsers.getSelectionModel().getSelectedItem();
+    SimpleUser user = tableViewUsers.getSelectionModel().getSelectedItem();
     if (user != null) {
       selectedUser = user;
       nameField.setText(user.getName());
       emailField.setText(user.getEmail());
+      passwordField.setText(user.getPassword());
       isAdminCheckBox.setSelected(user.getIsAdmin());
     }
   }
@@ -76,7 +84,7 @@ public class AdminUsersController extends UiController {
   public void handleSaveButton() {
     try {
       api.user.update(selectedUser.getEmail(), nameField.getText(), emailField.getText(),
-          isAdminCheckBox.isSelected());
+          passwordField.getText(), isAdminCheckBox.isSelected());
       updateView();
       // update navigation bar if updated user is the current user
       UserAccount currentUser = (UserAccount) dataStore.get("currentUser").data();
@@ -92,9 +100,10 @@ public class AdminUsersController extends UiController {
 
     tableViewUsers.getSelectionModel().selectedIndexProperty().addListener((num) -> handleUserSelect());
 
-    Name.setCellValueFactory(new PropertyValueFactory<UserForTableView, String>("name"));
-    Email.setCellValueFactory(new PropertyValueFactory<UserForTableView, String>("email"));
-    IsAdmin.setCellValueFactory(new PropertyValueFactory<UserForTableView, Boolean>("isAdmin"));
+    Name.setCellValueFactory(new PropertyValueFactory<SimpleUser, String>("name"));
+    Email.setCellValueFactory(new PropertyValueFactory<SimpleUser, String>("email"));
+    Password.setCellValueFactory(new PropertyValueFactory<SimpleUser, String>("password"));
+    IsAdmin.setCellValueFactory(new PropertyValueFactory<SimpleUser, Boolean>("isAdmin"));
 
     updateView();
   }

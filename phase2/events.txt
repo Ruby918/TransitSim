@@ -1,5 +1,5 @@
 Admin: Customers, Create, Danya Lette, danya.lette@mail.utoronto.ca, admin
-Admin: Customers, Create, Admina Userette, an.email, admin
+Admin: Customers, Create, Admina Userette, root, admin
 Admin: Customers, Create, Brian Quach, brian.quach@mail.utoronto.ca, customer
 Admin: Customers, Create, Loic Nassif-Lachapelle, loic.nassif.lachapelle@mail.utoronto.ca, customer
 Admin: Customers, Create, Dhanraj Patel, dhanraj.patel@mail.utoronto.ca, customer

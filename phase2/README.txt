@@ -31,12 +31,12 @@ There are three types of commands: Admin, Customer, and Card.
 
 ### Customer commands
 
-- See overview of customer account: `Customer: <customerId>: Details`
-- Update customer name: `Customer: <customerId>: Update Name, <newName>`
-- List this customer's cards: `Customer: <customerId>: Cards, View`
-- Request new card for this customer: `Customer: <customerId>: Cards, New`
-- Get average transit cost per month: `Customer: <customerId>: Average Cost`
-- View three most recent trips: `Customer: <customerId>: Recent Trips`
+- See overview of customer account: `Customer: <customerEmail>: Details`
+- Update customer name: `Customer: <customerEmail>: Update Name, <newName>`
+- List this customer's cards: `Customer: <customerEmail>: Cards, View`
+- Request new card for this customer: `Customer: <customerEmail>: Cards, New`
+- Get average transit cost per month: `Customer: <customerEmail>: Average Cost`
+- View three most recent trips: `Customer: <customerEmail>: Recent Trips`
 
 ### Card commands
 

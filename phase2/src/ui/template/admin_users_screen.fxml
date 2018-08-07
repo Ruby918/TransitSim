@@ -22,6 +22,7 @@
     <columns>
       <TableColumn prefWidth="200.0" text="Name" fx:id="Name" />
       <TableColumn prefWidth="250.0" text="Email" fx:id="Email" />
+      <TableColumn prefWidth="200.0" text="Password" fx:id="Password" />
       <TableColumn prefWidth="75.0" text="Is Admin" fx:id="IsAdmin" />
     </columns>
   </TableView>
@@ -53,15 +54,26 @@
     GridPane.halignment="LEFT"
   />
 
+  <Label
+    GridPane.columnIndex="0" GridPane.rowIndex="8"
+    GridPane.columnSpan="1" GridPane.rowSpan="1"
+    text="Password"/>
+  <TextField fx:id="passwordField" prefWidth="100"
+    text=""
+    GridPane.columnIndex="0" GridPane.rowIndex="9"
+    GridPane.columnSpan="1" GridPane.rowSpan="1"
+    GridPane.halignment="LEFT">
+  </TextField>
+
   <Label fx:id="errorMessage"
     style="-fx-text-fill: red"
-    GridPane.columnIndex="0" GridPane.rowIndex="8"
+    GridPane.columnIndex="0" GridPane.rowIndex="10"
     GridPane.columnSpan="1" GridPane.rowSpan="1"
     text=""/>
 
   <Button fx:id="deleteButton" text="Delete User"
     prefWidth="175" prefHeight="75" defaultButton="false"
-    GridPane.columnIndex="0" GridPane.rowIndex="9"
+    GridPane.columnIndex="0" GridPane.rowIndex="11"
     GridPane.columnSpan="1" GridPane.rowSpan="1"
     GridPane.halignment="LEFT"
     onAction="#handleDeleteButton">
@@ -69,7 +81,7 @@
 
   <Button fx:id="createButton" text="Create User"
     prefWidth="175" prefHeight="75" defaultButton="false"
-    GridPane.columnIndex="0" GridPane.rowIndex="9"
+    GridPane.columnIndex="0" GridPane.rowIndex="11"
     GridPane.columnSpan="1" GridPane.rowSpan="1"
     GridPane.halignment="CENTER"
     onAction="#handleCreateButton">
@@ -77,7 +89,7 @@
 
   <Button fx:id="saveButton" text="Save User"
     prefWidth="175" prefHeight="75" defaultButton="false"
-    GridPane.columnIndex="0" GridPane.rowIndex="9"
+    GridPane.columnIndex="0" GridPane.rowIndex="11"
     GridPane.columnSpan="1" GridPane.rowSpan="1"
     GridPane.halignment="RIGHT"
     onAction="#handleSaveButton">

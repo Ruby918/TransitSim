@@ -24,25 +24,25 @@ public class UserApi extends ChildApi {
     else throw new UpdateUserException();
   }
 
-  public void update(String oldEmail, String name, String newEmail, boolean isAdmin)
+  public void update(String oldEmail, String name, String newEmail, String password, boolean isAdmin)
       throws UpdateUserException {
-    if (oldEmail.isEmpty() || name.isEmpty() || newEmail.isEmpty() || (
+    if (oldEmail.isEmpty() || name.isEmpty() || newEmail.isEmpty() || password.isEmpty() || (
         (transitFareManager.getUserByEmail(newEmail) != null) && (!newEmail.equals(oldEmail)))) {
       logger.log.warning("Failed to update user with email " + oldEmail);
       throw new UpdateUserException();
     }
-    transitFareManager.updateUser(oldEmail, name, newEmail, isAdmin);
+    transitFareManager.updateUser(oldEmail, name, newEmail, password, isAdmin);
   }
 
   public void delete(String email) {
     transitFareManager.deleteUser(email);
   }
 
-  public ArrayList<UserForTableView> get() {
+  public ArrayList<SimpleUser> get() {
     ArrayList<UserAccount> users = transitFareManager.getUsers();
-    ArrayList<UserForTableView> result = new ArrayList<>();
+    ArrayList<SimpleUser> result = new ArrayList<>();
     for (UserAccount user : users) {
-      result.add(new UserForTableView(user));
+      result.add(new SimpleUser(user));
     }
     return result;
   }

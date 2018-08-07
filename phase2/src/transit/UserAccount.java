@@ -21,14 +21,13 @@ public class UserAccount implements Serializable {
   private boolean active = true;
   private boolean isAdmin;
 
-
   /**
    * A constructor for the UserAccount class that sets a name, email.
    */
   public UserAccount(String name, String email, boolean isAdmin) {
     this.name = name;
     this.email = email;
-    this.password = "root";
+    this.password = "password123"; // start with default password
     this.isAdmin = isAdmin;
   }
 
@@ -108,6 +107,14 @@ public class UserAccount implements Serializable {
 
   public void setEmail(String email) {
     this.email = email;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
   }
 
   /**
