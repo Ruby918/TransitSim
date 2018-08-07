@@ -126,7 +126,7 @@ public class UserScreenController extends UiController {
   @FXML
   protected void handleTapInCardButton(ActionEvent event) {
     try {
-      api.tapIn(station, card, dateField.getText(), timeField.getText());
+      api.card.tapIn(station, card, dateField.getText(), timeField.getText());
       updateBalanceLabel();
       setSuccessMessage();
     } catch (Exception e) {
@@ -137,7 +137,7 @@ public class UserScreenController extends UiController {
   @FXML
   protected void handleTapOutCardButton(ActionEvent event) {
     try {
-      api.tapOut(station, card, dateField.getText(), timeField.getText());
+      api.card.tapOut(station, card, dateField.getText(), timeField.getText());
       updateBalanceLabel();
       setSuccessMessage();
     } catch (Exception e) {

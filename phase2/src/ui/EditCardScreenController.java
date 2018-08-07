@@ -5,10 +5,12 @@ package ui;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import transit.Card;
 
-public class LoadCardScreenController extends UiController {
+public class EditCardScreenController extends UiController {
 
   private Card card;
 
@@ -24,10 +26,18 @@ public class LoadCardScreenController extends UiController {
   @FXML
   private Label nameLabel;
 
+  @FXML
+  private TextField nameField;
+
+  @FXML
+  private CheckBox isActiveCheckBox;
+
   public void initialize() {
     card = (Card) dataStore.get("currentCard").data();
     balanceField.setText(card.getBalanceString());
     nameLabel.setText(card.getNickname());
+    nameField.setText(card.getNickname());
+    isActiveCheckBox.setSelected(card.isActive());
   }
 
   @FXML
@@ -45,10 +55,15 @@ public class LoadCardScreenController extends UiController {
     load(50);
   }
 
-
   @FXML
   protected void handleReturnButtonAction(ActionEvent event) {
     loadTemplate(HOMEPAGE_SCREEN, returnButton);
+  }
+
+  @FXML
+  protected void handleSaveButtonAction() {
+    api.card.update(card, nameField.getText(), isActiveCheckBox.isSelected());
+    initialize();
   }
 
   private void load(double amount) {

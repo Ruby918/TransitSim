@@ -21,7 +21,7 @@ public class SuccessWarningScreenController extends UiController {
 
     Card card = (Card) dataStore.get("currentCard").data();
 
-    LoadCardScreenController loadScreen = new LoadCardScreenController();
+    EditCardScreenController loadScreen = new EditCardScreenController();
     String textLine = SuccessMsg.getText();
     String[] cut = textLine.split("\\s+");
     cut[3] = card.getBalanceString();

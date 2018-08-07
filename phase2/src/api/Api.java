@@ -78,27 +78,4 @@ public class Api {
       return this.statisticsManager.getStationsReachedOnDate(date);
     }
 
-  public void tapIn(Station station, Card card, String dateString, String timeString) throws TapFailedException {
-    FormattedDate date = new FormattedDate(dateString, timeString);
-    logger.log.fine("Tapping into " + station + " on " + dateString + " with card " + card);
-    try{
-    card.tapIn(station, date);
-    }
-    catch (Exception e){
-      logger.log.warning("Tap in failed.");
-      throw new TapFailedException();
-    }
-  }
-
-  public void tapOut(Station station, Card card, String dateString, String timeString) throws TapFailedException {
-    FormattedDate date = new FormattedDate(dateString, timeString);
-    logger.log.fine("Tapping out of " + station + " on " + dateString + " with card " + card);
-    try{
-      card.tapOut(station, date);
-    }
-    catch (Exception e){
-      logger.log.warning("Tap out failed.");
-      throw new TapFailedException();
-    }
-  }
 }

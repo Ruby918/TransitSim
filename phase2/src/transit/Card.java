@@ -79,10 +79,25 @@ public class Card implements Serializable {
   }
 
   /**
-   * Deactivated card so it cannot be used to Tap.
+   * Deactivate card so it cannot be used to Tap.
    */
   public void deactivate() {
     this.isActive = false;
+  }
+
+  /**
+   * Activate card so it can be used to Tap.
+   */
+  public void activate() {
+    this.isActive = true;
+  }
+
+  public boolean isActive() {
+    return isActive;
+  }
+
+  public void setActive(boolean active) {
+    this.isActive = active;
   }
 
   /**
