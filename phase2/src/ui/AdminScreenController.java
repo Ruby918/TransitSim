@@ -12,6 +12,6 @@ public class AdminScreenController extends UiController {
 
   @FXML
   protected void handleAdminReturnButtonAction(ActionEvent event) {
-    loadTemplate("template/title_screen.fxml", adminReturn);
+    loadTemplate(UiController.TITLE_SCREEN, adminReturn);
   }
 }

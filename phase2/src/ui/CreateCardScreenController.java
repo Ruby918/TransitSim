@@ -17,7 +17,7 @@ public class CreateCardScreenController extends UiController {
 
   @FXML
   protected void handleReturnButtonAction(ActionEvent event) {
-    loadTemplate("template/user_screen.fxml", returnButton);
+    loadTemplate(HOMEPAGE_SCREEN, returnButton);
   }
 
   @FXML
@@ -27,7 +27,7 @@ public class CreateCardScreenController extends UiController {
     UserAccount user = (UserAccount) dataStore.get("currentUser").data();
     if (user != null) {
       api.card.create(user, nameField.getText());
-      loadTemplate("template/success_create_screen.fxml", returnButton);
+      loadTemplate(SUCCESS_SCREEN, returnButton);
     } else {
       logger.log.warning("Can't create card on null user.");
       // TODO display something

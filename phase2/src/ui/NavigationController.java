@@ -24,32 +24,32 @@ public class NavigationController extends UiController implements Initializable 
   @FXML
   protected void handleLogoutButtonAction(ActionEvent event) {
     dataStore.set("currentUser", null);
-    loadTemplate("template/title_screen.fxml");
+    loadTemplate(TITLE_SCREEN);
   }
 
   @FXML
   protected void handleLoginButtonAction(ActionEvent event) {
-    loadTemplate("template/user_login_screen.fxml");
+    loadTemplate(LOGIN_SCREEN);
   }
 
   @FXML
   protected void handleMyAccountButtonAction(ActionEvent event) {
-    loadTemplate("template/user_screen.fxml");
+    loadTemplate(HOMEPAGE_SCREEN);
   }
 
   @FXML
   protected void handleUsersButtonAction(ActionEvent event) {
-    loadTemplate("template/admin_users_screen.fxml");
+    loadTemplate(USERS_SCREEN);
   }
 
   @FXML
   protected void handleStatisticsButtonAction(ActionEvent event) {
-    loadTemplate("template/admin_statistics_screen.fxml");
+    loadTemplate(STATS_SCREEN);
   }
 
   @FXML
   protected void handleMapButtonAction(ActionEvent event) {
-    loadTemplate("template/admin_map_screen.fxml");
+    loadTemplate(MAP_SCREEN);
   }
 
   public void updateLoggedInText(String userName) {

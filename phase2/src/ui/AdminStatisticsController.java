@@ -13,6 +13,6 @@ public class AdminStatisticsController extends UiController{
 
     @FXML
     protected void handleConfirmButtonAction(ActionEvent event) {
-        loadTemplate("template/show_stats.fxml", confirm);
+        loadTemplate(STATS_DETAIL_SCREEN, confirm);
     }
 }

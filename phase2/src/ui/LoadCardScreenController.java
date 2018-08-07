@@ -48,7 +48,7 @@ public class LoadCardScreenController extends UiController {
 
   @FXML
   protected void handleReturnButtonAction(ActionEvent event) {
-    loadTemplate("template/user_screen.fxml", returnButton);
+    loadTemplate(HOMEPAGE_SCREEN, returnButton);
   }
 
   private void load(double amount) {

@@ -135,14 +135,14 @@ public class UserScreenController extends UiController {
 
   @FXML
   protected void handleCreateCardButton(ActionEvent event) {
-    loadTemplate("template/create_card_screen.fxml", createCardButton);
+    loadTemplate(CREATE_CARD_SCREEN, createCardButton);
   }
 
   @FXML
   protected void handleLoadCardButton(ActionEvent event) {
 
     // TODO actually load card
-    loadTemplate("template/load_card_screen.fxml", createCardButton);
+    loadTemplate(LOAD_CARD_SCREEN, createCardButton);
   }
 
   @FXML

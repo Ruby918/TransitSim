@@ -13,6 +13,6 @@ public class SuccessCreatedScreenController extends UiController {
 
   @FXML
   protected void handleReturnMsgButtonAction(ActionEvent event) {
-    loadTemplate("template/user_screen.fxml", returnMsgButton);
+    loadTemplate(HOMEPAGE_SCREEN, returnMsgButton);
   }
 }

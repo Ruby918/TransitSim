@@ -11,6 +11,6 @@ public class ShowStatsController extends UiController {
 
     @FXML
     protected void handleReturnBackButtonAction(ActionEvent event) {
-        loadTemplate("template/admin_screen.fxml", returnBack);
+        loadTemplate(HOMEPAGE_SCREEN, returnBack);
     }
 }

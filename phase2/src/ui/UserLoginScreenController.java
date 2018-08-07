@@ -37,7 +37,7 @@ public class UserLoginScreenController extends UiController {
     try {
       UserAccount user = api.user.login(email, password);
       dataStore.set("currentUser", new UiData<UserAccount>(user));
-      loadTemplate("template/user_screen.fxml", loginButton);
+      loadTemplate(UiController.HOMEPAGE_SCREEN, loginButton);
     } catch (LoginFailedException e) {
       // TODO display something in the UI
     }
@@ -45,6 +45,6 @@ public class UserLoginScreenController extends UiController {
 
   @FXML
   protected void handleReturnButtonAction(ActionEvent event) {
-    loadTemplate("template/title_screen.fxml", returnButton);
+    loadTemplate(UiController.TITLE_SCREEN, returnButton);
   }
 }

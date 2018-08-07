@@ -16,7 +16,7 @@ public class TitleScreen extends Application {
 
   @Override
   public void start(Stage stage) throws Exception {
-    Parent root = FXMLLoader.load(getClass().getResource("template/title_screen.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource(UiController.TITLE_SCREEN));
     root.getStylesheets().add(getClass().getResource("template/styles.css").toExternalForm());
     Scene scene = new Scene(root, 600, 600);
     stage.setScene(scene);
