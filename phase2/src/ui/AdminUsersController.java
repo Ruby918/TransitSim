@@ -48,9 +48,6 @@ public class AdminUsersController extends UiController {
   private Label errorMessage;
 
   @FXML
-  private NavigationController navigationController;
-
-  @FXML
   public void handleUserSelect() {
     SimpleUser user = tableViewUsers.getSelectionModel().getSelectedItem();
     if (user != null) {
@@ -89,7 +86,6 @@ public class AdminUsersController extends UiController {
       // update navigation bar if updated user is the current user
       UserAccount currentUser = (UserAccount) dataStore.get("currentUser").data();
       if (selectedUser.getEmail().equals(currentUser.getEmail())) {
-        navigationController.updateLoggedInText(currentUser.getName());
       }
     } catch (UpdateUserException e) {
       errorMessage.setText("Failed to update user. All fields are required. Emails must be unique.");

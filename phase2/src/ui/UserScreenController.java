@@ -2,7 +2,6 @@
 
 package ui;
 
-import api.UpdateUserException;
 import java.util.HashMap;
 import javafx.scene.control.TextField;
 import transit.Card;
@@ -28,12 +27,6 @@ public class UserScreenController extends UiController {
   private HashMap<String, Card> cards = new HashMap<>();
 
   @FXML
-  private Label homepageLabel;
-
-  @FXML
-  private TextField nameField;
-
-  @FXML
   private Button createCardButton;
 
   @FXML
@@ -52,15 +45,10 @@ public class UserScreenController extends UiController {
   private TextField timeField;
 
   @FXML
-  private NavigationController navigationController;
-
-  @FXML
   protected void initialize() {
 
     // get current user
     user = (UserAccount) dataStore.get("currentUser").data();
-    updateHomepageLabel();
-    nameField.setText(user.getName());
 
     // get current station
     station = (Station) dataStore.get("currentStation").data();
@@ -97,13 +85,6 @@ public class UserScreenController extends UiController {
     selectStationCombo.valueProperty().addListener((obs, oldVal, newVal) -> handleStationSelect());
   }
 
-  private void updateHomepageLabel() {
-    if (user != null) {
-      homepageLabel.setText(user.getName() + "'s Homepage");
-      navigationController.updateLoggedInText(user.getName());
-    }
-  }
-
   private void updateBalanceLabel() {
     if (card != null) balanceAmountLabel.setText(api.card.getBalanceString(card));
   }
@@ -123,14 +104,6 @@ public class UserScreenController extends UiController {
       station = newStation;
       dataStore.set("currentStation", new UiData<>(station));
     }
-  }
-
-  @FXML
-  protected void handleUpdateNameButton(ActionEvent event) {
-    try {
-      api.user.updateName(user.getEmail(), nameField.getText());
-      updateHomepageLabel();
-    } catch (UpdateUserException e){}
   }
 
   @FXML

@@ -24,6 +24,12 @@ public class UserApi extends ChildApi {
     else throw new UpdateUserException();
   }
 
+  public void updatePassword(String email, String password) throws UpdateUserException {
+    UserAccount user = transitFareManager.getUserByEmail(email);
+    if (user != null) user.setPassword(password);
+    else throw new UpdateUserException();
+  }
+
   public void update(String oldEmail, String name, String newEmail, String password, boolean isAdmin)
       throws UpdateUserException {
     if (oldEmail.isEmpty() || name.isEmpty() || newEmail.isEmpty() || password.isEmpty() || (

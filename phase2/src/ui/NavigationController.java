@@ -18,10 +18,6 @@ public class NavigationController extends UiController implements Initializable 
   protected MenuBar menuBar;
 
   @FXML
-  protected Label loggedInLabel;
-
-
-  @FXML
   protected void handleLogoutButtonAction(ActionEvent event) {
     dataStore.set("currentUser", null);
     loadTemplate(TITLE_SCREEN);
@@ -52,18 +48,12 @@ public class NavigationController extends UiController implements Initializable 
     loadTemplate(MAP_SCREEN);
   }
 
-  public void updateLoggedInText(String userName) {
-    // get current user
-    loggedInLabel.setText("Logged in as " + userName);
-  }
-
   @FXML
   public void initialize(java.net.URL arg0, ResourceBundle arg1) {
 
     user = (UserAccount) dataStore.get("currentUser").data();
 
     if (user != null) {
-      updateLoggedInText(user.getName());
       Label menuLogoutLabel = addMenuLabel("Logout");
       menuLogoutLabel.setOnMouseClicked(event -> handleLogoutButtonAction(null));
       Label menuAccountLabel = addMenuLabel("My Account");
@@ -73,7 +63,6 @@ public class NavigationController extends UiController implements Initializable 
       }
     }
     else {
-      loggedInLabel.setText("");
       Label menuLoginLabel = addMenuLabel("Login");
       menuLoginLabel.setOnMouseClicked(event -> handleLoginButtonAction(null));
     }
