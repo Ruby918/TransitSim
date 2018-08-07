@@ -45,7 +45,19 @@ public class UserScreenController extends UiController {
   private TextField timeField;
 
   @FXML
+  private Label errorMessage;
+
+  @FXML
+  private Label successMessage;
+
+  @FXML
+  private Label infoMessage;
+
+  @FXML
   protected void initialize() {
+
+    // reset error message
+    errorMessage.setText("");
 
     // get current user
     user = (UserAccount) dataStore.get("currentUser").data();
@@ -86,10 +98,12 @@ public class UserScreenController extends UiController {
   }
 
   private void updateBalanceLabel() {
+    clearMessages();
     if (card != null) balanceAmountLabel.setText(api.card.getBalanceString(card));
   }
 
   private void handleCardSelect() {
+    clearMessages();
     Card newCard = cards.get(selectCardCombo.getSelectionModel().getSelectedItem().toString());
     if (newCard != null) {
       card = newCard;
@@ -99,6 +113,7 @@ public class UserScreenController extends UiController {
   }
 
   private void handleStationSelect() {
+    clearMessages();
     Station newStation = stations.get(selectStationCombo.getSelectionModel().getSelectedItem().toString());
     if (newStation != null) {
       station = newStation;
@@ -113,8 +128,6 @@ public class UserScreenController extends UiController {
 
   @FXML
   protected void handleLoadCardButton(ActionEvent event) {
-
-    // TODO actually load card
     loadTemplate(LOAD_CARD_SCREEN, createCardButton);
   }
 
@@ -126,15 +139,44 @@ public class UserScreenController extends UiController {
 
   @FXML
   protected void handleTapInCardButton(ActionEvent event) {
-    //backEnd
-    api.tapIn(station, card, dateField.getText(), timeField.getText());
-    updateBalanceLabel();
+    try {
+      api.tapIn(station, card, dateField.getText(), timeField.getText());
+      updateBalanceLabel();
+      setSuccessMessage();
+    } catch (Exception e) {
+      setErrorMessage();
+    }
   }
 
   @FXML
   protected void handleTapOutCardButton(ActionEvent event) {
-    //backEnd
-    api.tapOut(station, card, dateField.getText(), timeField.getText());
-    updateBalanceLabel();
+    try {
+      api.tapOut(station, card, dateField.getText(), timeField.getText());
+      updateBalanceLabel();
+      setSuccessMessage();
+    } catch (Exception e) {
+      setErrorMessage();
+    }
+  }
+
+  private void clearMessages() {
+    errorMessage.setText("");
+    successMessage.setText("");
+    infoMessage.setText("");
+  }
+
+  private void setSuccessMessage() {
+    clearMessages();
+    successMessage.setText("Success.");
+  }
+
+  private void setErrorMessage() {
+    clearMessages();
+    errorMessage.setText("Tap failed.");
+  }
+
+  private void setInfoMessage() {
+    clearMessages();
+    infoMessage.setText("Nothing to tap.");
   }
 }

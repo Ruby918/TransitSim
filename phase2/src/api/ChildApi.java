@@ -6,7 +6,7 @@ import util.EasyLogger;
 public class ChildApi {
 
   protected TransitFareManager transitFareManager;
-  protected EasyLogger logger;
+  protected transient EasyLogger logger;
 
   public ChildApi(TransitFareManager transitFareManager, EasyLogger logger) {
     this.transitFareManager = transitFareManager;

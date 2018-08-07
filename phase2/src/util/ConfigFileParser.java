@@ -13,7 +13,7 @@ public abstract class ConfigFileParser {
    * Name of the file containing the configuration to be parsed.
    */
   private String fileName;
-  protected EasyLogger logger;
+  protected transient EasyLogger logger;
 
   public ConfigFileParser(String fileName, EasyLogger logger) {
     this.fileName = fileName;

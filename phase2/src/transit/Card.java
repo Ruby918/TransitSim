@@ -24,7 +24,7 @@ public class Card implements Serializable {
   private PriceModifier priceModifier;
   private String nickname;
 
-  private EasyLogger logger = new EasyLogger("card");
+  private transient EasyLogger logger = new EasyLogger("card");
 
   /**
    * A constructor for the card class that sets the id.
@@ -165,6 +165,8 @@ public class Card implements Serializable {
   public void tapIn(Station station, FormattedDate date)
       throws InsufficientFundsException, TapDeactivatedCardsException, IllegalTapLocationException {
 
+    if (logger == null) logger = new EasyLogger("card");
+
     // check if card is active
     if (!this.isActive) {
       logger.log.warning("Cannot tap in with deactivated card.");
@@ -225,6 +227,8 @@ public class Card implements Serializable {
    */
   public void tapOut(Station station, FormattedDate date)
       throws TapDeactivatedCardsException, IllegalTapLocationException {
+
+    if (logger == null) logger = new EasyLogger("card");
 
     // check if card is active
     if (!this.isActive) {

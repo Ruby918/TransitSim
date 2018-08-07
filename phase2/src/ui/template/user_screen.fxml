@@ -149,5 +149,35 @@
           onAction="#handleTapOutCardButton">
   </Button>
 
+  <Label  fx:id="successMessage"
+    GridPane.columnIndex="0" GridPane.rowIndex="9"
+    GridPane.columnSpan="4" GridPane.rowSpan="1"
+    GridPane.halignment="LEFT"
+    style="-fx-text-fill:green">
+    <font>
+      <Font size="12"></Font>
+    </font>
+  </Label>
+
+  <Label  fx:id="infoMessage"
+    GridPane.columnIndex="0" GridPane.rowIndex="9"
+    GridPane.columnSpan="4" GridPane.rowSpan="1"
+    GridPane.halignment="LEFT"
+    style="-fx-text-fill:orange">
+    <font>
+      <Font size="12"></Font>
+    </font>
+  </Label>
+
+  <Label  fx:id="errorMessage"
+    GridPane.columnIndex="0" GridPane.rowIndex="9"
+    GridPane.columnSpan="4" GridPane.rowSpan="1"
+    GridPane.halignment="LEFT"
+    style="-fx-text-fill:red">
+    <font>
+      <Font size="12"></Font>
+    </font>
+  </Label>
+
 
 </GridPane>

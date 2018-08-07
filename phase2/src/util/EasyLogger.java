@@ -8,7 +8,7 @@ import java.util.logging.Handler;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 
-public class EasyLogger implements Serializable {
+public class EasyLogger {
   public Logger log;
 
   public EasyLogger(String fileName) {
