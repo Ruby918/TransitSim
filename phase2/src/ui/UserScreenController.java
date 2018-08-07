@@ -2,7 +2,6 @@
 
 package ui;
 
-import java.util.HashMap;
 import javafx.scene.control.TextField;
 import transit.Card;
 import javafx.event.ActionEvent;
@@ -10,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import java.util.ArrayList;
 import transit.PriceModifier;
 import transit.Station;
 import util.FormattedDate;
@@ -115,8 +113,8 @@ public class UserScreenController extends UiController {
   }
 
   @FXML
-  protected void handleLoadCardButton(ActionEvent event) {
-    loadTemplate(LOAD_CARD_SCREEN, createCardButton);
+  protected void handleEditCardButton(ActionEvent event) {
+    loadTemplate(EDIT_CARD_SCREEN, createCardButton);
   }
 
   @FXML

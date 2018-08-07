@@ -18,7 +18,7 @@ public class UiController {
   static final String STATS_SCREEN = "template/admin_statistics_screen.fxml";
   static final String STATS_DETAIL_SCREEN = "template/show_statistics.fxml";
   static final String USERS_SCREEN = "template/admin_users_screen.fxml";
-  static final String LOAD_CARD_SCREEN = "template/load_card_screen.fxml";
+  static final String EDIT_CARD_SCREEN = "template/edit_card_screen.fxml";
   static final String CREATE_CARD_SCREEN = "template/create_card_screen.fxml";
   static final String SUCCESS_SCREEN = "template/success_create_screen.fxml";
   static final String WARNING_SCREEN = "template/success_warning_screen.fxml";

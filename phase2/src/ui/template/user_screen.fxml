@@ -24,12 +24,12 @@
 
   <fx:include
     GridPane.columnIndex="0" GridPane.rowIndex="0"
-    GridPane.columnSpan="5" GridPane.rowSpan="1"
+    GridPane.columnSpan="4" GridPane.rowSpan="1"
     fx:id="navigation" source="nav_bar.fxml"/>
 
   <fx:include
     GridPane.columnIndex="0" GridPane.rowIndex="1"
-    GridPane.columnSpan="5" GridPane.rowSpan="1"
+    GridPane.columnSpan="4" GridPane.rowSpan="1"
     fx:id="editUser" source="edit_user_child_screen.fxml"/>
 
   <Label  fx:id="balanceLabel" text="Current Balance:"
@@ -102,8 +102,8 @@
 
   <!-- Add 'Create Card' Button -->
 
-  <Button fx:id="createCardButton" text="Create&#13;&#10; Card"
-          prefWidth="100" prefHeight="75" defaultButton="false"
+  <Button fx:id="createCardButton" text="Create Card"
+          prefWidth="150" prefHeight="50" defaultButton="false"
           GridPane.columnIndex="0" GridPane.rowIndex="8"
           GridPane.columnSpan="1" GridPane.rowSpan="1"
           GridPane.halignment="LEFT"
@@ -112,38 +112,28 @@
 
   <!-- Add 'Load Current Card' Button -->
 
-  <Button fx:id="loadCardButton" text="Load&#13;&#10; Current&#13;&#10; Card"
-          prefWidth="100" prefHeight="75" defaultButton="false"
+  <Button fx:id="editCardButton" text="Edit Selected Card"
+          prefWidth="150" prefHeight="50" defaultButton="false"
           GridPane.columnIndex="1" GridPane.rowIndex="8"
           GridPane.columnSpan="1" GridPane.rowSpan="1"
           GridPane.halignment="CENTER"
-          onAction="#handleLoadCardButton">
-  </Button>
-
-  <!-- Add 'Modify Current Card Type' Button -->
-
-  <Button fx:id="modCardButton" text="Modify&#13;&#10; Current&#13;&#10; Card Type"
-          prefWidth="100" prefHeight="75" defaultButton="false"
-          GridPane.columnIndex="2" GridPane.rowIndex="8"
-          GridPane.columnSpan="1" GridPane.rowSpan="1"
-          GridPane.halignment="CENTER"
-          onAction="#handleModCardButton">
+          onAction="#handleEditCardButton">
   </Button>
 
   <!-- Add 'Tap into Station' Button -->
 
-  <Button fx:id="tapInButton" text="Tap Into&#13;&#10; Selected&#13;&#10; Station"
-          prefWidth="100" prefHeight="75" defaultButton="false"
-          GridPane.columnIndex="3" GridPane.rowIndex="8"
+  <Button fx:id="tapInButton" text="Tap In"
+          prefWidth="150" prefHeight="50" defaultButton="false"
+          GridPane.columnIndex="2" GridPane.rowIndex="8"
           GridPane.columnSpan="1" GridPane.rowSpan="1"
           GridPane.halignment="CENTER"
           onAction="#handleTapInCardButton">
   </Button>
 
   <!-- Add 'Tap outa Station' Button -->
-  <Button fx:id="tapOut" text="Tap Out&#13;&#10; Of Selected&#13;&#10; Station"
-          prefWidth="100" prefHeight="75" defaultButton="false"
-          GridPane.columnIndex="4" GridPane.rowIndex="8"
+  <Button fx:id="tapOut" text="Tap Out"
+          prefWidth="150" prefHeight="50" defaultButton="false"
+          GridPane.columnIndex="3" GridPane.rowIndex="8"
           GridPane.columnSpan="1" GridPane.rowSpan="1"
           GridPane.halignment="CENTER"
           onAction="#handleTapOutCardButton">
