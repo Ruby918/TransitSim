@@ -16,7 +16,7 @@ public class Main {
    */
 
   private static TransitFareManager transitFareManager;
-  private transient static EasyLogger logger = new EasyLogger("main");
+  private static EasyLogger logger = new EasyLogger("main");
 
   public static void main(String[] args) {
 

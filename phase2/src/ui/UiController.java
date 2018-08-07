@@ -11,7 +11,7 @@ import util.EasyLogger;
 
 public class UiController {
   public static Api api;
-  public static transient EasyLogger logger = new EasyLogger("ui");
+  public static EasyLogger logger = new EasyLogger("ui");
 
   static final String TITLE_SCREEN = "template/title_screen.fxml";
   static final String MAP_SCREEN = "template/admin_map_screen.fxml";

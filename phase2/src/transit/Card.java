@@ -24,7 +24,7 @@ public class Card implements Serializable {
   private PriceModifier priceModifier;
   private String nickname;
 
-  private transient EasyLogger logger = new EasyLogger("card");
+  private EasyLogger logger = new EasyLogger("card");
 
   /**
    * A constructor for the card class that sets the id.

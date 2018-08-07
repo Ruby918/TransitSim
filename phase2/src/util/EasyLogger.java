@@ -1,13 +1,14 @@
 package util;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.Handler;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 
-public class EasyLogger {
+public class EasyLogger implements Serializable {
   public Logger log;
 
   public EasyLogger(String fileName) {

@@ -86,12 +86,11 @@ public class Api {
     }
     catch (Exception e){
       logger.log.warning("Tap in failed.");
-
     }
   }
 
-  public void tapOut(Station station, Card card, String dateString, String timeStrring) {
-    FormattedDate date = new FormattedDate(dateString, timeStrring);
+  public void tapOut(Station station, Card card, String dateString, String timeString) {
+    FormattedDate date = new FormattedDate(dateString, timeString);
     logger.log.fine("Tapping out of " + station + " on " + dateString + " with card " + card);
     try{
       card.tapOut(station, date);
