@@ -34,7 +34,7 @@ public class UiController {
     try {
       FXMLLoader loader = new FXMLLoader();
       loader.setLocation(getClass().getResource(template));
-      Scene scene = new Scene(loader.load(), 600, 600);
+      Scene scene = new Scene(loader.load(), 800, 600);
       Stage stage = new Stage();
       stage.setScene(scene);
       owner.hide();

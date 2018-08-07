@@ -18,7 +18,7 @@ public class TitleScreen extends Application {
   public void start(Stage stage) throws Exception {
     Parent root = FXMLLoader.load(getClass().getResource(UiController.TITLE_SCREEN));
     root.getStylesheets().add(getClass().getResource("template/styles.css").toExternalForm());
-    Scene scene = new Scene(root, 600, 600);
+    Scene scene = new Scene(root, 800, 600);
     stage.setScene(scene);
     stage.show();
   }

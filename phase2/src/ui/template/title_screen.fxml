@@ -7,7 +7,7 @@
 <GridPane fx:controller="ui.TitleScreenController"
   xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="15" vgap="15"
   prefHeight="600.0"
-  prefWidth="600.0">
+  prefWidth="800.0">
 
   <padding>
     <Insets top="10" right="10" bottom="10" left="10"/>
