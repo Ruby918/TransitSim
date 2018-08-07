@@ -239,7 +239,7 @@ public class EventConfigFileParser extends ConfigFileParser {
         }
         break;
       case "Balance":
-        message = "$" + String.valueOf(card.getBalance());
+        message = "$" + String.valueOf(card.getBalanceString());
         break;
       case "Deactivate":
         card.deactivate();

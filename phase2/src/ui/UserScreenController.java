@@ -104,7 +104,7 @@ public class UserScreenController extends UiController {
   }
 
   private void updateBalanceLabel() {
-    if (card != null) balanceAmountLabel.setText(Double.toString(card.getBalance()));
+    if (card != null) balanceAmountLabel.setText(api.card.getBalanceString(card));
   }
 
   private void handleCardSelect() {

@@ -19,9 +19,9 @@ public class CardApi extends ChildApi {
     card.addAmount(amount);
   }
 
-  public double getMoney(Card card) {
+  public String getBalanceString(Card card) {
     logger.log.fine("Getting balance for card " + card);
-    return card.getBalance();
+    return card.getBalanceString();
   }
 
   public void addPriceModifier(Card card, PriceModifier priceModifier){

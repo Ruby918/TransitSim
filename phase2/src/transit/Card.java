@@ -91,6 +91,14 @@ public class Card implements Serializable {
     return this.balance;
   }
 
+  public String getBalanceString() {
+    if (balance < 0) {
+      return "- $" + String.format("%.2f", -balance);
+    } else {
+      return "$" + String.format("%.2f", balance);
+    }
+  }
+
   /**
    * Increases card balance by 10 dollars.
    */
@@ -281,7 +289,7 @@ public class Card implements Serializable {
    */
   @Override
   public String toString() {
-    String ret = this.nickname + " ($" + Double.toString(this.balance);
+    String ret = this.nickname + " ($" + getBalanceString();
     if (this.isActive) {
       ret += ")";
     } else {
