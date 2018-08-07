@@ -66,13 +66,17 @@ public class Api {
     }
   }
 
-  public ArrayList<StationForTableView> getStations() {
-    ArrayList<Station> stations =  transitFareManager.getMap().getStations();
-    ArrayList<StationForTableView> result = new ArrayList<>();
+  public ArrayList<SimpleStation> getStationsSimple() {
+    ArrayList<Station> stations =  getStations();
+    ArrayList<SimpleStation> result = new ArrayList<>();
     for (Station station : stations){
-      result.add(new StationForTableView(station));
+      result.add(new SimpleStation(station));
     }
     return result;
+  }
+
+  public ArrayList<Station> getStations() {
+    return transitFareManager.getMap().getStations();
   }
 
   //stats info

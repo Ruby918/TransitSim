@@ -3,6 +3,7 @@
 package ui;
 
 import api.UpdateUserException;
+import java.util.HashMap;
 import javafx.scene.control.TextField;
 import transit.Card;
 import javafx.event.ActionEvent;
@@ -23,6 +24,9 @@ public class UserScreenController extends UiController {
   private Station station;
   private PriceModifier priceModifier;
 
+  private HashMap<String, Station> stations = new HashMap<>();
+  private HashMap<String, Card> cards = new HashMap<>();
+
   @FXML
   private Label homepageLabel;
 
@@ -37,6 +41,9 @@ public class UserScreenController extends UiController {
 
   @FXML
   private ComboBox selectCardCombo;
+
+  @FXML
+  private ComboBox selectStationCombo;
 
   @FXML
   private TextField dateField;
@@ -74,12 +81,19 @@ public class UserScreenController extends UiController {
 
     // Display all cards user owns
     ArrayList<Card> listOfCards = user.getCards();
-    for (int i=0; i<listOfCards.size(); i++) {
-      selectCardCombo.getItems().addAll(listOfCards.get(i).getCardId()
-          + " - " + listOfCards.get(i).getNickname());
+    for (Card card : listOfCards) {
+      cards.put(card.toString(), card);
+      selectCardCombo.getItems().add(card.toString());
     }
-
     selectCardCombo.valueProperty().addListener((obs, oldVal, newVal) -> handleCardSelect());
+
+    // Display all stations
+    ArrayList<Station> stationsList = api.getStations();
+    for (Station station : stationsList) {
+      stations.put(station.toString(), station);
+      selectStationCombo.getItems().add(station.toString());
+    }
+    selectCardCombo.valueProperty().addListener((obs, oldVal, newVal) -> handleStationSelect());
   }
 
   private void updateHomepageLabel() {
@@ -94,11 +108,19 @@ public class UserScreenController extends UiController {
   }
 
   private void handleCardSelect() {
-    String[] selectedItem = selectCardCombo.getSelectionModel().getSelectedItem().toString().split(" \\- ");
-    card = user.getCard(Integer.parseInt(selectedItem[0]));
-    if (card != null) {
+    Card newCard = cards.get(selectCardCombo.getSelectionModel().getSelectedItem().toString());
+    if (newCard != null) {
+      card = newCard;
       dataStore.set("currentCard", new UiData<>(card));
       updateBalanceLabel();
+    }
+  }
+
+  private void handleStationSelect() {
+    Station newStation = stations.get(selectStationCombo.getSelectionModel().getSelectedItem().toString());
+    if (newStation != null) {
+      station = newStation;
+      dataStore.set("currentStation", new UiData<>(station));
     }
   }
 

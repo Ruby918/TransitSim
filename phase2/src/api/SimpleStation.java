@@ -4,13 +4,13 @@ import javafx.beans.property.SimpleStringProperty;
 import util.PrettyList;
 import transit.Station;
 
-public class StationForTableView {
+public class SimpleStation {
 
   private SimpleStringProperty name;
   private SimpleStringProperty route;
   private SimpleStringProperty adjacent;
 
-  public StationForTableView(Station station) {
+  public SimpleStation(Station station) {
     name = new SimpleStringProperty(station.getName());
     route = new SimpleStringProperty(station.getRoute().toStringSimple());
     PrettyList<Station> adjacentStations = new PrettyList<>(station.getAdjacent(), "Stations");
