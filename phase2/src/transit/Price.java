@@ -66,7 +66,7 @@ public class Price implements Serializable {
     if (ONTARIO_TAX.isValid(date)) {
       finalPrice = ONTARIO_TAX.modifyPrice(finalPrice, date);
     }
-    finalPrice = Math.max(finalPrice, maxFinalPrice);
+    finalPrice = Math.min(finalPrice, maxFinalPrice);
   }
 
   public double getFinalPrice() {
