@@ -80,9 +80,22 @@
       <Tab text="Trips">
         <TableView fx:id="tableViewTrips" GridPane.columnIndex="0" GridPane.rowIndex="1">
           <columns>
-            <TableColumn prefWidth="100.0" text="Start Time" fx:id="TripStartTime"/>
-            <TableColumn prefWidth="100.0" text="End Time" fx:id="TripEndTime"/>
-            <TableColumn prefWidth="100.0" text="Taps" fx:id="TripTaps"/>
+            <TableColumn prefWidth="120.0" text="Start Time" fx:id="TripStartTime">
+              <cellValueFactory><PropertyValueFactory property="startDate" />
+              </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="120.0" text="End Time" fx:id="TripEndTime">
+              <cellValueFactory><PropertyValueFactory property="endDate" />
+              </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="100.0" text="End Time" fx:id="TripCost">
+              <cellValueFactory><PropertyValueFactory property="cost" />
+              </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="500.0" text="Taps" fx:id="TripTaps">
+              <cellValueFactory><PropertyValueFactory property="taps" />
+              </cellValueFactory>
+            </TableColumn>
           </columns>
         </TableView>
       </Tab>

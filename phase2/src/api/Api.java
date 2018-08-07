@@ -15,6 +15,7 @@ public class Api {
   public UserApi user;
   public CardApi card;
   public MapApi map;
+  public StatsApi stats;
 
   private TransitFareManager transitFareManager;
   private StatisticsManager statisticsManager;
@@ -24,6 +25,7 @@ public class Api {
     user = new UserApi(transitFareManager, logger);
     card = new CardApi(transitFareManager, logger);
     map = new MapApi(transitFareManager, logger);
+    stats = new StatsApi(transitFareManager, logger);
   }
 
   public void loadApplicationStateFromFile(String fileName) throws DataReadException, DataWriteException {
