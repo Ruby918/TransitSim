@@ -68,17 +68,6 @@ public class Api {
     return result;
   }
 
-  public void createCard(UserAccount customer) {
-    transitFareManager.issueCard(customer);
-  }
-  public void loadMoney(Card card, double amount){card.addAmount(amount);}
-
-  // UI needs to know how much money in a card so it can display it.
-  public double getMoney(Card card) {
-    logger.log.fine("Getting balance for card " + card);
-    return card.getBalance();
-  }
-
   //stats info
 
     public double getRevenueOnDate(String dateString){
@@ -119,9 +108,5 @@ public class Api {
     catch (Exception e){
       logger.log.warning("Tap out failed.");
     }
-  }
-  public void addPriceModifier(Card card, PriceModifier priceModifier){
-    logger.log.fine("Adding price modifier " + priceModifier + " to card " + card);
-    card.setPriceModifier(priceModifier);
   }
 }

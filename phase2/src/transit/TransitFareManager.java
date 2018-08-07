@@ -74,6 +74,14 @@ public class TransitFareManager implements Serializable {
    * @param customer user to which the card is issued
    * @return new card object
    */
+  public Card issueCard(UserAccount customer, String nickname) {
+    // Increment card id by one for every new card
+    Card card = new Card(nickname, this.cards.size(), this);
+    this.cards.add(card);
+    customer.addCard(card);
+    return card;
+  }
+
   public Card issueCard(UserAccount customer) {
     // Increment card id by one for every new card
     Card card = new Card(this.cards.size(), this);
@@ -81,6 +89,7 @@ public class TransitFareManager implements Serializable {
     customer.addCard(card);
     return card;
   }
+
 
   public UserAccount getUserByEmail(String email) {
     UserAccount user = this.users.get(email);

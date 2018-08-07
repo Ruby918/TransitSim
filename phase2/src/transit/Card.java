@@ -1,7 +1,6 @@
 package transit;/* Dan */
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -21,19 +20,36 @@ public class Card implements Serializable {
   private int cardId;
   private TransitFareManager transitFareManager;
   private PriceModifier priceModifier;
+  private String nickname;
 
   /**
    * A constructor for the card class that sets the id.
    */
   public Card(int id, TransitFareManager transitFareManager) {
-    this.cardId = id;
-    this.transitFareManager = transitFareManager;
-    priceModifier = null;
+    this(id, transitFareManager, null);
   }
+
+  public Card(String nickname, int id, TransitFareManager transitFareManager) {
+    this(nickname, id, transitFareManager, null);
+  }
+
   public Card(int id, TransitFareManager transitFareManager, PriceModifier priceModifier) {
+    this("Card " + id, id, transitFareManager, priceModifier);
+  }
+
+  public Card(String nickname, int id, TransitFareManager transitFareManager, PriceModifier priceModifier) {
     this.cardId = id;
     this.transitFareManager = transitFareManager;
     this.priceModifier = priceModifier;
+    this.nickname = nickname;
+  }
+
+  public String getNickname() {
+    return nickname;
+  }
+
+  public void setNickname(String nickname) {
+    this.nickname = nickname;
   }
 
   /**
@@ -264,7 +280,7 @@ public class Card implements Serializable {
    */
   @Override
   public String toString() {
-    String ret = "Card " + Integer.toString(this.cardId) + " ($" + Double.toString(this.balance);
+    String ret = "Card " + Integer.toString(this.cardId) + " (\"" + this.nickname + "\", $" + Double.toString(this.balance);
     if (this.isActive) {
       ret += ")";
     } else {

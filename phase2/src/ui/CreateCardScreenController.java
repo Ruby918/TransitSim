@@ -5,11 +5,15 @@ package ui;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import transit.UserAccount;
 
 public class CreateCardScreenController extends UiController {
   @FXML
   private Button returnButton;
+
+  @FXML
+  private TextField nameField;
 
   @FXML
   protected void handleReturnButtonAction(ActionEvent event) {
@@ -22,7 +26,7 @@ public class CreateCardScreenController extends UiController {
     // get current user
     UserAccount user = (UserAccount) dataStore.get("currentUser").data();
     if (user != null) {
-      api.createCard(user);
+      api.card.create(user, nameField.getText());
       loadTemplate("template/success_create_screen.fxml", returnButton);
     } else {
       logger.log.warning("Can't create card on null user.");

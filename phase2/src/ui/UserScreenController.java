@@ -57,7 +57,7 @@ public class UserScreenController extends UiController {
     String updatedText="";
     String[] cut = textLine.split("\\s+");
     if (user.hasCard()) {
-      double moneyInCard = api.getMoney(user.getCards().get(0));
+      double moneyInCard = api.card.getMoney(user.getCards().get(0));
       cut[2] = Double.toString(moneyInCard);
       for (int i=0; i<cut.length; i++) {
         updatedText += cut[i] + " ";
@@ -81,7 +81,7 @@ public class UserScreenController extends UiController {
       card = user.getCard(Integer.parseInt(id));
       dataStore.set("currentCard", new UiData<Card>(card));
 
-      cut2[2] = Double.toString(api.getMoney(card));
+      cut2[2] = Double.toString(api.card.getMoney(card));
       for (int i=0; i<cut2.length; i++) {
         updatedText2 += cut2[i] + " ";
       }
@@ -91,9 +91,6 @@ public class UserScreenController extends UiController {
 
   @FXML
   protected void handleCreateCardButton(ActionEvent event) {
-
-    //back end
-    api.createCard(user);
     loadTemplate("template/create_card_screen.fxml", createCardButton);
   }
 
@@ -107,7 +104,7 @@ public class UserScreenController extends UiController {
   @FXML
   protected void handleModCardButton(ActionEvent event) {
     //backEnd
-    api.addPriceModifier(card, priceModifier);
+    api.card.addPriceModifier(card, priceModifier);
   }
 
   @FXML
