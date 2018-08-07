@@ -23,4 +23,8 @@ public class Transaction implements Serializable {
   public double getAmount() {
     return this.price.getFinalPrice();
   }
+
+  public Card getCard() {
+    return card;
+  }
 }

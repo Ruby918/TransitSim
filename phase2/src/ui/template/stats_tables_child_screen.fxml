@@ -72,8 +72,18 @@
       <Tab text="Transactions">
         <TableView fx:id="tableViewTransactions" GridPane.columnIndex="0" GridPane.rowIndex="1">
           <columns>
-            <TableColumn prefWidth="100.0" text="Time" fx:id="TransactionTime"/>
-            <TableColumn prefWidth="100.0" text="Price" fx:id="TransactionPrice"/>
+            <TableColumn prefWidth="150.0" text="Time" fx:id="TransactionCard">
+              <cellValueFactory><PropertyValueFactory property="card" />
+              </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="150.0" text="Price" fx:id="TransactionPrice">
+              <cellValueFactory><PropertyValueFactory property="price" />
+              </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="150.0" text="Date" fx:id="TransactionDate">
+              <cellValueFactory><PropertyValueFactory property="date" />
+              </cellValueFactory>
+            </TableColumn>
           </columns>
         </TableView>
       </Tab>
@@ -88,7 +98,7 @@
               <cellValueFactory><PropertyValueFactory property="endDate" />
               </cellValueFactory>
             </TableColumn>
-            <TableColumn prefWidth="100.0" text="End Time" fx:id="TripCost">
+            <TableColumn prefWidth="100.0" text="Cost" fx:id="TripCost">
               <cellValueFactory><PropertyValueFactory property="cost" />
               </cellValueFactory>
             </TableColumn>
