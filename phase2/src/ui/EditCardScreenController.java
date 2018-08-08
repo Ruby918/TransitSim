@@ -40,6 +40,9 @@ public class EditCardScreenController extends UiController {
   private CheckBox isActiveCheckBox;
 
   @FXML
+  private CheckBox hasTaxCheckBox;
+
+  @FXML
   private ComboBox<PriceModifier> selectPriceModCombo;
 
   public void initialize() {
@@ -49,6 +52,7 @@ public class EditCardScreenController extends UiController {
     nameLabel.setText(card.getNickname());
     nameField.setText(card.getNickname());
     isActiveCheckBox.setSelected(card.isActive());
+    hasTaxCheckBox.setSelected(card.isTaxOn());
 
     // create price modifiers drop down
     FormattedDate date = new FormattedDate();
@@ -92,6 +96,7 @@ public class EditCardScreenController extends UiController {
   protected void handleSaveButtonAction() {
     api.card.update(card, nameField.getText(), isActiveCheckBox.isSelected());
     card.setPriceModifier(selectPriceModCombo.getSelectionModel().getSelectedItem());
+    card.setTaxOn(hasTaxCheckBox.isSelected());
     initialize();
   }
 
