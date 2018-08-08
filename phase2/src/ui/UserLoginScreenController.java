@@ -13,6 +13,7 @@ import javafx.scene.control.PasswordField;
 import transit.UserAccount;
 
 public class UserLoginScreenController extends UiController {
+
   @FXML
   private Button loginButton;
 

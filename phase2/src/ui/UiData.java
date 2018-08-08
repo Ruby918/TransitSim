@@ -8,7 +8,7 @@ public class UiData<T> {
     this.data = data;
   }
 
-  public T data(){
+  public T data() {
     return this.data;
   }
 }

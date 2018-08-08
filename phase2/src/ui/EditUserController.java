@@ -33,7 +33,7 @@ public class EditUserController extends UiController {
     try {
       api.user.updateName(user.getEmail(), name);
       updateHomepageLabel();
-    } catch (UpdateUserException e){
+    } catch (UpdateUserException e) {
       logger.log.warning("Failed to update name.");
     }
     logger.log.fine("Successfully updated name to " + name);
@@ -44,7 +44,7 @@ public class EditUserController extends UiController {
     String password = passwordField.getText();
     try {
       api.user.updatePassword(user.getEmail(), password);
-    } catch (UpdateUserException e){
+    } catch (UpdateUserException e) {
       logger.log.warning("Failed to update password.");
     }
     logger.log.fine("Successfully updated password to " + password);

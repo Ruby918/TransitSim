@@ -6,29 +6,32 @@ import transit.simplemodel.SimpleRoute;
 import transit.simplemodel.SimpleStation;
 import util.EasyLogger;
 
-public class MapApi extends ChildApi{
-  public MapApi(TransitFareManager transitFareManager, StatisticsManager statisticsManager,EasyLogger logger) {
-    super(transitFareManager, statisticsManager,logger);
+public class MapApi extends ChildApi {
+
+  public MapApi(TransitFareManager transitFareManager, StatisticsManager statisticsManager,
+      EasyLogger logger) {
+    super(transitFareManager, statisticsManager, logger);
   }
 
   public Station getStation(SimpleStation station) {
-    String routeType = station.getType().equals("Subway Station")? "Subway" : "Bus";
-    return transitFareManager.getMap().getStationByNameAndRoute(station.getName(), station.getRoute(), routeType);
+    String routeType = station.getType().equals("Subway Station") ? "Subway" : "Bus";
+    return transitFareManager.getMap()
+        .getStationByNameAndRoute(station.getName(), station.getRoute(), routeType);
   }
 
   public ArrayList<SimpleStation> getStationsSimple() {
-    ArrayList<Station> stations =  getStations();
+    ArrayList<Station> stations = getStations();
     ArrayList<SimpleStation> result = new ArrayList<>();
-    for (Station station : stations){
+    for (Station station : stations) {
       result.add(new SimpleStation(station));
     }
     return result;
   }
 
   public ArrayList<SimpleStation> getStationsSimple(SimpleRoute route) {
-    ArrayList<Station> stations =  getStations();
+    ArrayList<Station> stations = getStations();
     ArrayList<SimpleStation> result = new ArrayList<>();
-    for (Station station : stations){
+    for (Station station : stations) {
       if (station.getRoute().getName().equals(route.getName())
           && station.getRoute().getGenericIdentifier().equals(route.getType())) {
         result.add(new SimpleStation(station));
@@ -42,9 +45,9 @@ public class MapApi extends ChildApi{
   }
 
   public ArrayList<SimpleRoute> getRoutesSimple() {
-    ArrayList<Route> routes =  getRoutes();
+    ArrayList<Route> routes = getRoutes();
     ArrayList<SimpleRoute> result = new ArrayList<>();
-    for (Route route : routes){
+    for (Route route : routes) {
       result.add(new SimpleRoute(route));
     }
     return result;
@@ -69,7 +72,8 @@ public class MapApi extends ChildApi{
     return result;
   }
 
-  public void saveStation(Station station, String name, Route route, ArrayList<Station> adjacentStations) {
+  public void saveStation(Station station, String name, Route route,
+      ArrayList<Station> adjacentStations) {
     if (station != null) {
       station.setName(name);
       station.setRoute(route);

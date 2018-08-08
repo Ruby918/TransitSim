@@ -23,12 +23,13 @@ public class Api {
 
   private void init() {
     user = new UserApi(transitFareManager, statisticsManager, logger);
-    card = new CardApi(transitFareManager, statisticsManager,logger);
-    map = new MapApi(transitFareManager, statisticsManager,logger);
-    stats = new StatsApi(transitFareManager, statisticsManager,logger);
+    card = new CardApi(transitFareManager, statisticsManager, logger);
+    map = new MapApi(transitFareManager, statisticsManager, logger);
+    stats = new StatsApi(transitFareManager, statisticsManager, logger);
   }
 
-  public void loadApplicationStateFromFile(String fileName) throws DataReadException, DataWriteException {
+  public void loadApplicationStateFromFile(String fileName)
+      throws DataReadException, DataWriteException {
     DataReadWrite<TransitFareManager> dataReadWrite = new DataReadWrite<>(fileName);
     transitFareManager = dataReadWrite.read();
     logger.log.fine("Successfully loaded application state from " + fileName);
@@ -44,13 +45,14 @@ public class Api {
     mapConfigFileParser.parse();
     transitFareManager = new TransitFareManager(map);
     statisticsManager = new StatisticsManager(transitFareManager);
-    EventConfigFileParser eventConfigFileParser = new EventConfigFileParser("events.txt", transitFareManager, statisticsManager, logger);
+    EventConfigFileParser eventConfigFileParser = new EventConfigFileParser("events.txt",
+        transitFareManager, statisticsManager, logger);
     eventConfigFileParser.parse();
     init();
   }
 
   public void saveApplicationState() {
-   saveApplicationStateToFile("data/transitFareManager.ser");
+    saveApplicationStateToFile("data/transitFareManager.ser");
   }
 
   public void saveApplicationStateToFile(String fileName) {
@@ -64,20 +66,20 @@ public class Api {
   }
   //stats info
 
-    public double getRevenueOnDate(String dateString){
-        FormattedDate date = new FormattedDate(dateString);
-        logger.log.fine("Getting revenue for date " + dateString);
-        return this.statisticsManager.calculateRevenueOnDate(date);
-    }
+  public double getRevenueOnDate(String dateString) {
+    FormattedDate date = new FormattedDate(dateString);
+    logger.log.fine("Getting revenue for date " + dateString);
+    return this.statisticsManager.calculateRevenueOnDate(date);
+  }
 
-    public double getTotalRevenueOnDate(){
-        return this.statisticsManager.calculateRevenue();
-    }
+  public double getTotalRevenueOnDate() {
+    return this.statisticsManager.calculateRevenue();
+  }
 
-    public ArrayList<Station> getStationsReachedOnDate(String dateString){
-      FormattedDate date = new FormattedDate(dateString);
-      logger.log.fine("Getting stations reached on date " + dateString);
-      return this.statisticsManager.getStationsReachedOnDate(date);
-    }
+  public ArrayList<Station> getStationsReachedOnDate(String dateString) {
+    FormattedDate date = new FormattedDate(dateString);
+    logger.log.fine("Getting stations reached on date " + dateString);
+    return this.statisticsManager.getStationsReachedOnDate(date);
+  }
 
 }

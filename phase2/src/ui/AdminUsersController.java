@@ -52,7 +52,8 @@ public class AdminUsersController extends UiController {
       logger.log.fine("Created user " + user.toString());
       updateView();
     } catch (CreateUserException e) {
-      errorMessage.setText("Failed to create user. All fields are required. Emails must be unique.");
+      errorMessage
+          .setText("Failed to create user. All fields are required. Emails must be unique.");
     }
   }
 
@@ -73,14 +74,16 @@ public class AdminUsersController extends UiController {
       if (selectedUser.getEmail().equals(currentUser.getEmail())) {
       }
     } catch (UpdateUserException e) {
-      errorMessage.setText("Failed to update user. All fields are required. Emails must be unique.");
+      errorMessage
+          .setText("Failed to update user. All fields are required. Emails must be unique.");
     }
   }
 
   @FXML
-  public void initialize(){
+  public void initialize() {
 
-    tableViewUsers.getSelectionModel().selectedIndexProperty().addListener((num) -> handleUserSelect());
+    tableViewUsers.getSelectionModel().selectedIndexProperty()
+        .addListener((num) -> handleUserSelect());
     updateView();
   }
 

@@ -7,8 +7,9 @@ import util.EasyLogger;
 
 public class UserApi extends ChildApi {
 
-  public UserApi(TransitFareManager transitFareManager, StatisticsManager statisticsManager,EasyLogger logger) {
-    super(transitFareManager, statisticsManager,logger);
+  public UserApi(TransitFareManager transitFareManager, StatisticsManager statisticsManager,
+      EasyLogger logger) {
+    super(transitFareManager, statisticsManager, logger);
   }
 
   public UserAccount create(String name, String email, boolean isAdmin) throws CreateUserException {
@@ -21,17 +22,24 @@ public class UserApi extends ChildApi {
 
   public void updateName(String email, String name) throws UpdateUserException {
     UserAccount user = transitFareManager.getUserByEmail(email);
-    if (user != null) user.setName(name);
-    else throw new UpdateUserException();
+    if (user != null) {
+      user.setName(name);
+    } else {
+      throw new UpdateUserException();
+    }
   }
 
   public void updatePassword(String email, String password) throws UpdateUserException {
     UserAccount user = transitFareManager.getUserByEmail(email);
-    if (user != null) user.setPassword(password);
-    else throw new UpdateUserException();
+    if (user != null) {
+      user.setPassword(password);
+    } else {
+      throw new UpdateUserException();
+    }
   }
 
-  public void update(String oldEmail, String name, String newEmail, String password, boolean isAdmin)
+  public void update(String oldEmail, String name, String newEmail, String password,
+      boolean isAdmin)
       throws UpdateUserException {
     if (oldEmail.isEmpty() || name.isEmpty() || newEmail.isEmpty() || password.isEmpty() || (
         (transitFareManager.getUserByEmail(newEmail) != null) && (!newEmail.equals(oldEmail)))) {

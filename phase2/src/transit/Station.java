@@ -49,8 +49,9 @@ public abstract class Station implements Serializable {
    * Add a station adjacent to this station.
    */
   public void addAdjacentStation(Station station) {
-    if (!this.adjacentStations.contains(station))
+    if (!this.adjacentStations.contains(station)) {
       this.adjacentStations.add(station);
+    }
   }
 
   public void removeAdjacentStation(Station station) {

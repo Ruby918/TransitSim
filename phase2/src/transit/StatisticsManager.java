@@ -112,7 +112,9 @@ public class StatisticsManager {
   public ArrayList<Route> getRoutesReachedOnDate(FormattedDate date) {
     ArrayList<Route> routes = new ArrayList<>();
     for (Station station : getStationsReachedOnDate(date)) {
-      if (!routes.contains(station.getRoute())) routes.add(station.getRoute());
+      if (!routes.contains(station.getRoute())) {
+        routes.add(station.getRoute());
+      }
     }
     return routes;
   }
@@ -124,8 +126,9 @@ public class StatisticsManager {
       for (Card card : user.getCards()) {
         for (Trip trip : card.getTrips()) {
           if (trip.getStartDate().onSameDay(date) || trip.getEndDate().onSameDay(date)) {
-            if (!usersReached.contains(user))
+            if (!usersReached.contains(user)) {
               usersReached.add(user);
+            }
           }
         }
       }

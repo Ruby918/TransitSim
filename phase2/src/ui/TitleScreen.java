@@ -24,7 +24,7 @@ public class TitleScreen extends Application {
   }
 
   @Override
-  public void stop(){
+  public void stop() {
     UiController.api.saveApplicationState();
   }
 }

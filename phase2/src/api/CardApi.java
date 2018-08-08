@@ -5,8 +5,10 @@ import util.EasyLogger;
 import util.FormattedDate;
 
 public class CardApi extends ChildApi {
-  public CardApi(TransitFareManager transitFareManager, StatisticsManager statisticsManager,EasyLogger logger) {
-    super(transitFareManager, statisticsManager,logger);
+
+  public CardApi(TransitFareManager transitFareManager, StatisticsManager statisticsManager,
+      EasyLogger logger) {
+    super(transitFareManager, statisticsManager, logger);
   }
 
   public Card create(UserAccount user, String cardNickname) {
@@ -15,7 +17,7 @@ public class CardApi extends ChildApi {
     return card;
   }
 
-  public void load(Card card, double amount){
+  public void load(Card card, double amount) {
     logger.log.fine("Loading funds onto card " + card + " - adding " + amount);
     card.addAmount(amount);
   }
@@ -25,7 +27,7 @@ public class CardApi extends ChildApi {
     return card.getBalanceString();
   }
 
-  public void addPriceModifier(Card card, PriceModifier priceModifier){
+  public void addPriceModifier(Card card, PriceModifier priceModifier) {
     logger.log.fine("Adding price modifier " + priceModifier + " to card " + card);
     card.setPriceModifier(priceModifier);
   }
@@ -37,25 +39,25 @@ public class CardApi extends ChildApi {
   }
 
 
-  public void tapIn(Station station, Card card, String dateString, String timeString) throws TapFailedException {
+  public void tapIn(Station station, Card card, String dateString, String timeString)
+      throws TapFailedException {
     FormattedDate date = new FormattedDate(dateString, timeString);
     logger.log.fine("Tapping into " + station + " on " + dateString + " with card " + card);
-    try{
+    try {
       card.tapIn(station, date);
-    }
-    catch (Exception e){
+    } catch (Exception e) {
       logger.log.warning("Tap in failed.");
       throw new TapFailedException();
     }
   }
 
-  public void tapOut(Station station, Card card, String dateString, String timeString) throws TapFailedException {
+  public void tapOut(Station station, Card card, String dateString, String timeString)
+      throws TapFailedException {
     FormattedDate date = new FormattedDate(dateString, timeString);
     logger.log.fine("Tapping out of " + station + " on " + dateString + " with card " + card);
-    try{
+    try {
       card.tapOut(station, date);
-    }
-    catch (Exception e){
+    } catch (Exception e) {
       logger.log.warning("Tap out failed.");
       throw new TapFailedException();
     }

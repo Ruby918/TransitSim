@@ -54,8 +54,8 @@ public class TransitFareManager implements Serializable {
   }
 
   /**
-   * Creates and returns a new user account. Generates ID for new user based on number of
-   * existing users.
+   * Creates and returns a new user account. Generates ID for new user based on number of existing
+   * users.
    *
    * @param name user name
    * @param email user email
@@ -97,7 +97,8 @@ public class TransitFareManager implements Serializable {
     return user;
   }
 
-  public void updateUser(String oldEmail, String name, String newEmail, String password, boolean isAdmin) {
+  public void updateUser(String oldEmail, String name, String newEmail, String password,
+      boolean isAdmin) {
     UserAccount user = this.users.get(oldEmail);
     if (user != null) {
       user.setName(name);
@@ -121,7 +122,9 @@ public class TransitFareManager implements Serializable {
    */
   public Card getCardById(int id) {
     for (Card card : cards) {
-      if (id == card.getCardId()) return card;
+      if (id == card.getCardId()) {
+        return card;
+      }
     }
     return null;
   }

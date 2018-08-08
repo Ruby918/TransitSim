@@ -18,7 +18,8 @@ public class SimpleTrip {
     startDate = new SimpleStringProperty(trip.getStartDate().toDateTimeString());
     endDate = new SimpleStringProperty(trip.getEndDate().toDateTimeString());
     cost = new SimpleStringProperty(formatCost(trip.getCost()));
-    ObservableList<TapEvent> observableList = FXCollections.observableArrayList(trip.getTapEvents());
+    ObservableList<TapEvent> observableList = FXCollections
+        .observableArrayList(trip.getTapEvents());
     taps = new SimpleListProperty<>(observableList);
   }
 

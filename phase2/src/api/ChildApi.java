@@ -10,7 +10,8 @@ public class ChildApi {
   protected transient EasyLogger logger;
   protected StatisticsManager statisticsManager;
 
-  public ChildApi(TransitFareManager transitFareManager, StatisticsManager statisticsManager, EasyLogger logger) {
+  public ChildApi(TransitFareManager transitFareManager, StatisticsManager statisticsManager,
+      EasyLogger logger) {
     this.transitFareManager = transitFareManager;
     this.logger = logger;
     this.statisticsManager = statisticsManager;

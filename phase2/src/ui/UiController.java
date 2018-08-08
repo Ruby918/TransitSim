@@ -10,6 +10,7 @@ import javafx.stage.Window;
 import util.EasyLogger;
 
 public class UiController {
+
   public static Api api;
   public static EasyLogger logger = new EasyLogger("ui");
 

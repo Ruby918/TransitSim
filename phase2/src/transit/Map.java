@@ -94,7 +94,9 @@ public class Map implements Serializable {
   public void createAdjacency(ArrayList<Station> stations) {
     for (Station station1 : stations) {
       for (Station station2 : stations) {
-        if (!station1.equals(station2)) station1.addAdjacentStation(station2);
+        if (!station1.equals(station2)) {
+          station1.addAdjacentStation(station2);
+        }
       }
     }
   }

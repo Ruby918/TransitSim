@@ -13,13 +13,18 @@ public class UiDataStore {
   static final String CURRENT_CARD = "currentCard";
 
   public void set(String name, UiData uiData) {
-    if (uiData == null) data.put(name, new UiData<>(null));
-    else data.put(name, uiData);
+    if (uiData == null) {
+      data.put(name, new UiData<>(null));
+    } else {
+      data.put(name, uiData);
+    }
   }
 
   public UiData get(String name) {
     UiData uiData = data.get(name);
-    if (uiData == null) return new UiData<>(null);
+    if (uiData == null) {
+      return new UiData<>(null);
+    }
     return uiData;
   }
 

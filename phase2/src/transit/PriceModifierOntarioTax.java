@@ -4,10 +4,12 @@ import java.util.Date;
 import util.FormattedDate;
 
 public class PriceModifierOntarioTax extends PriceModifier {
+
   private final double TAX_MULTIPLIER = 1.15;
 
   public PriceModifierOntarioTax() {
-    super(new FormattedDate(new Date(0)), new FormattedDate(new Date(0)).addTime(Integer.MAX_VALUE), Integer.MAX_VALUE, "Ontario Tax");
+    super(new FormattedDate(new Date(0)), new FormattedDate(new Date(0)).addTime(Integer.MAX_VALUE),
+        Integer.MAX_VALUE, "Ontario Tax");
   }
 
   @Override

@@ -21,10 +21,12 @@ public class AdminMapController extends UiController {
   @FXML
   private EditStationController editStationController;
 
-  public void initialize(){
+  public void initialize() {
 
-    tableViewRoutes.getSelectionModel().selectedIndexProperty().addListener((num) -> handleRouteSelect());
-    tableViewStations.getSelectionModel().selectedIndexProperty().addListener((num) -> handleStationSelect());
+    tableViewRoutes.getSelectionModel().selectedIndexProperty()
+        .addListener((num) -> handleRouteSelect());
+    tableViewStations.getSelectionModel().selectedIndexProperty()
+        .addListener((num) -> handleStationSelect());
 
     tableViewStations.getItems().setAll(api.map.getStationsSimple());
     tableViewRoutes.getItems().setAll(api.map.getRoutesSimple());

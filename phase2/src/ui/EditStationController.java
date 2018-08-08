@@ -64,15 +64,19 @@ public class EditStationController extends UiController {
 
   @FXML
   public void handleSaveButton() {
-    api.map.saveStation(station, nameField.getText(), selectRouteCombo.getSelectionModel().getSelectedItem(), currentAdjacentStations);
+    api.map.saveStation(station, nameField.getText(),
+        selectRouteCombo.getSelectionModel().getSelectedItem(), currentAdjacentStations);
     initialize();
   }
 
   private void populateRoutes() {
     ArrayList<Route> routes;
     selectRouteCombo.getItems().clear();
-    if (station == null) routes = api.map.getRoutes();
-    else routes = api.map.getRoutes(station);
+    if (station == null) {
+      routes = api.map.getRoutes();
+    } else {
+      routes = api.map.getRoutes(station);
+    }
     selectRouteCombo.getItems().addAll(routes);
   }
 

@@ -8,34 +8,35 @@ import util.FormattedDate;
  */
 public class PriceModifierMonthlyPass extends PriceModifier {
 
-    public PriceModifierMonthlyPass(FormattedDate date) {
-        super(date, date.addTime(30), Integer.MAX_VALUE, "Monthly Pass");
-    }
+  public PriceModifierMonthlyPass(FormattedDate date) {
+    super(date, date.addTime(30), Integer.MAX_VALUE, "Monthly Pass");
+  }
 
-    @Override
-    public double modifyPrice(double rawPrice, FormattedDate dateUsed) {
-        if (isValid(dateUsed)) {
-            numberOfTimesUsed++;
-            rawPrice = 0;
-            this.addDateUsed(dateUsed);
-        }
-        return rawPrice;
+  @Override
+  public double modifyPrice(double rawPrice, FormattedDate dateUsed) {
+    if (isValid(dateUsed)) {
+      numberOfTimesUsed++;
+      rawPrice = 0;
+      this.addDateUsed(dateUsed);
     }
-    public boolean isValid(FormattedDate date){
-        return !this.usedToday(date) && super.isValid(date);
-    }
+    return rawPrice;
+  }
 
-    private boolean usedToday(FormattedDate today){
-        for (FormattedDate dateUsed: this.getDatesUsed()){
-            if (dateUsed.onSameDay(today)){
-                return true;
-            }
-        }
-        return false;
-    }
+  public boolean isValid(FormattedDate date) {
+    return !this.usedToday(date) && super.isValid(date);
+  }
 
-    @Override
-    public String toString() {
-        return "The One-Way Commute, 1 Month (1 Free Per Day)";
+  private boolean usedToday(FormattedDate today) {
+    for (FormattedDate dateUsed : this.getDatesUsed()) {
+      if (dateUsed.onSameDay(today)) {
+        return true;
+      }
     }
+    return false;
+  }
+
+  @Override
+  public String toString() {
+    return "The One-Way Commute, 1 Month (1 Free Per Day)";
+  }
 }

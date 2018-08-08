@@ -20,8 +20,9 @@ import util.FormattedDate;
 
 public class StatsApi extends ChildApi {
 
-  public StatsApi(TransitFareManager transitFareManager, StatisticsManager statisticsManager,EasyLogger logger) {
-    super(transitFareManager, statisticsManager,logger);
+  public StatsApi(TransitFareManager transitFareManager, StatisticsManager statisticsManager,
+      EasyLogger logger) {
+    super(transitFareManager, statisticsManager, logger);
   }
 
   public ArrayList<Trip> getTrips() {
@@ -30,7 +31,7 @@ public class StatsApi extends ChildApi {
 
   public ArrayList<SimpleTrip> getTripsSimple(ArrayList<Trip> trips) {
     ArrayList<SimpleTrip> result = new ArrayList<>();
-    for (Trip trip : trips){
+    for (Trip trip : trips) {
       result.add(new SimpleTrip(trip));
     }
     return result;
@@ -41,7 +42,9 @@ public class StatsApi extends ChildApi {
   }
 
   public ArrayList<SimpleTrip> getTripsSimple(FormattedDate date) {
-    if (date == null) return getTripsSimple();
+    if (date == null) {
+      return getTripsSimple();
+    }
     return getTripsSimple(statisticsManager.getTripsOnDate(date));
   }
 
@@ -55,7 +58,7 @@ public class StatsApi extends ChildApi {
 
   public ArrayList<SimpleStation> getStationsSimple(ArrayList<Station> stations) {
     ArrayList<SimpleStation> result = new ArrayList<>();
-    for (Station station : stations){
+    for (Station station : stations) {
       result.add(new SimpleStation(station));
     }
     return result;
@@ -66,12 +69,16 @@ public class StatsApi extends ChildApi {
   }
 
   public ArrayList<SimpleStation> getStationsSimple(FormattedDate date) {
-    if (date == null) return getStationsSimple();
+    if (date == null) {
+      return getStationsSimple();
+    }
     return getStationsSimple(statisticsManager.getStationsReachedOnDate(date));
   }
 
   public ArrayList<SimpleTransaction> getTransactionsSimple(FormattedDate date) {
-    if (date == null) return getTransactionsSimple();
+    if (date == null) {
+      return getTransactionsSimple();
+    }
     return getTransactionsSimple(statisticsManager.getTransactionsOnDate(date));
   }
 
@@ -81,7 +88,7 @@ public class StatsApi extends ChildApi {
 
   public ArrayList<SimpleTransaction> getTransactionsSimple(ArrayList<Transaction> transactions) {
     ArrayList<SimpleTransaction> result = new ArrayList<>();
-    for (Transaction transaction : transactions){
+    for (Transaction transaction : transactions) {
       result.add(new SimpleTransaction(transaction));
     }
     return result;
@@ -96,20 +103,24 @@ public class StatsApi extends ChildApi {
   }
 
   public ArrayList<SimpleTap> getTapsSimple(FormattedDate date) {
-    if (date == null) return getTapsSimple();
+    if (date == null) {
+      return getTapsSimple();
+    }
     return getTapsSimple(statisticsManager.getTapsOnDate(date));
   }
 
   public ArrayList<SimpleTap> getTapsSimple(ArrayList<TapEvent> taps) {
     ArrayList<SimpleTap> result = new ArrayList<>();
-    for (TapEvent tap : taps){
+    for (TapEvent tap : taps) {
       result.add(new SimpleTap(tap));
     }
     return result;
   }
 
   public ArrayList<SimpleRoute> getRoutesSimple(FormattedDate date) {
-    if (date == null) return getRoutesSimple();
+    if (date == null) {
+      return getRoutesSimple();
+    }
     return getRoutesSimple(statisticsManager.getRoutesReachedOnDate(date));
   }
 
@@ -119,7 +130,7 @@ public class StatsApi extends ChildApi {
 
   public ArrayList<SimpleRoute> getRoutesSimple(ArrayList<Route> routes) {
     ArrayList<SimpleRoute> result = new ArrayList<>();
-    for (Route route : routes){
+    for (Route route : routes) {
       result.add(new SimpleRoute(route));
     }
     return result;
@@ -142,7 +153,9 @@ public class StatsApi extends ChildApi {
   }
 
   public ArrayList<SimpleUser> getUsers(FormattedDate date) {
-    if (date == null) return getUsers();
+    if (date == null) {
+      return getUsers();
+    }
     return getUsers(statisticsManager.getUsersReachedOnDate(date));
   }
 }

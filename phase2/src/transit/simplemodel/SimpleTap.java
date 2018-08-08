@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleStringProperty;
 import transit.TapEvent;
 
 public class SimpleTap {
+
   private SimpleStringProperty date;
   private SimpleStringProperty station;
   private SimpleStringProperty card;

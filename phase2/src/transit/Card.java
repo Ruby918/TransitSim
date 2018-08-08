@@ -41,7 +41,8 @@ public class Card implements Serializable {
     this("Card " + id, id, transitFareManager, priceModifier);
   }
 
-  public Card(String nickname, int id, TransitFareManager transitFareManager, PriceModifier priceModifier) {
+  public Card(String nickname, int id, TransitFareManager transitFareManager,
+      PriceModifier priceModifier) {
     this.cardId = id;
     this.transitFareManager = transitFareManager;
     this.priceModifier = priceModifier;
@@ -116,11 +117,16 @@ public class Card implements Serializable {
       return "$" + String.format("%.2f", balance);
     }
   }
+
   /**
    * Increases the card balance by the given amount.
+   *
    * @param amount the amount to increase the card balance by
    */
-  public void addAmount(double amount){this.balance+= amount;}
+  public void addAmount(double amount) {
+    this.balance += amount;
+  }
+
   /**
    * Decrease the balance of this card by `amount`.
    *
@@ -147,6 +153,7 @@ public class Card implements Serializable {
   public ArrayList<Transaction> getTransactions() {
     return this.transactions;
   }
+
   /**
    * Registers and records an invalid tap.
    *
@@ -180,7 +187,9 @@ public class Card implements Serializable {
   public void tapIn(Station station, FormattedDate date)
       throws InsufficientFundsException, TapDeactivatedCardsException, IllegalTapLocationException {
 
-    if (logger == null) logger = new EasyLogger("card");
+    if (logger == null) {
+      logger = new EasyLogger("card");
+    }
 
     // check if card is active
     if (!this.isActive) {
@@ -214,7 +223,8 @@ public class Card implements Serializable {
       throw new IllegalTapLocationException();
     } catch (TripInvalidTapEventException f) {
       // this tap is not contiguous (in time and space) to the previous tap
-      logger.log.warning("This tap in event is not contiguous (in time and space) to the previous tap.");
+      logger.log
+          .warning("This tap in event is not contiguous (in time and space) to the previous tap.");
       this.activeTrip = null;
       tapIn(station, date);
     }
@@ -243,7 +253,9 @@ public class Card implements Serializable {
   public void tapOut(Station station, FormattedDate date)
       throws TapDeactivatedCardsException, IllegalTapLocationException {
 
-    if (logger == null) logger = new EasyLogger("card");
+    if (logger == null) {
+      logger = new EasyLogger("card");
+    }
 
     // check if card is active
     if (!this.isActive) {
@@ -275,7 +287,7 @@ public class Card implements Serializable {
     // charge the card the price of this tap
     if (price.getFinalPrice() != -1) {
       logger.log.fine("Charging card a final price of " + price.getFinalPrice()
-        + " (raw price of " + price.getRawPrice() + ")");
+          + " (raw price of " + price.getRawPrice() + ")");
       createTransaction(price, date);
     }
   }

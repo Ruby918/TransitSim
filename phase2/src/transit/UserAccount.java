@@ -47,7 +47,9 @@ public class UserAccount implements Serializable {
     this.active = true;
   }
 
-  public boolean hasCard(){ return cards.size() != 0;}
+  public boolean hasCard() {
+    return cards.size() != 0;
+  }
 
   /**
    * Returns the Card of User account given the cards id.
@@ -231,7 +233,9 @@ public class UserAccount implements Serializable {
         + " | Cards: "
         + prettyCards.toString();
 
-    if (isAdmin) st += " (Admin)";
+    if (isAdmin) {
+      st += " (Admin)";
+    }
     return st;
   }
 }

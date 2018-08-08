@@ -61,8 +61,7 @@ public class NavigationController extends UiController implements Initializable 
       if (user.isAdmin()) {
         createAdminMenu();
       }
-    }
-    else {
+    } else {
       Label menuLoginLabel = addMenuLabel("Login");
       menuLoginLabel.setOnMouseClicked(event -> handleLoginButtonAction(null));
     }

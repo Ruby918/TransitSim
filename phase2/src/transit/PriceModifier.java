@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import util.FormattedDate;
 
 public abstract class PriceModifier implements PriceModifiable, Expirable, Serializable {
+
   private FormattedDate startDate;
   private FormattedDate endDate;
   private String name;
@@ -13,7 +14,8 @@ public abstract class PriceModifier implements PriceModifiable, Expirable, Seria
   private final int USAGE_LIMIT;
   private ArrayList<FormattedDate> datesUsed;
 
-  public PriceModifier(FormattedDate startDate, FormattedDate endDate, int USAGE_LIMIT, String name) {
+  public PriceModifier(FormattedDate startDate, FormattedDate endDate, int USAGE_LIMIT,
+      String name) {
     this.startDate = startDate;
     this.endDate = endDate;
     this.USAGE_LIMIT = USAGE_LIMIT;
@@ -26,9 +28,10 @@ public abstract class PriceModifier implements PriceModifiable, Expirable, Seria
     return datesUsed;
   }
 
-  public void addDateUsed(FormattedDate dateUsed){
+  public void addDateUsed(FormattedDate dateUsed) {
     this.datesUsed.add(dateUsed);
   }
+
   @Override
   public abstract double modifyPrice(double rawPrice, FormattedDate dateUsed);
 
@@ -40,12 +43,12 @@ public abstract class PriceModifier implements PriceModifiable, Expirable, Seria
   }
 
   @Override
-  public String toString(){
+  public String toString() {
     String ret = name;
-    ret += '\n'+ "Start date: " + startDate;
-    ret +='\n' + "Expiry date:" + endDate;
-    ret +='\n' + "Number of Times Used" + numberOfTimesUsed;
-    ret +='\n'+ "Usage Limit" + USAGE_LIMIT;
+    ret += '\n' + "Start date: " + startDate;
+    ret += '\n' + "Expiry date:" + endDate;
+    ret += '\n' + "Number of Times Used" + numberOfTimesUsed;
+    ret += '\n' + "Usage Limit" + USAGE_LIMIT;
     return ret.toString();
   }
 }

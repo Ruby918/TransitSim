@@ -4,6 +4,7 @@ import java.io.Serializable;
 import util.FormattedDate;
 
 public class Price implements Serializable {
+
   private double rawPrice;
   private double finalPrice;
   private double maxFinalPrice;
@@ -61,7 +62,9 @@ public class Price implements Serializable {
     if (rawPrice != 0) {
       finalPrice = rawPrice;
       if (priceModifier != null) {
-        if (priceModifier.isValid(date)) finalPrice = priceModifier.modifyPrice(finalPrice, date);
+        if (priceModifier.isValid(date)) {
+          finalPrice = priceModifier.modifyPrice(finalPrice, date);
+        }
       }
       // apply ontario tax
       if (ONTARIO_TAX.isValid(date)) {

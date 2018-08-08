@@ -101,7 +101,8 @@ public class EventConfigFileParser extends ConfigFileParser {
             break;
           default:
             FormattedDate date = new FormattedDate(parameters[1]);
-            PrettyList<Trip> prettyTripsOnDate = new PrettyList<>(stats.getTripsOnDate(date), "Trips");
+            PrettyList<Trip> prettyTripsOnDate = new PrettyList<>(stats.getTripsOnDate(date),
+                "Trips");
             message += indentString(prettyTripsOnDate.toStringMultiline());
         }
         break;
@@ -114,14 +115,16 @@ public class EventConfigFileParser extends ConfigFileParser {
             + indentString(prettyStations.toStringMultiline());
         break;
       case "Routes":
-        PrettyList<Route> prettyRoute = new PrettyList<>(transitSystem.getMap().getRoutes(), "Routes");
+        PrettyList<Route> prettyRoute = new PrettyList<>(transitSystem.getMap().getRoutes(),
+            "Routes");
         message = "Routes:" + System.lineSeparator()
             + indentString(prettyRoute.toStringMultiline());
         break;
       case "Users":
         switch (parameters[1]) {
           case "Total":
-            PrettyList<UserAccount> prettyUsers = new PrettyList<>(transitSystem.getUsers(), "Users");
+            PrettyList<UserAccount> prettyUsers = new PrettyList<>(transitSystem.getUsers(),
+                "Users");
             message = "Users: " + System.lineSeparator()
                 + indentString(prettyUsers.toStringMultiline());
             break;
@@ -257,8 +260,8 @@ public class EventConfigFileParser extends ConfigFileParser {
   }
 
   /**
-   * Parses card tap in commands, i.e. commands starting with "Card: `cardId`: Tap In,"
-   * int the configuration file.
+   * Parses card tap in commands, i.e. commands starting with "Card: `cardId`: Tap In," int the
+   * configuration file.
    *
    * @param card card that is to be tapped
    * @param parameters parameters of the command
@@ -296,8 +299,8 @@ public class EventConfigFileParser extends ConfigFileParser {
   }
 
   /**
-   * Parses card tap out commands, i.e. commands starting with "Card: `cardId`: Tap Out,"
-   * int the configuration file.
+   * Parses card tap out commands, i.e. commands starting with "Card: `cardId`: Tap Out," int the
+   * configuration file.
    *
    * @param card card that is to be tapped
    * @param parameters parameters of the command

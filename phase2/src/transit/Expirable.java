@@ -4,5 +4,5 @@ import util.FormattedDate;
 
 public interface Expirable {
 
-    boolean isValid(FormattedDate dateUsed);
+  boolean isValid(FormattedDate dateUsed);
 }
