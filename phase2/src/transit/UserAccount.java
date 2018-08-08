@@ -27,7 +27,7 @@ public class UserAccount implements Serializable {
   public UserAccount(String name, String email, boolean isAdmin) {
     this.name = name;
     this.email = email;
-    this.password = "password123"; // start with default password
+    this.password = "root"; // start with default password
     this.isAdmin = isAdmin;
   }
 

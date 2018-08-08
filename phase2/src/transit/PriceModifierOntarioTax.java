@@ -12,7 +12,7 @@ public class PriceModifierOntarioTax extends PriceModifier {
 
   @Override
   public double modifyPrice(double rawPrice, FormattedDate dateUsed) {
-    if (isValid(new FormattedDate(new Date()))) {
+    if (isValid(dateUsed)) {
       numberOfTimesUsed++;
       rawPrice = rawPrice * TAX_MULTIPLIER;
       this.addDateUsed(dateUsed);

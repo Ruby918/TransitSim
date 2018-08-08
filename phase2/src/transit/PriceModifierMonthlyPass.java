@@ -14,7 +14,7 @@ public class PriceModifierMonthlyPass extends PriceModifier {
 
     @Override
     public double modifyPrice(double rawPrice, FormattedDate dateUsed) {
-        if (isValid(new FormattedDate(new Date()))) {
+        if (isValid(dateUsed)) {
             numberOfTimesUsed++;
             rawPrice = 0;
             this.addDateUsed(dateUsed);
