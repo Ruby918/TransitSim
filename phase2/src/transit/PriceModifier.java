@@ -24,10 +24,19 @@ public abstract class PriceModifier implements PriceModifiable, Expirable, Seria
     datesUsed = new ArrayList();
   }
 
+  /**
+   * Returns the list of <code>FormattedDate</code> this price modifier was used.
+   * @return the list of <code>FormattedDate</code> this price modifier was used
+   */
   public ArrayList<FormattedDate> getDatesUsed() {
     return datesUsed;
   }
 
+  /**
+   * Appends a <code>FormattedDate</code> representing  another date this modifier has been used, to the list of
+   * dates used.
+   * @param dateUsed a <code>FormattedDate</code> representing  another date this modifier has been used
+   */
   public void addDateUsed(FormattedDate dateUsed) {
     this.datesUsed.add(dateUsed);
   }
@@ -48,6 +57,6 @@ public abstract class PriceModifier implements PriceModifiable, Expirable, Seria
     ret += '\n' + "Expiry date:" + endDate;
     ret += '\n' + "Number of Times Used" + numberOfTimesUsed;
     ret += '\n' + "Usage Limit" + USAGE_LIMIT;
-    return ret.toString();
+    return ret;
   }
 }

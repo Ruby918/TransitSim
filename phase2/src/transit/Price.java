@@ -11,7 +11,6 @@ public class Price implements Serializable {
   private PriceModifier priceModifier;
   private final PriceModifier ONTARIO_TAX;
   private boolean taxOn;
-
   private boolean hasFinalPrice = false;
 
   public Price() {
@@ -22,37 +21,6 @@ public class Price implements Serializable {
     taxOn = false;
   }
 
-  public Price(double rawPrice) {
-    this.rawPrice = rawPrice;
-    ONTARIO_TAX = new PriceModifierOntarioTax();
-    priceModifier = null;
-    maxFinalPrice = Double.MAX_VALUE;
-    taxOn = false;
-  }
-
-  public Price(FormattedDate today) {
-    ONTARIO_TAX = new PriceModifierOntarioTax();
-    priceModifier = null;
-    maxFinalPrice = Double.MAX_VALUE;
-    taxOn = false;
-  }
-
-  public Price(FormattedDate today, double rawPrice) {
-    this.rawPrice = rawPrice;
-    ONTARIO_TAX = new PriceModifierOntarioTax();
-    priceModifier = null;
-    maxFinalPrice = Double.MAX_VALUE;
-    taxOn = false;
-  }
-
-  public Price(
-      FormattedDate today, double rawPrice, PriceModifier priceModifier, double maxFinalPrice) {
-    this.rawPrice = rawPrice;
-    ONTARIO_TAX = new PriceModifierOntarioTax();
-    this.priceModifier = priceModifier;
-    this.maxFinalPrice = maxFinalPrice;
-    taxOn = false;
-  }
   public Price(
           FormattedDate today, double rawPrice, PriceModifier priceModifier, double maxFinalPrice, boolean taxOn) {
     this.rawPrice = rawPrice;
@@ -85,24 +53,42 @@ public class Price implements Serializable {
     }
   }
 
+  /***
+   * Returns the final price of this <code>Price</code>.
+   * @return the final price of this <code>Price</code>
+   */
   public double getFinalPrice() {
     return finalPrice;
   }
 
+  /**
+   * Returns whether or not the finalPrice of this object has been purposefully initialized (not the default value).
+   * @return whether or not the finalPrice of this object has been purposefully initialized (not the default value)
+   */
   public boolean hasFinalPrice() {
     return hasFinalPrice;
   }
 
+  /**
+   * Sets the final price of this <code>Price</code>.
+   * @param finalPrice the final price of this <code>Price</code>.
+   */
   public void setFinalPrice(double finalPrice) {
     this.finalPrice = finalPrice;
     hasFinalPrice = true;
   }
-
+  /***
+   * Returns the initial price of this <code>Price</code>.
+   * @return the initial price of this <code>Price</code>
+   */
   public double getRawPrice() {
     return rawPrice;
   }
 
-  /** @param priceModifier */
+  /**
+   * Sets the <code>PriceModifier</code> of this Price.
+   * @param priceModifier the <code>PriceModifier</code> of this Price
+   */
   public void setPriceModifier(PriceModifier priceModifier) {
     this.priceModifier = priceModifier;
   }
