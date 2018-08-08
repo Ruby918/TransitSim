@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.Label?>
 <GridPane fx:controller="ui.StatsTablesController"
   xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="15" vgap="15">
 
@@ -15,8 +16,9 @@
       halignment="CENTER" hgrow="ALWAYS">
     </ColumnConstraints>
   </columnConstraints>
-
-  <TabPane>
+  <Label GridPane.halignment="LEFT" GridPane.rowIndex="0" GridPane.columnIndex="0" text="Revenue: " />
+  <Label GridPane.halignment="LEFT" GridPane.rowIndex="0" GridPane.columnIndex="1" fx:id="revenueLabel" />
+  <TabPane GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.columnSpan="2">
     <tabs>
       <Tab text="Stations">
         <TableView fx:id="tableViewStations" GridPane.columnIndex="0" GridPane.rowIndex="1">
@@ -103,10 +105,6 @@
             </TableColumn>
             <TableColumn prefWidth="120.0" text="End Time" fx:id="TripEndTime">
               <cellValueFactory><PropertyValueFactory property="endDate" />
-              </cellValueFactory>
-            </TableColumn>
-            <TableColumn prefWidth="100.0" text="Cost" fx:id="TripCost">
-              <cellValueFactory><PropertyValueFactory property="cost" />
               </cellValueFactory>
             </TableColumn>
             <TableColumn prefWidth="500.0" text="Taps" fx:id="TripTaps">

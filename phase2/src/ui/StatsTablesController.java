@@ -1,5 +1,6 @@
 package ui;
 
+import javafx.scene.control.Label;
 import transit.simplemodel.SimpleRoute;
 import transit.simplemodel.SimpleStation;
 import transit.simplemodel.SimpleTap;
@@ -31,6 +32,9 @@ public class StatsTablesController extends UiController {
   private TableView<SimpleRoute> tableViewRoutes;
 
   @FXML
+  private Label revenueLabel;
+
+  @FXML
   public void initialize() {
 
     tableViewStations.getItems().clear();
@@ -40,7 +44,10 @@ public class StatsTablesController extends UiController {
     tableViewUsers.getItems().clear();
     tableViewRoutes.getItems().clear();
 
+
     FormattedDate date = (FormattedDate) dataStore.get(UiDataStore.CURRENT_FILTER_DATE).data();
+
+    revenueLabel.setText("$" + String.format("%.2f", api.stats.getRevenueOnDate(date)));
     tableViewStations.getItems().setAll(api.stats.getStationsSimple(date));
     tableViewTrips.getItems().setAll(api.stats.getTripsSimple(date));
     tableViewTransactions.getItems().setAll(api.stats.getTransactionsSimple(date));

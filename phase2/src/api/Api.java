@@ -64,22 +64,5 @@ public class Api {
       logger.log.severe("Couldn't save application state to file " + fileName);
     }
   }
-  //stats info
-
-  public double getRevenueOnDate(String dateString) {
-    FormattedDate date = new FormattedDate(dateString);
-    logger.log.fine("Getting revenue for date " + dateString);
-    return this.statisticsManager.calculateRevenueOnDate(date);
-  }
-
-  public double getTotalRevenueOnDate() {
-    return this.statisticsManager.calculateRevenue();
-  }
-
-  public ArrayList<Station> getStationsReachedOnDate(String dateString) {
-    FormattedDate date = new FormattedDate(dateString);
-    logger.log.fine("Getting stations reached on date " + dateString);
-    return this.statisticsManager.getStationsReachedOnDate(date);
-  }
 
 }
