@@ -10,6 +10,15 @@
 - Danya (Danya Canivet Lette)
 
 
+## Using the GUI
+
+To use the GUI you must log in with an email and password.
+
+To get started by loggin in as an administrator, you can use Email: root, Password: root.
+Once you are logged in, you will be able to create new users and edit their details in Admin->Users.
+You can also change the root user's password.
+
+All app data gets saved to file once the app is exited.
 
 ## Events file (`events.txt`)
 
