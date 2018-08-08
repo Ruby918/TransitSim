@@ -23,6 +23,7 @@ public class Card implements Serializable {
   private TransitFareManager transitFareManager;
   private PriceModifier priceModifier;
   private String nickname;
+  private boolean taxOn;
 
   private transient EasyLogger logger = new EasyLogger("card");
 
@@ -49,7 +50,15 @@ public class Card implements Serializable {
     this.nickname = nickname;
   }
 
-  public String getNickname() {
+    public boolean isTaxOn() {
+        return taxOn;
+    }
+
+    public void setTaxOn(boolean taxOn) {
+        this.taxOn = taxOn;
+    }
+
+    public String getNickname() {
     return nickname;
   }
 

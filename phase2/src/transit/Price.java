@@ -10,6 +10,7 @@ public class Price implements Serializable {
   private double maxFinalPrice;
   private PriceModifier priceModifier;
   private final PriceModifier ONTARIO_TAX;
+  private boolean taxOn;
 
   private boolean hasFinalPrice = false;
 
@@ -18,6 +19,7 @@ public class Price implements Serializable {
     ONTARIO_TAX = new PriceModifierOntarioTax();
     priceModifier = null;
     maxFinalPrice = Double.MAX_VALUE;
+    taxOn = false;
   }
 
   public Price(double rawPrice) {
@@ -25,12 +27,14 @@ public class Price implements Serializable {
     ONTARIO_TAX = new PriceModifierOntarioTax();
     priceModifier = null;
     maxFinalPrice = Double.MAX_VALUE;
+    taxOn = false;
   }
 
   public Price(FormattedDate today) {
     ONTARIO_TAX = new PriceModifierOntarioTax();
     priceModifier = null;
     maxFinalPrice = Double.MAX_VALUE;
+    taxOn = false;
   }
 
   public Price(FormattedDate today, double rawPrice) {
@@ -38,6 +42,7 @@ public class Price implements Serializable {
     ONTARIO_TAX = new PriceModifierOntarioTax();
     priceModifier = null;
     maxFinalPrice = Double.MAX_VALUE;
+    taxOn = false;
   }
 
   public Price(
@@ -46,6 +51,15 @@ public class Price implements Serializable {
     ONTARIO_TAX = new PriceModifierOntarioTax();
     this.priceModifier = priceModifier;
     this.maxFinalPrice = maxFinalPrice;
+    taxOn = false;
+  }
+  public Price(
+          FormattedDate today, double rawPrice, PriceModifier priceModifier, double maxFinalPrice, boolean taxOn) {
+    this.rawPrice = rawPrice;
+    ONTARIO_TAX = new PriceModifierOntarioTax();
+    this.priceModifier = priceModifier;
+    this.maxFinalPrice = maxFinalPrice;
+    this.taxOn = taxOn;
   }
 
   /**
@@ -63,7 +77,7 @@ public class Price implements Serializable {
         }
       }
       // apply ontario tax
-      if (ONTARIO_TAX.isValid(date)) {
+      if (taxOn & ONTARIO_TAX.isValid(date)) {
         finalPrice = ONTARIO_TAX.modifyPrice(finalPrice, date);
       }
       finalPrice = Math.min(finalPrice, maxFinalPrice);
