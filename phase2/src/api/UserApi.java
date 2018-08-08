@@ -3,7 +3,9 @@ package api;
 import java.util.ArrayList;
 import transit.StatisticsManager;
 import transit.TransitFareManager;
+import transit.Trip;
 import transit.UserAccount;
+import transit.simplemodel.SimpleTrip;
 import transit.simplemodel.SimpleUser;
 import util.EasyLogger;
 
@@ -133,6 +135,17 @@ public class UserApi extends ChildApi {
       logger.log.warning("Failed failed to log in user with email " + email);
       throw new LoginFailedException();
     }
+  }
+
+  /**
+   * Get list of SimpleTrips corresponding to 3 recent trips.
+   */
+  public ArrayList<SimpleTrip> getTrips(UserAccount user) {
+    ArrayList<SimpleTrip> trips = new ArrayList<>();
+    for (Trip trip : user.calculateRecentTrips()) {
+      trips.add(new SimpleTrip(trip));
+    }
+    return trips;
   }
 
 }

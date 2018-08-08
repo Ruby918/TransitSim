@@ -1,14 +1,17 @@
 package ui;
 
+import java.util.SimpleTimeZone;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import transit.Card;
 import transit.Station;
 import transit.UserAccount;
+import transit.simplemodel.SimpleTrip;
 import util.FormattedDate;
 
 /**
@@ -48,6 +51,9 @@ public class UserScreenController extends UiController {
   private Label infoMessage;
 
   @FXML
+  private TableView<SimpleTrip> tableViewTrips;
+
+  @FXML
   protected void initialize() {
 
     // reset error message
@@ -64,6 +70,9 @@ public class UserScreenController extends UiController {
     if (card != null) {
       updateBalanceLabel();
     }
+
+    // init table view trips
+    tableViewTrips.getItems().setAll(api.user.getTrips(user));
 
     // set default date and time to now
     FormattedDate date = new FormattedDate();
