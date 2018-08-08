@@ -7,7 +7,7 @@ import util.EasyLogger;
 /**
  * Class for domain-specific APIs. Subclassed by CardApi, MapApi, StatsApi, and UserAPi.
  */
-abstract public class ChildApi {
+public abstract class ChildApi {
 
   protected TransitFareManager transitFareManager;
   protected transient EasyLogger logger;

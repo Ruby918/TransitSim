@@ -105,13 +105,15 @@ public class NavigationController extends UiController implements Initializable 
    * Create the Admin menu.
    */
   private void createAdminMenu() {
-    Menu menuAdmin = new Menu("Admin");
+
     MenuItem menuItem1 = new MenuItem("Users");
     menuItem1.setOnAction(event -> handleUsersButtonAction(null));
     MenuItem menuItem2 = new MenuItem("Statistics");
     menuItem2.setOnAction(event -> handleStatisticsButtonAction(null));
     MenuItem menuItem3 = new MenuItem("Map");
     menuItem3.setOnAction(event -> handleMapButtonAction(null));
+
+    Menu menuAdmin = new Menu("Admin");
     menuAdmin.getItems().addAll(menuItem1, menuItem2, menuItem3);
     menuBar.getMenus().add(menuAdmin);
   }

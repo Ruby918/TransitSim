@@ -56,6 +56,7 @@ public class Price implements Serializable {
 
   /***
    * Returns the final price of this <code>Price</code>.
+   *
    * @return the final price of this <code>Price</code>
    */
   public double getFinalPrice() {
@@ -76,8 +77,7 @@ public class Price implements Serializable {
    * Returns whether or not the finalPrice of this object has been purposefully initialized (not the
    * default value).
    *
-   * @return whether or not the finalPrice of this object has been purposefully initialized (not the
-   * default value)
+   * @return whether or not the finalPrice of this object has been purposefully initialized
    */
   public boolean hasFinalPrice() {
     return hasFinalPrice;
@@ -85,6 +85,7 @@ public class Price implements Serializable {
 
   /***
    * Returns the initial price of this <code>Price</code>.
+   *
    * @return the initial price of this <code>Price</code>
    */
   public double getRawPrice() {
