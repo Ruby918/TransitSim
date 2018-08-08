@@ -86,7 +86,7 @@ public class AdminUsersController extends UiController {
 
   private void updateView() {
     errorMessage.setText("");
-    tableViewUsers.getItems().setAll(api.user.get());
+    tableViewUsers.getItems().setAll(api.user.getSimple());
   }
 
 

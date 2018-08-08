@@ -8,6 +8,7 @@ import transit.simplemodel.SimpleTrip;
 import transit.simplemodel.SimpleUser;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
+import util.FormattedDate;
 
 public class StatsTablesController extends UiController {
 
@@ -31,11 +32,22 @@ public class StatsTablesController extends UiController {
 
   @FXML
   public void initialize() {
-    tableViewStations.getItems().setAll(api.map.getStationsSimple());
-    tableViewTrips.getItems().setAll(api.stats.getTripsSimple());
-    tableViewTransactions.getItems().setAll(api.stats.getTransactionsSimple());
-    tableViewTaps.getItems().setAll(api.stats.getTapsSimple());
-    tableViewUsers.getItems().setAll(api.user.get());
-    tableViewRoutes.getItems().setAll(api.map.getRoutesSimple());
+
+    tableViewStations.getItems().clear();
+    tableViewTrips.getItems().clear();
+    tableViewTransactions.getItems().clear();
+    tableViewTaps.getItems().clear();
+    tableViewUsers.getItems().clear();
+    tableViewRoutes.getItems().clear();
+
+    FormattedDate date = (FormattedDate) dataStore.get(UiDataStore.CURRENT_FILTER_DATE).data();
+    tableViewStations.getItems().setAll(api.stats.getStationsSimple(date));
+    tableViewTrips.getItems().setAll(api.stats.getTripsSimple(date));
+    tableViewTransactions.getItems().setAll(api.stats.getTransactionsSimple(date));
+    tableViewTaps.getItems().setAll(api.stats.getTapsSimple(date));
+    tableViewUsers.getItems().setAll(api.stats.getUsers(date));
+    tableViewRoutes.getItems().setAll(api.stats.getRoutesSimple(date));
+
+
   }
 }

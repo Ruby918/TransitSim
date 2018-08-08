@@ -52,13 +52,13 @@ public class UserScreenController extends UiController {
     // reset error message
     errorMessage.setText("");
 
-    // get current user
+    // getSimple current user
     user = (UserAccount) dataStore.get(UiDataStore.CURRENT_USER).data();
 
-    // get current station
+    // getSimple current station
     station = (Station) dataStore.get(UiDataStore.CURRENT_STATION).data();
 
-    // get current card
+    // getSimple current card
     card = (Card) dataStore.get(UiDataStore.CURRENT_CARD).data();
     if (card != null) {
       updateBalanceLabel();

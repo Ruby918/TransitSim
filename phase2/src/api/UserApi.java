@@ -45,7 +45,7 @@ public class UserApi extends ChildApi {
     transitFareManager.deleteUser(email);
   }
 
-  public ArrayList<SimpleUser> get() {
+  public ArrayList<SimpleUser> getSimple() {
     ArrayList<UserAccount> users = transitFareManager.getUsers();
     ArrayList<SimpleUser> result = new ArrayList<>();
     for (UserAccount user : users) {

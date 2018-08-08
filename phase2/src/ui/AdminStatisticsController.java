@@ -10,6 +10,9 @@ public class AdminStatisticsController extends UiController{
     private TextField dateField;
 
     @FXML
+    private StatsTablesController statsTablesController;
+
+    @FXML
     public void initialize() {
         // set date to current filter date
         FormattedDate date = (FormattedDate) dataStore.get(UiDataStore.CURRENT_FILTER_DATE).data();
@@ -21,11 +24,13 @@ public class AdminStatisticsController extends UiController{
     public void handleApplyButtonAction() {
         FormattedDate date = new FormattedDate(dateField.getText());
         dataStore.set(UiDataStore.CURRENT_FILTER_DATE, new UiData<>(date));
+        statsTablesController.initialize();
     }
 
     @FXML
     public void handleClearButtonAction() {
         dataStore.set(UiDataStore.CURRENT_FILTER_DATE, null);
         dateField.setText("");;
+        statsTablesController.initialize();
     }
 }

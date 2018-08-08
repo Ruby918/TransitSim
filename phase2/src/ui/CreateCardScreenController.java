@@ -24,7 +24,7 @@ public class CreateCardScreenController extends UiController {
   @FXML
   protected void handleCreateCardButton(ActionEvent event) {
 
-    // get current user
+    // getSimple current user
     UserAccount user = (UserAccount) dataStore.get(UiDataStore.CURRENT_USER).data();
     if (user != null) {
       api.card.create(user, nameField.getText());
