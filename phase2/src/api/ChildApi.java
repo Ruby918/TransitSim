@@ -4,7 +4,10 @@ import transit.StatisticsManager;
 import transit.TransitFareManager;
 import util.EasyLogger;
 
-public class ChildApi {
+/**
+ * Class for domain-specific APIs. Subclassed by CardApi, MapApi, StatsApi, and UserAPi.
+ */
+abstract public class ChildApi {
 
   protected TransitFareManager transitFareManager;
   protected transient EasyLogger logger;
