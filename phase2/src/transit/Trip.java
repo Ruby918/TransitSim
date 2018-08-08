@@ -19,7 +19,7 @@ public class Trip implements Comparable<Trip>, Serializable {
   }
 
   /**
-   * Returns the <code>Date</code> of the first tap in of this <code>Trip</code>.
+   * Returns the <code>TransitDate</code> of the first tap in of this <code>Trip</code>.
    *
    * @return the starting date of the first tap in
    */
@@ -31,7 +31,7 @@ public class Trip implements Comparable<Trip>, Serializable {
   }
 
   /**
-   * Returns the <code>Date</code> of the last tap of this <code>Trip</code>.
+   * Returns the <code>TransitDate</code> of the last tap of this <code>Trip</code>.
    *
    * @return the date of the last tap
    */
@@ -60,6 +60,10 @@ public class Trip implements Comparable<Trip>, Serializable {
     return this.cost;
   }
 
+  /**
+   * Returns the max charge for a trip.
+   * @return the max charge for a trip
+   */
   public double getMaxCharge() {
     return maxCharge;
   }
@@ -103,7 +107,7 @@ public class Trip implements Comparable<Trip>, Serializable {
    * </code>, and returns the charge for the tap.
    *
    * @param tapOutEvent the tap event to be registered
-   * @return the charge for the tap
+   * @return a <code>Price</code> object representing the price of the tap
    * @throws TripUnnaturalTapSequenceException if the tap is illegal
    */
   public Price registerTapOutEvent(TapOutEvent tapOutEvent, Card card)
@@ -126,6 +130,11 @@ public class Trip implements Comparable<Trip>, Serializable {
     return price;
   }
 
+  /**
+   * Returns if one can add the given <code>tapInEvent</code> to the this trip.
+   * @param tapInEvent the tap desired to be added
+   * @return true if one can add the tap to this trip; false otherwise
+   */
   private boolean canAddTapInToCurrentTrip(TapInEvent tapInEvent) {
     // if this is the first tap in of this trip, return true
     if (tapEvents.size() == 0) {
@@ -141,6 +150,11 @@ public class Trip implements Comparable<Trip>, Serializable {
     return tapInEvent.getStation().isAdjacentToStation(previousStation);
   }
 
+  /**
+   * Returns whether or not the given <code>tapInEvent</code> is nonsensical
+   * @param tapInEvent the tapInEvent to be evaluated
+   * @return true if the tapIn is proper; false otherwise
+   */
   private boolean isTapInEventLegal(TapInEvent tapInEvent) {
     if (tapEvents.size() == 0) {
       return true;
@@ -149,6 +163,11 @@ public class Trip implements Comparable<Trip>, Serializable {
     // 2 tapInEvents in a row is not legal.
     return !(previousTap instanceof TapInEvent);
   }
+  /**
+   * Returns whether or not the given <code>tapOutEvent</code> is nonsensical
+   * @param tapOutEvent the tapInEvent to be evaluated
+   * @return true if the tapOut is proper; false otherwise
+   */
 
   private boolean isTapOutEventLegal(TapOutEvent tapOutEvent) {
     // initializing a trip with a tap out event is not legal

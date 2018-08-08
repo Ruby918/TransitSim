@@ -50,18 +50,34 @@ public class Card implements Serializable {
     this.nickname = nickname;
   }
 
+  /**
+   * Returns if taxes are applied to taps on this card.
+   * @return if taxes are applied to taps on this card
+   */
     public boolean isTaxOn() {
         return taxOn;
     }
 
-    public void setTaxOn(boolean taxOn) {
+  /**
+   * Sets if taxes are applied on the succeeding taps of this card.
+   * @param taxOn if taxes are applied on the succeeding taps of this card.
+   */
+  public void setTaxOn(boolean taxOn) {
         this.taxOn = taxOn;
     }
 
-    public String getNickname() {
+  /**
+   * Returns the nickname of this card.
+   * @return he nickname of this card
+   */
+  public String getNickname() {
     return nickname;
   }
 
+  /**
+   * Sets the nickname of this card.
+   * @param nickname the nickname of this card.
+   */
   public void setNickname(String nickname) {
     this.nickname = nickname;
   }
@@ -84,6 +100,10 @@ public class Card implements Serializable {
     return trips;
   }
 
+  /**
+   * Gets the price modifier of this card.
+   * @return the price modifier of this card
+   */
   public PriceModifier getPriceModifier() {
     return priceModifier;
   }
@@ -102,10 +122,18 @@ public class Card implements Serializable {
     this.isActive = true;
   }
 
+  /**
+   * Returns if this card is active.
+   * @return if this card is active
+   */
   public boolean isActive() {
     return isActive;
   }
 
+  /**
+   * Sets the activity of this card.
+   * @param active the activity of this card.
+   */
   public void setActive(boolean active) {
     this.isActive = active;
   }
@@ -119,6 +147,10 @@ public class Card implements Serializable {
     return this.balance;
   }
 
+  /**
+   * Returns the balance of this card as a string.
+   * @return the balance of this card as a string.
+   */
   public String getBalanceString() {
     if (balance < 0) {
       return "- $" + String.format("%.2f", -balance);
@@ -155,10 +187,18 @@ public class Card implements Serializable {
     this.transitFareManager.createTransaction(this, price, date);
   }
 
+  /**
+   * Sets the price modifier of this card.
+   * @param priceModifier the price modifier of this card
+   */
   public void setPriceModifier(PriceModifier priceModifier) {
     this.priceModifier = priceModifier;
   }
 
+  /**
+   * Returns the list of transactions of this card.
+   * @return the list of transactions of this card
+   */
   public ArrayList<Transaction> getTransactions() {
     return this.transactions;
   }

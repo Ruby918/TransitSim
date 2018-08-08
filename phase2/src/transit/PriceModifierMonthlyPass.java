@@ -20,11 +20,16 @@ public class PriceModifierMonthlyPass extends PriceModifier {
     }
     return rawPrice;
   }
-
+@Override
   public boolean isValid(FormattedDate date) {
     return !this.usedToday(date) && super.isValid(date);
   }
 
+  /**
+   * Returns if not this price modifier has been used today.
+   * @param today the date today
+   * @return if not this price modifier has been used today
+   */
   private boolean usedToday(FormattedDate today) {
     for (FormattedDate dateUsed : this.getDatesUsed()) {
       if (dateUsed.onSameDay(today)) {
