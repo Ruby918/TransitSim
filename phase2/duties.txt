@@ -9,8 +9,8 @@ Loic
 
 
 Brian
-
-
+- new functionality: Price modifiers
+- classes: Expirable, Price Modifiable, Price, All subclasses of price
 
 
 
