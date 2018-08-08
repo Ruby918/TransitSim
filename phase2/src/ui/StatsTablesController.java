@@ -11,6 +11,9 @@ import transit.simplemodel.SimpleTrip;
 import transit.simplemodel.SimpleUser;
 import util.FormattedDate;
 
+/**
+ * Controller in charge of handling events and user inputs within the statistics screen.
+ */
 public class StatsTablesController extends UiController {
 
   @FXML
@@ -34,6 +37,10 @@ public class StatsTablesController extends UiController {
   @FXML
   private Label revenueLabel;
 
+  /**
+   * Initialize the screen by fetching all necessary
+   * statistical information from the backend.
+   */
   @FXML
   public void initialize() {
 

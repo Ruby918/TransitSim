@@ -1,5 +1,3 @@
-/* loic */
-
 package ui;
 
 import api.LoginFailedException;
@@ -11,6 +9,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import transit.UserAccount;
 
+/**
+ * Handles all events and user inputs within the user login screen.
+ */
 public class UserLoginScreenController extends UiController {
 
   @FXML
@@ -28,6 +29,11 @@ public class UserLoginScreenController extends UiController {
   @FXML
   private Label errorMessage;
 
+  /**
+   * Attempt to log in and check credentials.
+   *
+   * @param event
+   */
   @FXML
   protected void handleLoginButtonAction(ActionEvent event) {
     String email = userField.getText();
@@ -48,6 +54,11 @@ public class UserLoginScreenController extends UiController {
     }
   }
 
+  /**
+   * Return to the title screen.
+   *
+   * @param event
+   */
   @FXML
   protected void handleReturnButtonAction(ActionEvent event) {
     loadTemplate(UiController.TITLE_SCREEN, returnButton);

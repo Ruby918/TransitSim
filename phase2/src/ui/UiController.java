@@ -9,6 +9,9 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import util.EasyLogger;
 
+/**
+ * Parent class for UI classes that links the API and the front-end together.
+ */
 public class UiController {
 
   public static Api api;

@@ -1,5 +1,3 @@
-/*loic*/
-
 package ui;
 
 import javafx.event.ActionEvent;
@@ -13,6 +11,9 @@ import transit.Station;
 import transit.UserAccount;
 import util.FormattedDate;
 
+/**
+ * Handle all events and user input within the main user screen.
+ */
 public class UserScreenController extends UiController {
 
   private UserAccount user;
@@ -78,6 +79,9 @@ public class UserScreenController extends UiController {
     selectStationCombo.valueProperty().addListener((obs, oldVal, newVal) -> handleStationSelect());
   }
 
+  /**
+   * Helper function to update the balance label.
+   */
   private void updateBalanceLabel() {
     clearMessages();
     if (card != null) {
@@ -85,6 +89,9 @@ public class UserScreenController extends UiController {
     }
   }
 
+  /**
+   * Helper function to handle a switch in selected card.
+   */
   private void handleCardSelect() {
     clearMessages();
     Card newCard = selectCardCombo.getSelectionModel().getSelectedItem();
@@ -95,6 +102,9 @@ public class UserScreenController extends UiController {
     }
   }
 
+  /**
+   * Helper function to handle s switch of selected station.
+   */
   private void handleStationSelect() {
     clearMessages();
     Station newStation = selectStationCombo.getSelectionModel().getSelectedItem();
@@ -104,16 +114,31 @@ public class UserScreenController extends UiController {
     }
   }
 
+  /**
+   * Prompt the create card screen.
+   *
+   * @param event
+   */
   @FXML
   protected void handleCreateCardButton(ActionEvent event) {
     loadTemplate(CREATE_CARD_SCREEN, createCardButton);
   }
 
+  /**
+   * Prompt the edit card screen.
+   *
+   * @param event
+   */
   @FXML
   protected void handleEditCardButton(ActionEvent event) {
     loadTemplate(EDIT_CARD_SCREEN, createCardButton);
   }
 
+  /**
+   * Handle the user tapping in.
+   *
+   * @param event
+   */
   @FXML
   protected void handleTapInCardButton(ActionEvent event) {
     try {
@@ -125,6 +150,11 @@ public class UserScreenController extends UiController {
     }
   }
 
+  /**
+   * Handle event when the user taps out.
+   *
+   * @param event
+   */
   @FXML
   protected void handleTapOutCardButton(ActionEvent event) {
     try {
@@ -136,22 +166,34 @@ public class UserScreenController extends UiController {
     }
   }
 
+  /**
+   * Clear messages.
+   */
   private void clearMessages() {
     errorMessage.setText("");
     successMessage.setText("");
     infoMessage.setText("");
   }
 
+  /**
+   * Pass a success message.
+   */
   private void setSuccessMessage() {
     clearMessages();
     successMessage.setText("Success.");
   }
 
+  /**
+   * Pass an error message.
+   */
   private void setErrorMessage() {
     clearMessages();
     errorMessage.setText("Tap failed.");
   }
 
+  /**
+   * Pass an info message.
+   */
   private void setInfoMessage() {
     clearMessages();
     infoMessage.setText("Nothing to tap.");

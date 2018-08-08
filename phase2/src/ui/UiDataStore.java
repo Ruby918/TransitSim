@@ -3,6 +3,11 @@ package ui;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Store static variables of the current simulation.
+ * The information stored are the current user, the current date,
+ * the current selected station and selected card
+ */
 public class UiDataStore {
 
   private Map<String, UiData> data = new HashMap<>();

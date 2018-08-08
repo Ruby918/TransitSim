@@ -6,6 +6,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
+/**
+ * Simple pop-up screen to notify the user of having successfully created a card.
+ */
 public class SuccessCreatedScreenController extends UiController {
 
   @FXML
