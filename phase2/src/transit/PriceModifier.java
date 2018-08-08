@@ -6,12 +6,12 @@ import util.FormattedDate;
 
 public abstract class PriceModifier implements PriceModifiable, Expirable, Serializable {
 
+  // maximum number of times the price modifier can be used; -1 if there is no limit;
+  private final int USAGE_LIMIT;
+  int numberOfTimesUsed;
   private FormattedDate startDate;
   private FormattedDate endDate;
   private String name;
-  int numberOfTimesUsed;
-  // maximum number of times the price modifier can be used; -1 if there is no limit;
-  private final int USAGE_LIMIT;
   private ArrayList<FormattedDate> datesUsed;
 
   public PriceModifier(FormattedDate startDate, FormattedDate endDate, int USAGE_LIMIT,
@@ -26,6 +26,7 @@ public abstract class PriceModifier implements PriceModifiable, Expirable, Seria
 
   /**
    * Returns the list of <code>FormattedDate</code> this price modifier was used.
+   *
    * @return the list of <code>FormattedDate</code> this price modifier was used
    */
   public ArrayList<FormattedDate> getDatesUsed() {
@@ -33,9 +34,11 @@ public abstract class PriceModifier implements PriceModifiable, Expirable, Seria
   }
 
   /**
-   * Appends a <code>FormattedDate</code> representing  another date this modifier has been used, to the list of
-   * dates used.
-   * @param dateUsed a <code>FormattedDate</code> representing  another date this modifier has been used
+   * Appends a <code>FormattedDate</code> representing  another date this modifier has been used, to
+   * the list of dates used.
+   *
+   * @param dateUsed a <code>FormattedDate</code> representing  another date this modifier has been
+   * used
    */
   public void addDateUsed(FormattedDate dateUsed) {
     this.datesUsed.add(dateUsed);

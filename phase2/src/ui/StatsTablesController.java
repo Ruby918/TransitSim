@@ -38,8 +38,7 @@ public class StatsTablesController extends UiController {
   private Label revenueLabel;
 
   /**
-   * Initialize the screen by fetching all necessary
-   * statistical information from the backend.
+   * Initialize the screen by fetching all necessary statistical information from the backend.
    */
   @FXML
   public void initialize() {
@@ -50,7 +49,6 @@ public class StatsTablesController extends UiController {
     tableViewTaps.getItems().clear();
     tableViewUsers.getItems().clear();
     tableViewRoutes.getItems().clear();
-
 
     FormattedDate date = (FormattedDate) dataStore.get(UiDataStore.CURRENT_FILTER_DATE).data();
 

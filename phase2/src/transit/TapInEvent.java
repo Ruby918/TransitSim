@@ -10,6 +10,7 @@ public class TapInEvent extends TapEvent {
   public TapInEvent(Station station, FormattedDate date, Card card) {
     super(station, date, card);
   }
+
   /**
    * returns string representation of class.
    *

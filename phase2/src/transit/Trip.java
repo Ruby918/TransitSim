@@ -62,6 +62,7 @@ public class Trip implements Comparable<Trip>, Serializable {
 
   /**
    * Returns the max charge for a trip.
+   *
    * @return the max charge for a trip
    */
   public double getMaxCharge() {
@@ -96,8 +97,9 @@ public class Trip implements Comparable<Trip>, Serializable {
     Price price = new Price(tapInEvent.getTransitDate(), tapPrice, card.getPriceModifier(),
         maxFinalPrice, card.isTaxOn());
     price.applyPriceModifiers(tapInEvent.getTransitDate());
-      if (price.hasFinalPrice())
-    cost += price.getFinalPrice();
+    if (price.hasFinalPrice()) {
+      cost += price.getFinalPrice();
+    }
     return price;
   }
 
@@ -125,13 +127,15 @@ public class Trip implements Comparable<Trip>, Serializable {
     Price price = new Price(tapOutEvent.getTransitDate(), tapPrice, card.getPriceModifier(),
         maxFinalPrice, card.isTaxOn());
     price.applyPriceModifiers(tapOutEvent.getTransitDate());
-    if (price.hasFinalPrice())
-    cost += price.getFinalPrice();
+    if (price.hasFinalPrice()) {
+      cost += price.getFinalPrice();
+    }
     return price;
   }
 
   /**
    * Returns if one can add the given <code>tapInEvent</code> to the this trip.
+   *
    * @param tapInEvent the tap desired to be added
    * @return true if one can add the tap to this trip; false otherwise
    */
@@ -151,7 +155,8 @@ public class Trip implements Comparable<Trip>, Serializable {
   }
 
   /**
-   * Returns whether or not the given <code>tapInEvent</code> is nonsensical
+   * Returns whether or not the given <code>tapInEvent</code> is nonsensical.
+   *
    * @param tapInEvent the tapInEvent to be evaluated
    * @return true if the tapIn is proper; false otherwise
    */
@@ -163,8 +168,10 @@ public class Trip implements Comparable<Trip>, Serializable {
     // 2 tapInEvents in a row is not legal.
     return !(previousTap instanceof TapInEvent);
   }
+
   /**
-   * Returns whether or not the given <code>tapOutEvent</code> is nonsensical
+   * Returns whether or not the given <code>tapOutEvent</code> is nonsensical.
+   *
    * @param tapOutEvent the tapInEvent to be evaluated
    * @return true if the tapOut is proper; false otherwise
    */

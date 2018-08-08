@@ -31,8 +31,6 @@ public class UserLoginScreenController extends UiController {
 
   /**
    * Attempt to log in and check credentials.
-   *
-   * @param event
    */
   @FXML
   protected void handleLoginButtonAction(ActionEvent event) {
@@ -56,8 +54,6 @@ public class UserLoginScreenController extends UiController {
 
   /**
    * Return to the title screen.
-   *
-   * @param event
    */
   @FXML
   protected void handleReturnButtonAction(ActionEvent event) {

@@ -33,6 +33,13 @@ public abstract class Route implements Serializable {
   }
 
   /**
+   * Set all stations at once.
+   */
+  public void setStations(ArrayList<Station> stations) {
+    this.stations = stations;
+  }
+
+  /**
    * Add a station by name.
    */
   public abstract void addStationByName(String name);
@@ -61,13 +68,6 @@ public abstract class Route implements Serializable {
    */
   public void addStation(Station station) {
     this.stations.add(station);
-  }
-
-  /**
-   * Set all stations at once.
-   */
-  public void setStations(ArrayList<Station> stations) {
-    this.stations = stations;
   }
 
   /**

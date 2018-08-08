@@ -13,10 +13,10 @@ import util.FormattedDate;
  */
 public class Card implements Serializable {
 
+  private final ArrayList<Transaction> transactions = new ArrayList<>();
   // Instance variables storing information on the card.
   private double balance = 19;
   private ArrayList<Trip> trips = new ArrayList<>(); // Array list of trips recorded onto card.
-  private final ArrayList<Transaction> transactions = new ArrayList<>();
   private Trip activeTrip = null; // Trip Card is actively going through; null if no trip is active.
   private boolean isActive = true;
   private int cardId;
@@ -42,6 +42,14 @@ public class Card implements Serializable {
     this("Card " + id, id, transitFareManager, priceModifier);
   }
 
+  /**
+   * Initialize card with given parameters.
+   *
+   * @param nickname
+   * @param id
+   * @param transitFareManager
+   * @param priceModifier
+   */
   public Card(String nickname, int id, TransitFareManager transitFareManager,
       PriceModifier priceModifier) {
     this.cardId = id;
@@ -52,22 +60,25 @@ public class Card implements Serializable {
 
   /**
    * Returns if taxes are applied to taps on this card.
+   *
    * @return if taxes are applied to taps on this card
    */
-    public boolean isTaxOn() {
-        return taxOn;
-    }
+  public boolean isTaxOn() {
+    return taxOn;
+  }
 
   /**
    * Sets if taxes are applied on the succeeding taps of this card.
+   *
    * @param taxOn if taxes are applied on the succeeding taps of this card.
    */
   public void setTaxOn(boolean taxOn) {
-        this.taxOn = taxOn;
-    }
+    this.taxOn = taxOn;
+  }
 
   /**
    * Returns the nickname of this card.
+   *
    * @return he nickname of this card
    */
   public String getNickname() {
@@ -76,6 +87,7 @@ public class Card implements Serializable {
 
   /**
    * Sets the nickname of this card.
+   *
    * @param nickname the nickname of this card.
    */
   public void setNickname(String nickname) {
@@ -102,10 +114,20 @@ public class Card implements Serializable {
 
   /**
    * Gets the price modifier of this card.
+   *
    * @return the price modifier of this card
    */
   public PriceModifier getPriceModifier() {
     return priceModifier;
+  }
+
+  /**
+   * Sets the price modifier of this card.
+   *
+   * @param priceModifier the price modifier of this card
+   */
+  public void setPriceModifier(PriceModifier priceModifier) {
+    this.priceModifier = priceModifier;
   }
 
   /**
@@ -124,6 +146,7 @@ public class Card implements Serializable {
 
   /**
    * Returns if this card is active.
+   *
    * @return if this card is active
    */
   public boolean isActive() {
@@ -132,6 +155,7 @@ public class Card implements Serializable {
 
   /**
    * Sets the activity of this card.
+   *
    * @param active the activity of this card.
    */
   public void setActive(boolean active) {
@@ -149,6 +173,7 @@ public class Card implements Serializable {
 
   /**
    * Returns the balance of this card as a string.
+   *
    * @return the balance of this card as a string.
    */
   public String getBalanceString() {
@@ -188,15 +213,8 @@ public class Card implements Serializable {
   }
 
   /**
-   * Sets the price modifier of this card.
-   * @param priceModifier the price modifier of this card
-   */
-  public void setPriceModifier(PriceModifier priceModifier) {
-    this.priceModifier = priceModifier;
-  }
-
-  /**
    * Returns the list of transactions of this card.
+   *
    * @return the list of transactions of this card
    */
   public ArrayList<Transaction> getTransactions() {

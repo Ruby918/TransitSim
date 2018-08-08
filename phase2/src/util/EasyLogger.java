@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class EasyLogger {
+
   public Logger log;
 
   public EasyLogger(String fileName) {

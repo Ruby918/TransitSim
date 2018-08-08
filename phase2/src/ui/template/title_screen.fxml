@@ -1,21 +1,20 @@
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.Font?>
-
-<GridPane fx:controller="ui.TitleScreenController"
-  xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="15" vgap="15"
-  prefHeight="600.0"
-  prefWidth="800.0">
+<GridPane xmlns:fx="http://javafx.com/fxml"
+  alignment="center" hgap="15" prefHeight="600.0" prefWidth="800.0"
+  vgap="15"
+  fx:controller="ui.TitleScreenController">
 
   <padding>
-    <Insets top="10" right="10" bottom="10" left="10"/>
+    <Insets bottom="10" left="10" right="10" top="10"/>
   </padding>
 
   <columnConstraints>
-    <ColumnConstraints maxWidth="Infinity"
-      halignment="CENTER" hgrow="ALWAYS">
+    <ColumnConstraints halignment="CENTER"
+      hgrow="ALWAYS" maxWidth="Infinity">
     </ColumnConstraints>
   </columnConstraints>
 
@@ -23,12 +22,12 @@
 
   <fx:include
     GridPane.valignment="TOP"
-    fx:id="child" source="nav_bar.fxml"/>
+    source="nav_bar.fxml" fx:id="child"/>
 
-  <Label  text="Wonderful Excellent Transit System Manager"
-    GridPane.valignment="CENTER"
+  <Label style="-fx-wrap-text:true;-fx-text-alignment:center"
     GridPane.halignment="CENTER"
-    style="-fx-wrap-text:true;-fx-text-alignment:center">
+    GridPane.valignment="CENTER"
+    text="Wonderful Excellent Transit System Manager">
     <font>
       <Font size="50"></Font>
     </font>

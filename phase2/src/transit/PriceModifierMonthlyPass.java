@@ -3,7 +3,7 @@ package transit;
 import util.FormattedDate;
 
 /**
- * A PriceModifier that allows 1 free trip a day, for 30 days
+ * A PriceModifier that allows 1 free trip a day, for 30 days.
  */
 public class PriceModifierMonthlyPass extends PriceModifier {
 
@@ -20,13 +20,15 @@ public class PriceModifierMonthlyPass extends PriceModifier {
     }
     return rawPrice;
   }
-@Override
+
+  @Override
   public boolean isValid(FormattedDate date) {
     return !this.usedToday(date) && super.isValid(date);
   }
 
   /**
    * Returns if not this price modifier has been used today.
+   *
    * @param today the date today
    * @return if not this price modifier has been used today
    */

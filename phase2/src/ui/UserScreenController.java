@@ -1,6 +1,5 @@
 package ui;
 
-import java.util.SimpleTimeZone;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -125,8 +124,6 @@ public class UserScreenController extends UiController {
 
   /**
    * Prompt the create card screen.
-   *
-   * @param event
    */
   @FXML
   protected void handleCreateCardButton(ActionEvent event) {
@@ -135,8 +132,6 @@ public class UserScreenController extends UiController {
 
   /**
    * Prompt the edit card screen.
-   *
-   * @param event
    */
   @FXML
   protected void handleEditCardButton(ActionEvent event) {
@@ -145,8 +140,6 @@ public class UserScreenController extends UiController {
 
   /**
    * Handle the user tapping in.
-   *
-   * @param event
    */
   @FXML
   protected void handleTapInCardButton(ActionEvent event) {
@@ -161,8 +154,6 @@ public class UserScreenController extends UiController {
 
   /**
    * Handle event when the user taps out.
-   *
-   * @param event
    */
   @FXML
   protected void handleTapOutCardButton(ActionEvent event) {

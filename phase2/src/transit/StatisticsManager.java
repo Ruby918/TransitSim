@@ -31,8 +31,9 @@ public class StatisticsManager {
     }
     return tripsOnDate;
   }
+
   /**
-   * returns array list of taps
+   * returns array list of taps.
    *
    * @return array list of taps.
    */
@@ -43,8 +44,10 @@ public class StatisticsManager {
     }
     return taps;
   }
+
   /**
-   * returns array list of taps on a specific date
+   * returns array list of taps on a specific date.
+   *
    * @param date - date of taps requested
    * @return array list of taps.
    */
@@ -57,8 +60,10 @@ public class StatisticsManager {
     }
     return tapsOnDate;
   }
+
   /**
-   * returns array list of transactions on a specific date
+   * returns array list of transactions on a specific date.
+   *
    * @param date - date of transactions requested
    * @return array list of transactions.
    */
@@ -120,6 +125,7 @@ public class StatisticsManager {
     }
     return stationsReached;
   }
+
   /**
    * Calculate array list of routes used on one day.
    *
@@ -135,6 +141,7 @@ public class StatisticsManager {
     }
     return routes;
   }
+
   /**
    * Calculate array list of users used on one day.
    *

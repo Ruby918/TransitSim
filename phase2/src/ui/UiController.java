@@ -14,9 +14,6 @@ import util.EasyLogger;
  */
 public class UiController {
 
-  public static Api api;
-  public static EasyLogger logger = new EasyLogger("ui");
-
   static final String TITLE_SCREEN = "template/title_screen.fxml";
   static final String MAP_SCREEN = "template/admin_map_screen.fxml";
   static final String STATS_SCREEN = "template/admin_statistics_screen.fxml";
@@ -26,7 +23,8 @@ public class UiController {
   static final String SUCCESS_SCREEN = "template/success_create_screen.fxml";
   static final String LOGIN_SCREEN = "template/user_login_screen.fxml";
   static final String HOMEPAGE_SCREEN = "template/user_screen.fxml";
-
+  public static Api api;
+  public static EasyLogger logger = new EasyLogger("ui");
   //UI runtime data store
   public static UiDataStore dataStore = new UiDataStore();
 

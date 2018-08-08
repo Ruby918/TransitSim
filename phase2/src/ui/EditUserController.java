@@ -9,7 +9,6 @@ import transit.UserAccount;
 
 /**
  * Controller handles all events within the editing user screen.
- *
  */
 public class EditUserController extends UiController {
 
@@ -25,7 +24,7 @@ public class EditUserController extends UiController {
   private Label editUserLabel;
 
   /**
-   * Initialize the screen with the user's information
+   * Initialize the screen with the user's information.
    */
   public void initialize() {
     user = (UserAccount) dataStore.get(UiDataStore.CURRENT_USER).data();
@@ -35,9 +34,7 @@ public class EditUserController extends UiController {
   }
 
   /**
-   * Try to update the user's name
-   *
-   * @param event
+   * Try to update the user's name.
    */
   @FXML
   protected void handleUpdateNameButton(ActionEvent event) {
@@ -52,9 +49,7 @@ public class EditUserController extends UiController {
   }
 
   /**
-   * Try to update the user's password
-   *
-   * @param event
+   * Try to update the user's password.
    */
   @FXML
   protected void handleUpdatePasswordButton(ActionEvent event) {
@@ -68,7 +63,7 @@ public class EditUserController extends UiController {
   }
 
   /**
-   * Update the home page label to show the user's name
+   * Update the home page label to show the user's name.
    */
   private void updateHomepageLabel() {
     if (user != null) {

@@ -19,11 +19,9 @@ import util.FormattedDate;
 
 public class EditCardScreenController extends UiController {
 
-  private Card card;
-
   @FXML
   public Button addFifty;
-
+  private Card card;
   @FXML
   private Button returnButton;
 

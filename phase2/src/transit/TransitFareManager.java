@@ -5,23 +5,35 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import util.FormattedDate;
 
-/** Main class of the transit system. */
+/**
+ * Main class of the transit system.
+ */
 public class TransitFareManager implements Serializable {
 
   public static final double MAX_CHARGE = 6;
-  /** Map of this transit system. */
+  /**
+   * Map of this transit system.
+   */
   protected Map map;
-  /** List of users that have accounts with this transit system. */
+  /**
+   * List of users that have accounts with this transit system.
+   */
   private HashMap<String, UserAccount> users = new HashMap<>();
-  /** List of cards, trips and Transactions that have occurred or that have been issued. */
+  /**
+   * List of cards, trips and Transactions that have occurred or that have been issued.
+   */
   private ArrayList<Card> cards = new ArrayList<>();
 
   private ArrayList<Trip> trips = new ArrayList<>();
   private ArrayList<Transaction> transactions = new ArrayList<>();
-  /** An constructor for the transitFareManager */
+
+  /**
+   * An constructor for the transitFareManager.
+   */
   public TransitFareManager(Map map) {
     this.map = map;
   }
+
   /**
    * A method that returns an array list of all users.
    *
@@ -32,6 +44,7 @@ public class TransitFareManager implements Serializable {
     usersList.addAll(users.values());
     return usersList;
   }
+
   /**
    * A method that returns an array list of all cards.
    *
@@ -40,6 +53,7 @@ public class TransitFareManager implements Serializable {
   public ArrayList<Card> getCards() {
     return cards;
   }
+
   /**
    * A method that returns an array list of all trips.
    *
@@ -48,6 +62,7 @@ public class TransitFareManager implements Serializable {
   public ArrayList<Trip> getTrips() {
     return this.trips;
   }
+
   /**
    * A method that returns an array list of all transactions.
    *
@@ -56,8 +71,9 @@ public class TransitFareManager implements Serializable {
   public ArrayList<Transaction> getTransactions() {
     return this.transactions;
   }
+
   /**
-   * A method that returns the map of transit system
+   * A method that returns the map of transit system.
    *
    * @return map of transit system
    */
@@ -96,6 +112,7 @@ public class TransitFareManager implements Serializable {
     user.addCard(card);
     return card;
   }
+
   /**
    * Creates and returns a new card object. Generates ID for new card based in the number of
    * existing cards. Adds this new card to user.
@@ -110,8 +127,9 @@ public class TransitFareManager implements Serializable {
     user.addCard(card);
     return card;
   }
+
   /**
-   * A method that returns the user through the users email
+   * A method that returns the user through the users email.
    *
    * @return user of transit system
    */
@@ -119,7 +137,10 @@ public class TransitFareManager implements Serializable {
     UserAccount user = this.users.get(email);
     return user;
   }
-  /** A method that updates information on user */
+
+  /**
+   * A method that updates information on user.
+   */
   public void updateUser(
       String oldEmail, String name, String newEmail, String password, boolean isAdmin) {
     UserAccount user = this.users.get(oldEmail);
@@ -132,7 +153,10 @@ public class TransitFareManager implements Serializable {
     users.remove(oldEmail);
     users.put(newEmail, user);
   }
-  /** A method that deletes user */
+
+  /**
+   * A method that deletes user.
+   */
   public void deleteUser(String email) {
     this.users.remove(email);
   }
@@ -152,8 +176,9 @@ public class TransitFareManager implements Serializable {
     }
     return null;
   }
+
   /**
-   * A method that creates new trip
+   * A method that creates new trip.
    *
    * @return - Trip object
    */
@@ -162,8 +187,9 @@ public class TransitFareManager implements Serializable {
     this.trips.add(trip);
     return trip;
   }
+
   /**
-   * A method that creates new transaction
+   * A method that creates new transaction.
    *
    * @param date - date of transaction
    * @param card - Card that transaction occurs in

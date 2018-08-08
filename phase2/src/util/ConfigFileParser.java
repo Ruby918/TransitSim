@@ -9,11 +9,11 @@ import java.io.IOException;
  */
 public abstract class ConfigFileParser {
 
+  protected transient EasyLogger logger;
   /**
    * Name of the file containing the configuration to be parsed.
    */
   private String fileName;
-  protected transient EasyLogger logger;
 
   public ConfigFileParser(String fileName, EasyLogger logger) {
     this.fileName = fileName;

@@ -3,7 +3,7 @@ package transit;
 import util.FormattedDate;
 
 /**
- * A price modifier that increases the price by $1 for 30 days
+ * A price modifier that increases the price by $1 for 30 days.
  */
 public class PriceModifierCharityPass extends PriceModifier {
 

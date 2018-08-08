@@ -15,15 +15,12 @@ import transit.UserAccount;
  */
 public class NavigationController extends UiController implements Initializable {
 
-  private UserAccount user;
-
   @FXML
   protected MenuBar menuBar;
+  private UserAccount user;
 
   /**
    * Handle logging out.
-   *
-   * @param event
    */
   @FXML
   protected void handleLogoutButtonAction(ActionEvent event) {
@@ -33,8 +30,6 @@ public class NavigationController extends UiController implements Initializable 
 
   /**
    * Handle logging in.
-   *
-   * @param event
    */
   @FXML
   protected void handleLoginButtonAction(ActionEvent event) {
@@ -43,8 +38,6 @@ public class NavigationController extends UiController implements Initializable 
 
   /**
    * Handle navigating to the user's account page.
-   *
-   * @param event
    */
   @FXML
   protected void handleMyAccountButtonAction(ActionEvent event) {
@@ -53,8 +46,6 @@ public class NavigationController extends UiController implements Initializable 
 
   /**
    * Handle navigating to the screen that displays all users.
-   *
-   * @param event
    */
   @FXML
   protected void handleUsersButtonAction(ActionEvent event) {
@@ -63,8 +54,6 @@ public class NavigationController extends UiController implements Initializable 
 
   /**
    * Handle navigating to the statistics page.
-   *
-   * @param event
    */
   @FXML
   protected void handleStatisticsButtonAction(ActionEvent event) {
@@ -73,8 +62,6 @@ public class NavigationController extends UiController implements Initializable 
 
   /**
    * Handle navigating to the maps page.
-   *
-   * @param event
    */
   @FXML
   protected void handleMapButtonAction(ActionEvent event) {
@@ -83,9 +70,6 @@ public class NavigationController extends UiController implements Initializable 
 
   /**
    * Initialize with the user's data. Show a different menu for admin users.
-   *
-   * @param arg0
-   * @param arg1
    */
   @FXML
   public void initialize(java.net.URL arg0, ResourceBundle arg1) {
@@ -108,9 +92,6 @@ public class NavigationController extends UiController implements Initializable 
 
   /**
    * Add the menu label.
-   *
-   * @param label
-   * @return
    */
   private Label addMenuLabel(String label) {
     Menu menu = new Menu();

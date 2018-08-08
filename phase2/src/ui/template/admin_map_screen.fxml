@@ -1,78 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
-
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
-<GridPane alignment="CENTER" hgap="10.0" vgap="10.0"
-  xmlns:fx="http://javafx.com/fxml"
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.text.Font?>
+<GridPane xmlns:fx="http://javafx.com/fxml" alignment="CENTER" hgap="10.0"
+  vgap="10.0"
   fx:controller="ui.AdminMapController">
   <padding>
     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
   </padding>
-  <fx:include fx:id="navigation" source="nav_bar.fxml"/>
+  <fx:include source="nav_bar.fxml" fx:id="navigation"/>
 
 
-  <Label text="Routes"
-    GridPane.columnIndex="0" GridPane.rowIndex="0">
+  <Label GridPane.columnIndex="0"
+    GridPane.rowIndex="0" text="Routes">
     <font>
       <Font size="20"/>
     </font>
   </Label>
-  <TableView fx:id="tableViewRoutes" GridPane.columnIndex="0" GridPane.rowIndex="1">
+  <TableView GridPane.columnIndex="0" GridPane.rowIndex="1" fx:id="tableViewRoutes">
     <columns>
       <TableColumn prefWidth="100.0" text="Name" fx:id="RouteName">
-        <cellValueFactory><PropertyValueFactory property="name" />
+        <cellValueFactory>
+          <PropertyValueFactory property="name"/>
         </cellValueFactory>
       </TableColumn>
       <TableColumn prefWidth="120.0" text="Type" fx:id="RouteType">
-        <cellValueFactory><PropertyValueFactory property="type" />
+        <cellValueFactory>
+          <PropertyValueFactory property="type"/>
         </cellValueFactory>
       </TableColumn>
       <TableColumn prefWidth="500.0" text="Stations" fx:id="RouteStations">
-        <cellValueFactory><PropertyValueFactory property="stations" />
+        <cellValueFactory>
+          <PropertyValueFactory property="stations"/>
         </cellValueFactory>
       </TableColumn>
     </columns>
   </TableView>
 
 
-  <Label fx:id="stationsLabel" text="Stations"
-    GridPane.columnIndex="0" GridPane.rowIndex="2">
+  <Label GridPane.columnIndex="0" GridPane.rowIndex="2"
+    text="Stations" fx:id="stationsLabel">
     <font>
       <Font size="20"/>
     </font>
   </Label>
-  <Button text="Clear Station Filter"
-    prefWidth="175" prefHeight="75" defaultButton="false"
-    GridPane.columnIndex="0" GridPane.rowIndex="3"
-    GridPane.columnSpan="1" GridPane.rowSpan="1"
-    GridPane.halignment="LEFT"
-    onAction="#handleClearButton">
+  <Button GridPane.columnIndex="0"
+    GridPane.columnSpan="1" GridPane.halignment="LEFT" GridPane.rowIndex="3"
+    GridPane.rowSpan="1" defaultButton="false"
+    onAction="#handleClearButton" prefHeight="75"
+    prefWidth="175"
+    text="Clear Station Filter">
   </Button>
-  <TableView fx:id="tableViewStations" GridPane.columnIndex="0" GridPane.rowIndex="4">
+  <TableView GridPane.columnIndex="0" GridPane.rowIndex="4" fx:id="tableViewStations">
     <columns>
       <TableColumn prefWidth="100.0" text="Name" fx:id="StationName">
-        <cellValueFactory><PropertyValueFactory property="name" />
+        <cellValueFactory>
+          <PropertyValueFactory property="name"/>
         </cellValueFactory>
       </TableColumn>
       <TableColumn prefWidth="120.0" text="Type" fx:id="StationType">
-        <cellValueFactory><PropertyValueFactory property="type" />
+        <cellValueFactory>
+          <PropertyValueFactory property="type"/>
         </cellValueFactory>
       </TableColumn>
       <TableColumn prefWidth="100.0" text="Route" fx:id="StationRoute">
-        <cellValueFactory><PropertyValueFactory property="route" />
+        <cellValueFactory>
+          <PropertyValueFactory property="route"/>
         </cellValueFactory>
       </TableColumn>
-      <TableColumn prefWidth="300.0" text="Adjacent To" fx:id="Adjacent" >
-        <cellValueFactory><PropertyValueFactory property="adjacent" />
+      <TableColumn prefWidth="300.0" text="Adjacent To" fx:id="Adjacent">
+        <cellValueFactory>
+          <PropertyValueFactory property="adjacent"/>
         </cellValueFactory>
       </TableColumn>
     </columns>
   </TableView>
 
-  <fx:include GridPane.rowIndex="5" fx:id="editStation" source="edit_station_child_screen.fxml"/>
+  <fx:include GridPane.rowIndex="5" source="edit_station_child_screen.fxml" fx:id="editStation"/>
 
 </GridPane>

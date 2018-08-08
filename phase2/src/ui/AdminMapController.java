@@ -21,6 +21,7 @@ public class AdminMapController extends UiController {
   @FXML
   private EditStationController editStationController;
 
+  @FXML
   public void initialize() {
 
     tableViewRoutes.getSelectionModel().selectedIndexProperty()

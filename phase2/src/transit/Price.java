@@ -5,11 +5,11 @@ import util.FormattedDate;
 
 public class Price implements Serializable {
 
+  private final PriceModifier ONTARIO_TAX;
   private double rawPrice;
   private double finalPrice;
   private double maxFinalPrice;
   private PriceModifier priceModifier;
-  private final PriceModifier ONTARIO_TAX;
   private boolean taxOn;
   private boolean hasFinalPrice = false;
 
@@ -22,7 +22,8 @@ public class Price implements Serializable {
   }
 
   public Price(
-          FormattedDate today, double rawPrice, PriceModifier priceModifier, double maxFinalPrice, boolean taxOn) {
+      FormattedDate today, double rawPrice, PriceModifier priceModifier, double maxFinalPrice,
+      boolean taxOn) {
     this.rawPrice = rawPrice;
     ONTARIO_TAX = new PriceModifierOntarioTax();
     this.priceModifier = priceModifier;
@@ -62,21 +63,26 @@ public class Price implements Serializable {
   }
 
   /**
-   * Returns whether or not the finalPrice of this object has been purposefully initialized (not the default value).
-   * @return whether or not the finalPrice of this object has been purposefully initialized (not the default value)
-   */
-  public boolean hasFinalPrice() {
-    return hasFinalPrice;
-  }
-
-  /**
    * Sets the final price of this <code>Price</code>.
+   *
    * @param finalPrice the final price of this <code>Price</code>.
    */
   public void setFinalPrice(double finalPrice) {
     this.finalPrice = finalPrice;
     hasFinalPrice = true;
   }
+
+  /**
+   * Returns whether or not the finalPrice of this object has been purposefully initialized (not the
+   * default value).
+   *
+   * @return whether or not the finalPrice of this object has been purposefully initialized (not the
+   * default value)
+   */
+  public boolean hasFinalPrice() {
+    return hasFinalPrice;
+  }
+
   /***
    * Returns the initial price of this <code>Price</code>.
    * @return the initial price of this <code>Price</code>
@@ -87,6 +93,7 @@ public class Price implements Serializable {
 
   /**
    * Sets the <code>PriceModifier</code> of this Price.
+   *
    * @param priceModifier the <code>PriceModifier</code> of this Price
    */
   public void setPriceModifier(PriceModifier priceModifier) {
