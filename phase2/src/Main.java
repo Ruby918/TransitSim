@@ -1,11 +1,10 @@
-import util.DataReadException;
-import util.DataWriteException;
-import transit.TransitFareManager;
-import util.EasyLogger;
 import api.Api;
-
+import transit.TransitFareManager;
 import ui.TitleScreen;
 import ui.UiController;
+import util.DataReadException;
+import util.DataWriteException;
+import util.EasyLogger;
 
 public class Main {
 

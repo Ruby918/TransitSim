@@ -160,7 +160,9 @@ public class StatsApi extends ChildApi {
   }
 
   public double getRevenueOnDate(FormattedDate date) {
-    if (date == null) return getTotalRevenue();
+    if (date == null) {
+      return getTotalRevenue();
+    }
     logger.log.fine("Getting revenue for date " + date);
     return this.statisticsManager.calculateRevenueOnDate(date);
   }

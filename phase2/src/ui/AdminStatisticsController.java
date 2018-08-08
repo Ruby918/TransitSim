@@ -1,7 +1,7 @@
 package ui;
 
-import javafx.scene.control.TextField;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 import util.FormattedDate;
 
 public class AdminStatisticsController extends UiController {

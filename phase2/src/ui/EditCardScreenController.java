@@ -13,8 +13,8 @@ import javafx.scene.control.TextField;
 import transit.Card;
 import transit.PriceModifier;
 import transit.PriceModifierCharityPass;
-import transit.PriceModifierMonthlyPass;
 import transit.PriceModifierFree;
+import transit.PriceModifierMonthlyPass;
 import util.FormattedDate;
 
 public class EditCardScreenController extends UiController {

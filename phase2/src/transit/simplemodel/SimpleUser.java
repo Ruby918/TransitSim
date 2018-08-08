@@ -1,7 +1,7 @@
 package transit.simplemodel;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
 import transit.UserAccount;
 
 public class SimpleUser {

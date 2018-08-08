@@ -49,8 +49,8 @@ public class FormattedDate implements Comparable<FormattedDate>, Serializable {
   }
 
   /**
-   * Creates and returns an instance of Date using the dateString formatted as DD/MM/YYYY
-   * and timeString as HH:MM.
+   * Creates and returns an instance of Date using the dateString formatted as DD/MM/YYYY and
+   * timeString as HH:MM.
    *
    * @param dateString string representing date as DD/MM/YYYY
    * @param timeString string representing time as HH:MM
@@ -121,7 +121,7 @@ public class FormattedDate implements Comparable<FormattedDate>, Serializable {
     return toString();
   }
 
-  public FormattedDate addTime(int time){
+  public FormattedDate addTime(int time) {
     Date date = new Date();
     Calendar calendar = Calendar.getInstance();
     calendar.setTime(date);

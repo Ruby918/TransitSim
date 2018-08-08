@@ -50,7 +50,7 @@ public abstract class ConfigFileParser {
         line = fileReader.readLine();
       }
     } catch (IOException e) {
-     logger.log.severe("Cannot read data file: " + fileName);
+      logger.log.severe("Cannot read data file: " + fileName);
     }
   }
 }

@@ -1,14 +1,14 @@
 package ui;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import transit.simplemodel.SimpleRoute;
 import transit.simplemodel.SimpleStation;
 import transit.simplemodel.SimpleTap;
 import transit.simplemodel.SimpleTransaction;
 import transit.simplemodel.SimpleTrip;
 import transit.simplemodel.SimpleUser;
-import javafx.fxml.FXML;
-import javafx.scene.control.TableView;
 import util.FormattedDate;
 
 public class StatsTablesController extends UiController {

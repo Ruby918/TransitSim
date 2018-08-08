@@ -1,9 +1,9 @@
 package ui;
 
 import java.util.ArrayList;
+import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import transit.Route;
 import transit.Station;

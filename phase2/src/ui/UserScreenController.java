@@ -2,16 +2,16 @@
 
 package ui;
 
-import javafx.scene.control.TextField;
-import transit.Card;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import transit.Card;
 import transit.Station;
-import util.FormattedDate;
 import transit.UserAccount;
+import util.FormattedDate;
 
 public class UserScreenController extends UiController {
 

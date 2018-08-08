@@ -10,6 +10,11 @@ import util.FormattedDate;
  */
 public class TransitFareManager implements Serializable {
 
+  public final static double MAX_CHARGE = 6;
+  /**
+   * Map of this transit system.
+   */
+  protected Map map;
   /**
    * List of users that have accounts with this transit system.
    */
@@ -18,14 +23,8 @@ public class TransitFareManager implements Serializable {
    * List of cards that have been issued.
    */
   private ArrayList<Card> cards = new ArrayList<>();
-  /**
-   * Map of this transit system.
-   */
-  protected Map map;
-
   private ArrayList<Trip> trips = new ArrayList<>();
   private ArrayList<Transaction> transactions = new ArrayList<>();
-  public final double MAX_CHARGE = 6;
 
   public TransitFareManager(Map map) {
     this.map = map;

@@ -1,6 +1,5 @@
 package transit;
 
-import java.util.Date;
 import util.FormattedDate;
 
 /**

@@ -2,13 +2,13 @@ package ui;
 
 import api.CreateUserException;
 import api.UpdateUserException;
-import transit.simplemodel.SimpleUser;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import transit.UserAccount;
+import transit.simplemodel.SimpleUser;
 
 public class AdminUsersController extends UiController {
 
@@ -71,8 +71,6 @@ public class AdminUsersController extends UiController {
       updateView();
       // update navigation bar if updated user is the current user
       UserAccount currentUser = (UserAccount) dataStore.get(UiDataStore.CURRENT_USER).data();
-      if (selectedUser.getEmail().equals(currentUser.getEmail())) {
-      }
     } catch (UpdateUserException e) {
       errorMessage
           .setText("Failed to update user. All fields are required. Emails must be unique.");

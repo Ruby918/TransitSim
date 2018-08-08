@@ -1,7 +1,9 @@
 package api;
 
 import java.util.ArrayList;
-import transit.*;
+import transit.StatisticsManager;
+import transit.TransitFareManager;
+import transit.UserAccount;
 import transit.simplemodel.SimpleUser;
 import util.EasyLogger;
 

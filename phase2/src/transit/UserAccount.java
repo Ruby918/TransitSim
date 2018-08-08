@@ -3,8 +3,8 @@ package transit;/*  Dan */
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
-import util.PrettyList;
 import util.FormattedDate;
+import util.PrettyList;
 
 /**
  * Class that models the functionality of a transit User account.

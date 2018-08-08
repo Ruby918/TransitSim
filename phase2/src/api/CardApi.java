@@ -1,6 +1,11 @@
 package api;
 
-import transit.*;
+import transit.Card;
+import transit.PriceModifier;
+import transit.Station;
+import transit.StatisticsManager;
+import transit.TransitFareManager;
+import transit.UserAccount;
 import util.EasyLogger;
 import util.FormattedDate;
 

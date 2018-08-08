@@ -1,8 +1,8 @@
 package transit.simplemodel;
 
 import javafx.beans.property.SimpleStringProperty;
-import util.PrettyList;
 import transit.Station;
+import util.PrettyList;
 
 public class SimpleStation {
 

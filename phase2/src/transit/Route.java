@@ -1,7 +1,6 @@
 package transit;/* Loic */
 
 import java.io.Serializable;
-import java.lang.Math;
 import java.util.ArrayList;
 
 /**
