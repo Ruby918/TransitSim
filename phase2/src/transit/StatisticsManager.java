@@ -31,7 +31,11 @@ public class StatisticsManager {
     }
     return tripsOnDate;
   }
-
+  /**
+   * returns array list of taps
+   *
+   * @return array list of taps.
+   */
   public ArrayList<TapEvent> getTaps() {
     ArrayList<TapEvent> taps = new ArrayList<>();
     for (Trip trip : transitFareManager.getTrips()) {
@@ -39,7 +43,11 @@ public class StatisticsManager {
     }
     return taps;
   }
-
+  /**
+   * returns array list of taps on a specific date
+   * @param date - date of taps requested
+   * @return array list of taps.
+   */
   public ArrayList<TapEvent> getTapsOnDate(FormattedDate date) {
     ArrayList<TapEvent> tapsOnDate = new ArrayList<>();
     for (TapEvent tap : getTaps()) {
@@ -49,7 +57,11 @@ public class StatisticsManager {
     }
     return tapsOnDate;
   }
-
+  /**
+   * returns array list of transactions on a specific date
+   * @param date - date of transactions requested
+   * @return array list of transactions.
+   */
   public ArrayList<Transaction> getTransactionsOnDate(FormattedDate date) {
     ArrayList<Transaction> transactions = new ArrayList<>();
     for (Transaction transaction : transitFareManager.getTransactions()) {
@@ -108,7 +120,12 @@ public class StatisticsManager {
     }
     return stationsReached;
   }
-
+  /**
+   * Calculate array list of routes used on one day.
+   *
+   * @param date - date to record the number of routes reached.
+   * @return - array list of routes used on one day.
+   */
   public ArrayList<Route> getRoutesReachedOnDate(FormattedDate date) {
     ArrayList<Route> routes = new ArrayList<>();
     for (Station station : getStationsReachedOnDate(date)) {
@@ -118,7 +135,12 @@ public class StatisticsManager {
     }
     return routes;
   }
-
+  /**
+   * Calculate array list of users used on one day.
+   *
+   * @param date - date to record the number of usres reached.
+   * @return - array list of users used on one day.
+   */
   public ArrayList<UserAccount> getUsersReachedOnDate(FormattedDate date) {
     ArrayList<UserAccount> users = transitFareManager.getUsers();
     ArrayList<UserAccount> usersReached = new ArrayList<>();

@@ -1,4 +1,4 @@
-package transit;/*  Dan */
+package transit; /*  Dan */
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,32 +21,42 @@ public class UserAccount implements Serializable {
   private boolean active = true;
   private boolean isAdmin;
 
-  /**
-   * A constructor for the UserAccount class that sets a name, email.
-   */
+  /** A constructor for the UserAccount class that sets a name, email. */
   public UserAccount(String name, String email, boolean isAdmin) {
     this.name = name;
     this.email = email;
     this.password = "root"; // start with default password
     this.isAdmin = isAdmin;
   }
-
+  /**
+   * A method that returns if user is admin
+   *
+   * @return boolean on if user is admin
+   */
   public boolean isAdmin() {
     return isAdmin;
   }
-
+  /**
+   * A method that sets user as admin
+   *
+   * @return boolean on if user is admin
+   */
   public void setAdmin(boolean admin) {
     isAdmin = admin;
   }
-
+  /** A method that deactivates an account */
   public void deactivateAccount() {
     this.active = false;
   }
-
+  /** A method that activates an account */
   public void activateAccount() {
     this.active = true;
   }
-
+  /**
+   * A that checks if user has cards
+   *
+   * @return boolean on if user has cards.
+   */
   public boolean hasCard() {
     return cards.size() != 0;
   }
@@ -106,15 +116,27 @@ public class UserAccount implements Serializable {
   public String getEmail() {
     return email;
   }
-
+  /**
+   * A setter which changes the email of the User account.
+   *
+   * @param email - email of the User account.
+   */
   public void setEmail(String email) {
     this.email = email;
   }
-
+  /**
+   * A getter which returns the password of the User account.
+   *
+   * @return - password of the User account.
+   */
   public String getPassword() {
     return password;
   }
-
+  /**
+   * A setter which changes the password of the User account.
+   *
+   * @param password - name of the User account.
+   */
   public void setPassword(String password) {
     this.password = password;
   }
@@ -226,12 +248,8 @@ public class UserAccount implements Serializable {
 
     PrettyList<Card> prettyCards = new PrettyList<>(cards, "Cards");
 
-    String st = "Name: "
-        + this.name
-        + " | Email: "
-        + this.email
-        + " | Cards: "
-        + prettyCards.toString();
+    String st =
+        "Name: " + this.name + " | Email: " + this.email + " | Cards: " + prettyCards.toString();
 
     if (isAdmin) {
       st += " (Admin)";
