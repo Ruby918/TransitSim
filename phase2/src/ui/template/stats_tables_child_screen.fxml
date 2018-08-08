@@ -67,7 +67,7 @@
               <cellValueFactory><PropertyValueFactory property="date" />
               </cellValueFactory>
             </TableColumn>
-            <TableColumn prefWidth="120.0" text="Station" fx:id="TapStation">
+            <TableColumn prefWidth="200.0" text="Station" fx:id="TapStation">
               <cellValueFactory><PropertyValueFactory property="station" />
               </cellValueFactory>
             </TableColumn>
@@ -105,6 +105,10 @@
             </TableColumn>
             <TableColumn prefWidth="120.0" text="End Time" fx:id="TripEndTime">
               <cellValueFactory><PropertyValueFactory property="endDate" />
+              </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="100.0" text="Cost" fx:id="TripCost">
+              <cellValueFactory><PropertyValueFactory property="cost" />
               </cellValueFactory>
             </TableColumn>
             <TableColumn prefWidth="500.0" text="Taps" fx:id="TripTaps">

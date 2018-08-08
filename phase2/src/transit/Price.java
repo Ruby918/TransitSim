@@ -1,4 +1,4 @@
-package transit;
+package transit;/* brian */
 
 import java.io.Serializable;
 import util.FormattedDate;
@@ -11,9 +11,10 @@ public class Price implements Serializable {
   private PriceModifier priceModifier;
   private final PriceModifier ONTARIO_TAX;
 
+  private boolean hasFinalPrice = false;
+
   public Price() {
     this.rawPrice = 0;
-    finalPrice = -1;
     ONTARIO_TAX = new PriceModifierOntarioTax();
     priceModifier = null;
     maxFinalPrice = Double.MAX_VALUE;
@@ -21,15 +22,12 @@ public class Price implements Serializable {
 
   public Price(double rawPrice) {
     this.rawPrice = rawPrice;
-    finalPrice = -1;
     ONTARIO_TAX = new PriceModifierOntarioTax();
     priceModifier = null;
     maxFinalPrice = Double.MAX_VALUE;
   }
 
   public Price(FormattedDate today) {
-    rawPrice = -1;
-    finalPrice = -1;
     ONTARIO_TAX = new PriceModifierOntarioTax();
     priceModifier = null;
     maxFinalPrice = Double.MAX_VALUE;
@@ -37,7 +35,6 @@ public class Price implements Serializable {
 
   public Price(FormattedDate today, double rawPrice) {
     this.rawPrice = rawPrice;
-    finalPrice = -1;
     ONTARIO_TAX = new PriceModifierOntarioTax();
     priceModifier = null;
     maxFinalPrice = Double.MAX_VALUE;
@@ -46,7 +43,6 @@ public class Price implements Serializable {
   public Price(
       FormattedDate today, double rawPrice, PriceModifier priceModifier, double maxFinalPrice) {
     this.rawPrice = rawPrice;
-    finalPrice = -1;
     ONTARIO_TAX = new PriceModifierOntarioTax();
     this.priceModifier = priceModifier;
     this.maxFinalPrice = maxFinalPrice;
@@ -71,6 +67,7 @@ public class Price implements Serializable {
         finalPrice = ONTARIO_TAX.modifyPrice(finalPrice, date);
       }
       finalPrice = Math.min(finalPrice, maxFinalPrice);
+      hasFinalPrice = true;
     }
   }
 
@@ -78,8 +75,13 @@ public class Price implements Serializable {
     return finalPrice;
   }
 
+  public boolean hasFinalPrice() {
+    return hasFinalPrice;
+  }
+
   public void setFinalPrice(double finalPrice) {
     this.finalPrice = finalPrice;
+    hasFinalPrice = true;
   }
 
   public double getRawPrice() {

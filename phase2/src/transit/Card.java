@@ -230,7 +230,7 @@ public class Card implements Serializable {
     }
 
     // charge the card the price of this tap
-    if (price.getFinalPrice() != -1) {
+    if (price.hasFinalPrice()) {
       logger.log.fine("Charging card a final price of " + price.getFinalPrice()
           + " (raw price of " + price.getRawPrice() + ")");
       createTransaction(price, date);
@@ -285,7 +285,7 @@ public class Card implements Serializable {
     }
 
     // charge the card the price of this tap
-    if (price.getFinalPrice() != -1) {
+    if (price.hasFinalPrice()) {
       logger.log.fine("Charging card a final price of " + price.getFinalPrice()
           + " (raw price of " + price.getRawPrice() + ")");
       createTransaction(price, date);
