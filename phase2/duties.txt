@@ -4,7 +4,9 @@ Project Contributions
 
 
 Loic
-
+- Large contribution to the UI. Created and worked on all .fxml files,
+  most of the controller files, as well as the overall design of the UI.
+- Some contribution to the API class.
 
 
 
