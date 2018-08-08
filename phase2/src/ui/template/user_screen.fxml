@@ -10,6 +10,9 @@
 
 <?import javafx.scene.control.TextField?>
 
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <GridPane fx:controller="ui.UserScreenController"
   xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="15" vgap="15">
   <padding>
@@ -168,6 +171,36 @@
       <Font size="12"></Font>
     </font>
   </Label>
+
+  <Label  text="Recent Trips"
+    GridPane.columnIndex="0" GridPane.rowIndex="10"
+    GridPane.columnSpan="4" GridPane.rowSpan="1"
+    GridPane.halignment="LEFT">
+    <font>
+      <Font size="15"></Font>
+    </font>
+  </Label>
+
+  <TableView fx:id="tableViewTrips" GridPane.columnIndex="0" GridPane.columnSpan="4"  GridPane.rowIndex="11">
+    <columns>
+      <TableColumn prefWidth="120.0" text="Start Time" fx:id="TripStartTime">
+        <cellValueFactory><PropertyValueFactory property="startDate" />
+        </cellValueFactory>
+      </TableColumn>
+      <TableColumn prefWidth="120.0" text="End Time" fx:id="TripEndTime">
+        <cellValueFactory><PropertyValueFactory property="endDate" />
+        </cellValueFactory>
+      </TableColumn>
+      <TableColumn prefWidth="100.0" text="Cost" fx:id="TripCost">
+        <cellValueFactory><PropertyValueFactory property="cost" />
+        </cellValueFactory>
+      </TableColumn>
+      <TableColumn prefWidth="500.0" text="Taps" fx:id="TripTaps">
+        <cellValueFactory><PropertyValueFactory property="taps" />
+        </cellValueFactory>
+      </TableColumn>
+    </columns>
+  </TableView>
 
 
 </GridPane>
