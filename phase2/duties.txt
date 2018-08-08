@@ -26,3 +26,6 @@ files of admin stats
 
 
 Danya
+- Focused on the API and overall architecture
+- Implemented several UI features including using javafx components
+- Did logging and serialization
