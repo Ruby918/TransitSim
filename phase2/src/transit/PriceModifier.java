@@ -37,9 +37,8 @@ public abstract class PriceModifier implements PriceModifiable, Expirable, Seria
 
   @Override
   public boolean isValid(FormattedDate dateUsed) {
-    return (USAGE_LIMIT == -1 || dateUsed.compareTo(startDate) > 0
-        & dateUsed.compareTo(endDate) <= 0
-        & numberOfTimesUsed < USAGE_LIMIT);
+    return (dateUsed.compareTo(startDate) > 0
+        & dateUsed.compareTo(endDate) <= 0);
   }
 
   @Override

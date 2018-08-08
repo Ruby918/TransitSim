@@ -14,7 +14,7 @@ import transit.Card;
 import transit.PriceModifier;
 import transit.PriceModifierCharityPass;
 import transit.PriceModifierMonthlyPass;
-import transit.PriceModifierOntarioTax;
+import transit.PriceModifierFree;
 import util.FormattedDate;
 
 public class EditCardScreenController extends UiController {
@@ -53,13 +53,13 @@ public class EditCardScreenController extends UiController {
     // create price modifiers drop down
     FormattedDate date = new FormattedDate();
     ArrayList<PriceModifier> priceModifiers = new ArrayList<>();
-    priceModifiers.add(new PriceModifierOntarioTax());
+    priceModifiers.add(new PriceModifierFree());
     priceModifiers.add(new PriceModifierCharityPass(date));
     priceModifiers.add(new PriceModifierMonthlyPass(date));
 
     selectPriceModCombo.getItems().setAll(priceModifiers);
     PriceModifier currentPriceMod = card.getPriceModifier();
-    if (currentPriceMod instanceof PriceModifierOntarioTax) {
+    if (currentPriceMod instanceof PriceModifierFree) {
       selectPriceModCombo.getSelectionModel().select(0);
     } else if (currentPriceMod instanceof PriceModifierCharityPass) {
       selectPriceModCombo.getSelectionModel().select(1);
