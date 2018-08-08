@@ -17,9 +17,11 @@ Brian
 
 
 Dhanraj
-
-
-
+-mainly focused on the statistics part of the project.
+-made updates to accommodate new features in statistics
+-Worked on the gui admin portion of the project as well, mainly in the controller and fxml
+files of admin stats 
+- Some contribution to the API class.
 
 
 
